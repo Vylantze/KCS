@@ -6,7 +6,9 @@ try {
     if (process.argv != null && process.argv.length > 2) {
         kanmusu = process.argv.slice(2).join(' ')
     }
-} catch { }
+} catch {
+    return
+}
 if (!kanmusu) {
     console.log("   No ship detected", process.argv)
     return
