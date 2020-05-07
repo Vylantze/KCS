@@ -1,22 +1,27 @@
 <template>
   <div class="app">
-    <Room />
+    <Room>
+      <Ship />
+    </Room>
   </div>
 </template>
 
 <script>
 import Room from "./components/Room.vue";
+import Ship from "./components/Ship.vue";
 
 export default {
   name: "App",
   components: {
-    Room
+    Room,
+    Ship
   }
 };
 </script>
 
 <style lang="less" scoped>
 .app {
+  position: relative;
   height: 100%;
   width: 100%;
   display: flex;

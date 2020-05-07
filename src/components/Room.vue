@@ -1,9 +1,7 @@
 <template>
   <div class="room-container center-div">
     <div class="room fixed">
-      <img src="backgrounds/room_background.png" class="background" />
-      <img src="backgrounds/room_window.png" class="background ontop" />
-      <img src="backgrounds/room_objects.png" class="background ontop" />
+      <canvas id="room-canvas" :width="canvasWidth" :height="canvasHeight" />
     </div>
   </div>
 </template>
@@ -35,7 +33,75 @@
 </style>
 
 <script>
+//const path = require("path");
+
 export default {
-  name: "Room"
+  name: "Room",
+  data() {
+    return {
+      roomWall: null,
+      roomWindow: null,
+      roomObject: null,
+
+      ctx: null // Canvas context
+    };
+  },
+  computed: {
+    canvas() {
+      return document.getElementById("room-canvas");
+    },
+    canvasHeight() {
+      return `${window.innerHeight}px`;
+    },
+    canvasWidth() {
+      return `${window.innerWidth}px`;
+    }
+  },
+  async mounted() {
+    this.ctx = this.canvas.getContext("2d");
+    await this.loadBackground();
+    this.resizeCanvas();
+    window.onresize = this.resizeCanvas;
+  },
+  methods: {
+    clearCanvas() {
+      this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    },
+    loadImage(imageName) {
+      return new Promise(resolve => {
+        let image = new Image();
+        image.onload = () => {
+          resolve(image);
+        };
+        image.src = imageName;
+      });
+    },
+    async loadBackground() {
+      this.roomWall = await this.loadImage("backgrounds/room_background.png");
+      this.roomWindow = await this.loadImage("backgrounds/room_window.png");
+      this.roomObject = await this.loadImage("backgrounds/room_objects.png");
+    },
+    // To get the correct ratio
+    calculateWidthFromHeight(height) {
+      return (height * 800) / 480.0;
+    },
+    drawBackground() {
+      let height = window.innerHeight;
+      let width = this.calculateWidthFromHeight(height);
+      this.ctx.drawImage(this.roomWall, 0, 0, width, height);
+      this.ctx.drawImage(this.roomWindow, 0, 0, width, height);
+      this.ctx.drawImage(this.roomObject, 0, 0, width, height);
+    },
+    resizeCanvas() {
+      console.log(`Resize ${this.canvas.width}, ${this.canvas.height}`);
+      try {
+        this.canvas.height = window.innerHeight;
+        this.canvas.width = this.calculateWidthFromHeight(window.innerHeight);
+        this.drawBackground();
+      } catch (e) {
+        console.warn("Error", e);
+      }
+    }
+  }
 };
 </script>

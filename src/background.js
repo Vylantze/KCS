@@ -1,6 +1,7 @@
 'use strict';
 
 import { app, protocol, BrowserWindow } from 'electron';
+import { join } from 'path';
 import {
   createProtocol,
   installVueDevtools
@@ -17,24 +18,31 @@ protocol.registerSchemesAsPrivileged([{ scheme: 'app', privileges: { secure: tru
 function createWindow() {
   // Create the browser window.
   win = new BrowserWindow({
+    webSecurity: !isDevelopment,
     minWidth: 400,
     minHeight: 600,
     width: 800,
     height: 600,
     webPreferences: {
-      nodeIntegration: true
+      nodeIntegration: true,
+      //contextIsolation: true, // protect against prototype pollution
+      //enableRemoteModule: false, // turn off remote
+      preload: join(__dirname, '/../src/preload.js'),
     }
   });
+  console.log(app.getAppPath());
 
   if (process.env.WEBPACK_DEV_SERVER_URL) {
     // Load the url of the dev server if in development mode
     win.loadURL(process.env.WEBPACK_DEV_SERVER_URL);
     if (!process.env.IS_TEST) win.webContents.openDevTools();
+    win.app = 'http://localhost:8080/';
   } else {
     createProtocol('app');
     // Load the index.html when not in development
     win.loadURL('app://./index.html');
     win.setMenuBarVisibility(false);
+    win.app = 'app://';
   }
 
   win.on('closed', () => {
