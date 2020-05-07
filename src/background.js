@@ -27,10 +27,8 @@ function createWindow() {
       nodeIntegration: true,
       //contextIsolation: true, // protect against prototype pollution
       //enableRemoteModule: false, // turn off remote
-      preload: join(__dirname, '/../src/preload.js'),
     }
   });
-  console.log(app.getAppPath());
 
   if (process.env.WEBPACK_DEV_SERVER_URL) {
     // Load the url of the dev server if in development mode

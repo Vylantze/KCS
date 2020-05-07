@@ -31,7 +31,10 @@
 </style>
 
 <script>
-//const path = require("path");
+const roomBackground = {
+  naturalWidth: 800,
+  naturalHeight: 480
+};
 
 export default {
   name: "Room",
@@ -86,7 +89,10 @@ export default {
     },
     // To get the correct ratio
     calculateWidthFromHeight(height) {
-      return (height * 800) / 480.0;
+      return (
+        (height * roomBackground.naturalWidth) /
+        (roomBackground.naturalHeight * 1.0)
+      );
     },
     drawBackground() {
       let height = window.innerHeight;

@@ -15,6 +15,10 @@
 <script>
 const heightModifier = 1.3; // of total canvas height
 const marginRightModifier = 0.2; // 0.1 of total canvas width
+const roomBackground = {
+  naturalWidth: 800,
+  naturalHeight: 480
+};
 
 export default {
   name: "Ship",
@@ -179,8 +183,8 @@ export default {
         this.clearCanvas();
         this.canvas.height = window.innerHeight;
         this.canvas.width = this.calculateWidthFromHeight(
-          window.lib.roomBackground.naturalWidth,
-          window.lib.roomBackground.naturalHeight,
+          roomBackground.naturalWidth,
+          roomBackground.naturalHeight,
           window.innerHeight
         );
         this.drawShip();
