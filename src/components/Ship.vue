@@ -76,14 +76,14 @@ export default {
       if (this.shipSeason) {
         imageName += `_${this.shipSeason}`;
       }
-      return `ship/${this.shipName}/sprites/${imageName}_Full.png`;
+      return `ship/${this.shipName.toLowerCase()}/sprites/${imageName}_Full.png`;
     },
     shipDamagedImageName() {
       let imageName = this.shipName;
       if (this.shipSeason) {
         imageName += `_${this.shipSeason}`;
       }
-      return `ship/${this.shipName}/sprites/${imageName}_Full_Damaged.png`;
+      return `ship/${this.shipName.toLowerCase()}/sprites/${imageName}_Full_Damaged.png`;
     }
   },
   async mounted() {
