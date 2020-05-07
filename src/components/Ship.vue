@@ -85,15 +85,36 @@ export default {
   async mounted() {
     this.ctx = this.canvas.getContext("2d");
     await this.loadShip();
-    console.log("Natural width: ", this.defaultSprite.naturalWidth);
     this.resizeCanvas();
     window.addEventListener("resize", this.resizeCanvas);
+    this.canvas.addEventListener("click", this.clickOnShip);
   },
   beforeDestroy() {
     // Unregister the event listener before destroying this Vue instance
     window.removeEventListener("resize", this.resizeCanvas);
   },
   methods: {
+    clickOnShip(event) {
+      let canvasRect = this.canvas.getBoundingClientRect();
+      const mousePos = {
+        x: event.x - canvasRect.x,
+        y: event.y - canvasRect.y
+      };
+      try {
+        const pixel = this.canvas
+          .getContext("2d")
+          .getImageData(mousePos.x, mousePos.y, 1, 1).data;
+        if (pixel[3] == 0) {
+          return;
+        }
+      } catch (e) {
+        console.warn("Unable to check click event. ", e);
+        return;
+      }
+
+      // If success, allow
+      console.log("Click");
+    },
     clearCanvas() {
       this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
     },

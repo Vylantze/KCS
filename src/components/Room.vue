@@ -100,7 +100,7 @@ export default {
         return;
       }
 
-      console.log(`Room resize: ${this.canvas.width}, ${this.canvas.height}`);
+      //console.log(`Room resize: ${this.canvas.width}, ${this.canvas.height}`);
       try {
         // No need to clear because the background will always be 100% redrawn over
         this.canvas.height = window.innerHeight;
