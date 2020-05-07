@@ -7,4 +7,8 @@ window.lib = {
   fs,
   path,
   win: electron.remote.getCurrentWindow(),
+  roomBackground: {
+    naturalWidth: 800,
+    naturalHeight: 480,
+  }
 };

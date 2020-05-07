@@ -2,6 +2,9 @@
   <div class="room-container center-div">
     <div class="room fixed">
       <canvas id="room-canvas" :width="canvasWidth" :height="canvasHeight" />
+      <div class="absolute foreground">
+        <slot />
+      </div>
     </div>
   </div>
 </template>
@@ -16,17 +19,12 @@
   .room {
     height: 100%;
 
-    .background {
-      height: 100%;
-      min-width: 800;
-      object-fit: cover;
+    .foreground {
       user-select: none;
-
-      &.ontop {
-        position: absolute;
-        left: 0;
-        top: 0;
-      }
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
     }
   }
 }
@@ -43,7 +41,8 @@ export default {
       roomWindow: null,
       roomObject: null,
 
-      ctx: null // Canvas context
+      ctx: null, // Canvas context
+      previousWindowInnerHeight: 0
     };
   },
   computed: {
@@ -61,7 +60,11 @@ export default {
     this.ctx = this.canvas.getContext("2d");
     await this.loadBackground();
     this.resizeCanvas();
-    window.onresize = this.resizeCanvas;
+    window.addEventListener("resize", this.resizeCanvas);
+  },
+  beforeDestroy() {
+    // Unregister the event listener before destroying this Vue instance
+    window.removeEventListener("resize", this.resizeCanvas);
   },
   methods: {
     clearCanvas() {
@@ -93,13 +96,19 @@ export default {
       this.ctx.drawImage(this.roomObject, 0, 0, width, height);
     },
     resizeCanvas() {
-      console.log(`Resize ${this.canvas.width}, ${this.canvas.height}`);
+      if (window.innerHeight == this.previousWindowInnerHeight) {
+        return;
+      }
+
+      console.log(`Room resize: ${this.canvas.width}, ${this.canvas.height}`);
       try {
+        // No need to clear because the background will always be 100% redrawn over
         this.canvas.height = window.innerHeight;
         this.canvas.width = this.calculateWidthFromHeight(window.innerHeight);
         this.drawBackground();
+        this.previousWindowInnerHeight = window.innerHeight;
       } catch (e) {
-        console.warn("Error", e);
+        console.warn("[Room] Error in resize. ", e);
       }
     }
   }

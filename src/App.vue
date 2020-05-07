@@ -1,7 +1,7 @@
 <template>
   <div class="app">
     <Room>
-      <Ship />
+      <Ship ship-name="Yamato" ship-season="Summer" />
     </Room>
   </div>
 </template>
