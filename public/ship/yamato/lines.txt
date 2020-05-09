@@ -14,33 +14,33 @@ Secretary Married	Kai	提督、少しお疲れではないですか？大和が�
 Wedding	Default	提督、いつもありがとうございます。連合艦隊の旗艦を務めるよりも、敵戦艦と撃ちあうよりも、今、こうしている時が私は一番好き。大和は…ずっと提督の、あなたの側で、頑張ります。	Admiral, as always, thank you so much. Even more than serving as flagship of the Combined Fleet... and more than fighting enemy battleships... it's now... this moment... that I love the most. I will... always, Admiral... at my darling's side, I shall do my best.		Yamato-Wedding.ogg	Wedding
 Looking At Scores	Default	大本営からの通信ですか？	A communiqué from the Imperial Headquarters?		Yamato-Looking_At_Scores.ogg	IdleBonus
 Looking At Scores	Kai	我が艦隊の戦績ですか？楽しみです。	Our fleet's military records? Looking forward to it.		YamatoKai-Looking_At_Scores.ogg	IdleBonus
-Joining A Fleet	Default	戦艦大和、連合艦隊、出撃です！	Battleship Yamato, combined fleet, launching!		Yamato-Joining_A_Fleet.ogg	Leave
-Joining A Fleet	Kai	旗艦大和、出撃します！	Flagship Yamato, launching!		YamatoKai-Joining_A_Fleet.ogg	Leave
+Joining A Fleet	Default	戦艦大和、連合艦隊、出撃です！	Battleship Yamato, combined fleet, launching!		Yamato-Joining_A_Fleet.ogg	BattleStart
+Joining A Fleet	Kai	旗艦大和、出撃します！	Flagship Yamato, launching!		YamatoKai-Joining_A_Fleet.ogg	BattleStart
 Equipment 1	Default	改装ですね？ありがたいです！	A remodel, then? Thank you so much!		Yamato-Equipment_1.ogg	TapBonus
 Equipment 2	Kai	対空、対艦。どちら重視かなぁ？	Anti-air, Anti-ship. Which one should I be focused on...?	Over the years Yamato replaced few of its secondary guns in exchange for better anti-air capability, to counter the increasing threat of aerial attacks.	YamatoKai-Equipment_1.ogg	IdleBonus
 Equipment 2	Default	あ、ありがとうございます！	T-thank you so much!		Yamato-Equipment_2.ogg	TapBonus
 Equipment 3	Kai	大和、嬉しい。提督、感謝です♪	Yamato is pleased. Thank you, admiral!		YamatoKai-Equipment_2.ogg	TapBonus
 Equipment 3	Default	行くわ！	Off I go!	⇧ shared with expedition selection, resource collection, instant repair and development	Yamato-Equipment_3.ogg	Leave
 Supply	Default	ありがたく頂きます。	I am grateful for your assistance.	She often speaks in very polite/honorific form.	Yamato-Supply.ogg	TapBonus
-Docking Minor	Default	ちょっと、お風呂に行ってきます。	I'm going to the bath for a bit.		Yamato-Docking_Minor.ogg	LeaveDamaged
-Docking Minor	Kai	短めのお風呂、いただきます。	I shall take a short bath.		YamatoKai-Docking_Minor.ogg	LeaveDamaged
-Docking Major	Default	イッタッタ～ ごめんなさい、私がここまでやられるなんて～	Ow-w-w. I'm sorry, I didn't expect they'd get me that badly~	Literally "have been had to that extent", implying the damage she received were beyond her expectations.	Yamato-Docking_Major.ogg	LeaveDamaged
+Docking Minor	Default	ちょっと、お風呂に行ってきます。	I'm going to the bath for a bit.		Yamato-Docking_Minor.ogg	DockingMinor
+Docking Minor	Kai	短めのお風呂、いただきます。	I shall take a short bath.		YamatoKai-Docking_Minor.ogg	DockingMinor
+Docking Major	Default	イッタッタ～ ごめんなさい、私がここまでやられるなんて～	Ow-w-w. I'm sorry, I didn't expect they'd get me that badly~	Literally "have been had to that extent", implying the damage she received were beyond her expectations.	Yamato-Docking_Major.ogg	DockingMajor
 Docking Major	Kai	あ、甘く見た訳じゃないんだけど、ごめんなさい。	I...I didn't underestimate (the enemy), though I'm sorry.		YamatoKai-Docking_Major.ogg	TapBonus
-Docking Complete	Default	損傷艦の修復が完了致しました。	Repairs on the damaged ship are completed.		Yamato-Docking_Complete.ogg	ReturnDamaged
-Docking Complete	Kai	修理完了の艦娘が在るみたいです。	Repairing of the ship daughter seems to be completed.		YamatoKai-Docking_Complete.ogg	ReturnDamaged
+Docking Complete	Default	損傷艦の修復が完了致しました。	Repairs on the damaged ship are completed.		Yamato-Docking_Complete.ogg	DockingComplete
+Docking Complete	Kai	修理完了の艦娘が在るみたいです。	Repairing of the ship daughter seems to be completed.		YamatoKai-Docking_Complete.ogg	DockingComplete
 Construction	Default	新造艦の建造が完了したようです。	The construction of the new ship seems to be complete.		Yamato-Construction.ogg	AddShip
 Construction	Kai	新しい艦娘（かんむす）が戦列に加わりました。	New ship girls has been added to our lineup.		YamatoKai-Construction.ogg	AddShip
-Returning From Sortie	Default	お疲れ様です。艦隊、帰投しました。	Thank you for your hard work. The fleet has returned.		Yamato-Returning_From_Sortie.ogg	Return
-Returning From Sortie	Kai	艦隊が無事帰投しました。良かったぁ～！	Our fleet has returned safely. That's great~!		YamatoKai-Returning_From_Sortie.ogg	Return
+Returning From Sortie	Default	お疲れ様です。艦隊、帰投しました。	Thank you for your hard work. The fleet has returned.		Yamato-Returning_From_Sortie.ogg	BattleComplete
+Returning From Sortie	Kai	艦隊が無事帰投しました。良かったぁ～！	Our fleet has returned safely. That's great~!		YamatoKai-Returning_From_Sortie.ogg	BattleComplete
 Starting A Sortie	Default	戦艦大和、推して参ります。	Battleship Yamato, heading forth!		Yamato-Starting_A_Sortie.ogg	Leave
-Battle Start	Default	さぁ、やるわ！砲雷撃戦、用意！	Yeah, let's go! Naval battle, ready!		Yamato-Battle_Start.ogg	Battle
-Battle Start	Kai	大和、砲雷撃戦、はじめます！	Yamato, commence firing!		YamatoKai-Battle_Start.ogg	Battle
-Attack	Default	第一・第二主砲、斉射、始め！	First and second cannons, volley fire, start!		Yamato-Attack.ogg	Battle
-Attack	Kai	敵艦捕捉、全主砲薙ぎ払え！	Enemy ship acquired, fire broadside!	⇧ shared with day/night special attacks, support expedition team arrival	YamatoKai-Attack.ogg	Battle
-Night Battle	Default	戦艦大和、夜戦を敢行します！	Battleship Yamato, starting night battle!		Yamato-Night_Battle.ogg	Battle
-Night Battle	Kai	戦艦大和、突撃します！	Battleship Yamato, charging in!		YamatoKai-Night_Battle.ogg	Battle
-Night Attack	Default	夾叉(きょうさ)か･･･うん、次は直撃させます。	Bracket fire, huh... Yes, the next shot will be a direct hit.	夾叉 (Kyousa), or bracket, means a succession of two salvos, one over and one short, or one right and one left, with no straddles. When this happens, minor adjustments are needed.(while straddle means both short and over, or both right and left shots occur in the SAME salvo)	Yamato-Night_Attack.ogg	Battle
-Night Attack	Kai	そうか･･･それなら･･･やるしかないわね！	Is that so... well then, I have to do this!		YamatoKai-Night_Attack.ogg	Battle
+Battle Start	Default	さぁ、やるわ！砲雷撃戦、用意！	Yeah, let's go! Naval battle, ready!		Yamato-Battle_Start.ogg	StartDayBattle
+Battle Start	Kai	大和、砲雷撃戦、はじめます！	Yamato, commence firing!		YamatoKai-Battle_Start.ogg	StartDayBattle
+Attack	Default	第一・第二主砲、斉射、始め！	First and second cannons, volley fire, start!		Yamato-Attack.ogg	DayBattle
+Attack	Kai	敵艦捕捉、全主砲薙ぎ払え！	Enemy ship acquired, fire broadside!	⇧ shared with day/night special attacks, support expedition team arrival	YamatoKai-Attack.ogg	DayBattle
+Night Battle	Default	戦艦大和、夜戦を敢行します！	Battleship Yamato, starting night battle!		Yamato-Night_Battle.ogg	StartNightBattle
+Night Battle	Kai	戦艦大和、突撃します！	Battleship Yamato, charging in!		YamatoKai-Night_Battle.ogg	StartNightBattle
+Night Attack	Default	夾叉(きょうさ)か･･･うん、次は直撃させます。	Bracket fire, huh... Yes, the next shot will be a direct hit.	夾叉 (Kyousa), or bracket, means a succession of two salvos, one over and one short, or one right and one left, with no straddles. When this happens, minor adjustments are needed.(while straddle means both short and over, or both right and left shots occur in the SAME salvo)	Yamato-Night_Attack.ogg	NightBattle
+Night Attack	Kai	そうか･･･それなら･･･やるしかないわね！	Is that so... well then, I have to do this!		YamatoKai-Night_Attack.ogg	NightBattle
 MVP	Default	大和が一番ですか。少し晴れがましいですね。次の海戦もお任せ下さいね。	I'm number one? I'm a bit proud of myself. Leave the next sortie to me!		Yamato-MVP.ogg	MVP
 Minor Damage 1	Default	そ、それで直撃のつもりなの！？	D-did you think you landed a direct hit?		Yamato-Minor_Damage_1.ogg	MinorDamage
 Minor Damage 2	Default	傾斜復元しないと…。注水を急いで！	I'm starting to list... ballast pumps, hurry!		Yamato-Minor_Damage_2.ogg	MinorDamage
