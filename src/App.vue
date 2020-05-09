@@ -8,7 +8,12 @@
         <div class="ship-selector-button clickable" @click="selectShip">
           <img src="img/ship_select.png" :width="shipSelectorWidth" />
         </div>
-        <div v-if="menuOpen == 'ship-selector'" class="ship-selector"></div>
+
+        <div
+          v-if="menuOpen == 'ship-selector'"
+          class="ship-selector center-div"
+        >You only need Yamato.</div>
+        <div v-if="menuOpen" class="menu-closer" @click="closeMenu" />
       </div>
     </div>
   </div>
@@ -57,11 +62,14 @@ export default {
     calculateWidthFromHeight(naturalWidth, naturalHeight, currentHeight) {
       return (currentHeight * naturalWidth) / (naturalHeight * 1.0);
     },
+    closeMenu() {
+      this.menuOpen = null;
+    },
     selectShip() {
       if (this.menuOpen != "ship-selector") {
         this.menuOpen = "ship-selector";
       } else {
-        this.menuOpen = null;
+        this.closeMenu();
       }
     },
     resizeUI() {
@@ -112,11 +120,17 @@ export default {
       pointer-events: auto;
     }
 
+    .menu-closer {
+      width: 100%;
+      height: 100%;
+    }
+
     .ship-selector {
       margin: 10px auto;
       background-color: rgba(0, 0, 0, 0.5);
       width: 80%;
       height: 65%;
+      color: white;
     }
 
     .ship-selector-button {
