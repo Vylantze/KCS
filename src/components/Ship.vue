@@ -1,6 +1,11 @@
 <template>
   <div class="ship">
-    <canvas v-if="shipName" :id="`ship-${shipName}`" :width="canvasWidth" :height="canvasHeight" />
+    <canvas
+      v-if="shipName"
+      :id="`ship-${shipFileName}`"
+      :width="canvasWidth"
+      :height="canvasHeight"
+    />
   </div>
 </template>
 
@@ -14,17 +19,12 @@
 
 <script>
 const heightModifier = 1.3; // of total canvas height
-const marginRightModifier = 0.2; // 0.1 of total canvas width
-const roomBackground = {
-  naturalWidth: 800,
-  naturalHeight: 480
-};
 
 export default {
   name: "Ship",
   props: {
     shipName: { type: String, default: "" },
-    shipSeason: { type: String, default: "" },
+    shipSprite: { type: String, default: "" },
     damaged: { type: Boolean, default: false }
   },
   data() {
@@ -38,12 +38,16 @@ export default {
       defaultSprite: null,
       damagedSprite: null,
 
+      database: null,
       ctx: null // Canvas context
     };
   },
   computed: {
+    shipFileName() {
+      return this.shipName.replace(/ /g, "_").toLowerCase();
+    },
     canvas() {
-      return document.getElementById(`ship-${this.shipName}`);
+      return document.getElementById(`ship-${this.shipFileName}`);
     },
     canvasHeight() {
       return `${window.innerHeight}px`;
@@ -73,25 +77,32 @@ export default {
 
     shipDefaultImageName() {
       let imageName = this.shipName;
-      if (this.shipSeason) {
-        imageName += `_${this.shipSeason}`;
+      if (this.shipSprite) {
+        imageName += `_${this.shipSprite}`;
       }
       return `ship/${this.shipName.toLowerCase()}/sprites/${imageName}_Full.png`;
     },
     shipDamagedImageName() {
       let imageName = this.shipName;
-      if (this.shipSeason) {
-        imageName += `_${this.shipSeason}`;
+      if (this.shipSprite) {
+        imageName += `_${this.shipSprite}`;
       }
       return `ship/${this.shipName.toLowerCase()}/sprites/${imageName}_Full_Damaged.png`;
     }
   },
-  async mounted() {
+  watch: {
+    shipName() {
+      this.loadShip();
+    },
+    shipSprite() {
+      this.loadShip();
+    }
+  },
+  mounted() {
     this.ctx = this.canvas.getContext("2d");
-    await this.loadShip();
-    this.resizeCanvas();
     window.addEventListener("resize", this.resizeCanvas);
     this.canvas.addEventListener("click", this.clickOnShip);
+    this.loadShip();
   },
   beforeDestroy() {
     // Unregister the event listener before destroying this Vue instance
@@ -119,6 +130,9 @@ export default {
       // If success, allow
       console.log("Click");
     },
+    getDatabase() {
+      this.database = this.$store.dispatch("getDatabase", this.shipName);
+    },
     clearCanvas() {
       this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
     },
@@ -134,6 +148,8 @@ export default {
     async loadShip() {
       this.defaultSprite = await this.loadImage(this.shipDefaultImageName);
       this.damagedSprite = await this.loadImage(this.shipDamagedImageName);
+      this.getDatabase();
+      this.resizeCanvas();
     },
     // To get the correct ratio
     calculateWidthFromHeight(naturalWidth, naturalHeight, currentHeight) {
@@ -151,30 +167,13 @@ export default {
 
       // Some maths need to be done to decide on the X position of the shipgirl
       let canvasCenterX = this.canvas.width / 2.0;
-      let shipCenterX = width / 2.0;
-      let maxWidth = Math.min(window.innerWidth, this.canvas.width);
-      let halfMaxWidth = maxWidth / 2.0;
-      let leftPadding = halfMaxWidth - shipCenterX;
-      let rightPadding = leftPadding * marginRightModifier;
-
-      let xOffset =
-        this.shipXPositionOffset +
-        canvasCenterX -
-        shipCenterX +
-        leftPadding -
-        rightPadding;
+      let shipCenterX = width / 2.0; // Used to set the ship in the center of the expected point
+      let shipExpectedPosition =
+        Math.min(this.canvas.width, window.innerWidth) * 0.8;
+      let shipActualPosition = Math.max(canvasCenterX, shipExpectedPosition);
+      let xOffset = this.shipXPositionOffset + shipActualPosition - shipCenterX;
 
       this.ctx.drawImage(this.defaultSprite, xOffset, yOffset, width, height);
-
-      /*
-      console.log("Ship data", {
-        canvasWidth: this.canvas.width,
-        windowWidth: window.innerWidth,
-        maxWidthUsed: maxWidth,
-        subtracted: this.canvas.width - width,
-        rightPadding
-      });
-      //*/
     },
     resizeCanvas() {
       //console.log(`Ship Resize: ${this.canvas.width}, ${this.canvas.height}`);
@@ -183,8 +182,8 @@ export default {
         this.clearCanvas();
         this.canvas.height = window.innerHeight;
         this.canvas.width = this.calculateWidthFromHeight(
-          roomBackground.naturalWidth,
-          roomBackground.naturalHeight,
+          window.roomBackground.naturalWidth,
+          window.roomBackground.naturalHeight,
           window.innerHeight
         );
         this.drawShip();

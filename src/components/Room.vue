@@ -31,11 +31,6 @@
 </style>
 
 <script>
-const roomBackground = {
-  naturalWidth: 800,
-  naturalHeight: 480
-};
-
 export default {
   name: "Room",
   data() {
@@ -90,8 +85,8 @@ export default {
     // To get the correct ratio
     calculateWidthFromHeight(height) {
       return (
-        (height * roomBackground.naturalWidth) /
-        (roomBackground.naturalHeight * 1.0)
+        (height * window.roomBackground.naturalWidth) /
+        (window.roomBackground.naturalHeight * 1.0)
       );
     },
     drawBackground() {
