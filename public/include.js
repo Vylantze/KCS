@@ -4,4 +4,4 @@ function importAll(r) {
 
 //https://webpack.js.org/guides/dependency-management/
 //importAll(require.context('./ship/', true, /\.png$/));
-importAll(require.context('./ship/', true, /\.png$|\.ogg$/));
+importAll(require.context('./ship/', true, /\.png$|\.ogg$|\.oga$/));

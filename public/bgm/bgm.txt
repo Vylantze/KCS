@@ -1,0 +1,50 @@
+Source	Japanese	Romanization	English	File
+Main Menu	「母港」	Bokō	Home Port	101r.ogg
+Docks / Shipyard	「補給等選択時」	Hokyū-tō Sentakuji	Upon Selecting Resupply	Sound_bgm_supply.ogg
+Refurbish	「鎮守府の午後」	Chinjufu no gogo	Afternoon in the Naval Base	104a.ogg
+Gallery / Library	「邂逅」	Kaikō	Chance Meeting	123d.ogg
+Arsenal	「明石の工廠」	Akashi no kōshō	Akashi's Armory	206i.ogg
+Marriage	「ケッコンカッコカリ」	Kekkon-kakkokari	Marriage (tentative title)	Sound_bgm_weddingmain.ogg
+Sortie / PvP / Expedition	「海原越えて」	Unabara koete	Across The Sea	103v.ogg
+Battle	「砲雷撃戦、始め！」	Hōraigeki-sen, hajime!	Cannons and Torpedoes, Fire!	Sound_b_bgm_1.ogg
+Night Battle	「我、夜戦に突入す！」	Ware, yasen ni totsunyū su!	Rush into the Night Battle!	Sound_b_bgm_2.ogg
+Extra Operation 1-5	「海上護衛戦」	Kaijō goei-sen	Maritime Escort Warfare	Sound_b_bgm_7.ogg
+Extra Operation 1-6	「新編「海上護衛隊抜錨！」」	Shinpen `Kaijō goeitai' batsubyō!	New 'Maritime Escort Fleet' sail out!	Sound_b_bgm_37.ogg
+Extra Operation 2-5	「第五戦隊の出撃」	Dai-go sentai no shutsugeki	Sortie of the Fifth Squad	Sound_b_bgm_11.ogg
+Extra Operation 3-5	「士魂の護り」	Shikon no mamori	Protection of the Warrior Spirit¹	Sound_b_bgm_19.ogg
+Extra Operation Boss/Night Node 4-5	「深海への誘い」	Shinkai e no sasoi	Invitation to the Abyss	Sound_b_bgm_40.ogg
+Sortie 5-1	「華の二水戦」	Hana no Nisuisen	The Splendid 2nd Torpedo Squadron	Sound_b_bgm_13.ogg
+Boss 5-1	「艦隊決戦！(南方海域強襲偵察!)」	Kantai kessen! (Nanpō kai'iki kyōshū teisatsu!)	Fleet Clash! (Southern Ocean Offensive Surveillance!)	Sound_b_bgm_3.ogg
+Sortie 5-2	「飛龍の反撃」	Hiryū no hangeki	Hiryū's counterattack	Sound_b_bgm_12.ogg
+Sortie 5-4	「二水戦の航跡」	Nisuisen no kōseki	Wake of the Second Torpedo Squadron	Sound_b_bgm_4.ogg
+Boss 5-4	「次発装填、再突入!」	jihatsu sōten, sai totsunyū!	Next Round Loaded, Re-engage!	Sound_b_bgm_5.ogg
+Extra Operation Boss 5-5	「我、敵機動部隊ト交戦ス」	Ware, teki kidō butai to kōsen su	Battle the Enemy Task Force!	Sound_b_bgm_6.ogg
+Sortie 6-1	「眼下の伊号」	Ganka no I-gō	The I-Class Below Us	Sound_b_bgm_20.ogg
+Sortie 6-2	「冬の艦隊」	Fuyu no kantai	Winter Fleet	Sound_b_bgm_29.ogg
+Boss X-4 (2015/07/17)	「加賀岬」	Kaga Misaki	Cape Kaga	Sound_b_bgm_44.ogg
+Land Base Menu / Extra Operation Map 6-5	「基地航空隊」	Kichi-kōkūtai	Land Base Air Corps	125h.ogg
+Extra Operation 6-5	「海鷲の翼」	Umiwashi no tsubasa	Wings of Sea Eagles	Sound_b_bgm_75.ogg
+Extra Operations 4-5 and 5-5	「連合艦隊旗艦」	Rengō kantai kikan	Combined Fleet Flagship	129w.ogg
+Furniture 「武蔵の帰投」	「武蔵の帰投」	Musashi no kitō	Musashi's return	106q.ogg
+Furniture 「秋の鎮守府」	「秋の鎮守府」	Aki no chinjufu	Autumn at the Naval Base	105h.ogg
+Furniture 「迎春の鎮守府」	「迎春の鎮守府」	Geishun no chinjufu	New Years at the Naval Base	108o.ogg
+Furniture 「節分の鎮守府」	「節分の鎮守府」	Setsubun no chinjufu	Setsubun at the Naval Base	110s.ogg
+Furniture 「艦娘のお菓子作り」	「艦娘のお菓子作り」	Kanmusu no okashi-zukuri	Candy-making by the Shipgirls	111c.ogg
+Furniture 「桃の節句と艦娘」	「桃の節句と艦娘」	Momo-no-sekku to Kanmusu	Hinamatsuri and the Shipgirls	112o.ogg
+Furniture 「雨音の鎮守府」	「雨音の鎮守府」	Amaoto no chinjufu	Sound of Rain at the Naval Base	218e.ogg
+Furniture 「雨とお酒と艦娘」	「雨とお酒と艦娘」	Ame to o-sake to Kanmusu	Rain, Sake, and Shipgirls	219s.ogg
+Furniture 「浜辺の艦娘」	「浜辺の艦娘」	Hamabe no Kanmusu	Shipgirls on the Beach	116e.ogg
+Furniture 「加賀岬改」	「加賀岬改」	Kaga Misaki Kai	Kaga Cape Kai	226k.ogg
+Furniture 「鎮守府の秋祭り」	「鎮守府の秋祭り」	Chinjufu no aki-matsuri	Autumn Festival at the Naval Base	227f.ogg
+Furniture 「聖夜の母港」	「聖夜の母港」	Seiya no Bokō	Home Port on Christmas Eve	119t.ogg
+Furniture 「艦娘と提督の食卓」	「艦娘と提督の食卓」	Kanmusume to teitoku no shokutaku	Shipgirls' and Admiral's Dining Table	229b.ogg
+Furniture 「水着の出撃」	「水着の出撃」	Mizugi no Shutsugeki	Sortie in Swimsuit	230c.ogg
+Furniture 「粉雪の降る夜」	「粉雪の降る夜」	Konayuki no Furu Yoru	The Night When Powder Snow Falls	127u.ogg
+Jukebox 「噴式の胎動」	「噴式の胎動」	Funshiki no Taidou	Birth of the Jets	233r.ogg
+Furniture 「師走の鎮守府」	「師走の鎮守府」	Shiwasu no Chinjufu	December at the Naval Base	128u.ogg
+Furniture 「月夜海」	「月夜海」	Tsukiyomi	Moonlit Sea	237m.ogg
+Furniture 「祈り」	「祈り」	inori	Praying	130a.ogg
+Furniture 「雨とお酒と艦娘(第二夜)」	「雨とお酒と艦娘(第二夜)」	Ame to osake to kanmusu (dai-niya)	Rain, Sake, and Ship Girls (The 2nd Night)	240q.ogg
+Furniture 「梅雨明けの白露」	「梅雨明けの白露」	Tsuyuake no shiratsuyu	The Glistening Dew After The Rainy Season	241e.ogg
+Furniture 「瑞雲の空」	「瑞雲の空」	Zuiun no sora	The Sky of Zuiun	Sound_b_bgm_132.oga
+Furniture 「長波、駆ける」	「長波、駆ける」	Naganami, kakeru	Naganami, Running forth	Sound_b_bgm_133.oga
