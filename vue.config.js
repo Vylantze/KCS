@@ -5,6 +5,9 @@ module.exports = {
     electronBuilder: {
       builderOptions: {
         productName: 'KCEmulator',
+        win: {
+          icon: './public/favicon.ico'
+        }
       }
     }
   }

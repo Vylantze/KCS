@@ -1,8 +1,8 @@
-const path = require('path');
 const fs = require('fs');
 
 function deleteAllRecursive(dirpath) {
   if (fs.existsSync(dirpath)) {
+    /* Old unneeded code
     fs.readdirSync(dirpath).forEach(file => {
       var curPath = path.join(dirpath, file);
       try {
@@ -12,7 +12,10 @@ function deleteAllRecursive(dirpath) {
         console.warn(e);
       }
     });
-    fs.rmdirSync(dirpath);
+    //*/
+    fs.rmdirSync(dirpath, {
+      recursive: true,
+    });
   }
 }
 

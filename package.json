@@ -9,7 +9,7 @@
     "vue:build": "vue-cli-service build",
     "vue:lint": "vue-cli-service lint",
     "electron:build": "vue-cli-service electron:build --win",
-    "electron:serve": "vue-cli-service electron:serve",
+    "electron:serve": "vue-cli-service electron:serve --win",
     "postinstall": "electron-builder install-app-deps",
     "postuninstall": "electron-builder install-app-deps",
     "dev": "vue-cli-service electron:serve",
@@ -49,6 +49,9 @@
       "plugin:vue/essential",
       "eslint:recommended"
     ],
+    "globals": {
+      "__static": true
+    },
     "parserOptions": {
       "parser": "babel-eslint"
     },

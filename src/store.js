@@ -34,7 +34,7 @@ const store = new Vuex.Store({
       },
       actions: {
         populateData: s => {
-          let databasePath = path.resolve("./src/database");
+          let databasePath = path.join(__static, "database");
           if (!fs.existsSync(databasePath)) {
             console.warn(`[populateData] Unable to get database path at [${databasePath}]`);
             return;
