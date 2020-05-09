@@ -20,7 +20,7 @@ Equipment 1	Default	改装ですね？ありがたいです！	A remodel, then? 
 Equipment 2	Kai	対空、対艦。どちら重視かなぁ？	Anti-air, Anti-ship. Which one should I be focused on...?	Over the years Yamato replaced few of its secondary guns in exchange for better anti-air capability, to counter the increasing threat of aerial attacks.	YamatoKai-Equipment_1.ogg	IdleBonus
 Equipment 2	Default	あ、ありがとうございます！	T-thank you so much!		Yamato-Equipment_2.ogg	TapBonus
 Equipment 3	Kai	大和、嬉しい。提督、感謝です♪	Yamato is pleased. Thank you, admiral!		YamatoKai-Equipment_2.ogg	TapBonus
-Equipment 3	Default	行くわ！	Off I go!	⇧ shared with expedition selection, resource collection, instant repair and development	Yamato-Equipment_3.ogg	Leave
+Equipment 3	Default	行くわ！	Off I go!	⇧ shared with expedition selection, resource collection, instant repair and development	Yamato-Equipment_3.ogg	StartBattle
 Supply	Default	ありがたく頂きます。	I am grateful for your assistance.	She often speaks in very polite/honorific form.	Yamato-Supply.ogg	TapBonus
 Docking Minor	Default	ちょっと、お風呂に行ってきます。	I'm going to the bath for a bit.		Yamato-Docking_Minor.ogg	DockingMinor
 Docking Minor	Kai	短めのお風呂、いただきます。	I shall take a short bath.		YamatoKai-Docking_Minor.ogg	DockingMinor
@@ -32,7 +32,7 @@ Construction	Default	新造艦の建造が完了したようです。	The constr
 Construction	Kai	新しい艦娘（かんむす）が戦列に加わりました。	New ship girls has been added to our lineup.		YamatoKai-Construction.ogg	AddShip
 Returning From Sortie	Default	お疲れ様です。艦隊、帰投しました。	Thank you for your hard work. The fleet has returned.		Yamato-Returning_From_Sortie.ogg	BattleComplete
 Returning From Sortie	Kai	艦隊が無事帰投しました。良かったぁ～！	Our fleet has returned safely. That's great~!		YamatoKai-Returning_From_Sortie.ogg	BattleComplete
-Starting A Sortie	Default	戦艦大和、推して参ります。	Battleship Yamato, heading forth!		Yamato-Starting_A_Sortie.ogg	Leave
+Starting A Sortie	Default	戦艦大和、推して参ります。	Battleship Yamato, heading forth!		Yamato-Starting_A_Sortie.ogg	StartBattle
 Battle Start	Default	さぁ、やるわ！砲雷撃戦、用意！	Yeah, let's go! Naval battle, ready!		Yamato-Battle_Start.ogg	StartDayBattle
 Battle Start	Kai	大和、砲雷撃戦、はじめます！	Yamato, commence firing!		YamatoKai-Battle_Start.ogg	StartDayBattle
 Attack	Default	第一・第二主砲、斉射、始め！	First and second cannons, volley fire, start!		Yamato-Attack.ogg	DayBattle

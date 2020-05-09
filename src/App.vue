@@ -127,7 +127,7 @@ export default {
 
     .ship-selector {
       margin: 10px auto;
-      background-color: rgba(0, 0, 0, 0.5);
+      background-color: rgba(0, 0, 0, 0.7);
       width: 80%;
       height: 65%;
       color: white;
