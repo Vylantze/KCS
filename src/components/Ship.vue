@@ -38,7 +38,7 @@ export default {
       defaultSprite: null,
       damagedSprite: null,
 
-      database: null,
+      shipDB: null,
       ctx: null // Canvas context
     };
   },
@@ -61,6 +61,7 @@ export default {
     },
     shipWidth() {
       let sprite = this.damaged ? this.damagedSprite : this.defaultSprite;
+      if (!sprite) return 0;
       return this.calculateWidthFromHeight(
         sprite.naturalWidth,
         sprite.naturalHeight,
@@ -75,19 +76,27 @@ export default {
       return this.canvas.height * this.shipYOffsetModifier;
     },
 
-    shipDefaultImageName() {
-      let imageName = this.shipName;
-      if (this.shipSprite) {
-        imageName += `_${this.shipSprite}`;
+    shipDefaultImagePath() {
+      if (!this.shipDB) return null;
+      try {
+        return `${this.shipDB.SpriteDirectory}/${
+          this.shipDB.Sprites[this.shipSprite].Normal
+        }`;
+      } catch (e) {
+        console.warn("[Ship] Unexpected error in shipDefaultImagePath.", e);
       }
-      return `ship/${this.shipName.toLowerCase()}/sprites/${imageName}_Full.png`;
+      return null;
     },
-    shipDamagedImageName() {
-      let imageName = this.shipName;
-      if (this.shipSprite) {
-        imageName += `_${this.shipSprite}`;
+    shipDamagedImagePath() {
+      if (!this.shipDB) return null;
+      try {
+        return `${this.shipDB.SpriteDirectory}/${
+          this.shipDB.Sprites[this.shipSprite].Damaged
+        }`;
+      } catch (e) {
+        console.warn("[Ship] Unexpected error in shipDefaultImagePath.", e);
       }
-      return `ship/${this.shipName.toLowerCase()}/sprites/${imageName}_Full_Damaged.png`;
+      return null;
     }
   },
   watch: {
@@ -98,11 +107,16 @@ export default {
       this.loadShip();
     }
   },
-  mounted() {
+  async mounted() {
     this.ctx = this.canvas.getContext("2d");
     window.addEventListener("resize", this.resizeCanvas);
     this.canvas.addEventListener("click", this.clickOnShip);
-    this.loadShip();
+    try {
+      await this.getDatabase();
+      await this.loadShip();
+    } catch (e) {
+      console.warn("[Ship] Error in getDatabase or loadShip", e);
+    }
   },
   beforeDestroy() {
     // Unregister the event listener before destroying this Vue instance
@@ -130,13 +144,14 @@ export default {
       // If success, allow
       console.log("Click");
     },
-    getDatabase() {
-      this.database = this.$store.dispatch("getDatabase", this.shipName);
+    async getDatabase() {
+      this.shipDB = await this.$store.dispatch("getDatabase", this.shipName);
     },
     clearCanvas() {
       this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
     },
     loadImage(imageName) {
+      if (!imageName) return null;
       return new Promise(resolve => {
         let image = new Image();
         image.onload = () => {
@@ -146,9 +161,12 @@ export default {
       });
     },
     async loadShip() {
-      this.defaultSprite = await this.loadImage(this.shipDefaultImageName);
-      this.damagedSprite = await this.loadImage(this.shipDamagedImageName);
-      this.getDatabase();
+      console.log("Sprite:", [
+        this.shipDefaultImagePath,
+        this.shipDamagedImagePath
+      ]);
+      this.defaultSprite = await this.loadImage(this.shipDefaultImagePath);
+      this.damagedSprite = await this.loadImage(this.shipDamagedImagePath);
       this.resizeCanvas();
     },
     // To get the correct ratio
@@ -158,6 +176,8 @@ export default {
     drawShip() {
       let height = this.shipHeight;
       let width = this.shipWidth;
+
+      if (!height || !width) return;
 
       // Some maths needed to decide Y position of ship
       let shipCenterY = height / 2.0;

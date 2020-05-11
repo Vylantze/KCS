@@ -1,7 +1,7 @@
 <template>
   <div class="app">
     <Room>
-      <Ship v-if="shipSelected" :ship-name="shipSelected" ship-sprite="Summer" />
+      <Ship v-if="selectedShip" :ship-name="selectedShip" :ship-sprite="selectedSprite" />
     </Room>
     <div class="ui-container center-div">
       <div class="ui-layer" :style="{ width: `${uiWidth}px` }">
@@ -33,7 +33,8 @@ export default {
   },
   data() {
     return {
-      shipSelected: "Yamato",
+      selectedShip: "Yamato",
+      selectedSprite: "Yamato Summer",
       sprite: null,
       shipSelectorWidth: null,
 

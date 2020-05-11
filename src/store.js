@@ -20,7 +20,8 @@ const store = new Vuex.Store({
         database: {},
         bgm: {},
       },
-      getters: {},
+      getters: {
+      },
       mutations: {
         setDatabase(s, database) {
           s.database = database;
