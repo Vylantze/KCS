@@ -37,6 +37,8 @@ export default {
 
       defaultSprite: null,
       damagedSprite: null,
+      audio: new Audio(),
+      audioVolume: 0.3,
 
       shipDB: null,
       ctx: null // Canvas context
@@ -76,6 +78,39 @@ export default {
       return this.canvas.height * this.shipYOffsetModifier;
     },
 
+    //
+    // Command list
+    //
+    shipCommands() {
+      if (!this.shipDB) return null;
+      try {
+        return this.shipDB.Commands;
+      } catch (e) {
+        console.warn("[Ship] Unexpected error in shipCommands.", e);
+      }
+      return {};
+    },
+    // Idle
+    shipIdleEventNames() {
+      if (!this.shipDB || !this.shipDB.Commands) return [];
+      try {
+        return this.shipDB.Commands.Idle.concat(this.shipDB.Commands.IdleBonus);
+      } catch (e) {
+        console.warn("[Ship] Unexpected error in shipIdleEventNames.", e);
+      }
+      return [];
+    },
+    // Tap
+    shipTapEventNames() {
+      if (!this.shipDB || !this.shipDB.Commands) return [];
+      try {
+        return this.shipDB.Commands.Tap.concat(this.shipDB.Commands.TapBonus);
+      } catch (e) {
+        console.warn("[Ship] Unexpected error in shipTapEventNames.", e);
+      }
+      return [];
+    },
+
     shipDefaultImagePath() {
       if (!this.shipDB) return null;
       try {
@@ -111,6 +146,7 @@ export default {
     this.ctx = this.canvas.getContext("2d");
     window.addEventListener("resize", this.resizeCanvas);
     this.canvas.addEventListener("click", this.clickOnShip);
+    this.audio.volume = this.audioVolume;
     try {
       await this.getDatabase();
       await this.loadShip();
@@ -142,13 +178,46 @@ export default {
       }
 
       // If success, allow
-      console.log("Click");
+      this.playTapSound();
+    },
+    playTapSound() {
+      if (this.audio) {
+        this.audio.pause();
+      }
+      if (this.shipTapEventNames.length == 0) {
+        return;
+      }
+      try {
+        let list = this.getVoiceFilesFromEventList(this.shipTapEventNames);
+        let selected = list[Math.floor(Math.random() * list.length)];
+        console.log(`Playing [${selected}]`);
+        this.audio.src = selected;
+        this.audio.load();
+        this.audio.play();
+      } catch (e) {
+        console.warn("[Ship] Error in 'playTapSound'.", e);
+      }
     },
     async getDatabase() {
       this.shipDB = await this.$store.dispatch("getDatabase", this.shipName);
     },
     clearCanvas() {
       this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    },
+    getVoiceFilesFromEventList(eventList) {
+      if (!this.shipDB || !eventList || eventList.length == 0) return [];
+      try {
+        return eventList.map(event => {
+          return `${this.shipDB.VoiceDirectory}/${this.shipDB.Events[event].Voice}`;
+        });
+      } catch (e) {
+        console.warn(
+          "[Ship] Unexpected error in getVoiceFilesFromEventList.",
+          eventList,
+          e
+        );
+      }
+      return [];
     },
     loadImage(imageName) {
       if (!imageName) return null;
@@ -161,10 +230,6 @@ export default {
       });
     },
     async loadShip() {
-      console.log("Sprite:", [
-        this.shipDefaultImagePath,
-        this.shipDamagedImagePath
-      ]);
       this.defaultSprite = await this.loadImage(this.shipDefaultImagePath);
       this.damagedSprite = await this.loadImage(this.shipDamagedImagePath);
       this.resizeCanvas();
