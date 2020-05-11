@@ -38,7 +38,9 @@ export default {
       defaultSprite: null,
       damagedSprite: null,
       audio: new Audio(),
-      audioVolume: 0.3,
+      audioVolume: 1.0,
+
+      currentEvent: null,
 
       shipDB: null,
       ctx: null // Canvas context
@@ -114,9 +116,7 @@ export default {
     shipDefaultImagePath() {
       if (!this.shipDB) return null;
       try {
-        return `${this.shipDB.SpriteDirectory}/${
-          this.shipDB.Sprites[this.shipSprite].Normal
-        }`;
+        return this.shipDB.Sprites[this.shipSprite].Normal;
       } catch (e) {
         console.warn("[Ship] Unexpected error in shipDefaultImagePath.", e);
       }
@@ -125,9 +125,7 @@ export default {
     shipDamagedImagePath() {
       if (!this.shipDB) return null;
       try {
-        return `${this.shipDB.SpriteDirectory}/${
-          this.shipDB.Sprites[this.shipSprite].Damaged
-        }`;
+        return this.shipDB.Sprites[this.shipSprite].Damaged;
       } catch (e) {
         console.warn("[Ship] Unexpected error in shipDefaultImagePath.", e);
       }
@@ -188,10 +186,12 @@ export default {
         return;
       }
       try {
-        let list = this.getVoiceFilesFromEventList(this.shipTapEventNames);
-        let selected = list[Math.floor(Math.random() * list.length)];
-        console.log(`Playing [${selected}]`);
-        this.audio.src = selected;
+        let list = this.getEventDataFromEventNames(this.shipTapEventNames);
+        this.currentEvent = list[Math.floor(Math.random() * list.length)];
+        let currentVoice = this.currentEvent.Voice;
+
+        console.log(`Playing [${currentVoice}].`, this.currentEvent);
+        this.audio.src = currentVoice;
         this.audio.load();
         this.audio.play();
       } catch (e) {
@@ -204,11 +204,11 @@ export default {
     clearCanvas() {
       this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
     },
-    getVoiceFilesFromEventList(eventList) {
+    getEventDataFromEventNames(eventList) {
       if (!this.shipDB || !eventList || eventList.length == 0) return [];
       try {
         return eventList.map(event => {
-          return `${this.shipDB.VoiceDirectory}/${this.shipDB.Events[event].Voice}`;
+          return this.shipDB.Events[event];
         });
       } catch (e) {
         console.warn(

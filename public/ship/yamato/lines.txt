@@ -25,7 +25,7 @@ Supply	Default	ありがたく頂きます。	I am grateful for your assistance.
 Docking Minor	Default	ちょっと、お風呂に行ってきます。	I'm going to the bath for a bit.		Yamato-Docking_Minor.ogg	DockingMinor
 Docking Minor	Kai	短めのお風呂、いただきます。	I shall take a short bath.		YamatoKai-Docking_Minor.ogg	DockingMinor
 Docking Major	Default	イッタッタ～ ごめんなさい、私がここまでやられるなんて～	Ow-w-w. I'm sorry, I didn't expect they'd get me that badly~	Literally "have been had to that extent", implying the damage she received were beyond her expectations.	Yamato-Docking_Major.ogg	DockingMajor
-Docking Major	Kai	あ、甘く見た訳じゃないんだけど、ごめんなさい。	I...I didn't underestimate (the enemy), though I'm sorry.		YamatoKai-Docking_Major.ogg	TapBonus
+Docking Major	Kai	あ、甘く見た訳じゃないんだけど、ごめんなさい。	I...I didn't underestimate (the enemy), though I'm sorry.		YamatoKai-Docking_Major.ogg	DockingMajor
 Docking Complete	Default	損傷艦の修復が完了致しました。	Repairs on the damaged ship are completed.		Yamato-Docking_Complete.ogg	DockingComplete
 Docking Complete	Kai	修理完了の艦娘が在るみたいです。	Repairing of the ship daughter seems to be completed.		YamatoKai-Docking_Complete.ogg	DockingComplete
 Construction	Default	新造艦の建造が完了したようです。	The construction of the new ship seems to be complete.		Yamato-Construction.ogg	AddShip

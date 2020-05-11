@@ -52,11 +52,11 @@ function kcdbMake(kanmusu, publicDir, databaseDir) {
   const data = fs.readFileSync(linesPath, "utf8");
   const lines = data.replace(/\r/g, '').split('\n');
 
+  const srcSpritePath = `ship/${kanmusu}/sprites/`;
+  const srcVoicePath = `ship/${kanmusu}/voices/`;
 
   const database = {
     Name: titleCase(kanmusu),
-    SpriteDirectory: `ship/${kanmusu}/sprites`,
-    VoiceDirectory: `ship/${kanmusu}/voices`,
     Events: {}, // Contains all the events and their relevant data
     Commands: {}, // Contains a key mapped list of commands and a subarray of events that belong to that command e.g. { 'Command X': [ ... ] }
     Sprites: {}, // Should contain objects holding { Normal, Damaged, Banner, Card } data
@@ -79,16 +79,21 @@ function kcdbMake(kanmusu, publicDir, databaseDir) {
     let entry = {};
     headers.map((header, headerIndex) => {
       entry[header] = split[headerIndex];
-      if (header == 'File' && !voiceFiles.includes(entry[header])) {
-        console.log(`Cannot find voice for [${key}/${entry[header]}].`, entry);
-        entry[header] = null;
-      }
       if (header == 'Model') {
         key = `${key}/${entry[header]}`;
       }
       if (header == 'Command') {
         if (!database.Commands[entry[header]]) { database.Commands[entry[header]] = []; }
         database.Commands[entry[header]].push(key);
+      }
+
+      if (header == 'Voice') {
+        if (voiceFiles.includes(entry[header])) {
+          entry[header] = srcVoicePath + entry[header];
+        } else {
+          console.log(`Cannot find voice for [${key}/${entry[header]}].`, entry);
+          entry[header] = null;
+        }
       }
     });
 
@@ -102,14 +107,16 @@ function kcdbMake(kanmusu, publicDir, databaseDir) {
       if (!database.Sprites[name]) {
         database.Sprites[name] = {};
       }
+
+      let filepath = srcSpritePath + filename;
       if (filename.includes("_Card")) {
-        database.Sprites[name].Card = filename;
+        database.Sprites[name].Card = filepath;
       } else if (filename.includes("_Banner")) {
-        database.Sprites[name].Banner = filename;
+        database.Sprites[name].Banner = filepath;
       } else if (filename.includes("_Damaged")) {
-        database.Sprites[name].Damaged = filename;
+        database.Sprites[name].Damaged = filepath;
       } else {
-        database.Sprites[name].Normal = filename;
+        database.Sprites[name].Normal = filepath;
       }
     } catch (e) {
       console.warn(`Failed to process sprite [${filename}]`);
