@@ -31,6 +31,8 @@
 </style>
 
 <script>
+import { mapGetters } from "vuex";
+
 export default {
   name: "Room",
   data() {
@@ -39,11 +41,16 @@ export default {
       roomWindow: null,
       roomObject: null,
 
+      currentBgm: null,
+      bgmAudio: new Audio(),
+      bgmVolume: 1.0,
+
       ctx: null, // Canvas context
       previousWindowInnerHeight: 0
     };
   },
   computed: {
+    ...mapGetters(["bgm"]),
     canvas() {
       return document.getElementById("room-canvas");
     },
@@ -52,12 +59,21 @@ export default {
     },
     canvasWidth() {
       return `${window.innerWidth}px`;
+    },
+    mainMenuBGM() {
+      return this.bgm ? this.bgm["Main Menu"] : null;
     }
   },
   async mounted() {
     this.ctx = this.canvas.getContext("2d");
     await this.loadBackground();
     this.resizeCanvas();
+
+    this.currentBgm = this.mainMenuBGM;
+    this.bgmAudio.volume = this.bgmVolume;
+    this.bgmAudio.loop = true;
+    this.playBgmAudio();
+
     window.addEventListener("resize", this.resizeCanvas);
   },
   beforeDestroy() {
@@ -95,6 +111,17 @@ export default {
       this.ctx.drawImage(this.roomWall, 0, 0, width, height);
       this.ctx.drawImage(this.roomWindow, 0, 0, width, height);
       this.ctx.drawImage(this.roomObject, 0, 0, width, height);
+    },
+    playBgmAudio() {
+      if (this.bgmAudio) {
+        this.bgmAudio.pause();
+      }
+
+      console.log(`Playing BGM [${this.currentBgm.English}].`, this.currentBgm);
+      let currentFile = this.currentBgm.File;
+      this.bgmAudio.src = currentFile;
+      this.bgmAudio.load();
+      this.bgmAudio.play();
     },
     resizeCanvas() {
       if (window.innerHeight == this.previousWindowInnerHeight) {

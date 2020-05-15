@@ -22,6 +22,9 @@ const store = new Vuex.Store({
         subtitle: null,
       },
       getters: {
+        bgm: s => JSON.parse(JSON.stringify(s.bgm)),
+        ships: s => JSON.parse(JSON.stringify(s.ships)),
+        subtitle: s => JSON.parse(JSON.stringify(s.subtitle)),
       },
       mutations: {
         setDatabase(s, database) {

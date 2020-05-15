@@ -1,10 +1,15 @@
 <template>
   <div class="app">
     <Room>
-      <Ship v-if="selectedShip" :ship-name="selectedShip" :ship-sprite="selectedSprite" />
+      <Ship v-if="selectedShip" :shipName="selectedShip" :shipSprite="selectedSprite" />
     </Room>
     <div class="ui-container center-div">
-      <UILayer />
+      <UILayer
+        :selectedShip="selectedShip"
+        :selectedSprite="selectedSprite"
+        @update:selectedShip="selectedShip = $event"
+        @update:selectedSprite="selectedSprite = $event"
+      />
     </div>
   </div>
 </template>

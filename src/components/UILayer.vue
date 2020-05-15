@@ -11,13 +11,16 @@
       >{{ subtitle }}</div>
     </div>
 
-    <div v-if="menuOpen == 'ship-selector'" class="ship-selector center-div">You only need Yamato.</div>
+    <div
+      v-if="menuOpen == 'ship-selector'"
+      class="ship-selector center-div"
+    >You only need {{ selectedShip }}.</div>
     <div v-if="menuOpen" class="menu-closer" @click="closeMenu" />
   </div>
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapGetters } from "vuex";
 
 export default {
   name: "UILayer",
@@ -35,10 +38,7 @@ export default {
     };
   },
   computed: {
-    ...mapState({
-      ships: s => s.main.ships,
-      subtitle: s => s.main.subtitle
-    })
+    ...mapGetters(["ships", "subtitle"])
   },
   async mounted() {
     this.resizeUI();
@@ -77,6 +77,12 @@ export default {
       } catch (e) {
         console.warn("[App] Error in resize. ", e);
       }
+    },
+    changeShip(ship) {
+      this.$emit("update:selectedShip", ship);
+    },
+    changeSprite(sprite) {
+      this.$emit("update:selectedSprite", sprite);
     }
   }
 };

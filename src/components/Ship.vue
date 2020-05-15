@@ -137,12 +137,12 @@ export default {
     },
 
     // Get normal sprite
-    shipDefaultImagePath() {
+    shipNormalImagePath() {
       if (!this.shipDB) return null;
       try {
         return this.shipDB.Sprites[this.shipSprite].Normal;
       } catch (e) {
-        console.warn("[Ship] Unexpected error in shipDefaultImagePath.", e);
+        console.warn("[Ship] Unexpected error in shipNormalImagePath.", e);
       }
       return null;
     },
@@ -152,7 +152,7 @@ export default {
       try {
         return this.shipDB.Sprites[this.shipSprite].Damaged;
       } catch (e) {
-        console.warn("[Ship] Unexpected error in shipDefaultImagePath.", e);
+        console.warn("[Ship] Unexpected error in shipNormalImagePath.", e);
       }
       return null;
     }
@@ -307,7 +307,7 @@ export default {
       });
     },
     async loadShip() {
-      this.defaultSprite = await this.loadImage(this.shipDefaultImagePath);
+      this.defaultSprite = await this.loadImage(this.shipNormalImagePath);
       this.damagedSprite = await this.loadImage(this.shipDamagedImagePath);
       this.resizeCanvas();
 

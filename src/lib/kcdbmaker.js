@@ -137,7 +137,7 @@ function bgmMake(publicDir, databaseDir) {
     return;
   }
 
-  const bgmDataPath = path.join(publicDir, "bgm.txt");
+  const bgmDataPath = path.join(dirpath, "bgm.txt");
   if (!fs.existsSync(bgmDataPath)) {
     console.log(`[bgmMake] Unable to find bgm.txt at [${bgmDataPath}]`);
     return;
@@ -170,9 +170,14 @@ function bgmMake(publicDir, databaseDir) {
     let entry = {};
     headers.map((header, headerIndex) => {
       entry[header] = split[headerIndex];
-      if (header == 'File' && !bgmFiles.includes(entry[header])) {
-        console.log(`Cannot find sound file for [${key}/${entry[header]}].`, entry);
-        entry[header] = null;
+
+      if (header == 'File') {
+        if (bgmFiles.includes(entry[header])) {
+          entry[header] = `bgm/${entry[header]}`;
+        } else {
+          console.log(`Cannot find sound file for [${key}/${entry[header]}].`, entry);
+          entry[header] = null;
+        }
       }
     });
 
@@ -187,7 +192,7 @@ function bgmMake(publicDir, databaseDir) {
 }
 
 function runBgmMakeFromNode() {
-  bgmMake(path.join(process.cwd(), 'public'), path.join(process.cwd(), 'src', 'database'));
+  bgmMake(path.join(process.cwd(), 'public'), path.join(process.cwd(), 'public', 'database'));
 }
 
 function runKCMakeFromNode() {
