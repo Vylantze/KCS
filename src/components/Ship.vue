@@ -112,6 +112,16 @@ export default {
       }
       return [];
     },
+    // Hourly
+    shipHourlyEventNames() {
+      if (!this.shipDB || !this.shipDB.Commands) return [];
+      try {
+        return this.shipDB.Commands.Hourly;
+      } catch (e) {
+        console.warn("[Ship] Unexpected error in shipHourlyEventNames.", e);
+      }
+      return [];
+    },
 
     shipDefaultImagePath() {
       if (!this.shipDB) return null;
@@ -143,6 +153,7 @@ export default {
   async mounted() {
     this.ctx = this.canvas.getContext("2d");
     window.addEventListener("resize", this.resizeCanvas);
+    window.addEventListener("hourly", this.playHourlySound);
     this.canvas.addEventListener("click", this.clickOnShip);
     this.audio.volume = this.audioVolume;
     try {
@@ -155,6 +166,7 @@ export default {
   beforeDestroy() {
     // Unregister the event listener before destroying this Vue instance
     window.removeEventListener("resize", this.resizeCanvas);
+    window.removeEventListener("hourly", this.playHourlySound);
   },
   methods: {
     clickOnShip(event) {
@@ -176,7 +188,7 @@ export default {
       }
 
       // If success, allow
-      this.playTapSound();
+      //this.playTapSound();
     },
     playTapSound() {
       if (this.audio) {
@@ -196,6 +208,33 @@ export default {
         this.audio.play();
       } catch (e) {
         console.warn("[Ship] Error in 'playTapSound'.", e);
+      }
+    },
+    playHourlySound(hourlyEvent) {
+      if (this.audio) {
+        if (!this.audio.paused && !this.audio.ended) {
+          window.setTimeout(() => {
+            this.playHourlySound(hourlyEvent);
+          }, 1000);
+          return;
+        }
+      }
+
+      try {
+        let list = this.getEventDataFromEventNames(this.shipHourlyEventNames);
+        list.map(event => {
+          if (event.Event == hourlyEvent.detail) {
+            this.currentEvent = event;
+          }
+        });
+        let currentVoice = this.currentEvent.Voice;
+
+        console.log(`Playing [${currentVoice}].`, this.currentEvent);
+        this.audio.src = currentVoice;
+        this.audio.load();
+        this.audio.play();
+      } catch (e) {
+        console.warn("[Ship] Error in 'playHourlySound'.", e);
       }
     },
     async getDatabase() {

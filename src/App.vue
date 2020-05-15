@@ -49,6 +49,7 @@ export default {
   },
   created() {
     this.$store.dispatch("populateData");
+    this.$store.dispatch("startIntervalTimer");
   },
   async mounted() {
     this.resizeUI();

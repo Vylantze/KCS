@@ -80,6 +80,19 @@ const store = new Vuex.Store({
           console.log('Ship data', ships, database);
           console.log('Bgm data', bgmDatabase);
         },
+        invokeHourlyEvent: () => {
+          let hourly = new CustomEvent('hourly', { detail: `${new Date().getHours()}:00` });
+          window.dispatchEvent(hourly);
+        },
+        startIntervalTimer: s => {
+          let hourInMilliseconds = 1000 * 60 * 60;
+          let timeToHourChange = 3600000 - new Date().getTime() % 3600000 + 1;
+          window.setTimeout(() => {
+            window.setInterval(() => {
+              s.dispatch('invokeHourlyEvent');
+            }, hourInMilliseconds);
+          }, timeToHourChange);
+        },
         getDatabase: (s, shipName) => {
           try {
             return s.rootState.main.database[shipName];
