@@ -117,7 +117,7 @@ export default {
         this.bgmAudio.pause();
       }
 
-      console.log(`Playing BGM [${this.currentBgm.English}].`, this.currentBgm);
+      window.log(`Playing BGM [${this.currentBgm.English}].`, this.currentBgm);
       let currentFile = this.currentBgm.File;
       this.bgmAudio.src = currentFile;
       this.bgmAudio.load();
@@ -128,7 +128,7 @@ export default {
         return;
       }
 
-      //console.log(`Room resize: ${this.canvas.width}, ${this.canvas.height}`);
+      //window.log(`Room resize: ${this.canvas.width}, ${this.canvas.height}`);
       try {
         // No need to clear because the background will always be 100% redrawn over
         this.canvas.height = window.innerHeight;
@@ -136,7 +136,7 @@ export default {
         this.drawBackground();
         this.previousWindowInnerHeight = window.innerHeight;
       } catch (e) {
-        console.warn("[Room] Error in resize. ", e);
+        window.logError("[Room] Error in resize. ", e);
       }
     }
   }

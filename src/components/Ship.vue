@@ -88,7 +88,7 @@ export default {
       try {
         return this.shipDB.Commands;
       } catch (e) {
-        console.warn("[Ship] Unexpected error in shipCommands.", e);
+        window.logError("[Ship] Unexpected error in shipCommands.", e);
       }
       return {};
     },
@@ -98,7 +98,7 @@ export default {
       try {
         return this.shipDB.Commands.SetSecretary;
       } catch (e) {
-        console.warn(
+        window.logError(
           "[Ship] Unexpected error in shipSetSecretaryEventNames.",
           e
         );
@@ -111,7 +111,7 @@ export default {
       try {
         return this.shipDB.Commands.Idle.concat(this.shipDB.Commands.IdleBonus);
       } catch (e) {
-        console.warn("[Ship] Unexpected error in shipIdleEventNames.", e);
+        window.logError("[Ship] Unexpected error in shipIdleEventNames.", e);
       }
       return [];
     },
@@ -121,7 +121,7 @@ export default {
       try {
         return this.shipDB.Commands.Tap.concat(this.shipDB.Commands.TapBonus);
       } catch (e) {
-        console.warn("[Ship] Unexpected error in shipTapEventNames.", e);
+        window.logError("[Ship] Unexpected error in shipTapEventNames.", e);
       }
       return [];
     },
@@ -131,7 +131,7 @@ export default {
       try {
         return this.shipDB.Commands.Hourly;
       } catch (e) {
-        console.warn("[Ship] Unexpected error in shipHourlyEventNames.", e);
+        window.logError("[Ship] Unexpected error in shipHourlyEventNames.", e);
       }
       return [];
     },
@@ -142,7 +142,7 @@ export default {
       try {
         return this.shipDB.Sprites[this.shipSprite].Normal;
       } catch (e) {
-        console.warn("[Ship] Unexpected error in shipNormalImagePath.", e);
+        window.logError("[Ship] Unexpected error in shipNormalImagePath.", e);
       }
       return null;
     },
@@ -152,7 +152,7 @@ export default {
       try {
         return this.shipDB.Sprites[this.shipSprite].Damaged;
       } catch (e) {
-        console.warn("[Ship] Unexpected error in shipNormalImagePath.", e);
+        window.logError("[Ship] Unexpected error in shipNormalImagePath.", e);
       }
       return null;
     }
@@ -177,7 +177,7 @@ export default {
       await this.getDatabase();
       await this.loadShip();
     } catch (e) {
-      console.warn("[Ship] Error in getDatabase or loadShip", e);
+      window.logError("[Ship] Error in getDatabase or loadShip", e);
     }
   },
   beforeDestroy() {
@@ -200,7 +200,7 @@ export default {
           return;
         }
       } catch (e) {
-        console.warn("Unable to check click event. ", e);
+        window.logError("Unable to check click event. ", e);
         return;
       }
 
@@ -216,7 +216,7 @@ export default {
         this.audio.pause();
       }
 
-      console.log(
+      window.log(
         `Playing voice [${this.currentEvent.Event}].`,
         this.currentEvent
       );
@@ -238,7 +238,7 @@ export default {
         this.currentEvent = list[Math.floor(Math.random() * list.length)];
         this.playCurrentEvent();
       } catch (e) {
-        console.warn("[Ship] Error in 'onAdd'.", e);
+        window.logError("[Ship] Error in 'onAdd'.", e);
       }
     },
     onTap() {
@@ -250,7 +250,7 @@ export default {
         this.currentEvent = list[Math.floor(Math.random() * list.length)];
         this.playCurrentEvent();
       } catch (e) {
-        console.warn("[Ship] Error in 'onTap'.", e);
+        window.logError("[Ship] Error in 'onTap'.", e);
       }
     },
     onHourly(hourlyEvent) {
@@ -276,7 +276,7 @@ export default {
         });
         this.playCurrentEvent();
       } catch (e) {
-        console.warn("[Ship] Error in 'onHourly'.", e);
+        window.logError("[Ship] Error in 'onHourly'.", e);
       }
     },
     async getDatabase() {
@@ -292,7 +292,7 @@ export default {
           return this.shipDB.Events[event];
         });
       } catch (e) {
-        console.warn(
+        window.logError(
           "[Ship] Unexpected error in getVoiceFilesFromEventList.",
           eventList,
           e
@@ -345,7 +345,7 @@ export default {
       this.ctx.drawImage(this.defaultSprite, xOffset, yOffset, width, height);
     },
     resizeCanvas() {
-      //console.log(`Ship Resize: ${this.canvas.width}, ${this.canvas.height}`);
+      //window.log(`Ship Resize: ${this.canvas.width}, ${this.canvas.height}`);
       try {
         this.windowHeight = window.innerHeight;
         this.clearCanvas();
@@ -357,7 +357,7 @@ export default {
         );
         this.drawShip();
       } catch (e) {
-        console.warn("[Ship] Error in resize. ", e);
+        window.logError("[Ship] Error in resize. ", e);
       }
     }
   }

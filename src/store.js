@@ -7,10 +7,20 @@ import fs from 'fs';
 Vue.config.productionTip = false;
 Vue.use(Vuex);
 
+const isDevelopment = process.env.NODE_ENV !== 'production';
+
 window.roomBackground = {
   naturalWidth: 800,
   naturalHeight: 480
 };
+
+if (isDevelopment) {
+  window.log = console.log.bind(window.console);
+  window.logError = console.warn.bind(window.console);
+} else {
+  window.log = () => { };
+  window.logError = () => { };
+}
 
 const store = new Vuex.Store({
   modules: {
@@ -44,7 +54,7 @@ const store = new Vuex.Store({
         populateData: s => {
           let databasePath = path.join(__static, "database");
           if (!fs.existsSync(databasePath)) {
-            console.warn(`[populateData] Unable to get database path at [${databasePath}]`);
+            window.logError(`[populateData] Unable to get database path at [${databasePath}]`);
             return;
           }
 
@@ -64,7 +74,7 @@ const store = new Vuex.Store({
               ships.push(shipName);
               database[shipName] = databaseData;
             } catch (e) {
-              console.warn(`[populateData] Unable to read ship database at path [${shipDatabasePath}]`, e);
+              window.logError(`[populateData] Unable to read ship database at path [${shipDatabasePath}]`, e);
             }
           });
 
@@ -81,11 +91,11 @@ const store = new Vuex.Store({
             bgmDatabase = JSON.parse(bgmData);
             s.commit('setBgm', bgmDatabase);
           } catch (e) {
-            console.warn(`[populateData] Unable to read bgm database at path [${bgmPath}]`, e);
+            window.logError(`[populateData] Unable to read bgm database at path [${bgmPath}]`, e);
           }
 
-          console.log('Ship data', ships, database);
-          console.log('Bgm data', bgmDatabase);
+          window.log('Ship data', ships, database);
+          window.log('Bgm data', bgmDatabase);
         },
         invokeHourlyEvent: () => {
           let hourly = new CustomEvent('hourly', { detail: `${new Date().getHours()}:00` });
@@ -105,7 +115,7 @@ const store = new Vuex.Store({
           try {
             return s.rootState.main.database[shipName];
           } catch (e) {
-            console.warn(`Unable to get database for [${shipName}]`, e);
+            window.logError(`Unable to get database for [${shipName}]`, e);
           }
         }
       },

@@ -73,9 +73,9 @@ export default {
         let widthToUse = Math.min(this.uiWidth, window.innerWidth);
         this.subtitleMaxWidth = widthToUse < 500 ? null : "60%";
         this.shipSelectorWidth = widthToUse * 0.15;
-        console.log("Submax", this.subtitleMaxWidth, this.uiWidth);
+        window.log("Submax", this.subtitleMaxWidth, this.uiWidth);
       } catch (e) {
-        console.warn("[App] Error in resize. ", e);
+        window.logError("[App] Error in resize. ", e);
       }
     },
     changeShip(ship) {
