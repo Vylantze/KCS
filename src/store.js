@@ -19,6 +19,7 @@ const store = new Vuex.Store({
         ships: [],
         database: {},
         bgm: {},
+        subtitle: null,
       },
       getters: {
       },
@@ -31,6 +32,9 @@ const store = new Vuex.Store({
         },
         setBgm(s, bgm) {
           s.bgm = bgm;
+        },
+        setSubtitle(s, subtitle) {
+          s.subtitle = subtitle;
         },
       },
       actions: {

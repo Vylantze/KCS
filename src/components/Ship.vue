@@ -153,8 +153,10 @@ export default {
   async mounted() {
     this.ctx = this.canvas.getContext("2d");
     window.addEventListener("resize", this.resizeCanvas);
-    window.addEventListener("hourly", this.playHourlySound);
+    window.addEventListener("hourly", this.onHourly);
     this.canvas.addEventListener("click", this.clickOnShip);
+    this.audio.onended = this.audioHasEnded;
+
     this.audio.volume = this.audioVolume;
     try {
       await this.getDatabase();
@@ -166,7 +168,7 @@ export default {
   beforeDestroy() {
     // Unregister the event listener before destroying this Vue instance
     window.removeEventListener("resize", this.resizeCanvas);
-    window.removeEventListener("hourly", this.playHourlySound);
+    window.removeEventListener("hourly", this.onHourly);
   },
   methods: {
     clickOnShip(event) {
@@ -188,36 +190,44 @@ export default {
       }
 
       // If success, allow
-      this.playTapSound();
+      this.onTap();
     },
-    playTapSound() {
+    audioHasEnded() {
+      this.currentEvent = null;
+      this.$store.commit("setSubtitle", null);
+    },
+    playCurrentEvent() {
       if (this.audio) {
         this.audio.pause();
       }
+
+      console.log(`Playing [${this.currentEvent.Event}].`, this.currentEvent);
+      let currentVoice = this.currentEvent.Voice;
+      this.$store.commit("setSubtitle", this.currentEvent.English);
+      this.audio.src = currentVoice;
+      this.audio.load();
+      this.audio.play();
+    },
+    onTap() {
       if (this.shipTapEventNames.length == 0) {
         return;
       }
       try {
         let list = this.getEventDataFromEventNames(this.shipTapEventNames);
         this.currentEvent = list[Math.floor(Math.random() * list.length)];
-        let currentVoice = this.currentEvent.Voice;
-
-        console.log(`Playing [${currentVoice}].`, this.currentEvent);
-        this.audio.src = currentVoice;
-        this.audio.load();
-        this.audio.play();
+        this.playCurrentEvent();
       } catch (e) {
-        console.warn("[Ship] Error in 'playTapSound'.", e);
+        console.warn("[Ship] Error in 'onTap'.", e);
       }
     },
-    playHourlySound(hourlyEvent) {
+    onHourly(hourlyEvent) {
       if (this.audio) {
         if (!this.audio.paused && !this.audio.ended) {
           // Wait for the audio to finish playing
           window.setTimeout(() => {
             // Wait another 3 seconds as padding.
             window.setTimeout(() => {
-              this.playHourlySound(hourlyEvent);
+              this.onHourly(hourlyEvent);
             });
           }, 3000);
           return;
@@ -231,14 +241,9 @@ export default {
             this.currentEvent = event;
           }
         });
-        let currentVoice = this.currentEvent.Voice;
-
-        console.log(`Playing [${currentVoice}].`, this.currentEvent);
-        this.audio.src = currentVoice;
-        this.audio.load();
-        this.audio.play();
+        this.playCurrentEvent();
       } catch (e) {
-        console.warn("[Ship] Error in 'playHourlySound'.", e);
+        console.warn("[Ship] Error in 'onHourly'.", e);
       }
     },
     async getDatabase() {
