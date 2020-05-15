@@ -216,7 +216,11 @@ export default {
         this.audio.pause();
       }
 
-      console.log(`Playing [${this.currentEvent.Event}].`, this.currentEvent);
+      console.log(
+        `Playing voice [${this.currentEvent.Event}].`,
+        this.currentEvent
+      );
+
       let currentVoice = this.currentEvent.Voice;
       this.$store.commit("setSubtitle", this.currentEvent.English);
       this.audio.src = currentVoice;
