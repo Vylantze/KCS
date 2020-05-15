@@ -92,6 +92,19 @@ export default {
       }
       return {};
     },
+    // SetSecretary
+    shipSetSecretaryEventNames() {
+      if (!this.shipDB || !this.shipDB.Commands) return [];
+      try {
+        return this.shipDB.Commands.SetSecretary;
+      } catch (e) {
+        console.warn(
+          "[Ship] Unexpected error in shipSetSecretaryEventNames.",
+          e
+        );
+      }
+      return [];
+    },
     // Idle
     shipIdleEventNames() {
       if (!this.shipDB || !this.shipDB.Commands) return [];
@@ -123,6 +136,7 @@ export default {
       return [];
     },
 
+    // Get normal sprite
     shipDefaultImagePath() {
       if (!this.shipDB) return null;
       try {
@@ -132,6 +146,7 @@ export default {
       }
       return null;
     },
+    // Get damaged sprite
     shipDamagedImagePath() {
       if (!this.shipDB) return null;
       try {
@@ -208,6 +223,20 @@ export default {
       this.audio.load();
       this.audio.play();
     },
+    onAdd() {
+      if (this.shipTapEventNames.length == 0) {
+        return;
+      }
+      try {
+        let list = this.getEventDataFromEventNames(
+          this.shipSetSecretaryEventNames
+        );
+        this.currentEvent = list[Math.floor(Math.random() * list.length)];
+        this.playCurrentEvent();
+      } catch (e) {
+        console.warn("[Ship] Error in 'onAdd'.", e);
+      }
+    },
     onTap() {
       if (this.shipTapEventNames.length == 0) {
         return;
@@ -281,6 +310,9 @@ export default {
       this.defaultSprite = await this.loadImage(this.shipDefaultImagePath);
       this.damagedSprite = await this.loadImage(this.shipDamagedImagePath);
       this.resizeCanvas();
+
+      // Play SetSecretary event
+      this.onAdd();
     },
     // To get the correct ratio
     calculateWidthFromHeight(naturalWidth, naturalHeight, currentHeight) {
