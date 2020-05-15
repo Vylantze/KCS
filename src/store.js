@@ -88,6 +88,7 @@ const store = new Vuex.Store({
           let hourInMilliseconds = 1000 * 60 * 60;
           let timeToHourChange = 3600000 - new Date().getTime() % 3600000 + 1;
           window.setTimeout(() => {
+            s.dispatch('invokeHourlyEvent');
             window.setInterval(() => {
               s.dispatch('invokeHourlyEvent');
             }, hourInMilliseconds);

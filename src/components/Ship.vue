@@ -213,9 +213,13 @@ export default {
     playHourlySound(hourlyEvent) {
       if (this.audio) {
         if (!this.audio.paused && !this.audio.ended) {
+          // Wait for the audio to finish playing
           window.setTimeout(() => {
-            this.playHourlySound(hourlyEvent);
-          }, 1000);
+            // Wait another 3 seconds as padding.
+            window.setTimeout(() => {
+              this.playHourlySound(hourlyEvent);
+            });
+          }, 3000);
           return;
         }
       }
