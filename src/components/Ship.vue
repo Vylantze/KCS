@@ -188,7 +188,7 @@ export default {
       }
 
       // If success, allow
-      //this.playTapSound();
+      this.playTapSound();
     },
     playTapSound() {
       if (this.audio) {
