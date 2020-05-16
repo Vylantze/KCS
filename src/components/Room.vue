@@ -101,8 +101,8 @@ export default {
     // To get the correct ratio
     calculateWidthFromHeight(height) {
       return (
-        (height * window.roomBackground.naturalWidth) /
-        (window.roomBackground.naturalHeight * 1.0)
+        (height * __roomBackground.naturalWidth) /
+        (__roomBackground.naturalHeight * 1.0)
       );
     },
     drawBackground() {

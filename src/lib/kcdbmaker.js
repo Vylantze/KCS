@@ -15,14 +15,16 @@ function titleCase(str) {
   return str;
 }
 
-function kcdbMake(kanmusu, publicDir, databaseDir) {
+function kcdbMake(kanmusu, shipDir, databaseDir) {
   if (!kanmusu) {
     console.log("No ship detected");
     return;
   }
   console.log(`Running database creation on [${kanmusu}]`);
 
-  const dirpath = path.join(publicDir, 'ship', kanmusu);
+  let kanmusuPath = kanmusu.toLowerCase().replace(/ /g, "_");
+
+  const dirpath = path.join(shipDir, kanmusuPath);
   if (!fs.existsSync(dirpath)) {
     console.log("Unable to find data at ", dirpath);
     return;
@@ -52,8 +54,11 @@ function kcdbMake(kanmusu, publicDir, databaseDir) {
   const data = fs.readFileSync(linesPath, "utf8");
   const lines = data.replace(/\r/g, '').split('\n');
 
-  const srcSpritePath = `ship/${kanmusu}/sprites/`;
-  const srcVoicePath = `ship/${kanmusu}/voices/`;
+  //const srcSpritePath = `ship/${kanmusu}/sprites/`;
+  //const srcVoicePath = `ship/${kanmusu}/voices/`;
+  // For packing purposes, don't set the filepath
+  const srcSpritePath = "";
+  const srcVoicePath = "";
 
   const database = {
     Name: titleCase(kanmusu),
@@ -192,7 +197,9 @@ function bgmMake(publicDir, databaseDir) {
 }
 
 function runBgmMakeFromNode() {
-  bgmMake(path.join(process.cwd(), 'public'), path.join(process.cwd(), 'public', 'database'));
+  let databasePath = path.join(process.cwd(), 'public', 'database');
+  if (!fs.existsSync(databasePath)) { fs.mkdirSync(databasePath, { recursive: true }); }
+  bgmMake(path.join(process.cwd(), 'public'), databasePath);
 }
 
 function runKCMakeFromNode() {
@@ -200,7 +207,9 @@ function runKCMakeFromNode() {
   try {
     if (process.argv != null && process.argv.length > 1) {
       kanmusu = process.argv.slice(1).join(' ');
-      kcdbMake(kanmusu, path.join(process.cwd(), 'public'), path.join(process.cwd(), 'public', 'database', 'shipLines'));
+      let databasePath = path.join(process.cwd(), 'public', 'database', 'ship');
+      if (!fs.existsSync(databasePath)) { fs.mkdirSync(databasePath, { recursive: true }); }
+      kcdbMake(kanmusu, path.join(process.cwd(), 'ship'), databasePath);
     }
   } catch (e) {
     console.log("Unable to run maker from the following: ", process.argv, e);

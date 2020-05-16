@@ -20,10 +20,11 @@ function createWindow() {
     webSecurity: !isDevelopment,
     minWidth: 400,
     minHeight: 600,
-    width: 800,
+    width: 885,
     height: 480,
     webPreferences: {
       nodeIntegration: true,
+      webSecurity: false,
       //contextIsolation: true, // protect against prototype pollution
       //enableRemoteModule: false, // turn off remote
     }

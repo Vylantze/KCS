@@ -16,6 +16,7 @@
     "bgmmake": "node -e \"require('./src/lib/kcdbmaker').runBgmMakeFromNode()\"",
     "kcmake": "node -e \"require('./src/lib/kcdbmaker').runKCMakeFromNode()\"",
     "clean": "node -e \"require('./src/lib/utils').deleteAllRecursive('./dist_electron')\"",
+    "pack": "asar pack ship/yamato packed/ship/yamato.asar",
     "build": "npm-run-all clean electron:build"
   },
   "main": "background.js",
@@ -29,6 +30,7 @@
     "@vue/cli-plugin-eslint": "~4.3.0",
     "@vue/cli-service": "~4.3.0",
     "@vue/eslint-config-prettier": "^6.0.0",
+    "asar": "^3.0.3",
     "babel-eslint": "^10.1.0",
     "electron": "^5.0.0",
     "eslint": "^6.7.2",
@@ -50,6 +52,12 @@
       "eslint:recommended"
     ],
     "globals": {
+      "log": true,
+      "logError": true,
+      "__dev": true,
+      "__resources": true,
+      "__ship": true,
+      "__roomBackground": true,
       "__static": true
     },
     "parserOptions": {

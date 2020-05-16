@@ -66,8 +66,8 @@ export default {
     resizeUI() {
       try {
         this.uiWidth = this.calculateWidthFromHeight(
-          window.roomBackground.naturalWidth,
-          window.roomBackground.naturalHeight,
+          __roomBackground.naturalWidth,
+          __roomBackground.naturalHeight,
           window.innerHeight
         );
         let widthToUse = Math.min(this.uiWidth, window.innerWidth);

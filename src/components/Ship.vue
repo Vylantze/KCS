@@ -18,6 +18,7 @@
 </style>
 
 <script>
+const path = require("path");
 const heightModifier = 1.3; // of total canvas height
 
 export default {
@@ -48,7 +49,17 @@ export default {
   },
   computed: {
     shipFileName() {
-      return this.shipName.replace(/ /g, "_").toLowerCase();
+      let name = this.shipName.replace(/ /g, "_").toLowerCase();
+      return `${name}.asar`;
+    },
+    shipDir() {
+      return path.join(__ship, this.shipFileName);
+    },
+    spritesDir() {
+      return path.join(this.shipDir, "sprites");
+    },
+    voicesDir() {
+      return path.join(this.shipDir, "voices");
     },
     canvas() {
       return document.getElementById(`ship-${this.shipFileName}`);
@@ -127,7 +138,8 @@ export default {
     },
     // Hourly
     shipHourlyEventNames() {
-      if (!this.shipDB || !this.shipDB.Commands) return [];
+      if (!this.shipDB || !this.shipDB.Commands || !this.shipDB.Commands.Hourly)
+        return [];
       try {
         return this.shipDB.Commands.Hourly;
       } catch (e) {
@@ -140,7 +152,10 @@ export default {
     shipNormalImagePath() {
       if (!this.shipDB) return null;
       try {
-        return this.shipDB.Sprites[this.shipSprite].Normal;
+        return path.join(
+          this.spritesDir,
+          this.shipDB.Sprites[this.shipSprite].Normal
+        );
       } catch (e) {
         window.logError("[Ship] Unexpected error in shipNormalImagePath.", e);
       }
@@ -150,7 +165,10 @@ export default {
     shipDamagedImagePath() {
       if (!this.shipDB) return null;
       try {
-        return this.shipDB.Sprites[this.shipSprite].Damaged;
+        return path.join(
+          this.spritesDir,
+          this.shipDB.Sprites[this.shipSprite].Damaged
+        );
       } catch (e) {
         window.logError("[Ship] Unexpected error in shipNormalImagePath.", e);
       }
@@ -221,7 +239,7 @@ export default {
         this.currentEvent
       );
 
-      let currentVoice = this.currentEvent.Voice;
+      let currentVoice = path.join(this.voicesDir, this.currentEvent.Voice);
       this.$store.commit("setSubtitle", this.currentEvent.English);
       this.audio.src = currentVoice;
       this.audio.load();
@@ -235,6 +253,7 @@ export default {
         let list = this.getEventDataFromEventNames(
           this.shipSetSecretaryEventNames
         );
+        if (!list || list.length == 0) return;
         this.currentEvent = list[Math.floor(Math.random() * list.length)];
         this.playCurrentEvent();
       } catch (e) {
@@ -247,6 +266,7 @@ export default {
       }
       try {
         let list = this.getEventDataFromEventNames(this.shipTapEventNames);
+        if (!list || list.length == 0) return;
         this.currentEvent = list[Math.floor(Math.random() * list.length)];
         this.playCurrentEvent();
       } catch (e) {
@@ -269,6 +289,7 @@ export default {
 
       try {
         let list = this.getEventDataFromEventNames(this.shipHourlyEventNames);
+        if (!list || list.length == 0) return;
         list.map(event => {
           if (event.Event == hourlyEvent.detail) {
             this.currentEvent = event;
@@ -351,8 +372,8 @@ export default {
         this.clearCanvas();
         this.canvas.height = window.innerHeight;
         this.canvas.width = this.calculateWidthFromHeight(
-          window.roomBackground.naturalWidth,
-          window.roomBackground.naturalHeight,
+          __roomBackground.naturalWidth,
+          __roomBackground.naturalHeight,
           window.innerHeight
         );
         this.drawShip();

@@ -5,6 +5,14 @@ module.exports = {
     electronBuilder: {
       builderOptions: {
         productName: 'KCEmulator',
+        extraResources: [
+          {
+            from: "packed/ship",
+            to: "./ship/",
+            filter: ["**/*"]
+          }
+
+        ],
         win: {
           icon: './public/favicon.ico'
         }

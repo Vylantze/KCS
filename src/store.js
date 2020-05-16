@@ -9,10 +9,13 @@ Vue.use(Vuex);
 
 const isDevelopment = process.env.NODE_ENV !== 'production';
 
-window.roomBackground = {
+window.__dev = isDevelopment;
+window.__roomBackground = {
   naturalWidth: 800,
   naturalHeight: 480
 };
+window.__resources = path.resolve(path.join(__static, ".."));
+window.__ship = isDevelopment ? path.join(__resources, "packed", "ship") : path.join(__resources, "ship");
 
 if (isDevelopment) {
   window.log = console.log.bind(window.console);
@@ -52,6 +55,8 @@ const store = new Vuex.Store({
       },
       actions: {
         populateData: s => {
+          log("__resources", __resources);
+
           let databasePath = path.join(__static, "database");
           if (!fs.existsSync(databasePath)) {
             window.logError(`[populateData] Unable to get database path at [${databasePath}]`);
@@ -61,7 +66,7 @@ const store = new Vuex.Store({
           //
           // Populate the ships
           //
-          let shipDatabasePath = path.join(databasePath, "shipLines");
+          let shipDatabasePath = path.join(databasePath, "ship");
           let list = fs.readdirSync(shipDatabasePath);
 
           let ships = [];
