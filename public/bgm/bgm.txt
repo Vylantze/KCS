@@ -64,3 +64,23 @@ Furniture 「長波、駆ける」	「長波、駆ける」	Naganami, kakeru	Nag
 2014 Fall Event - 02	「艦隊決戦」	Kantai kessen	Fleet decisive battle	Sound_b_bgm_28.ogg
 2014 Fall Event - 03	「秋月の空」	Akizuki no sora	Sky of the Autumn Moon	Sound_b_bgm_25.ogg
 2014 Fall Event - 04	「防空駆逐艦、参戦！」	Bōkū-kuchikukan, sansen!	Anti-air destroyer, engage!	Sound_b_bgm_26.ogg
+2015 Winter Event - 01	「特型駆逐艦」	Toku-gata kuchikukan	Special-type Destroyer	Sound_b_bgm_30.ogg
+2015 Winter Event - 02	「海色（みいろ）」1	Miiro 1	Color of the Sea (Anime OP)（みいろ）」1	Sound_b_bgm_34.ogg
+2015 Winter Event - 03	「海色（みいろ）」2	Miiro 2	Color of the Sea (Anime OP)（みいろ）」2	Sound_b_bgm_35.ogg
+2015 Winter Event - 04	「海色（みいろ）」3	Miiro 3	Color of the Sea (Anime OP)（みいろ）」3	Sound_b_bgm_36.ogg
+2015 Winter Event - 05	「吹雪」1	Fubuki 1	Fubuki (Anime ED) 1	Sound_b_bgm_32.ogg
+2015 Winter Event - 06	「吹雪」2	Fubuki 2	Fubuki (Anime ED) 2	Sound_b_bgm_33.ogg
+2015 Winter Event - 07	「吹雪、出撃す」	Fubuki, shutsugeki su!	Fubuki, Sortieing!	Sound_b_bgm_31.ogg
+2015 Spring Event - 01	「第三十駆逐隊、抜錨準備！」	Dai sanjū kuchikutai, batsubyō junbi!	30th Destroyer Division, prepare to sortie!	121h.ogg
+2015 Spring Event - 02	「睦月型駆逐艦の戦い」	Mutsuki-gata kuchikukan no tatakai	Battle of Mutsuki-Class Destroyers	Sound_b_bgm_38.ogg
+2015 Spring Event - 03	「連合艦隊、西へ」	Rengō kantai, nishi e	Combined Fleet, Westward	Sound_b_bgm_39.ogg
+2015 Spring Event - 04	「敵地侵入」	Tekichi shinnyū	Invading Enemy Territory	122e.ogg
+2015 Spring Event - 05	「深海への誘い」	Shinkai e no sasoi	Invitation to the Abyss	Sound_b_bgm_40.ogg
+2015 Spring Event - 06	「モドレナイノ」	Modorenai-no	No Going Back	Sound_b_bgm_41.ogg
+2015 Fall Mini-Event - 01	｢鎮守府秋刀魚祭り｣	Chinjufu Sanma Matsuri	Mackerel Pike Festival	Sound_b_bgm_51.ogg
+2015 Fall Event - 01	「艦隊集結」	Kantai shūketsu	Fleet Gathering	905w.ogg
+2015 Fall Event - 02	「海上輸送作戦」	Kaijō yusō sakusen	Marine Transport Operation	Sound_b_bgm_52.ogg
+2015 Fall Event - 03	「水雷戦隊の反撃」	Suirai sentai no hangeki	The Torpedo Squadron's Counterattack	Sound_b_bgm_53.ogg
+2015 Fall Event - 04	「-」	-	Armor Debuff In E-4	Sound_b_bgm_54.ogg
+2015 Fall Event - 05	「待ち伏せの夜戦」	Machibuse no yasen	Night Battle Ambush	Sound_b_bgm_55.ogg
+2015 Fall Event - 06	「-」	-	Armor Debuff In E-5	Sound_b_bgm_56.ogg
