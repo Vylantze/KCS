@@ -50,7 +50,7 @@ export default {
   computed: {
     shipFileName() {
       let name = this.shipName.replace(/ /g, "_").toLowerCase();
-      return `${name}.asar`;
+      return name;
     },
     shipDir() {
       return path.join(__ship, this.shipFileName);

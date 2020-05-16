@@ -15,7 +15,8 @@ window.__roomBackground = {
   naturalHeight: 480
 };
 window.__resources = path.resolve(path.join(__static, ".."));
-window.__ship = isDevelopment ? path.join(__resources, "packed", "ship") : path.join(__resources, "ship");
+window.__ship = "ship";
+//window.__ship = isDevelopment ? path.join(__resources, "packed", "ship") : path.join(__resources, "ship"); // Old one for .asar packaging
 
 if (isDevelopment) {
   window.log = console.log.bind(window.console);
@@ -55,8 +56,6 @@ const store = new Vuex.Store({
       },
       actions: {
         populateData: s => {
-          log("__resources", __resources);
-
           let databasePath = path.join(__static, "database");
           if (!fs.existsSync(databasePath)) {
             window.logError(`[populateData] Unable to get database path at [${databasePath}]`);
