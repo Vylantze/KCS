@@ -48,3 +48,19 @@ Furniture 「雨とお酒と艦娘(第二夜)」	「雨とお酒と艦娘(第二
 Furniture 「梅雨明けの白露」	「梅雨明けの白露」	Tsuyuake no shiratsuyu	The Glistening Dew After The Rainy Season	241e.ogg
 Furniture 「瑞雲の空」	「瑞雲の空」	Zuiun no sora	The Sky of Zuiun	Sound_b_bgm_132.oga
 Furniture 「長波、駆ける」	「長波、駆ける」	Naganami, kakeru	Naganami, Running forth	Sound_b_bgm_133.oga
+2013 Summer Event - 01	「全艦娘、突撃！｣	Zen Kanmusu, totsugeki!	All Shipgirls, Attack!	Sound_b_bgm_3.ogg
+2013 Fall Event - 01	「決戦！鉄底海峡を抜けて！｣	Kessen! Tettei kaikyō o nukete!	Decisive Battle! Escape from Ironbottom Sound!	Sound_b_bgm_22.ogg
+2013 Fall Event - 02	「敵大型超弩級戦艦を叩け！｣	Teki ōgata chō dokyūsenkan o tatake!	Assault the Enemy's Super Dreadnought!	Sound_bgm_iron02.ogg
+2013 Winter Event - 01	「冬の抜錨！」	Fuyu no batsubyō!	Sallying Forth in Winter!	107b.ogg
+2014 Spring Event - 01	「索敵機、発艦始め！」	Sakuteki-ki, hakkan hajime!	Scout Planes, Take Off!	Sound_b_bgm_8.ogg
+2014 Spring Event - 02	「敵艦隊、見ゆ！」	Teki kantai, miyu!	Enemy Fleet, Spotted!	Sound_b_bgm_9.ogg
+2014 Spring Event - 03	「暁の水平線に(インストver)」	Akatsuki no Suiheisen ni	At Dawn's Horizon (instrumental)	Sound_b_bgm_10.ogg
+2014 Summer Event - 01	「作戦発動」	Sakusen hatsudō	Commence Operation	Sound_bgm_almi.ogg
+2015 Summer Event - 02	「海原へ」	Unabara e	Into the Ocean	Sound_b_bgm_14.ogg
+2016 Summer Event - 03	「強襲！空母機動部隊」	Kyōshū! Kūbo kidō butai	Assault! Aircraft Carrier Task Force	Sound_b_bgm_15.ogg
+2017 Summer Event - 04	「MI作戦」	MI sakusen	Operation MI	Sound_b_bgm_16.ogg
+2018 Summer Event - 05	「シズメシズメ」	Shizume shizume	Sink Sink	Sound_b_bgm_17.ogg
+2014 Fall Event - 01	「連合艦隊の出撃」	Rengō kantai no shutsugeki	Combined Fleet's Sortie	Sound_b_bgm_27.ogg
+2014 Fall Event - 02	「艦隊決戦」	Kantai kessen	Fleet decisive battle	Sound_b_bgm_28.ogg
+2014 Fall Event - 03	「秋月の空」	Akizuki no sora	Sky of the Autumn Moon	Sound_b_bgm_25.ogg
+2014 Fall Event - 04	「防空駆逐艦、参戦！」	Bōkū-kuchikukan, sansen!	Anti-air destroyer, engage!	Sound_b_bgm_26.ogg
