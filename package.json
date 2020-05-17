@@ -59,6 +59,7 @@
       "__resources": true,
       "__ship": true,
       "__roomBackground": true,
+      "__mobileMode": true,
       "__static": true
     },
     "parserOptions": {

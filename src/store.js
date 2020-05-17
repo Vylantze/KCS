@@ -16,6 +16,9 @@ window.__roomBackground = {
   naturalWidth: 800,
   naturalHeight: 480
 };
+window.__mobileMode = {
+  width: 600,
+};
 window.__resources = path.resolve(path.join(__static, ".."));
 window.__ship = "ship";
 //window.__ship = isDevelopment ? path.join(__resources, "packed", "ship") : path.join(__resources, "ship"); // Old one for .asar packaging
