@@ -1,20 +1,31 @@
 <template>
   <div class="ui-layer" :style="{ width: `${uiWidth}px` }">
     <div v-if="menuOpen" class="menu-closer" @click.self="closeMenu">
-      <div />
+      <div v-if="menuOpen == 'settings'" class="menu">
+        <div class="settings">
+          <h3>Change BGM</h3>
+          <button class="menu-button info" @click="openMenu('bgm')">Select BGM</button>
+        </div>
+      </div>
+
       <div
         v-if="menuOpen == 'ship-selector'"
         class="menu center-div"
-      >You only need {{ selectedShip }}.</div>
-      <div v-if="menuOpen == 'settings'" class="menu center-div">
+      >You only need {{ selectedShipName }}.</div>
+
+      <div v-if="menuOpen == 'bgm'" class="menu center-div">
         <BGM />
+      </div>
+
+      <div v-show="menuOpen == 'bgm'" class="back-button-holder center-div">
+        <button class="menu-button info" @click="openMenu('settings')">Back</button>
       </div>
     </div>
 
-    <div class="ship-selector-button clickable" @click="selectShip">
+    <div class="ship-selector-button clickable" @click="openMenu('ship-selector')">
       <img src="img/ship_select.png" :width="shipSelectorWidth" />
     </div>
-    <div class="settings-button clickable center-div" @click="openSettings">
+    <div class="settings-button clickable center-div" @click="openMenu('settings')">
       <img src="img/settings.png" />
     </div>
     <div class="subtitles-container center-div">
@@ -37,16 +48,6 @@ export default {
   components: {
     BGM
   },
-  props: {
-    selectedShip: { type: String, default: "" },
-    selectedSprite: { type: String, default: "" },
-    selectedBgm: {
-      type: Object,
-      default() {
-        return null;
-      }
-    }
-  },
   data() {
     return {
       shipSelectorWidth: null,
@@ -57,7 +58,7 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(["ships", "subtitle"])
+    ...mapGetters(["ships", "subtitle", "selectedShipName", "selectedSprite"])
   },
   async mounted() {
     this.resizeUI();
@@ -75,16 +76,9 @@ export default {
     closeMenu() {
       this.menuOpen = null;
     },
-    selectShip() {
-      if (this.menuOpen != "ship-selector") {
-        this.menuOpen = "ship-selector";
-      } else {
-        this.closeMenu();
-      }
-    },
-    openSettings() {
-      if (this.menuOpen != "settings") {
-        this.menuOpen = "settings";
+    openMenu(name) {
+      if (this.menuOpen != name) {
+        this.menuOpen = name;
       } else {
         this.closeMenu();
       }
@@ -99,16 +93,15 @@ export default {
         let widthToUse = Math.min(this.uiWidth, window.innerWidth);
         this.subtitleMaxWidth = widthToUse < 500 ? null : "60%";
         this.shipSelectorWidth = widthToUse * 0.15;
-        window.log("Submax", this.subtitleMaxWidth, this.uiWidth);
       } catch (e) {
         window.logError("[App] Error in resize. ", e);
       }
     },
     changeShip(ship) {
-      this.$emit("update:selectedShip", ship);
+      this.$store.commit("setSelectedShipName", ship);
     },
     changeSprite(sprite) {
-      this.$emit("update:selectedSprite", sprite);
+      this.$store.commit("setSelectedSprite", sprite);
     }
   }
 };
@@ -129,6 +122,12 @@ export default {
     width: 100%;
     height: 100%;
     overflow: hidden;
+
+    .back-button-holder {
+      position: absolute;
+      top: calc(65% + 20px);
+      width: 100%;
+    }
 
     ::-webkit-scrollbar {
       display: block;
@@ -152,7 +151,30 @@ export default {
     }
   }
 
+  .menu-button {
+    border: none;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 25px;
+
+    cursor: pointer;
+
+    &.success {
+      background-color: #4caf50; /* Green */
+      color: white;
+    }
+
+    &.info {
+      background-color: rgba(100, 100, 100, 0.7);
+      color: white;
+      border: 1px solid white;
+    }
+  }
+
   .menu {
+    position: relative;
     margin: 10px auto;
     background-color: rgba(0, 0, 0, 0.7);
     width: 80%;
@@ -160,6 +182,10 @@ export default {
     color: white;
 
     overflow-y: auto;
+  }
+
+  .settings {
+    padding: 0px 20px;
   }
 
   .subtitles-container {
@@ -193,14 +219,12 @@ export default {
 
   .settings-button {
     position: absolute;
-    bottom: 8px;
-    right: 16px;
+    bottom: 10px;
+    right: 10px;
     background-color: #20a0a3;
     border-radius: 50%;
     height: 40px;
     width: 40px;
-    padding-top: 2px;
-    padding-right: 2px;
 
     img {
       width: 35px;

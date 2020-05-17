@@ -4,6 +4,8 @@ import Vuex from 'vuex';
 import path from 'path';
 import fs from 'fs';
 
+import utils from './lib/utils';
+
 Vue.config.productionTip = false;
 Vue.use(Vuex);
 
@@ -34,11 +36,17 @@ const store = new Vuex.Store({
         database: {},
         bgm: {},
         subtitle: null,
+        selectedBgmName: "Main Menu",
+        selectedShipName: "Yamato",
+        selectedSprite: "Yamato Summer",
       },
       getters: {
         BGMs: s => JSON.parse(JSON.stringify(s.bgm.Events)),
         bgmCategories: s => JSON.parse(JSON.stringify(s.bgm.Categories)),
         bgmCategoryOrder: s => JSON.parse(JSON.stringify(s.bgm.CategoryOrder)),
+        selectedBgm: s => s.selectedBgmName ? JSON.parse(JSON.stringify(s.bgm.Events[s.selectedBgmName])) : null,
+        selectedShipName: s => JSON.parse(JSON.stringify(s.selectedShipName)),
+        shipSprite: s => JSON.parse(JSON.stringify(s.selectedSprite)),
         ships: s => JSON.parse(JSON.stringify(s.ships)),
         subtitle: s => JSON.parse(JSON.stringify(s.subtitle)),
       },
@@ -55,8 +63,45 @@ const store = new Vuex.Store({
         setSubtitle(s, subtitle) {
           s.subtitle = subtitle;
         },
+        setSelectedBgmName(s, selectedBgmName) {
+          utils.saveSetting("selectedBgmName", selectedBgmName);
+          s.selectedBgmName = selectedBgmName;
+        },
+        setSelectedBgm(s, selectedBgm) {
+          utils.saveSetting("selectedBgmName", selectedBgm.Source);
+          s.selectedBgmName = selectedBgm.Source;
+        },
+        setSelectedShipName(s, selectedShipName) {
+          utils.saveSetting("selectedShipName", selectedShipName);
+          s.selectedShipName = selectedShipName;
+        },
+        setSelectedSprite(s, selectedSprite) {
+          utils.saveSetting("selectedSprite", selectedSprite);
+          s.selectedSprite = selectedSprite;
+        }
       },
       actions: {
+        loadSettings: s => {
+          let setters = [
+            "setSelectedBgmName",
+            "setSelectedShipName",
+            "setSelectedSprite"
+          ];
+          let variableName = [
+            "selectedBgmName",
+            "selectedShipName",
+            "selectedSprite"
+          ];
+          let length = setters.length;
+
+          for (let i = 0; i < length; i++) {
+            let loadedData = utils.loadSetting(variableName[i]);
+            if (loadedData) {
+              log(`Setting [${variableName[i]}]:`, loadedData);
+              s.commit(setters[i], loadedData);
+            }
+          }
+        },
         populateData: s => {
           let databasePath = path.join(__static, "database");
           if (!fs.existsSync(databasePath)) {

@@ -41,7 +41,6 @@ export default {
       roomWindow: null,
       roomObject: null,
 
-      currentBgm: null,
       bgmAudio: new Audio(),
       bgmVolume: 1.0,
 
@@ -50,7 +49,7 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(["BGMs"]),
+    ...mapGetters(["BGMs", "selectedBgm"]),
     canvas() {
       return document.getElementById("room-canvas");
     },
@@ -64,15 +63,25 @@ export default {
       return this.BGMs ? this.BGMs["Main Menu"] : null;
     }
   },
+  watch: {
+    selectedBgm(newBgm, oldBgm) {
+      log("SelectedBgm chagne", oldBgm, newBgm);
+      if (this.bgmAudio && this.selectedBgm) {
+        this.playBgmAudio();
+      }
+    }
+  },
   async mounted() {
     this.ctx = this.canvas.getContext("2d");
     await this.loadBackground();
     this.resizeCanvas();
 
-    this.currentBgm = this.mainMenuBGM;
+    if (!this.selectedBgm) {
+      this.$store.commit("setSelectedBgm", this.mainMenuBGM);
+    }
     this.bgmAudio.volume = this.bgmVolume;
     this.bgmAudio.loop = true;
-    this.playBgmAudio();
+    this.playBgmAudio(); // Let the watcher activate it for us
 
     window.addEventListener("resize", this.resizeCanvas);
   },
@@ -117,8 +126,15 @@ export default {
         this.bgmAudio.pause();
       }
 
-      window.log(`Playing BGM [${this.currentBgm.English}].`, this.currentBgm);
-      let currentFile = this.currentBgm.File;
+      if (!this.selectedBgm) {
+        return;
+      }
+
+      window.log(
+        `Playing BGM [${this.selectedBgm.English}].`,
+        this.selectedBgm
+      );
+      let currentFile = this.selectedBgm.File;
       this.bgmAudio.src = currentFile;
       this.bgmAudio.load();
       this.bgmAudio.play();

@@ -1,17 +1,10 @@
 <template>
   <div class="app">
     <Room>
-      <Ship v-if="selectedShip" :shipName="selectedShip" :shipSprite="selectedSprite" />
+      <Ship />
     </Room>
     <div class="ui-container center-div">
-      <UILayer
-        :selectedShip="selectedShip"
-        :selectedSprite="selectedSprite"
-        :selectedBgm="selectedBgm"
-        @update:selectedShip="selectedShip = $event"
-        @update:selectedSprite="selectedSprite = $event"
-        @update:selectedBgm="selectedBgm = $event"
-      />
+      <UILayer />
     </div>
   </div>
 </template>
@@ -28,14 +21,8 @@ export default {
     Ship,
     UILayer
   },
-  data() {
-    return {
-      selectedShip: "Yamato",
-      selectedSprite: "Yamato Summer",
-      selectedBgm: null
-    };
-  },
   created() {
+    this.$store.dispatch("loadSettings");
     this.$store.dispatch("populateData");
     this.$store.dispatch("startIntervalTimer");
   }

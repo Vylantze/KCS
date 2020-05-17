@@ -18,16 +18,13 @@
 </style>
 
 <script>
+import { mapGetters } from "vuex";
+
 const path = require("path");
 const heightModifier = 1.3; // of total canvas height
 
 export default {
   name: "Ship",
-  props: {
-    shipName: { type: String, default: "" },
-    shipSprite: { type: String, default: "" },
-    damaged: { type: Boolean, default: false }
-  },
   data() {
     return {
       windowHeight: 0,
@@ -41,6 +38,7 @@ export default {
       audio: new Audio(),
       audioVolume: 1.0,
 
+      damaged: false,
       currentEvent: null,
 
       shipDB: null,
@@ -48,6 +46,10 @@ export default {
     };
   },
   computed: {
+    ...mapGetters(["selectedShipName", "shipSprite"]),
+    shipName() {
+      return this.selectedShipName;
+    },
     shipFileName() {
       let name = this.shipName.replace(/ /g, "_").toLowerCase();
       return name;
@@ -239,11 +241,21 @@ export default {
         this.currentEvent
       );
 
-      let currentVoice = path.join(this.voicesDir, this.currentEvent.Voice);
-      this.$store.commit("setSubtitle", this.currentEvent.English);
-      this.audio.src = currentVoice;
-      this.audio.load();
-      this.audio.play();
+      try {
+        let currentVoice = path.join(this.voicesDir, this.currentEvent.Voice);
+        this.audio.src = currentVoice;
+        this.audio.load();
+        let promise = this.audio.play();
+        promise
+          .then(() => {
+            this.$store.commit("setSubtitle", this.currentEvent.English);
+          })
+          .catch(e => {
+            throw e;
+          });
+      } catch (e) {
+        logError("[Ship][playCurrentEvent] Error.", e);
+      }
     },
     onAdd() {
       if (this.shipTapEventNames.length == 0) {

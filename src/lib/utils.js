@@ -1,5 +1,6 @@
 const fs = require('fs');
 
+
 function deleteAllRecursive(dirpath) {
   if (fs.existsSync(dirpath)) {
     /* Old unneeded code
@@ -19,6 +20,19 @@ function deleteAllRecursive(dirpath) {
   }
 }
 
+function saveSetting(key, value) {
+  localStorage.setItem(key, JSON.stringify(value));
+}
+function loadSetting(key) {
+  try {
+    return JSON.parse(localStorage.getItem(key));
+  } catch {
+    return null;
+  }
+}
+
 module.exports = {
   deleteAllRecursive,
+  loadSetting,
+  saveSetting,
 };

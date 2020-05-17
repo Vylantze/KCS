@@ -4,7 +4,7 @@ Docks / Shipyard	Standard	「補給等選択時」	Hokyū-tō Sentakuji	Upon Sel
 Refurbish	Standard	「鎮守府の午後」	Chinjufu no gogo	Afternoon in the Naval Base	104a.ogg
 Gallery / Library	Standard	「邂逅」	Kaikō	Chance Meeting	123d.ogg
 Arsenal	Standard	「明石の工廠」	Akashi no kōshō	Akashi's Armory	206i.ogg
-Marriage	Standard	「ケッコンカッコカリ」	Kekkon-kakkokari	Marriage (tentative title)	Sound_bgm_weddingmain.ogg
+Marriage	Standard	「ケッコンカッコカリ」	Kekkon-kakkokari	Marriage (tentative)	Sound_bgm_weddingmain.ogg
 Sortie / PvP / Expedition	Battle	「海原越えて」	Unabara koete	Across The Sea	103v.ogg
 Battle	Battle	「砲雷撃戦、始め！」	Hōraigeki-sen, hajime!	Cannons and Torpedoes, Fire!	Sound_b_bgm_1.ogg
 Night Battle	Battle	「我、夜戦に突入す！」	Ware, yasen ni totsunyū su!	Rush into the Night Battle!	Sound_b_bgm_2.ogg
