@@ -36,7 +36,6 @@ export default {
       defaultSprite: null,
       damagedSprite: null,
       audio: new Audio(),
-      audioVolume: 1.0,
 
       damaged: false,
       currentEvent: null,
@@ -46,7 +45,11 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(["selectedShipName", "shipSprite"]),
+    ...mapGetters({
+      selectedShipName: "selectedShipName",
+      shipSprite: "shipSprite",
+      voiceVolume: "voiceVolume"
+    }),
     shipName() {
       return this.selectedShipName;
     },
@@ -183,6 +186,9 @@ export default {
     },
     shipSprite() {
       this.loadShip();
+    },
+    voiceVolume() {
+      this.audio.volume = this.voiceVolume;
     }
   },
   async mounted() {
@@ -192,7 +198,7 @@ export default {
     this.canvas.addEventListener("click", this.clickOnShip);
     this.audio.onended = this.audioHasEnded;
 
-    this.audio.volume = this.audioVolume;
+    this.audio.volume = this.voiceVolume;
     try {
       await this.getDatabase();
       await this.loadShip();

@@ -7,7 +7,7 @@
           v-for="(source, index) in bgmCategories[bgmCategoryName]"
           :key="index"
           class="list-item"
-          :class="{ 'selected': selectedBgm && selectedBgm.Source == source  }"
+          :class="{ 'selected': selectedBgm && selectedBgm.Source == source }"
           @click="changeSelectedBgm(BGMs[source])"
         >{{ BGMs[source].English }}</div>
       </div>
@@ -45,6 +45,7 @@ export default {
     margin-left: 10px;
 
     .list-item {
+      padding: 2px 5px;
       &:hover {
         background-color: rgba(200, 200, 0, 0.8);
       }

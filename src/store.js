@@ -39,6 +39,9 @@ const store = new Vuex.Store({
         selectedBgmName: "Main Menu",
         selectedShipName: "Yamato",
         selectedSprite: "Yamato Summer",
+        overallVolume: 1.0,
+        bgmVolume: 1.0,
+        voiceVolume: 1.0,
       },
       getters: {
         BGMs: s => JSON.parse(JSON.stringify(s.bgm.Events)),
@@ -49,6 +52,8 @@ const store = new Vuex.Store({
         shipSprite: s => JSON.parse(JSON.stringify(s.selectedSprite)),
         ships: s => JSON.parse(JSON.stringify(s.ships)),
         subtitle: s => JSON.parse(JSON.stringify(s.subtitle)),
+        bgmVolume: s => s.bgmVolume * s.overallVolume,
+        voiceVolume: s => s.voiceVolume * s.overallVolume,
       },
       mutations: {
         setDatabase(s, database) {
@@ -78,6 +83,18 @@ const store = new Vuex.Store({
         setSelectedSprite(s, selectedSprite) {
           utils.saveSetting("selectedSprite", selectedSprite);
           s.selectedSprite = selectedSprite;
+        },
+        setOverallVolume(s, overallVolume) {
+          utils.saveSetting("overallVolume", overallVolume);
+          s.overallVolume = overallVolume;
+        },
+        setBgmVolume(s, bgmVolume) {
+          utils.saveSetting("bgmVolume", bgmVolume);
+          s.bgmVolume = bgmVolume;
+        },
+        setVoiceVolume(s, voiceVolume) {
+          utils.saveSetting("voiceVolume", voiceVolume);
+          s.voiceVolume = voiceVolume;
         }
       },
       actions: {
@@ -85,12 +102,18 @@ const store = new Vuex.Store({
           let setters = [
             "setSelectedBgmName",
             "setSelectedShipName",
-            "setSelectedSprite"
+            "setSelectedSprite",
+            "setOverallVolume",
+            "setBgmVolume",
+            "setVoiceVolume"
           ];
           let variableName = [
             "selectedBgmName",
             "selectedShipName",
-            "selectedSprite"
+            "selectedSprite",
+            "overallVolume",
+            "bgmVolume",
+            "voiceVolume"
           ];
           let length = setters.length;
 

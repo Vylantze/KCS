@@ -1,10 +1,33 @@
 <template>
   <div class="ui-layer" :style="{ width: `${uiWidth}px` }">
     <div v-if="menuOpen" class="menu-closer" @click.self="closeMenu">
-      <div v-if="menuOpen == 'settings'" class="menu">
+      <div v-if="menuOpen == 'settings'" class="menu center limit-size">
         <div class="settings">
           <h3>Change BGM</h3>
           <button class="menu-button info" @click="openMenu('bgm')">Select BGM</button>
+
+          <h3>Volume</h3>
+          <div class="slider-setting" style="margin-bottom: 5px;">
+            <div class="label">Overall</div>
+            <div class="slider-holder center-div">
+              <input type="range" min="1" max="100" v-model="overallSlider" class="slider" />
+            </div>
+            <div class="label right">{{ Math.floor(overallVolume * 100) }}%</div>
+          </div>
+          <div class="slider-setting" style="margin-bottom: 5px;">
+            <div class="label">BGM</div>
+            <div class="slider-holder center-div">
+              <input type="range" min="1" max="100" v-model="bgmSlider" class="slider" />
+            </div>
+            <div class="label right">{{ Math.floor(bgmVolume * 100) }}%</div>
+          </div>
+          <div class="slider-setting">
+            <div class="label">Voice</div>
+            <div class="slider-holder center-div">
+              <input type="range" min="1" max="100" v-model="voiceSlider" class="slider" />
+            </div>
+            <div class="label right">{{ Math.floor(voiceVolume * 100) }}%</div>
+          </div>
         </div>
       </div>
 
@@ -39,7 +62,7 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapGetters, mapState } from "vuex";
 
 import BGM from "./BGM.vue";
 
@@ -58,7 +81,41 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(["ships", "subtitle", "selectedShipName", "selectedSprite"])
+    ...mapGetters({
+      ships: "ships",
+      subtitle: "subtitle",
+      selectedShipName: "selectedShipName",
+      selectedSprite: "selectedSprite"
+    }),
+    ...mapState({
+      overallVolume: s => s.main.overallVolume,
+      bgmVolume: s => s.main.bgmVolume,
+      voiceVolume: s => s.main.voiceVolume
+    }),
+    overallSlider: {
+      get() {
+        return this.overallVolume * 100;
+      },
+      set(value) {
+        this.$store.commit("setOverallVolume", value / 100.0);
+      }
+    },
+    bgmSlider: {
+      get() {
+        return this.bgmVolume * 100;
+      },
+      set(value) {
+        this.$store.commit("setBgmVolume", value / 100.0);
+      }
+    },
+    voiceSlider: {
+      get() {
+        return this.voiceVolume * 100;
+      },
+      set(value) {
+        this.$store.commit("setVoiceVolume", value / 100.0);
+      }
+    }
   },
   async mounted() {
     this.resizeUI();
@@ -114,6 +171,53 @@ export default {
 
   div {
     pointer-events: auto;
+  }
+
+  .slider-setting {
+    display: flex;
+
+    .label {
+      width: 60px;
+
+      &.right {
+        width: 45px;
+        text-align: right;
+      }
+    }
+  }
+
+  .slider-holder {
+    flex: 1;
+
+    .slider {
+      -webkit-appearance: none;
+      width: 100%;
+      height: 5px;
+      border-radius: 5px;
+      background: #d3d3d3;
+      outline: none;
+      opacity: 0.7;
+      -webkit-transition: 0.2s;
+      transition: opacity 0.2s;
+    }
+
+    .slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: #4caf50;
+      cursor: pointer;
+    }
+
+    .slider::-moz-range-thumb {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: #4caf50;
+      cursor: pointer;
+    }
   }
 
   .menu-closer {
@@ -182,10 +286,21 @@ export default {
     color: white;
 
     overflow-y: auto;
+
+    &.center {
+      display: flex;
+      justify-content: center;
+    }
+
+    &.limit-size {
+      max-width: 500px;
+    }
   }
 
   .settings {
     padding: 0px 20px;
+    max-width: 500px;
+    flex: 1;
   }
 
   .subtitles-container {

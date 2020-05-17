@@ -42,14 +42,17 @@ export default {
       roomObject: null,
 
       bgmAudio: new Audio(),
-      bgmVolume: 1.0,
 
       ctx: null, // Canvas context
       previousWindowInnerHeight: 0
     };
   },
   computed: {
-    ...mapGetters(["BGMs", "selectedBgm"]),
+    ...mapGetters({
+      BGMs: "BGMs",
+      selectedBgm: "selectedBgm",
+      bgmVolume: "bgmVolume"
+    }),
     canvas() {
       return document.getElementById("room-canvas");
     },
@@ -69,6 +72,9 @@ export default {
       if (this.bgmAudio && this.selectedBgm) {
         this.playBgmAudio();
       }
+    },
+    bgmVolume() {
+      this.bgmAudio.volume = this.bgmVolume;
     }
   },
   async mounted() {
