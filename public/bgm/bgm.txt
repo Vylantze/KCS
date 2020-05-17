@@ -1,173 +1,173 @@
-Source	Japanese	Romanization	English	File
-Main Menu	「母港」	Bokō	Home Port	101r.ogg
-Docks / Shipyard	「補給等選択時」	Hokyū-tō Sentakuji	Upon Selecting Resupply	Sound_bgm_supply.ogg
-Refurbish	「鎮守府の午後」	Chinjufu no gogo	Afternoon in the Naval Base	104a.ogg
-Gallery / Library	「邂逅」	Kaikō	Chance Meeting	123d.ogg
-Arsenal	「明石の工廠」	Akashi no kōshō	Akashi's Armory	206i.ogg
-Marriage	「ケッコンカッコカリ」	Kekkon-kakkokari	Marriage (tentative title)	Sound_bgm_weddingmain.ogg
-Sortie / PvP / Expedition	「海原越えて」	Unabara koete	Across The Sea	103v.ogg
-Battle	「砲雷撃戦、始め！」	Hōraigeki-sen, hajime!	Cannons and Torpedoes, Fire!	Sound_b_bgm_1.ogg
-Night Battle	「我、夜戦に突入す！」	Ware, yasen ni totsunyū su!	Rush into the Night Battle!	Sound_b_bgm_2.ogg
-Extra Operation 1-5	「海上護衛戦」	Kaijō goei-sen	Maritime Escort Warfare	Sound_b_bgm_7.ogg
-Extra Operation 1-6	「新編「海上護衛隊抜錨！」」	Shinpen `Kaijō goeitai' batsubyō!	New 'Maritime Escort Fleet' sail out!	Sound_b_bgm_37.ogg
-Extra Operation 2-5	「第五戦隊の出撃」	Dai-go sentai no shutsugeki	Sortie of the Fifth Squad	Sound_b_bgm_11.ogg
-Extra Operation 3-5	「士魂の護り」	Shikon no mamori	Protection of the Warrior Spirit¹	Sound_b_bgm_19.ogg
-Extra Operation Boss/Night Node 4-5	「深海への誘い」	Shinkai e no sasoi	Invitation to the Abyss	Sound_b_bgm_40.ogg
-Sortie 5-1	「華の二水戦」	Hana no Nisuisen	The Splendid 2nd Torpedo Squadron	Sound_b_bgm_13.ogg
-Boss 5-1	「艦隊決戦！(南方海域強襲偵察!)」	Kantai kessen! (Nanpō kai'iki kyōshū teisatsu!)	Fleet Clash! (Southern Ocean Offensive Surveillance!)	Sound_b_bgm_3.ogg
-Sortie 5-2	「飛龍の反撃」	Hiryū no hangeki	Hiryū's counterattack	Sound_b_bgm_12.ogg
-Sortie 5-4	「二水戦の航跡」	Nisuisen no kōseki	Wake of the Second Torpedo Squadron	Sound_b_bgm_4.ogg
-Boss 5-4	「次発装填、再突入!」	jihatsu sōten, sai totsunyū!	Next Round Loaded, Re-engage!	Sound_b_bgm_5.ogg
-Extra Operation Boss 5-5	「我、敵機動部隊ト交戦ス」	Ware, teki kidō butai to kōsen su	Battle the Enemy Task Force!	Sound_b_bgm_6.ogg
-Sortie 6-1	「眼下の伊号」	Ganka no I-gō	The I-Class Below Us	Sound_b_bgm_20.ogg
-Sortie 6-2	「冬の艦隊」	Fuyu no kantai	Winter Fleet	Sound_b_bgm_29.ogg
-Boss X-4 (2015/07/17)	「加賀岬」	Kaga Misaki	Cape Kaga	Sound_b_bgm_44.ogg
-Land Base Menu / Extra Operation Map 6-5	「基地航空隊」	Kichi-kōkūtai	Land Base Air Corps	125h.ogg
-Extra Operation 6-5	「海鷲の翼」	Umiwashi no tsubasa	Wings of Sea Eagles	Sound_b_bgm_75.ogg
-Extra Operations 4-5 and 5-5	「連合艦隊旗艦」	Rengō kantai kikan	Combined Fleet Flagship	129w.ogg
-Furniture 「武蔵の帰投」	「武蔵の帰投」	Musashi no kitō	Musashi's return	106q.ogg
-Furniture 「秋の鎮守府」	「秋の鎮守府」	Aki no chinjufu	Autumn at the Naval Base	105h.ogg
-Furniture 「迎春の鎮守府」	「迎春の鎮守府」	Geishun no chinjufu	New Years at the Naval Base	108o.ogg
-Furniture 「節分の鎮守府」	「節分の鎮守府」	Setsubun no chinjufu	Setsubun at the Naval Base	110s.ogg
-Furniture 「艦娘のお菓子作り」	「艦娘のお菓子作り」	Kanmusu no okashi-zukuri	Candy-making by the Shipgirls	111c.ogg
-Furniture 「桃の節句と艦娘」	「桃の節句と艦娘」	Momo-no-sekku to Kanmusu	Hinamatsuri and the Shipgirls	112o.ogg
-Furniture 「雨音の鎮守府」	「雨音の鎮守府」	Amaoto no chinjufu	Sound of Rain at the Naval Base	218e.ogg
-Furniture 「雨とお酒と艦娘」	「雨とお酒と艦娘」	Ame to o-sake to Kanmusu	Rain, Sake, and Shipgirls	219s.ogg
-Furniture 「浜辺の艦娘」	「浜辺の艦娘」	Hamabe no Kanmusu	Shipgirls on the Beach	116e.ogg
-Furniture 「加賀岬改」	「加賀岬改」	Kaga Misaki Kai	Kaga Cape Kai	226k.ogg
-Furniture 「鎮守府の秋祭り」	「鎮守府の秋祭り」	Chinjufu no aki-matsuri	Autumn Festival at the Naval Base	227f.ogg
-Furniture 「聖夜の母港」	「聖夜の母港」	Seiya no Bokō	Home Port on Christmas Eve	119t.ogg
-Furniture 「艦娘と提督の食卓」	「艦娘と提督の食卓」	Kanmusume to teitoku no shokutaku	Shipgirls' and Admiral's Dining Table	229b.ogg
-Furniture 「水着の出撃」	「水着の出撃」	Mizugi no Shutsugeki	Sortie in Swimsuit	230c.ogg
-Furniture 「粉雪の降る夜」	「粉雪の降る夜」	Konayuki no Furu Yoru	The Night When Powder Snow Falls	127u.ogg
-Jukebox 「噴式の胎動」	「噴式の胎動」	Funshiki no Taidou	Birth of the Jets	233r.ogg
-Furniture 「師走の鎮守府」	「師走の鎮守府」	Shiwasu no Chinjufu	December at the Naval Base	128u.ogg
-Furniture 「月夜海」	「月夜海」	Tsukiyomi	Moonlit Sea	237m.ogg
-Furniture 「祈り」	「祈り」	inori	Praying	130a.ogg
-Furniture 「雨とお酒と艦娘(第二夜)」	「雨とお酒と艦娘(第二夜)」	Ame to osake to kanmusu (dai-niya)	Rain, Sake, and Ship Girls (The 2nd Night)	240q.ogg
-Furniture 「梅雨明けの白露」	「梅雨明けの白露」	Tsuyuake no shiratsuyu	The Glistening Dew After The Rainy Season	241e.ogg
-Furniture 「瑞雲の空」	「瑞雲の空」	Zuiun no sora	The Sky of Zuiun	Sound_b_bgm_132.oga
-Furniture 「長波、駆ける」	「長波、駆ける」	Naganami, kakeru	Naganami, Running forth	Sound_b_bgm_133.oga
-2013 Summer Event - 01	「全艦娘、突撃！｣	Zen Kanmusu, totsugeki!	All Shipgirls, Attack!	Sound_b_bgm_3.ogg
-2013 Fall Event - 01	「決戦！鉄底海峡を抜けて！｣	Kessen! Tettei kaikyō o nukete!	Decisive Battle! Escape from Ironbottom Sound!	Sound_b_bgm_22.ogg
-2013 Fall Event - 02	「敵大型超弩級戦艦を叩け！｣	Teki ōgata chō dokyūsenkan o tatake!	Assault the Enemy's Super Dreadnought!	Sound_bgm_iron02.ogg
-2013 Winter Event - 01	「冬の抜錨！」	Fuyu no batsubyō!	Sallying Forth in Winter!	107b.ogg
-2014 Spring Event - 01	「索敵機、発艦始め！」	Sakuteki-ki, hakkan hajime!	Scout Planes, Take Off!	Sound_b_bgm_8.ogg
-2014 Spring Event - 02	「敵艦隊、見ゆ！」	Teki kantai, miyu!	Enemy Fleet, Spotted!	Sound_b_bgm_9.ogg
-2014 Spring Event - 03	「暁の水平線に(インストver)」	Akatsuki no Suiheisen ni	At Dawn's Horizon (instrumental)	Sound_b_bgm_10.ogg
-2014 Summer Event - 01	「作戦発動」	Sakusen hatsudō	Commence Operation	Sound_bgm_almi.ogg
-2015 Summer Event - 02	「海原へ」	Unabara e	Into the Ocean	Sound_b_bgm_14.ogg
-2016 Summer Event - 03	「強襲！空母機動部隊」	Kyōshū! Kūbo kidō butai	Assault! Aircraft Carrier Task Force	Sound_b_bgm_15.ogg
-2017 Summer Event - 04	「MI作戦」	MI sakusen	Operation MI	Sound_b_bgm_16.ogg
-2018 Summer Event - 05	「シズメシズメ」	Shizume shizume	Sink Sink	Sound_b_bgm_17.ogg
-2014 Fall Event - 01	「連合艦隊の出撃」	Rengō kantai no shutsugeki	Combined Fleet's Sortie	Sound_b_bgm_27.ogg
-2014 Fall Event - 02	「艦隊決戦」	Kantai kessen	Fleet decisive battle	Sound_b_bgm_28.ogg
-2014 Fall Event - 03	「秋月の空」	Akizuki no sora	Sky of the Autumn Moon	Sound_b_bgm_25.ogg
-2014 Fall Event - 04	「防空駆逐艦、参戦！」	Bōkū-kuchikukan, sansen!	Anti-air destroyer, engage!	Sound_b_bgm_26.ogg
-2015 Winter Event - 01	「特型駆逐艦」	Toku-gata kuchikukan	Special-type Destroyer	Sound_b_bgm_30.ogg
-2015 Winter Event - 02	「海色（みいろ）」1	Miiro 1	Color of the Sea (Anime OP)（みいろ）」1	Sound_b_bgm_34.ogg
-2015 Winter Event - 03	「海色（みいろ）」2	Miiro 2	Color of the Sea (Anime OP)（みいろ）」2	Sound_b_bgm_35.ogg
-2015 Winter Event - 04	「海色（みいろ）」3	Miiro 3	Color of the Sea (Anime OP)（みいろ）」3	Sound_b_bgm_36.ogg
-2015 Winter Event - 05	「吹雪」1	Fubuki 1	Fubuki (Anime ED) 1	Sound_b_bgm_32.ogg
-2015 Winter Event - 06	「吹雪」2	Fubuki 2	Fubuki (Anime ED) 2	Sound_b_bgm_33.ogg
-2015 Winter Event - 07	「吹雪、出撃す」	Fubuki, shutsugeki su!	Fubuki, Sortieing!	Sound_b_bgm_31.ogg
-2015 Spring Event - 01	「第三十駆逐隊、抜錨準備！」	Dai sanjū kuchikutai, batsubyō junbi!	30th Destroyer Division, prepare to sortie!	121h.ogg
-2015 Spring Event - 02	「睦月型駆逐艦の戦い」	Mutsuki-gata kuchikukan no tatakai	Battle of Mutsuki-Class Destroyers	Sound_b_bgm_38.ogg
-2015 Spring Event - 03	「連合艦隊、西へ」	Rengō kantai, nishi e	Combined Fleet, Westward	Sound_b_bgm_39.ogg
-2015 Spring Event - 04	「敵地侵入」	Tekichi shinnyū	Invading Enemy Territory	122e.ogg
-2015 Spring Event - 05	「深海への誘い」	Shinkai e no sasoi	Invitation to the Abyss	Sound_b_bgm_40.ogg
-2015 Spring Event - 06	「モドレナイノ」	Modorenai-no	No Going Back	Sound_b_bgm_41.ogg
-2015 Fall Mini-Event - 01	｢鎮守府秋刀魚祭り｣	Chinjufu Sanma Matsuri	Mackerel Pike Festival	Sound_b_bgm_51.ogg
-2015 Fall Event - 01	「艦隊集結」	Kantai shūketsu	Fleet Gathering	905w.ogg
-2015 Fall Event - 02	「海上輸送作戦」	Kaijō yusō sakusen	Marine Transport Operation	Sound_b_bgm_52.ogg
-2015 Fall Event - 03	「水雷戦隊の反撃」	Suirai sentai no hangeki	The Torpedo Squadron's Counterattack	Sound_b_bgm_53.ogg
-2015 Fall Event - 04	「-」	-	Armor Debuff In E-4	Sound_b_bgm_54.ogg
-2015 Fall Event - 05	「待ち伏せの夜戦」	Machibuse no yasen	Night Battle Ambush	Sound_b_bgm_55.ogg
-2015 Fall Event - 06	「-」	-	Armor Debuff In E-5	Sound_b_bgm_56.ogg
-2016 Winter Event - 01	「冬の二水戦」	Fuyu no Nisuisen	The 2nd Torpedo Squadron in Winter	906y.ogg
-2016 Winter Event - 02	「礼号作戦」	Rei-gō Sakusen	Operation Rei-gō	Sound_b_bgm_58.ogg
-2016 Winter Event - 03	「艦隊突入！上陸船団を討て」	Kantai Totsu'nyu! Jōriku Sendan o Ute	Fleet, Assault! Attack the Landing Convoy	Sound_b_bgm_59.ogg
-2016 Winter Event - 04	「礼号作戦の凱歌」	Rei-gō Sakusen no Gaika	The Paean of Operation Rei-gō	Sound_b_bgm_60.ogg
-2016 Spring Event - 01	「戦場海域」	Senjō kaiiki	Battlewaters	Sound_b_bgm_61.ogg
-2016 Spring Event - 02	「水底から」	Minasoko kara	From Bottom of the Water	Sound_b_bgm_62.ogg
-2016 Spring Event - 03	「友邦任務部隊」1	Yūhō Ninmu Butai 1	Allied Nation's Task Force 1	Sound_b_bgm_63.ogg
-2016 Spring Event - 04	「友邦任務部隊」2	Yūhō Ninmu Butai 2	Allied Nation's Task Force 2	Sound_b_bgm_64.ogg
-2016 Spring Event - 05	「遥かなる友邦」	Haruka naru Yūhō	Distant Allies	907c.ogg
-2016 Spring Event - 06	「紅い海の侵食」	Akai Umi no Shinshoku	Erosion of the Crimson Sea	908i.ogg
-2016 Spring Event - 07	「敵航空基地を叩け」	Teki Kōkū Kichi o Tatake	Attack the Enemy Aviation Base	Sound_b_bgm_67.ogg
-2016 Spring Event - 08	「波濤を超えて」	Hatō o koete	Beyond the Surging Sea	Sound_b_bgm_68.ogg
-2016 Summer Event - 01	「整備員の休息」	Seibi'in no Kyūsoku	Rest Time of the Technicians	909q.ogg
-2016 Summer Event - 02	「迎撃隊、発進！」	Geigekitai, Hasshin!	Interception Squad, Sortie!	Sound_b_bgm_70.ogg
-2016 Summer Event - 03	「捜索！敵東洋艦隊」	Sōsaku! Teki Tōyō Kantai	Search! The Enemy's Eastern Fleet	Sound_b_bgm_71.ogg
-2016 Summer Event - 04	「東洋の魔女」	Tōyō no Majo	The Eastern Witch	Sound_b_bgm_72.ogg
-2016 Summer Event - 05	「戦争を忌むもの」	Sensō o imu-mono	Those Who Detest War	Sound_b_bgm_73.ogg
-2016 Fall Mini-Event - 01	「鎮守府秋刀魚祭り改」	Chinjufu Sanma Matsuri Kai	Mackerel Pike Festival Kai	Sound_b_bgm_76.ogg
-2016 Fall Mini-Event - 02	「艦娘音頭」	Kanmusu Ondo	The Shipgirl Festival Dance	Sound_b_bgm_77.ogg
-2016 Fall Event - 01	「警戒線」	Kēkaisen	Cordon	910a.ogg
-2016 Fall Event - 02	「機動部隊を追え！」	Kidō-butai o oe!	Chase the Carrier Task Force!	Sound_b_bgm_80.ogg
-2016 Fall Event - 03	「泡沫のシャングリア」	Utakata no shangria	Bubbles around Shangria	Sound_b_bgm_81.ogg
-2016 Fall Event - 04	「水底の世界」	Minasoko no sekai	World of Under the Water	911d.ogg
-2016 Fall Event - 05	「渚を越えて」	Nagisa o koete	Beyond the Shore	Sound_b_bgm_82.ogg
-2017 Winter Event - 01	「舞鶴の港」	Maizuru no minato	Harbor in Maizuru	912i.ogg
-2017 Winter Event - 02	「「光」作戦」	「Hikari」 sakusen	Operation 'Hikari'	Sound_b_bgm_87.ogg
-2017 Winter Event - 03	「トラック目指して」	Torakku mezashite	Head for the Truk	Sound_b_bgm_88.ogg
-2017 Winter Event - 04	「遥かなるウルシー泊地」	Harukanaru urushī hakuchi	The Distant Ulithi Anchorage	Sound_b_bgm_89.ogg
-2017 Spring Event - 01	「北東方面艦隊の集結」	Hokutō Hōmen Kantai no Shūketsu	Gathering of the Northeastern Fleet	913p.ogg
-2017 Spring Event - 02	「第五艦隊の奮戦」	Dai-go Kantai no Funsen	Hard Fight of the Fifth Fleet	Sound_b_bgm_91.ogg
-2017 Spring Event - 03	「北方艦隊決戦」	Hoppō Kantai Kessen	Decisive Northern Naval Battle	Sound_b_bgm_92.ogg
-2017 Spring Event - 04	「士魂の反撃」	Shikon no Hangeki	Counterattack of the Warrior Spirit	Sound_b_bgm_93.ogg
-2017 Summer Event - 01	｢西方打通作戦発動｣	Sēhō datsū-sakusen hatsudō	Commence Western Through Operation	Sound_b_bgm_95.ogg
-2017 Summer Event - 02	｢特務艦隊抜錨！西へ｣	Tokumukantai batsubyō! nishi e	Special Squadron, Weigh Anchor! To the West	Sound_b_bgm_96.ogg
-2017 Summer Event - 03	｢特務艦隊の戦い｣	Tokumukantai no tatakai	Battle of the Special Squadron	Sound_b_bgm_97.ogg
-2017 Summer Event - 04	｢西方の海｣	Sēhō no umi	Western Sea	Sound_b_bgm_98.ogg
-2017 Summer Event - 05	｢地中海の戦い｣	Chityūkai no tatakai	Battle of the Mediterranean Sea	Sound_b_bgm_99.ogg
-2017 Summer Event - 06	｢鎮魂の大西洋｣	Chinkon no Taisēyō	Repose of Souls at the Atlantic Ocean	Sound_b_bgm_100.ogg
-2017 Fall Mini-Event - 01	｢鎮守府秋刀魚祭り改二｣	Chinjufu Sanma Matsuri Kai Ni	Naval Base Saury Festival Kai Ni	Sound_b_bgm_102.ogg
-2017 Fall Event - 01	｢捷号決戦前夜｣	Sho-gō Kessen Zen'ya	Operation Sho-go's Eve	Sound_b_bgm_103.ogg
-2017 Fall Event - 02	｢捷一号作戦｣	Shō-ichi-gō Sakusen	Operation Sho-ichi-go	Sound_b_bgm_104.ogg
-2017 Fall Event - 03	｢激戦！遊撃部隊｣	Gekisen! Yūgeki Butai	Intense Battle! Strike Force	Sound_b_bgm_105.ogg
-2017 Fall Event - 04	｢海峡へ｣	Kaikyō e	To the Strait	Sound_b_bgm_106.ogg
-2017 Fall Event - 05	｢西村艦隊の戦い｣	Nishimura Kantai no Tatakai	Battles of the Nishimura Fleet	Sound_b_bgm_107.ogg
-2018 Winter Event - 01	｢出擊前夜｣	Shutsugeki Zen'ya	Eve of Sortie	Sound_b_bgm_109.ogg
-2018 Winter Event - 02	｢-｣	-	E-1, E-2, E-3 Battle	Sound_b_bgm_110.ogg
-2018 Winter Event - 03	「-」	-	E-1, E-2, E-3 Boss, E-4 Battle	Sound_b_bgm_111.ogg
-2018 Winter Event - 04	「-」	-	Extra Operation Map Screen	Sound_b_bgm_112.ogg
-2018 Winter Event - 05	｢友軍艦隊！反撃開始｣	Yūgun Kantai! Hangeki Kaishi	Friend Fleet! Begin Counterattack	Sound_b_bgm_113.ogg
-2018 Winter Event - 06	｢鶴墜ちる海｣	Tsuru ochiru umi	The Sea Where the Crane Falls	Sound_b_bgm_114.ogg
-2018 Winter Event - 07	｢暁の水平線に勝利を!｣	-Akatsuki no suihei-sen ni shōri o!	Victory over the Dawn Horizon!	Sound_b_bgm_115.ogg
-2018 Winter Event - 08	｢月夜海｣	Tsukiyomi v2	Moonlit Sea v2 (Event ending song)	Winter_2018_Event_Ending_Song.ogg
-2018 Spring Mini-Event - 01	｢-｣	-	Map Screen	Sound_b_bgm_116.ogg
-2018 Spring Mini-Event - 02	｢-｣	-	Battle	Sound_b_bgm_117.ogg
-2018 Early Fall Event - 01	｢-｣	-	Main Operation Map Screen	Sound_b_bgm_119.ogg
-2018 Early Fall Event - 02	｢-｣	-	Main Operation Battle	Sound_b_bgm_120.ogg
-2018 Early Fall Event - 03	｢-｣	-	E-1, E-2 Boss	Sound_b_bgm_121.ogg
-2018 Early Fall Event - 04	｢-｣	-	E-3 Boss; E-4, E-5 Battle	Sound_b_bgm_123.ogg
-2018 Early Fall Event - 05	｢-｣	-	Extra Operation Map	Sound_b_bgm_122.ogg
-2018 Early Fall Event - 06	｢-｣	-	E-5 Boss	Sound_b_bgm_124.ogg
-2018 Fall Mini-Event - 01	｢鎮守府秋刀魚祭り改三｣	Chinjufu Sanma Matsuri Kai San	Naval Base Saury Festival Kai San	Sound_b_bgm_141.ogg
-2019 Winter Event - 01	｢-｣	-	Main Operation Map Screen	Sound_b_bgm_126.ogg
-2019 Winter Event - 02	｢-｣	-	Main Operation Battle	Sound_b_bgm_127.ogg
-2019 Winter Event - 03	｢-｣	-	Main Operation Boss	Sound_b_bgm_128.ogg
-2019 Winter Event - 04	｢-｣	-	Extra Operation Map Screen	Sound_b_bgm_129.ogg
-2019 Winter Event - 05	｢日の進むところ｣	Hi no susumu tokoro	A Place the Sun Goes Forward	Sound_b_bgm_130.ogg
-2019 Winter Event - 06	｢-｣	-	Extra Operation Boss	Sound_b_bgm_131.ogg
-2019 Spring Event - 01	｢-｣	-	Main Operation Map Screen	Sound_b_bgm_134.ogg
-2019 Spring Event - 02	｢-｣	-	E-1 to E-4 Battle	Sound_b_bgm_135.ogg
-2019 Spring Event - 03	｢-｣	-	E-1 to E-4 Boss, E-5 Battle	Sound_b_bgm_136.ogg
-2019 Spring Event - 04	｢-｣	-	Extra Operation Map Screen	Sound_b_bgm_137.ogg
-2019 Spring Event - 05	「-」	-	E-5 Boss	Sound_b_bgm_138.ogg
-2019 Summer Event - 01	｢北大西洋の風｣	Kitataisēyō no Kaze	The Wind in North Atlantic Ocean	Sound_b_bgm_139.ogg
-2019 Summer Event - 02	｢欧州防衛作戦｣	Ōshū Bōē sakusen	European Defense Operation	Sound_b_bgm_140.ogg
-2019 Summer Event - 03	｢佐世保の時雨 (インストver.)｣	Sasebo no Shigure	Shigure of Sasebo	Sound_b_bgm_143.ogg
-2019 Summer Event - 04	｢ジブラルタルの戦鬼｣	Ziburarutaru no Senki	War Demon of Gibraltar	Sound_b_bgm_141_1429.ogg
-2019 Summer Event - 05	｢地中海の潮風｣	Chichūkai no Shiokaze	A sea breeze in the Mediterranean Sea	Sound_b_bgm_142.ogg
-2019 Summer Event - 06	｢アンツィオ沖の戦い｣	Anzio-oki no Tatakai	Battle of Anzio	Sound_b_bgm_144.ogg
-2019 Fall Event - 01	「-」	-	Main Operation Map Screen	Sound_b_bgm_145.ogg
-2019 Fall Event - 02	｢八駆の迎撃｣	Hakku no geigeki	DesDiv 8's Interception	Sound_b_bgm_146.ogg
-2019 Fall Event - 03	「-」	-	E-3, E-4 Boss, E-5 Battle	Sound_b_bgm_147.ogg
-2019 Fall Event - 04	「-」	-	E-1, E-2 Boss, E-4 Battle	Sound_b_bgm_148.ogg
-2019 Fall Event - 05	「-」	-	Extra Operation Map Screen	Sound_b_bgm_149.ogg
-2019 Fall Event - 06	「-」	-	E-5 Boss, E-6 Battle	Sound_b_bgm_150.ogg
-2019 Fall Event - 07	｢比叡と霧島の夜｣	Hiē to Kirishima no Yoru	Nights of Hiei and Kirishima	Sound_b_bgm_151.ogg
-2020 Doll Fes. Event - 01	｢令和桃の節句｣	Rēwa Momo-no-sekku	Reiwa's Doll Festival	Sound_b_bgm_152.ogg
-2020 Doll Fes. Event - 02	｢沖に立つ波｣	Oki ni tatsu nami	Waves in the Offing	Sound_b_bgm_153.ogg
+Source	Category	Japanese	Romanization	English	File
+Main Menu	Standard	「母港」	Bokō	Home Port	101r.ogg
+Docks / Shipyard	Standard	「補給等選択時」	Hokyū-tō Sentakuji	Upon Selecting Resupply	Sound_bgm_supply.ogg
+Refurbish	Standard	「鎮守府の午後」	Chinjufu no gogo	Afternoon in the Naval Base	104a.ogg
+Gallery / Library	Standard	「邂逅」	Kaikō	Chance Meeting	123d.ogg
+Arsenal	Standard	「明石の工廠」	Akashi no kōshō	Akashi's Armory	206i.ogg
+Marriage	Standard	「ケッコンカッコカリ」	Kekkon-kakkokari	Marriage (tentative title)	Sound_bgm_weddingmain.ogg
+Sortie / PvP / Expedition	Battle	「海原越えて」	Unabara koete	Across The Sea	103v.ogg
+Battle	Battle	「砲雷撃戦、始め！」	Hōraigeki-sen, hajime!	Cannons and Torpedoes, Fire!	Sound_b_bgm_1.ogg
+Night Battle	Battle	「我、夜戦に突入す！」	Ware, yasen ni totsunyū su!	Rush into the Night Battle!	Sound_b_bgm_2.ogg
+Extra Operation 1-5	Standard	「海上護衛戦」	Kaijō goei-sen	Maritime Escort Warfare	Sound_b_bgm_7.ogg
+Extra Operation 1-6	Standard	「新編「海上護衛隊抜錨！」」	Shinpen `Kaijō goeitai' batsubyō!	New 'Maritime Escort Fleet' sail out!	Sound_b_bgm_37.ogg
+Extra Operation 2-5	Standard	「第五戦隊の出撃」	Dai-go sentai no shutsugeki	Sortie of the Fifth Squad	Sound_b_bgm_11.ogg
+Extra Operation 3-5	Standard	「士魂の護り」	Shikon no mamori	Protection of the Warrior Spirit¹	Sound_b_bgm_19.ogg
+Extra Operation Boss/Night Node 4-5	Standard	「深海への誘い」	Shinkai e no sasoi	Invitation to the Abyss	Sound_b_bgm_40.ogg
+Sortie 5-1	Standard	「華の二水戦」	Hana no Nisuisen	The Splendid 2nd Torpedo Squadron	Sound_b_bgm_13.ogg
+Boss 5-1	Standard	「艦隊決戦！(南方海域強襲偵察!)」	Kantai kessen! (Nanpō kai'iki kyōshū teisatsu!)	Fleet Clash! (Southern Ocean Offensive Surveillance!)	Sound_b_bgm_3.ogg
+Sortie 5-2	Standard	「飛龍の反撃」	Hiryū no hangeki	Hiryū's counterattack	Sound_b_bgm_12.ogg
+Sortie 5-4	Standard	「二水戦の航跡」	Nisuisen no kōseki	Wake of the Second Torpedo Squadron	Sound_b_bgm_4.ogg
+Boss 5-4	Standard	「次発装填、再突入!」	jihatsu sōten, sai totsunyū!	Next Round Loaded, Re-engage!	Sound_b_bgm_5.ogg
+Extra Operation Boss 5-5	Standard	「我、敵機動部隊ト交戦ス」	Ware, teki kidō butai to kōsen su	Battle the Enemy Task Force!	Sound_b_bgm_6.ogg
+Sortie 6-1	Standard	「眼下の伊号」	Ganka no I-gō	The I-Class Below Us	Sound_b_bgm_20.ogg
+Sortie 6-2	Standard	「冬の艦隊」	Fuyu no kantai	Winter Fleet	Sound_b_bgm_29.ogg
+Boss X-4 (2015/07/17)	Standard	「加賀岬」	Kaga Misaki	Cape Kaga	Sound_b_bgm_44.ogg
+Land Base Menu / Extra Operation Map 6-5	Standard	「基地航空隊」	Kichi-kōkūtai	Land Base Air Corps	125h.ogg
+Extra Operation 6-5	Standard	「海鷲の翼」	Umiwashi no tsubasa	Wings of Sea Eagles	Sound_b_bgm_75.ogg
+Extra Operations 4-5 and 5-5	Standard	「連合艦隊旗艦」	Rengō kantai kikan	Combined Fleet Flagship	129w.ogg
+Furniture 「武蔵の帰投」	Furniture	「武蔵の帰投」	Musashi no kitō	Musashi's return	106q.ogg
+Furniture 「秋の鎮守府」	Furniture	「秋の鎮守府」	Aki no chinjufu	Autumn at the Naval Base	105h.ogg
+Furniture 「迎春の鎮守府」	Furniture	「迎春の鎮守府」	Geishun no chinjufu	New Years at the Naval Base	108o.ogg
+Furniture 「節分の鎮守府」	Furniture	「節分の鎮守府」	Setsubun no chinjufu	Setsubun at the Naval Base	110s.ogg
+Furniture 「艦娘のお菓子作り」	Furniture	「艦娘のお菓子作り」	Kanmusu no okashi-zukuri	Candy-making by the Shipgirls	111c.ogg
+Furniture 「桃の節句と艦娘」	Furniture	「桃の節句と艦娘」	Momo-no-sekku to Kanmusu	Hinamatsuri and the Shipgirls	112o.ogg
+Furniture 「雨音の鎮守府」	Furniture	「雨音の鎮守府」	Amaoto no chinjufu	Sound of Rain at the Naval Base	218e.ogg
+Furniture 「雨とお酒と艦娘」	Furniture	「雨とお酒と艦娘」	Ame to o-sake to Kanmusu	Rain, Sake, and Shipgirls	219s.ogg
+Furniture 「浜辺の艦娘」	Furniture	「浜辺の艦娘」	Hamabe no Kanmusu	Shipgirls on the Beach	116e.ogg
+Furniture 「加賀岬改」	Furniture	「加賀岬改」	Kaga Misaki Kai	Kaga Cape Kai	226k.ogg
+Furniture 「鎮守府の秋祭り」	Furniture	「鎮守府の秋祭り」	Chinjufu no aki-matsuri	Autumn Festival at the Naval Base	227f.ogg
+Furniture 「聖夜の母港」	Furniture	「聖夜の母港」	Seiya no Bokō	Home Port on Christmas Eve	119t.ogg
+Furniture 「艦娘と提督の食卓」	Furniture	「艦娘と提督の食卓」	Kanmusume to teitoku no shokutaku	Shipgirls' and Admiral's Dining Table	229b.ogg
+Furniture 「水着の出撃」	Furniture	「水着の出撃」	Mizugi no Shutsugeki	Sortie in Swimsuit	230c.ogg
+Furniture 「粉雪の降る夜」	Furniture	「粉雪の降る夜」	Konayuki no Furu Yoru	The Night When Powder Snow Falls	127u.ogg
+Jukebox 「噴式の胎動」	Furniture	「噴式の胎動」	Funshiki no Taidou	Birth of the Jets	233r.ogg
+Furniture 「師走の鎮守府」	Furniture	「師走の鎮守府」	Shiwasu no Chinjufu	December at the Naval Base	128u.ogg
+Furniture 「月夜海」	Furniture	「月夜海」	Tsukiyomi	Moonlit Sea	237m.ogg
+Furniture 「祈り」	Furniture	「祈り」	inori	Praying	130a.ogg
+Furniture 「雨とお酒と艦娘(第二夜)」	Furniture	「雨とお酒と艦娘(第二夜)」	Ame to osake to kanmusu (dai-niya)	Rain, Sake, and Ship Girls (The 2nd Night)	240q.ogg
+Furniture 「梅雨明けの白露」	Furniture	「梅雨明けの白露」	Tsuyuake no shiratsuyu	The Glistening Dew After The Rainy Season	241e.ogg
+Furniture 「瑞雲の空」	Furniture	「瑞雲の空」	Zuiun no sora	The Sky of Zuiun	Sound_b_bgm_132.oga
+Furniture 「長波、駆ける」	Furniture	「長波、駆ける」	Naganami, kakeru	Naganami, Running forth	Sound_b_bgm_133.oga
+2013 Summer Event - 01	2013 Summer Event	「全艦娘、突撃！｣	Zen Kanmusu, totsugeki!	All Shipgirls, Attack!	Sound_b_bgm_3.ogg
+2013 Fall Event - 01	2013 Fall Event	「決戦！鉄底海峡を抜けて！｣	Kessen! Tettei kaikyō o nukete!	Decisive Battle! Escape from Ironbottom Sound!	Sound_b_bgm_22.ogg
+2013 Fall Event - 02	2013 Fall Event	「敵大型超弩級戦艦を叩け！｣	Teki ōgata chō dokyūsenkan o tatake!	Assault the Enemy's Super Dreadnought!	Sound_bgm_iron02.ogg
+2013 Winter Event - 01	2013 Winter Event	「冬の抜錨！」	Fuyu no batsubyō!	Sallying Forth in Winter!	107b.ogg
+2014 Spring Event - 01	2013 Winter Event	「索敵機、発艦始め！」	Sakuteki-ki, hakkan hajime!	Scout Planes, Take Off!	Sound_b_bgm_8.ogg
+2014 Spring Event - 02	2013 Winter Event	「敵艦隊、見ゆ！」	Teki kantai, miyu!	Enemy Fleet, Spotted!	Sound_b_bgm_9.ogg
+2014 Spring Event - 03	2013 Winter Event	「暁の水平線に(インストver)」	Akatsuki no Suiheisen ni	At Dawn's Horizon (instrumental)	Sound_b_bgm_10.ogg
+2014 Summer Event - 01	2014 Summer Event	「作戦発動」	Sakusen hatsudō	Commence Operation	Sound_bgm_almi.ogg
+2015 Summer Event - 02	2014 Summer Event	「海原へ」	Unabara e	Into the Ocean	Sound_b_bgm_14.ogg
+2016 Summer Event - 03	2014 Summer Event	「強襲！空母機動部隊」	Kyōshū! Kūbo kidō butai	Assault! Aircraft Carrier Task Force	Sound_b_bgm_15.ogg
+2017 Summer Event - 04	2014 Summer Event	「MI作戦」	MI sakusen	Operation MI	Sound_b_bgm_16.ogg
+2018 Summer Event - 05	2014 Summer Event	「シズメシズメ」	Shizume shizume	Sink Sink	Sound_b_bgm_17.ogg
+2014 Fall Event - 01	2014 Fall Event	「連合艦隊の出撃」	Rengō kantai no shutsugeki	Combined Fleet's Sortie	Sound_b_bgm_27.ogg
+2014 Fall Event - 02	2014 Fall Event	「艦隊決戦」	Kantai kessen	Fleet decisive battle	Sound_b_bgm_28.ogg
+2014 Fall Event - 03	2014 Fall Event	「秋月の空」	Akizuki no sora	Sky of the Autumn Moon	Sound_b_bgm_25.ogg
+2014 Fall Event - 04	2014 Fall Event	「防空駆逐艦、参戦！」	Bōkū-kuchikukan, sansen!	Anti-air destroyer, engage!	Sound_b_bgm_26.ogg
+2015 Winter Event - 01	2015 Winter Event	「特型駆逐艦」	Toku-gata kuchikukan	Special-type Destroyer	Sound_b_bgm_30.ogg
+2015 Winter Event - 02	2015 Winter Event	「海色（みいろ）」1	Miiro 1	Color of the Sea (Anime OP)（みいろ）」1	Sound_b_bgm_34.ogg
+2015 Winter Event - 03	2015 Winter Event	「海色（みいろ）」2	Miiro 2	Color of the Sea (Anime OP)（みいろ）」2	Sound_b_bgm_35.ogg
+2015 Winter Event - 04	2015 Winter Event	「海色（みいろ）」3	Miiro 3	Color of the Sea (Anime OP)（みいろ）」3	Sound_b_bgm_36.ogg
+2015 Winter Event - 05	2015 Winter Event	「吹雪」1	Fubuki 1	Fubuki (Anime ED) 1	Sound_b_bgm_32.ogg
+2015 Winter Event - 06	2015 Winter Event	「吹雪」2	Fubuki 2	Fubuki (Anime ED) 2	Sound_b_bgm_33.ogg
+2015 Winter Event - 07	2015 Winter Event	「吹雪、出撃す」	Fubuki, shutsugeki su!	Fubuki, Sortieing!	Sound_b_bgm_31.ogg
+2015 Spring Event - 01	2015 Spring Event	「第三十駆逐隊、抜錨準備！」	Dai sanjū kuchikutai, batsubyō junbi!	30th Destroyer Division, prepare to sortie!	121h.ogg
+2015 Spring Event - 02	2015 Spring Event	「睦月型駆逐艦の戦い」	Mutsuki-gata kuchikukan no tatakai	Battle of Mutsuki-Class Destroyers	Sound_b_bgm_38.ogg
+2015 Spring Event - 03	2015 Spring Event	「連合艦隊、西へ」	Rengō kantai, nishi e	Combined Fleet, Westward	Sound_b_bgm_39.ogg
+2015 Spring Event - 04	2015 Spring Event	「敵地侵入」	Tekichi shinnyū	Invading Enemy Territory	122e.ogg
+2015 Spring Event - 05	2015 Spring Event	「深海への誘い」	Shinkai e no sasoi	Invitation to the Abyss	Sound_b_bgm_40.ogg
+2015 Spring Event - 06	2015 Spring Event	「モドレナイノ」	Modorenai-no	No Going Back	Sound_b_bgm_41.ogg
+2015 Fall Mini-Event - 01	2015 Fall Mini-Event	｢鎮守府秋刀魚祭り｣	Chinjufu Sanma Matsuri	Mackerel Pike Festival	Sound_b_bgm_51.ogg
+2015 Fall Event - 01	2015 Fall Event	「艦隊集結」	Kantai shūketsu	Fleet Gathering	905w.ogg
+2015 Fall Event - 02	2015 Fall Event	「海上輸送作戦」	Kaijō yusō sakusen	Marine Transport Operation	Sound_b_bgm_52.ogg
+2015 Fall Event - 03	2015 Fall Event	「水雷戦隊の反撃」	Suirai sentai no hangeki	The Torpedo Squadron's Counterattack	Sound_b_bgm_53.ogg
+2015 Fall Event - 04	2015 Fall Event	「-」	-	Armor Debuff In E-4	Sound_b_bgm_54.ogg
+2015 Fall Event - 05	2015 Fall Event	「待ち伏せの夜戦」	Machibuse no yasen	Night Battle Ambush	Sound_b_bgm_55.ogg
+2015 Fall Event - 06	2015 Fall Event	「-」	-	Armor Debuff In E-5	Sound_b_bgm_56.ogg
+2016 Winter Event - 01	2016 Winter Event	「冬の二水戦」	Fuyu no Nisuisen	The 2nd Torpedo Squadron in Winter	906y.ogg
+2016 Winter Event - 02	2016 Winter Event	「礼号作戦」	Rei-gō Sakusen	Operation Rei-gō	Sound_b_bgm_58.ogg
+2016 Winter Event - 03	2016 Winter Event	「艦隊突入！上陸船団を討て」	Kantai Totsu'nyu! Jōriku Sendan o Ute	Fleet, Assault! Attack the Landing Convoy	Sound_b_bgm_59.ogg
+2016 Winter Event - 04	2016 Winter Event	「礼号作戦の凱歌」	Rei-gō Sakusen no Gaika	The Paean of Operation Rei-gō	Sound_b_bgm_60.ogg
+2016 Spring Event - 01	2016 Spring Event	「戦場海域」	Senjō kaiiki	Battlewaters	Sound_b_bgm_61.ogg
+2016 Spring Event - 02	2016 Spring Event	「水底から」	Minasoko kara	From Bottom of the Water	Sound_b_bgm_62.ogg
+2016 Spring Event - 03	2016 Spring Event	「友邦任務部隊」1	Yūhō Ninmu Butai 1	Allied Nation's Task Force 1	Sound_b_bgm_63.ogg
+2016 Spring Event - 04	2016 Spring Event	「友邦任務部隊」2	Yūhō Ninmu Butai 2	Allied Nation's Task Force 2	Sound_b_bgm_64.ogg
+2016 Spring Event - 05	2016 Spring Event	「遥かなる友邦」	Haruka naru Yūhō	Distant Allies	907c.ogg
+2016 Spring Event - 06	2016 Spring Event	「紅い海の侵食」	Akai Umi no Shinshoku	Erosion of the Crimson Sea	908i.ogg
+2016 Spring Event - 07	2016 Spring Event	「敵航空基地を叩け」	Teki Kōkū Kichi o Tatake	Attack the Enemy Aviation Base	Sound_b_bgm_67.ogg
+2016 Spring Event - 08	2016 Spring Event	「波濤を超えて」	Hatō o koete	Beyond the Surging Sea	Sound_b_bgm_68.ogg
+2016 Summer Event - 01	2016 Summer Event	「整備員の休息」	Seibi'in no Kyūsoku	Rest Time of the Technicians	909q.ogg
+2016 Summer Event - 02	2016 Summer Event	「迎撃隊、発進！」	Geigekitai, Hasshin!	Interception Squad, Sortie!	Sound_b_bgm_70.ogg
+2016 Summer Event - 03	2016 Summer Event	「捜索！敵東洋艦隊」	Sōsaku! Teki Tōyō Kantai	Search! The Enemy's Eastern Fleet	Sound_b_bgm_71.ogg
+2016 Summer Event - 04	2016 Summer Event	「東洋の魔女」	Tōyō no Majo	The Eastern Witch	Sound_b_bgm_72.ogg
+2016 Summer Event - 05	2016 Summer Event	「戦争を忌むもの」	Sensō o imu-mono	Those Who Detest War	Sound_b_bgm_73.ogg
+2016 Fall Mini-Event - 01	2016 Fall Mini-Event	「鎮守府秋刀魚祭り改」	Chinjufu Sanma Matsuri Kai	Mackerel Pike Festival Kai	Sound_b_bgm_76.ogg
+2016 Fall Mini-Event - 02	2016 Fall Mini-Event	「艦娘音頭」	Kanmusu Ondo	The Shipgirl Festival Dance	Sound_b_bgm_77.ogg
+2016 Fall Event - 01	2016 Fall Event	「警戒線」	Kēkaisen	Cordon	910a.ogg
+2016 Fall Event - 02	2016 Fall Event	「機動部隊を追え！」	Kidō-butai o oe!	Chase the Carrier Task Force!	Sound_b_bgm_80.ogg
+2016 Fall Event - 03	2016 Fall Event	「泡沫のシャングリア」	Utakata no shangria	Bubbles around Shangria	Sound_b_bgm_81.ogg
+2016 Fall Event - 04	2016 Fall Event	「水底の世界」	Minasoko no sekai	World of Under the Water	911d.ogg
+2016 Fall Event - 05	2016 Fall Event	「渚を越えて」	Nagisa o koete	Beyond the Shore	Sound_b_bgm_82.ogg
+2017 Winter Event - 01	2017 Winter Event	「舞鶴の港」	Maizuru no minato	Harbor in Maizuru	912i.ogg
+2017 Winter Event - 02	2017 Winter Event	「「光」作戦」	「Hikari」 sakusen	Operation 'Hikari'	Sound_b_bgm_87.ogg
+2017 Winter Event - 03	2017 Winter Event	「トラック目指して」	Torakku mezashite	Head for the Truk	Sound_b_bgm_88.ogg
+2017 Winter Event - 04	2017 Winter Event	「遥かなるウルシー泊地」	Harukanaru urushī hakuchi	The Distant Ulithi Anchorage	Sound_b_bgm_89.ogg
+2017 Spring Event - 01	2017 Spring Event	「北東方面艦隊の集結」	Hokutō Hōmen Kantai no Shūketsu	Gathering of the Northeastern Fleet	913p.ogg
+2017 Spring Event - 02	2017 Spring Event	「第五艦隊の奮戦」	Dai-go Kantai no Funsen	Hard Fight of the Fifth Fleet	Sound_b_bgm_91.ogg
+2017 Spring Event - 03	2017 Spring Event	「北方艦隊決戦」	Hoppō Kantai Kessen	Decisive Northern Naval Battle	Sound_b_bgm_92.ogg
+2017 Spring Event - 04	2017 Spring Event	「士魂の反撃」	Shikon no Hangeki	Counterattack of the Warrior Spirit	Sound_b_bgm_93.ogg
+2017 Summer Event - 01	2017 Summer Event	｢西方打通作戦発動｣	Sēhō datsū-sakusen hatsudō	Commence Western Through Operation	Sound_b_bgm_95.ogg
+2017 Summer Event - 02	2017 Summer Event	｢特務艦隊抜錨！西へ｣	Tokumukantai batsubyō! nishi e	Special Squadron, Weigh Anchor! To the West	Sound_b_bgm_96.ogg
+2017 Summer Event - 03	2017 Summer Event	｢特務艦隊の戦い｣	Tokumukantai no tatakai	Battle of the Special Squadron	Sound_b_bgm_97.ogg
+2017 Summer Event - 04	2017 Summer Event	｢西方の海｣	Sēhō no umi	Western Sea	Sound_b_bgm_98.ogg
+2017 Summer Event - 05	2017 Summer Event	｢地中海の戦い｣	Chityūkai no tatakai	Battle of the Mediterranean Sea	Sound_b_bgm_99.ogg
+2017 Summer Event - 06	2017 Summer Event	｢鎮魂の大西洋｣	Chinkon no Taisēyō	Repose of Souls at the Atlantic Ocean	Sound_b_bgm_100.ogg
+2017 Fall Mini-Event - 01	2017 Fall Mini-Event	｢鎮守府秋刀魚祭り改二｣	Chinjufu Sanma Matsuri Kai Ni	Naval Base Saury Festival Kai Ni	Sound_b_bgm_102.ogg
+2017 Fall Event - 01	2017 Fall Event	｢捷号決戦前夜｣	Sho-gō Kessen Zen'ya	Operation Sho-go's Eve	Sound_b_bgm_103.ogg
+2017 Fall Event - 02	2017 Fall Event	｢捷一号作戦｣	Shō-ichi-gō Sakusen	Operation Sho-ichi-go	Sound_b_bgm_104.ogg
+2017 Fall Event - 03	2017 Fall Event	｢激戦！遊撃部隊｣	Gekisen! Yūgeki Butai	Intense Battle! Strike Force	Sound_b_bgm_105.ogg
+2017 Fall Event - 04	2017 Fall Event	｢海峡へ｣	Kaikyō e	To the Strait	Sound_b_bgm_106.ogg
+2017 Fall Event - 05	2017 Fall Event	｢西村艦隊の戦い｣	Nishimura Kantai no Tatakai	Battles of the Nishimura Fleet	Sound_b_bgm_107.ogg
+2018 Winter Event - 01	2018 Winter Event	｢出擊前夜｣	Shutsugeki Zen'ya	Eve of Sortie	Sound_b_bgm_109.ogg
+2018 Winter Event - 02	2018 Winter Event	｢-｣	-	E-1, E-2, E-3 Battle	Sound_b_bgm_110.ogg
+2018 Winter Event - 03	2018 Winter Event	「-」	-	E-1, E-2, E-3 Boss, E-4 Battle	Sound_b_bgm_111.ogg
+2018 Winter Event - 04	2018 Winter Event	「-」	-	Extra Operation Map Screen	Sound_b_bgm_112.ogg
+2018 Winter Event - 05	2018 Winter Event	｢友軍艦隊！反撃開始｣	Yūgun Kantai! Hangeki Kaishi	Friend Fleet! Begin Counterattack	Sound_b_bgm_113.ogg
+2018 Winter Event - 06	2018 Winter Event	｢鶴墜ちる海｣	Tsuru ochiru umi	The Sea Where the Crane Falls	Sound_b_bgm_114.ogg
+2018 Winter Event - 07	2018 Winter Event	｢暁の水平線に勝利を!｣	-Akatsuki no suihei-sen ni shōri o!	Victory over the Dawn Horizon!	Sound_b_bgm_115.ogg
+2018 Winter Event - 08	2018 Winter Event	｢月夜海｣	Tsukiyomi v2	Moonlit Sea v2 (Event ending song)	Winter_2018_Event_Ending_Song.ogg
+2018 Spring Mini-Event - 01	2018 Spring Mini-Event	｢-｣	-	Map Screen	Sound_b_bgm_116.ogg
+2018 Spring Mini-Event - 02	2018 Spring Mini-Event	｢-｣	-	Battle	Sound_b_bgm_117.ogg
+2018 Early Fall Event - 01	2018 Early Fall Event	｢-｣	-	Main Operation Map Screen	Sound_b_bgm_119.ogg
+2018 Early Fall Event - 02	2018 Early Fall Event	｢-｣	-	Main Operation Battle	Sound_b_bgm_120.ogg
+2018 Early Fall Event - 03	2018 Early Fall Event	｢-｣	-	E-1, E-2 Boss	Sound_b_bgm_121.ogg
+2018 Early Fall Event - 04	2018 Early Fall Event	｢-｣	-	E-3 Boss; E-4, E-5 Battle	Sound_b_bgm_123.ogg
+2018 Early Fall Event - 05	2018 Early Fall Event	｢-｣	-	Extra Operation Map	Sound_b_bgm_122.ogg
+2018 Early Fall Event - 06	2018 Early Fall Event	｢-｣	-	E-5 Boss	Sound_b_bgm_124.ogg
+2018 Fall Mini-Event - 01	2018 Fall Mini-Event	｢鎮守府秋刀魚祭り改三｣	Chinjufu Sanma Matsuri Kai San	Naval Base Saury Festival Kai San	Sound_b_bgm_141.ogg
+2019 Winter Event - 01	2019 Winter Event	｢-｣	-	Main Operation Map Screen	Sound_b_bgm_126.ogg
+2019 Winter Event - 02	2019 Winter Event	｢-｣	-	Main Operation Battle	Sound_b_bgm_127.ogg
+2019 Winter Event - 03	2019 Winter Event	｢-｣	-	Main Operation Boss	Sound_b_bgm_128.ogg
+2019 Winter Event - 04	2019 Winter Event	｢-｣	-	Extra Operation Map Screen	Sound_b_bgm_129.ogg
+2019 Winter Event - 05	2019 Winter Event	｢日の進むところ｣	Hi no susumu tokoro	A Place the Sun Goes Forward	Sound_b_bgm_130.ogg
+2019 Winter Event - 06	2019 Winter Event	｢-｣	-	Extra Operation Boss	Sound_b_bgm_131.ogg
+2019 Spring Event - 01	2019 Spring Event	｢-｣	-	Main Operation Map Screen	Sound_b_bgm_134.ogg
+2019 Spring Event - 02	2019 Spring Event	｢-｣	-	E-1 to E-4 Battle	Sound_b_bgm_135.ogg
+2019 Spring Event - 03	2019 Spring Event	｢-｣	-	E-1 to E-4 Boss, E-5 Battle	Sound_b_bgm_136.ogg
+2019 Spring Event - 04	2019 Spring Event	｢-｣	-	Extra Operation Map Screen	Sound_b_bgm_137.ogg
+2019 Spring Event - 05	2019 Spring Event	「-」	-	E-5 Boss	Sound_b_bgm_138.ogg
+2019 Summer Event - 01	2019 Summer Event	｢北大西洋の風｣	Kitataisēyō no Kaze	The Wind in North Atlantic Ocean	Sound_b_bgm_139.ogg
+2019 Summer Event - 02	2019 Summer Event	｢欧州防衛作戦｣	Ōshū Bōē sakusen	European Defense Operation	Sound_b_bgm_140.ogg
+2019 Summer Event - 03	2019 Summer Event	｢佐世保の時雨 (インストver.)｣	Sasebo no Shigure	Shigure of Sasebo	Sound_b_bgm_143.ogg
+2019 Summer Event - 04	2019 Summer Event	｢ジブラルタルの戦鬼｣	Ziburarutaru no Senki	War Demon of Gibraltar	Sound_b_bgm_141_1429.ogg
+2019 Summer Event - 05	2019 Summer Event	｢地中海の潮風｣	Chichūkai no Shiokaze	A sea breeze in the Mediterranean Sea	Sound_b_bgm_142.ogg
+2019 Summer Event - 06	2019 Summer Event	｢アンツィオ沖の戦い｣	Anzio-oki no Tatakai	Battle of Anzio	Sound_b_bgm_144.ogg
+2019 Fall Event - 01	2019 Fall Event	「-」	-	Main Operation Map Screen	Sound_b_bgm_145.ogg
+2019 Fall Event - 02	2019 Fall Event	｢八駆の迎撃｣	Hakku no geigeki	DesDiv 8's Interception	Sound_b_bgm_146.ogg
+2019 Fall Event - 03	2019 Fall Event	「-」	-	E-3, E-4 Boss, E-5 Battle	Sound_b_bgm_147.ogg
+2019 Fall Event - 04	2019 Fall Event	「-」	-	E-1, E-2 Boss, E-4 Battle	Sound_b_bgm_148.ogg
+2019 Fall Event - 05	2019 Fall Event	「-」	-	Extra Operation Map Screen	Sound_b_bgm_149.ogg
+2019 Fall Event - 06	2019 Fall Event	「-」	-	E-5 Boss, E-6 Battle	Sound_b_bgm_150.ogg
+2019 Fall Event - 07	2019 Fall Event	｢比叡と霧島の夜｣	Hiē to Kirishima no Yoru	Nights of Hiei and Kirishima	Sound_b_bgm_151.ogg
+2020 Doll Fes. Event - 01	2020 Doll Fes. Event	｢令和桃の節句｣	Rēwa Momo-no-sekku	Reiwa's Doll Festival	Sound_b_bgm_152.ogg
+2020 Doll Fes. Event - 02	2020 Doll Fes. Event	｢沖に立つ波｣	Oki ni tatsu nami	Waves in the Offing	Sound_b_bgm_153.ogg

@@ -7,8 +7,10 @@
       <UILayer
         :selectedShip="selectedShip"
         :selectedSprite="selectedSprite"
+        :selectedBgm="selectedBgm"
         @update:selectedShip="selectedShip = $event"
         @update:selectedSprite="selectedSprite = $event"
+        @update:selectedBgm="selectedBgm = $event"
       />
     </div>
   </div>
@@ -29,7 +31,8 @@ export default {
   data() {
     return {
       selectedShip: "Yamato",
-      selectedSprite: "Yamato Summer"
+      selectedSprite: "Yamato Summer",
+      selectedBgm: null
     };
   },
   created() {

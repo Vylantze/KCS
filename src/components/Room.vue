@@ -50,7 +50,7 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(["bgm"]),
+    ...mapGetters(["BGMs"]),
     canvas() {
       return document.getElementById("room-canvas");
     },
@@ -61,7 +61,7 @@ export default {
       return `${window.innerWidth}px`;
     },
     mainMenuBGM() {
-      return this.bgm ? this.bgm["Main Menu"] : null;
+      return this.BGMs ? this.BGMs["Main Menu"] : null;
     }
   },
   async mounted() {

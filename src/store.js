@@ -36,7 +36,9 @@ const store = new Vuex.Store({
         subtitle: null,
       },
       getters: {
-        bgm: s => JSON.parse(JSON.stringify(s.bgm)),
+        BGMs: s => JSON.parse(JSON.stringify(s.bgm.Events)),
+        bgmCategories: s => JSON.parse(JSON.stringify(s.bgm.Categories)),
+        bgmCategoryOrder: s => JSON.parse(JSON.stringify(s.bgm.CategoryOrder)),
         ships: s => JSON.parse(JSON.stringify(s.ships)),
         subtitle: s => JSON.parse(JSON.stringify(s.subtitle)),
       },

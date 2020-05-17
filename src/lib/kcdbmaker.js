@@ -153,7 +153,11 @@ function bgmMake(publicDir, databaseDir) {
   const bgmData = data.replace(/\r/g, '').split('\n');
 
   // Set up the database. Just contain all data directly, keyed by the source
-  const database = {};
+  const database = {
+    Events: {},
+    Categories: {},
+    CategoryOrder: [],
+  };
 
   // Now get the bgm data
   var headers = [];
@@ -184,9 +188,22 @@ function bgmMake(publicDir, databaseDir) {
           entry[header] = null;
         }
       }
+
+      if (header == 'Category') {
+        if (!database.CategoryOrder.includes(entry[header])
+          && entry[header] != 'Battle' // We want Battle bgm to be special
+        ) {
+          database.CategoryOrder.push(entry[header]);
+        }
+
+        if (!database.Categories[entry[header]]) {
+          database.Categories[entry[header]] = [];
+        }
+        database.Categories[entry[header]].push(key);
+      }
     });
 
-    database[key] = entry;
+    database.Events[key] = entry;
   });
 
   // Create a json file
