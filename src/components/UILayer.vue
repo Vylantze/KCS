@@ -1,10 +1,19 @@
 <template>
   <div class="ui-layer" :style="{ width: `${uiWidth}px` }">
-    <div v-if="menuOpen" class="menu-closer" @click.self="closeMenu">
+    <div v-if="menuOpen" class="menu-closer">
       <div v-if="menuOpen == 'settings'" class="menu center limit-size">
-        <div class="settings">
-          <h3>Change BGM</h3>
-          <button class="menu-button info" @click="openMenu('bgm')">Select BGM</button>
+        <div class="settings" style="margin-top: 20px;">
+          <div class="d-flex">
+            <button class="menu-button info" @click="openMenu('bgm')">Change BGM</button>
+            <button
+              class="menu-button"
+              :class="{ 'info': hideButtons, 'danger': !hideButtons }"
+              style="margin-left: 5px"
+              @click="toggleHideButtons()"
+            >
+              <div style="width: 60px">{{ hideButtons ? "Show" : "Hide" }} Buttons</div>
+            </button>
+          </div>
 
           <h3>Volume</h3>
           <div class="slider-setting" style="margin-bottom: 5px;">
@@ -40,15 +49,32 @@
         <BGM />
       </div>
 
-      <div v-show="menuOpen == 'bgm'" class="back-button-holder center-div">
-        <button class="menu-button info" @click="openMenu('settings')">Back</button>
+      <div class="back-button-holder center-div">
+        <button
+          v-if="menuOpen == 'bgm'"
+          class="menu-button info"
+          @click="openMenu('settings')"
+        >{{ "Back" }}</button>
+        <button
+          v-else-if="Boolean(menuOpen)"
+          class="menu-button info"
+          @click="closeMenu()"
+        >{{ "Close" }}</button>
       </div>
     </div>
 
     <div class="ship-selector-button clickable" @click="openMenu('ship-selector')">
-      <img src="img/ship_select.png" :width="shipSelectorWidth" />
+      <img
+        src="img/ship_select.png"
+        :width="shipSelectorWidth"
+        :class="{ 'set-transparent': hideButtons }"
+      />
     </div>
-    <div class="settings-button clickable center-div" @click="openMenu('settings')">
+    <div
+      class="settings-button clickable center-div"
+      :class="{ 'set-transparent': hideButtons }"
+      @click="openMenu('settings')"
+    >
       <img src="img/settings.png" />
     </div>
     <div class="subtitles-container center-div">
@@ -77,7 +103,8 @@ export default {
       subtitleMaxWidth: null,
 
       uiWidth: null,
-      menuOpen: null
+      menuOpen: null,
+      hideButtons: false
     };
   },
   computed: {
@@ -140,6 +167,9 @@ export default {
         this.closeMenu();
       }
     },
+    toggleHideButtons() {
+      this.hideButtons = !this.hideButtons;
+    },
     resizeUI() {
       try {
         this.uiWidth = this.calculateWidthFromHeight(
@@ -168,6 +198,10 @@ export default {
 .ui-layer {
   position: relative;
   height: 100%;
+
+  .set-transparent {
+    opacity: 0;
+  }
 
   div {
     pointer-events: auto;
@@ -268,10 +302,17 @@ export default {
     &.success {
       background-color: #4caf50; /* Green */
       color: white;
+      border: 1px solid white;
+    }
+
+    &.danger {
+      background-color: rgba(155, 0, 0, 0.8); // Red
+      color: white;
+      border: 1px solid white;
     }
 
     &.info {
-      background-color: rgba(100, 100, 100, 0.7);
+      background-color: rgba(50, 50, 50, 0.9);
       color: white;
       border: 1px solid white;
     }
@@ -315,6 +356,7 @@ export default {
       pointer-events: none;
       text-align: center;
       margin: 0px 10px;
+      font-size: 4vmin;
 
       padding: 5px;
       background-color: rgba(0, 0, 0, 0.8);
