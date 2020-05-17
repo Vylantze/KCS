@@ -196,6 +196,67 @@ function bgmMake(publicDir, databaseDir) {
   console.log(`['bgm.json] created at [${databaseFile}]`);
 }
 
+function seMake(publicDir, databaseDir) {
+  const dirpath = path.join(publicDir, "se");
+  if (!fs.existsSync(dirpath)) {
+    console.log(`[seMake] Unable to find se folder at [${dirpath}]`);
+    return;
+  }
+
+  const seDataPath = path.join(dirpath, "se.txt");
+  if (!fs.existsSync(seDataPath)) {
+    console.log(`[seMake] Unable to find se.txt at [${seDataPath}]`);
+    return;
+  }
+
+  const seFiles = fs.readdirSync(dirpath);
+  const data = fs.readFileSync(seDataPath, "utf8");
+  const seData = data.replace(/\r/g, '').split('\n');
+
+  // Set up the database. Just contain all data directly, keyed by the source
+  const database = {};
+
+  // Now get the bgm data
+  var headers = [];
+  var length = 0;
+  seData.map((line, index) => {
+    let split = line.split('\t');
+    if (index == 0) {
+      length = split.length;
+      headers = split;
+      return;
+    }
+
+    if (split.length != length) {
+      console.log(`This line has something wrong [${line}]`);
+      return;
+    }
+
+    let key = split[0];
+    let entry = {};
+    headers.map((header, headerIndex) => {
+      entry[header] = split[headerIndex];
+
+      if (header == 'File') {
+        if (seFiles.includes(entry[header])) {
+          entry[header] = `se/${entry[header]}`;
+        } else {
+          console.log(`Cannot find sound file for [${key}/${entry[header]}].`, entry);
+          entry[header] = null;
+        }
+      }
+    });
+
+    database[key] = entry;
+  });
+
+  // Create a json file
+  let databaseFile = path.join(databaseDir, 'se.json');
+  fs.writeFileSync(databaseFile, JSON.stringify(database));
+
+  console.log(`['se.json] created at [${databaseFile}]`);
+}
+
 function runBgmMakeFromNode() {
   let databasePath = path.join(process.cwd(), 'public', 'database');
   if (!fs.existsSync(databasePath)) { fs.mkdirSync(databasePath, { recursive: true }); }
@@ -217,9 +278,17 @@ function runKCMakeFromNode() {
   }
 }
 
+function runSEMakeFromNode() {
+  let databasePath = path.join(process.cwd(), 'public', 'database');
+  if (!fs.existsSync(databasePath)) { fs.mkdirSync(databasePath, { recursive: true }); }
+  seMake(path.join(process.cwd(), 'public'), databasePath);
+}
+
 module.exports = {
   runBgmMakeFromNode,
   runKCMakeFromNode,
+  runSEMakeFromNode,
   bgmMake,
-  kcdbMake
+  kcdbMake,
+  seMake
 };
