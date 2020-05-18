@@ -31,14 +31,16 @@
           class="card-holder"
           :class="{ ml: index != 0 }"
         >
-          <div v-if="Boolean(currentShipSprites[shipSpriteName])" class="center-div">
-            <div>
-              <img
-                class="card"
-                :src="getSprite(currentShipSprites[shipSpriteName].Card)"
-                :width="shipCardWidth"
-              />
-            </div>
+          <div
+            v-if="Boolean(currentShipSprites[shipSpriteName])"
+            class="center-div"
+            @click="changeShipAndSprite(shipSpriteName)"
+          >
+            <img
+              class="card"
+              :src="getSprite(currentShipSprites[shipSpriteName].Card)"
+              :width="shipCardWidth"
+            />
           </div>
         </div>
       </div>
@@ -152,11 +154,10 @@ export default {
       this.numberOfShipsInRow = this.windowWidth < this.mobileWidth ? 1 : 3;
       this.generateSplitArray(this.currentShipSpritesKeys);
     },
-    changeShip(ship) {
-      this.$store.commit("setSelectedShipName", ship);
-    },
-    changeSprite(sprite) {
+    changeShipAndSprite(sprite) {
+      this.$store.commit("setSelectedShipName", this.currentShip);
       this.$store.commit("setSelectedSpriteName", sprite);
+      this.$emit("closeMenu");
     },
     getSprite(filename) {
       if (!filename) {

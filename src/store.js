@@ -114,7 +114,7 @@ const store = new Vuex.Store({
           let variableName = [
             "selectedBgmName",
             "selectedShipName",
-            "selectedSprite",
+            "selectedSpriteName",
             "overallVolume",
             "bgmVolume",
             "voiceVolume"

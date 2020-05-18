@@ -41,7 +41,7 @@
       </div>
 
       <div v-if="menuOpen == 'ship-selector'" class="menu center-div">
-        <ShipAssigner />
+        <ShipAssigner @closeMenu="closeMenu()" />
       </div>
 
       <div v-if="menuOpen == 'bgm'" class="menu center-div">
