@@ -23,24 +23,28 @@
       Main content
     -->
 
-    <div v-for="(row, rowIndex) in splitArray" :key="rowIndex">
-      <div class="d-flex">
-        <div
-          v-for="(shipSpriteName, index) in row"
-          :key="`${rowIndex}-${index}`"
-          class="card-holder"
-          :class="{ ml: index != 0 }"
-        >
-          <div
-            v-if="Boolean(currentShipSprites[shipSpriteName])"
-            class="center-div"
-            @click="changeShipAndSprite(shipSpriteName)"
-          >
-            <img
-              class="card"
-              :src="getSprite(currentShipSprites[shipSpriteName].Card)"
-              :width="shipCardWidth"
-            />
+    <div class="overflow-container">
+      <div class="main-content">
+        <div v-for="(row, rowIndex) in splitArray" :key="rowIndex">
+          <div class="d-flex">
+            <div
+              v-for="(shipSpriteName, index) in row"
+              :key="`${rowIndex}-${index}`"
+              class="card-holder"
+              :class="{ ml: index != 0 }"
+            >
+              <div
+                v-if="Boolean(currentShipSprites[shipSpriteName])"
+                class="center-div"
+                @click="changeShipAndSprite(shipSpriteName)"
+              >
+                <img
+                  class="card"
+                  :src="getSprite(currentShipSprites[shipSpriteName].Card)"
+                  :width="shipCardWidth"
+                />
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -91,16 +95,15 @@ export default {
       return this.database[this.currentShip];
     },
     shipFileName() {
-      if (!this.currentShip) return null;
-      if (!this.shipName || !this.currentShipDB) return null;
+      if (!this.currentShip || !this.currentShipDB) return null;
       return this.currentShipDB.FileName;
     },
     shipDir() {
-      if (!this.currentShip) return null;
+      if (!this.shipFileName) return null;
       return path.join(__ship, this.shipFileName);
     },
     spritesDir() {
-      if (!this.currentShip) return null;
+      if (!this.shipDir) return null;
       return path.join(this.shipDir, "sprites");
     },
     currentShipNameIndex() {
@@ -137,6 +140,9 @@ export default {
   async mounted() {
     this.changeCurrentShip(this.selectedShipName);
     this.recalculateWidth();
+
+    log("ShipDB", this.currentShipDB);
+    log("ShipFileName", this.currentShipDB.FileName);
     window.addEventListener("resize", this.recalculateWidth);
   },
   beforeDestroy() {
@@ -165,7 +171,7 @@ export default {
       this.$emit("closeMenu");
     },
     getSprite(filename) {
-      if (!filename) {
+      if (!filename || !this.spritesDir) {
         return null;
       }
       return path.join(this.spritesDir, filename);
@@ -205,11 +211,12 @@ export default {
 .ship-assigner {
   width: 100%;
   height: 100%;
-  padding: 0px 20px;
+  padding: 0px 0px 0px 0px;
 
   .header {
     display: flex;
-    margin-bottom: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
 
     .left {
       display: flex;
@@ -225,6 +232,16 @@ export default {
       align-items: center;
       margin-left: 10px;
       flex: 1;
+    }
+  }
+
+  .overflow-container {
+    overflow: hidden;
+    height: calc(100% - 60px);
+
+    .main-content {
+      overflow-y: auto;
+      height: 100%;
     }
   }
 

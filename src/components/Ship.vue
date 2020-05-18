@@ -58,7 +58,7 @@ export default {
       return this.shipDB.FileName;
     },
     shipDir() {
-      if (!this.shipName) return null;
+      if (!this.shipName || !this.shipFileName) return null;
       return path.join(__ship, this.shipFileName);
     },
     spritesDir() {
