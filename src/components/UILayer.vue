@@ -4,9 +4,9 @@
       <div v-if="menuOpen == 'settings'" class="menu center limit-size">
         <div class="settings" style="margin-top: 20px;">
           <div class="d-flex">
-            <button class="menu-button info" @click="openMenu('bgm')">Change BGM</button>
+            <button class="standard-button info" @click="openMenu('bgm')">Change BGM</button>
             <button
-              class="menu-button"
+              class="standard-button"
               :class="{ 'info': hideButtons, 'danger': !hideButtons }"
               style="margin-left: 5px"
               @click="toggleHideButtons()"
@@ -40,10 +40,9 @@
         </div>
       </div>
 
-      <div
-        v-if="menuOpen == 'ship-selector'"
-        class="menu center-div"
-      >You only need {{ selectedShipName }}.</div>
+      <div v-if="menuOpen == 'ship-selector'" class="menu center-div">
+        <ShipAssigner />
+      </div>
 
       <div v-if="menuOpen == 'bgm'" class="menu center-div">
         <BGM />
@@ -52,14 +51,14 @@
       <div class="back-button-holder center-div">
         <button
           v-if="menuOpen == 'bgm'"
-          class="menu-button info"
+          class="standard-button info"
           @click="openMenu('settings')"
-        >{{ "Back" }}</button>
+        >Back</button>
         <button
           v-else-if="Boolean(menuOpen)"
-          class="menu-button info"
+          class="standard-button info"
           @click="closeMenu()"
-        >{{ "Close" }}</button>
+        >Close</button>
       </div>
     </div>
 
@@ -91,11 +90,13 @@
 import { mapGetters, mapState } from "vuex";
 
 import BGM from "./BGM.vue";
+import ShipAssigner from "./ShipAssigner.vue";
 
 export default {
   name: "UILayer",
   components: {
-    BGM
+    BGM,
+    ShipAssigner
   },
   data() {
     return {
@@ -109,10 +110,7 @@ export default {
   },
   computed: {
     ...mapGetters({
-      ships: "ships",
-      subtitle: "subtitle",
-      selectedShipName: "selectedShipName",
-      selectedSprite: "selectedSprite"
+      subtitle: "subtitle"
     }),
     ...mapState({
       overallVolume: s => s.main.overallVolume,
@@ -183,12 +181,6 @@ export default {
       } catch (e) {
         window.logError("[App] Error in resize. ", e);
       }
-    },
-    changeShip(ship) {
-      this.$store.commit("setSelectedShipName", ship);
-    },
-    changeSprite(sprite) {
-      this.$store.commit("setSelectedSprite", sprite);
     }
   }
 };
@@ -286,35 +278,6 @@ export default {
     /* Handle on hover */
     ::-webkit-scrollbar-thumb:hover {
       background: #f1f1f1;
-    }
-  }
-
-  .menu-button {
-    border: none;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    border-radius: 25px;
-
-    cursor: pointer;
-
-    &.success {
-      background-color: #4caf50; /* Green */
-      color: white;
-      border: 1px solid white;
-    }
-
-    &.danger {
-      background-color: rgba(155, 0, 0, 0.8); // Red
-      color: white;
-      border: 1px solid white;
-    }
-
-    &.info {
-      background-color: rgba(50, 50, 50, 0.9);
-      color: white;
-      border: 1px solid white;
     }
   }
 

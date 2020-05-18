@@ -47,23 +47,27 @@ export default {
   computed: {
     ...mapGetters({
       selectedShipName: "selectedShipName",
-      shipSprite: "shipSprite",
+      shipSprite: "selectedSpriteName",
       voiceVolume: "voiceVolume"
     }),
     shipName() {
       return this.selectedShipName;
     },
     shipFileName() {
+      if (!this.shipName) return null;
       let name = this.shipName.replace(/ /g, "_").toLowerCase();
       return name;
     },
     shipDir() {
+      if (!this.shipName) return null;
       return path.join(__ship, this.shipFileName);
     },
     spritesDir() {
+      if (!this.shipName) return null;
       return path.join(this.shipDir, "sprites");
     },
     voicesDir() {
+      if (!this.shipName) return null;
       return path.join(this.shipDir, "voices");
     },
     canvas() {

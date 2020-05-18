@@ -35,25 +35,26 @@ const store = new Vuex.Store({
   modules: {
     main: {
       state: {
-        ships: [],
+        shipNames: [],
         database: {},
         bgm: {},
         subtitle: null,
         selectedBgmName: "Main Menu",
         selectedShipName: "Yamato",
-        selectedSprite: "Yamato Summer",
+        selectedSpriteName: "Yamato Summer",
         overallVolume: 1.0,
         bgmVolume: 1.0,
         voiceVolume: 1.0,
       },
       getters: {
+        database: s => JSON.parse(JSON.stringify(s.database)),
+        shipNames: s => JSON.parse(JSON.stringify(s.shipNames)),
         BGMs: s => JSON.parse(JSON.stringify(s.bgm.Events)),
         bgmCategories: s => JSON.parse(JSON.stringify(s.bgm.Categories)),
         bgmCategoryOrder: s => JSON.parse(JSON.stringify(s.bgm.CategoryOrder)),
         selectedBgm: s => s.selectedBgmName ? JSON.parse(JSON.stringify(s.bgm.Events[s.selectedBgmName])) : null,
         selectedShipName: s => JSON.parse(JSON.stringify(s.selectedShipName)),
-        shipSprite: s => JSON.parse(JSON.stringify(s.selectedSprite)),
-        ships: s => JSON.parse(JSON.stringify(s.ships)),
+        selectedSpriteName: s => JSON.parse(JSON.stringify(s.selectedSpriteName)),
         subtitle: s => JSON.parse(JSON.stringify(s.subtitle)),
         bgmVolume: s => s.bgmVolume * s.overallVolume,
         voiceVolume: s => s.voiceVolume * s.overallVolume,
@@ -62,8 +63,8 @@ const store = new Vuex.Store({
         setDatabase(s, database) {
           s.database = database;
         },
-        setShips(s, ships) {
-          s.ships = ships;
+        setShipNames(s, shipNames) {
+          s.shipNames = shipNames;
         },
         setBgm(s, bgm) {
           s.bgm = bgm;
@@ -83,9 +84,9 @@ const store = new Vuex.Store({
           utils.saveSetting("selectedShipName", selectedShipName);
           s.selectedShipName = selectedShipName;
         },
-        setSelectedSprite(s, selectedSprite) {
-          utils.saveSetting("selectedSprite", selectedSprite);
-          s.selectedSprite = selectedSprite;
+        setSelectedSpriteName(s, selectedSpriteName) {
+          utils.saveSetting("selectedSpriteName", selectedSpriteName);
+          s.selectedSpriteName = selectedSpriteName;
         },
         setOverallVolume(s, overallVolume) {
           utils.saveSetting("overallVolume", overallVolume);
@@ -105,7 +106,7 @@ const store = new Vuex.Store({
           let setters = [
             "setSelectedBgmName",
             "setSelectedShipName",
-            "setSelectedSprite",
+            "setSelectedSpriteName",
             "setOverallVolume",
             "setBgmVolume",
             "setVoiceVolume"
@@ -141,22 +142,23 @@ const store = new Vuex.Store({
           let shipDatabasePath = path.join(databasePath, "ship");
           let list = fs.readdirSync(shipDatabasePath);
 
-          let ships = [];
+          let shipNames = [];
           let database = {};
           list.map(filename => {
             try {
               let fileData = fs.readFileSync(path.join(shipDatabasePath, filename));
               let databaseData = JSON.parse(fileData);
               let shipName = databaseData.Name;
-              ships.push(shipName);
+              shipNames.push(shipName);
               database[shipName] = databaseData;
             } catch (e) {
               window.logError(`[populateData] Unable to read ship database at path [${shipDatabasePath}]`, e);
             }
           });
+          log("ShipNames", shipNames);
 
           s.commit('setDatabase', database);
-          s.commit('setShips', ships);
+          s.commit('setShipNames', shipNames);
 
           //
           // Populate the bgm data
@@ -171,7 +173,7 @@ const store = new Vuex.Store({
             window.logError(`[populateData] Unable to read bgm database at path [${bgmPath}]`, e);
           }
 
-          window.log('Ship data', ships, database);
+          window.log('Ship data', shipNames, database);
           window.log('Bgm data', bgmDatabase);
         },
         invokeHourlyEvent: () => {

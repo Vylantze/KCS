@@ -29,7 +29,12 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(["BGMs", "bgmCategories", "bgmCategoryOrder", "selectedBgm"]),
+    ...mapGetters({
+      BGMs: "BGMs",
+      bgmCategories: "bgmCategories",
+      bgmCategoryOrder: "bgmCategoryOrder",
+      selectedBgm: "selectedBgm"
+    }),
     mobileWidth() {
       return window.__mobileMode.width;
     }
