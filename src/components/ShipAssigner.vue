@@ -80,10 +80,20 @@ export default {
       return this.mobileWidth > this.windowWidth ? 200 : this.windowWidth / 4.5;
     },
 
+    currentShipDB() {
+      if (
+        !this.database ||
+        !this.currentShip ||
+        !this.database[this.currentShip]
+      ) {
+        return null;
+      }
+      return this.database[this.currentShip];
+    },
     shipFileName() {
       if (!this.currentShip) return null;
-      let name = this.currentShip.replace(/ /g, "_").toLowerCase();
-      return name;
+      if (!this.shipName || !this.currentShipDB) return null;
+      return this.currentShipDB.FileName;
     },
     shipDir() {
       if (!this.currentShip) return null;
@@ -93,18 +103,13 @@ export default {
       if (!this.currentShip) return null;
       return path.join(this.shipDir, "sprites");
     },
-
     currentShipNameIndex() {
       if (!this.currentShip) return 0;
       return this.shipNames.indexOf(this.currentShip);
     },
     currentShipSprites() {
-      if (
-        !this.database ||
-        !this.currentShip ||
-        !this.database[this.currentShip]
-      ) {
-        return [];
+      if (!this.currentShipDB) {
+        return null;
       }
       return this.database[this.currentShip].Sprites;
     },

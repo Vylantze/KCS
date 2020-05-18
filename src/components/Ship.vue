@@ -54,9 +54,8 @@ export default {
       return this.selectedShipName;
     },
     shipFileName() {
-      if (!this.shipName) return null;
-      let name = this.shipName.replace(/ /g, "_").toLowerCase();
-      return name;
+      if (!this.shipName || !this.shipDB) return null;
+      return this.shipDB.FileName;
     },
     shipDir() {
       if (!this.shipName) return null;

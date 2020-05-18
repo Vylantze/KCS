@@ -62,6 +62,7 @@ function kcdbMake(kanmusu, shipDir, databaseDir) {
 
   const database = {
     Name: titleCase(kanmusu),
+    FileName: kanmusu.toLowerCase(),
     Events: {}, // Contains all the events and their relevant data
     Commands: {}, // Contains a key mapped list of commands and a subarray of events that belong to that command e.g. { 'Command X': [ ... ] }
     Sprites: {}, // Should contain objects holding { Normal, Damaged, Banner, Card } data
@@ -287,7 +288,7 @@ function runKCMakeFromNode() {
       kanmusu = process.argv.slice(1).join(' ');
       let databasePath = path.join(process.cwd(), 'public', 'database', 'ship');
       if (!fs.existsSync(databasePath)) { fs.mkdirSync(databasePath, { recursive: true }); }
-      kcdbMake(kanmusu, path.join(process.cwd(), 'ship'), databasePath);
+      kcdbMake(kanmusu, path.join(process.cwd(), 'public', 'ship'), databasePath);
     }
   } catch (e) {
     console.log("Unable to run maker from the following: ", process.argv, e);
