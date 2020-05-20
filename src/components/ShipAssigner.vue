@@ -5,7 +5,7 @@
     -->
     <div class="header">
       <div class="left">
-        <button class="standard-button info">Prev</button>
+        <button class="standard-button info" @click.native="prevship">Prev</button>
       </div>
       <div class="center-div">
         <img
@@ -15,7 +15,7 @@
         />
       </div>
       <div class="right">
-        <button class="standard-button info">Next</button>
+        <button class="standard-button info" @click.native="nextship">Next</button>
       </div>
     </div>
 
@@ -35,11 +35,11 @@
             >
               <div
                 v-if="Boolean(currentShipSprites[shipSpriteName])"
-                class="center-div"
+                class="center-div card"
+                :class="{ selected: shipSpriteName == selectedSpriteName }"
                 @click="changeShipAndSprite(shipSpriteName)"
               >
                 <img
-                  class="card"
                   :src="getSprite(currentShipSprites[shipSpriteName].Card)"
                   :width="shipCardWidth"
                 />
@@ -180,6 +180,28 @@ export default {
       this.currentShip = ship;
       this.generateSplitArray(this.currentShipSpritesKeys);
     },
+    prevship() {
+      if (!this.shipNames || this.shipNames.length <= 1) {
+        return;
+      }
+      let index = this.currentShipNameIndex;
+      if (index == 0) {
+        this.changeCurrentShip(this.shipNames[this.shipNames.length - 1]);
+      } else {
+        this.changeCurrentShip(this.shipNames[index - 1]);
+      }
+    },
+    nextship() {
+      if (!this.shipNames || this.shipNames.length <= 1) {
+        return;
+      }
+      let index = this.currentShipNameIndex;
+      if (index == this.shipNames.length - 1) {
+        this.changeCurrentShip(this.shipNames[0]);
+      } else {
+        this.changeCurrentShip(this.shipNames[index + 1]);
+      }
+    },
     generateSplitArray(spritesArray) {
       if (!spritesArray || spritesArray.length == 0) {
         return;
@@ -248,6 +270,27 @@ export default {
   .card-holder {
     flex: 1;
     margin-bottom: 20px;
+
+    .card {
+      height: 100%;
+      img {
+        margin: 4px;
+      }
+
+      &.selected {
+        img {
+          margin: 0px;
+          border: 4px solid blue;
+        }
+      }
+
+      &:hover {
+        img {
+          margin: 0px;
+          border: 4px solid yellow;
+        }
+      }
+    }
   }
 
   .banner {
