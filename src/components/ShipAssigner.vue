@@ -5,7 +5,7 @@
     -->
     <div class="header">
       <div class="left">
-        <button class="standard-button info" @click.native="prevship">Prev</button>
+        <button class="standard-button info" @click="prevship">Prev</button>
       </div>
       <div class="center-div">
         <img
@@ -15,7 +15,7 @@
         />
       </div>
       <div class="right">
-        <button class="standard-button info" @click.native="nextship">Next</button>
+        <button class="standard-button info" @click="nextship">Next</button>
       </div>
     </div>
 
@@ -203,12 +203,38 @@ export default {
       }
     },
     generateSplitArray(spritesArray) {
-      if (!spritesArray || spritesArray.length == 0) {
+      if (
+        !this.shipSprites ||
+        !this.currentShip ||
+        !spritesArray ||
+        spritesArray.length == 0
+      ) {
         return;
       }
+      let priorityList = ["Base", "Kai", "Kai Ni"];
+      let spriteDB = this.shipSprites[this.currentShipNameIndex];
+
+      if (!spriteDB) {
+        return;
+      }
+
       try {
         let generatedArray = [];
-        let spriteList = JSON.parse(JSON.stringify(spritesArray));
+        let spriteList = JSON.parse(JSON.stringify(spritesArray)).sort(
+          (a, b) => {
+            for (let i = 0; i < priorityList.length; i++) {
+              if (spriteDB[a].Model == priorityList[i]) {
+                return -1;
+              }
+              if (spriteDB[b].Model == priorityList[i]) {
+                return 1;
+              }
+            }
+            // If it is none of the priority ones, return no change
+            return 0;
+          }
+        );
+
         for (
           let i = 0;
           i < spriteList.length;
@@ -220,6 +246,7 @@ export default {
           }
           generatedArray.push(array);
         }
+
         this.splitArray = generatedArray;
       } catch (e) {
         logError("[ShipAssigner] generateSplitArray error.", e);

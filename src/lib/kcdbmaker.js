@@ -124,6 +124,16 @@ function kcdbMake(kanmusu, shipDir, databaseDir) {
       } else {
         database.Sprites[name].Normal = filepath;
       }
+
+      if (filename.includes("Kai_Ni")) {
+        database.Sprites[name].Model = "Kai Ni";
+      } else if (filename.includes("Kai")) {
+        database.Sprites[name].Model = "Kai";
+      } else if (name == titleCase(kanmusu)) {
+        database.Sprites[name].Model = "Base";
+      } else {
+        database.Sprites[name].Model = "Default";
+      }
     } catch (e) {
       console.warn(`Failed to process sprite [${filename}]`);
     }
