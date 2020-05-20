@@ -20,7 +20,7 @@ function kcdbMake(kanmusu, shipDir, databaseDir) {
     console.log("No ship detected");
     return;
   }
-  console.log(`Running database creation on [${kanmusu}]`);
+  //console.log(`Running database creation on [${kanmusu}]`);
 
   let kanmusuPath = kanmusu.toLowerCase().replace(/ /g, "_");
 
@@ -166,7 +166,9 @@ function kcdbMake(kanmusu, shipDir, databaseDir) {
   let databaseFile = path.join(databaseDir, `${kanmusu.toLowerCase()}.json`);
   fs.writeFileSync(databaseFile, JSON.stringify(database));
 
-  console.log(`[${kanmusu.toLowerCase()}.json] created at [${databaseFile}]`);
+  //console.log(`[${kanmusu.toLowerCase()}.json] created at [${databaseFile}]`);
+
+  console.log(`   [${titleCase(kanmusu)}] [${kanmusu.toLowerCase()}.json]`);
 }
 
 function bgmMake(publicDir, databaseDir) {
@@ -314,31 +316,53 @@ function runBgmMakeFromNode() {
   bgmMake(path.join(process.cwd(), 'public'), databasePath);
 }
 
-function runKCMakeFromNode() {
-  var kanmusu = null;
-  try {
-    if (process.argv != null && process.argv.length > 1) {
-      kanmusu = process.argv.slice(1).join(' ');
-      let databasePath = path.join(process.cwd(), 'public', 'database', 'ship');
-      if (!fs.existsSync(databasePath)) { fs.mkdirSync(databasePath, { recursive: true }); }
-      kcdbMake(kanmusu, path.join(process.cwd(), 'public', 'ship'), databasePath);
-    }
-  } catch (e) {
-    console.log("Unable to run maker from the following: ", process.argv, e);
-    return;
-  }
-}
-
 function runSEMakeFromNode() {
   let databasePath = path.join(process.cwd(), 'public', 'database');
   if (!fs.existsSync(databasePath)) { fs.mkdirSync(databasePath, { recursive: true }); }
   seMake(path.join(process.cwd(), 'public'), databasePath);
 }
 
+function runKCMakeFromNode() {
+  var kanmusu = null;
+  try {
+    if (process.argv != null && process.argv.length <= 1) { return; }
+    kanmusu = process.argv.slice(1).join(' ');
+    let databasePath = path.join(process.cwd(), 'public', 'database', 'ship');
+    if (!fs.existsSync(databasePath)) { fs.mkdirSync(databasePath, { recursive: true }); }
+    console.log(`[runKCMakeFromNode] Running database creation on [${kanmusu}]`);
+    kcdbMake(kanmusu, path.join(process.cwd(), 'public', 'ship'), databasePath);
+  } catch (e) {
+    console.log("Unable to run maker from the following: ", process.argv, e);
+    return;
+  }
+}
+
+function runAllKCMakeFromNode() {
+  try {
+    let databasePath = path.join(process.cwd(), 'public', 'database', 'ship');
+    if (!fs.existsSync(databasePath)) { fs.mkdirSync(databasePath, { recursive: true }); }
+    let shipPath = path.join(process.cwd(), 'public', 'ship');
+    if (!fs.existsSync(shipPath)) {
+      console.log("[runAllKCMakeFromNode] No ships found.");
+      return;
+    }
+
+    const ships = fs.readdirSync(shipPath);
+    ships.map(ship => {
+      kcdbMake(ship, shipPath, databasePath);
+    });
+
+  } catch (e) {
+    console.log("Unable to run maker from the following: ", process.argv, e);
+    return;
+  }
+}
+
 module.exports = {
   runBgmMakeFromNode,
-  runKCMakeFromNode,
   runSEMakeFromNode,
+  runKCMakeFromNode,
+  runAllKCMakeFromNode,
   bgmMake,
   kcdbMake,
   seMake

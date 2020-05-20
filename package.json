@@ -5,6 +5,11 @@
   "description": "KCEmulator",
   "private": true,
   "scripts": {
+    "bgmmake": "node -e \"require('./src/lib/kcdbmaker').runBgmMakeFromNode()\"",
+    "semake": "node -e \"require('./src/lib/kcdbmaker').runSEMakeFromNode()\"",
+    "kcmake": "node -e \"require('./src/lib/kcdbmaker').runKCMakeFromNode()\"",
+    "kcmakeall": "node -e \"require('./src/lib/kcdbmaker').runAllKCMakeFromNode()\"",
+    "clean": "node -e \"require('./src/lib/utils').deleteAllRecursive('./dist_electron')\"",
     "vue:serve": "vue-cli-service serve",
     "vue:build": "vue-cli-service build",
     "vue:lint": "vue-cli-service lint",
@@ -13,11 +18,7 @@
     "postinstall": "electron-builder install-app-deps",
     "postuninstall": "electron-builder install-app-deps",
     "dev": "vue-cli-service electron:serve",
-    "bgmmake": "node -e \"require('./src/lib/kcdbmaker').runBgmMakeFromNode()\"",
-    "kcmake": "node -e \"require('./src/lib/kcdbmaker').runKCMakeFromNode()\"",
-    "semake": "node -e \"require('./src/lib/kcdbmaker').runSEMakeFromNode()\"",
     "pack": "asar pack ship/yamato packed/ship/yamato.asar",
-    "clean": "node -e \"require('./src/lib/utils').deleteAllRecursive('./dist_electron')\"",
     "build": "npm-run-all clean electron:build"
   },
   "main": "background.js",
