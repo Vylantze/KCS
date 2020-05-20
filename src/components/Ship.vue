@@ -202,12 +202,7 @@ export default {
     this.audio.onended = this.audioHasEnded;
 
     this.audio.volume = this.voiceVolume;
-    try {
-      await this.getDatabase();
-      await this.loadShip();
-    } catch (e) {
-      window.logError("[Ship] Error in getDatabase or loadShip", e);
-    }
+    await this.loadShip();
   },
   beforeDestroy() {
     // Unregister the event listener before destroying this Vue instance
@@ -353,12 +348,17 @@ export default {
       });
     },
     async loadShip() {
-      this.defaultSprite = await this.loadImage(this.shipNormalImagePath);
-      this.damagedSprite = await this.loadImage(this.shipDamagedImagePath);
-      this.resizeCanvas();
+      try {
+        await this.getDatabase();
+        this.defaultSprite = await this.loadImage(this.shipNormalImagePath);
+        this.damagedSprite = await this.loadImage(this.shipDamagedImagePath);
+        this.resizeCanvas();
 
-      // Play SetSecretary event
-      this.onAdd();
+        // Play SetSecretary event
+        this.onAdd();
+      } catch (e) {
+        window.logError("[Ship] Error in getDatabase or loadShip", e);
+      }
     },
     // To get the correct ratio
     calculateWidthFromHeight(naturalWidth, naturalHeight, currentHeight) {

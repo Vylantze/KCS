@@ -1,78 +1,94 @@
-Event	Model	Japanese	English	Note	Voice	Command
-Introduction	Default	大和型戦艦、一番艦、大和。推して参ります！	First of the Yamato-class battleships, Yamato. Heading forth!		Yamato-Introduction.ogg	SetSecretary
-Introduction	Kai	大和型戦艦一番艦大和、対空火器を大幅に強化致しました。	First of the Yamato-class battleships, Yamato. Now with much upgraded anti-air weaponry.	After being damaged by American submarine, Yamato returned to Kure for extensive repairs. Two secondary guns were removed and replaced with anti-aircraft flak guns and Radar.	YamatoKai-Introduction.ogg	SetSecretary
-Library	Default	大和型戦艦一番艦、大和です。艦隊決戦の切り札として、呉海軍工廠で極秘建造されました。当時の最高技術の粋を結集されたこの体、二番艦の武蔵とともに、連合艦隊の中枢戦力として頑張ります！	First of the Yamato-class battleships, Yamato. As the trump card for the Decisive Battle, I was made in utmost secrecy at the Kure Naval Yard. With the most up-to-date and sophisticated technology concentrated in my body, along with the 2nd ship, Musashi, I will do my best as the centre of the combined fleet!	Decisive Naval Battle, or Kantai Kessen, was the IJN's strategic doctrine during WWII, in which after a series of operations had weakened the US fleet, battleships would finish the last, and presumably, the strongest part of the fleet.	Yamato-Library.ogg	SetSecretary
-Secretary 1	Default	提督、なんでしょう？	Admiral, what is it?		Yamato-Secretary_1.ogg	Tap
-Secretary 1	Kai	提督～？ あの～、いえ、いいですけど…	Admiral~? Erm~ no, its okay, but...		YamatoKai-Secretary_1.ogg	Tap
-Secretary 2	Default	ホテルですって？ち、違います！	You called me a hotel? N-no, I'm not!	Due to her highly luxurious living facility and the fact that she spent most of her service life in the harbor, she was nicknamed "Yamato Hotel".	Yamato-Secretary_2.ogg	Tap
-Secretary 2	Kai	んもぉ～、ホテルなんて言わせませんよ！	Geez... stop calling me "hotel" already!	Refer to Secretary 3 Kai note	YamatoKai-Secretary_2.ogg	Tap
-Secretary 3	Default	あのー？ そんなに気になります？ やっぱり副砲がちょっと多いの？	Erm... are you that interested? Well, is it because I have a lot of secondary guns?	2 triple 155 mm turrets were removed later to make space for more anti-aircraft armaments.	Yamato-Secretary_3.ogg	Tap
-Secretary 3	Kai	提督？ あの、まあ…居住性は他の娘とは段違いではあるのだけれど…いいの？	Admiral? Um... well, my living conditions are noticeably different than the other girls'. ...Is that okay?	Air conditioned quarters, bathhouse, kitchen with refrigeration facility. full course meal for officers with live band playing in the background. Most of these considered highly luxurious for combat vessels of its time.	YamatoKai-Secretary_3.ogg	Tap
-Idle	Default	ん…あ…提督ごめんなさい。主砲ちょっと邪魔ですか？	Mm... ah... I'm sorry, admiral. Are my main guns in your way?	Yamato's main cannons are the largest naval guns in the world.	Yamato-Idle.ogg	Idle
-Secretary Married	Default	提督、少しお疲れではないですか？	Admiral, are you not a bit tired?		Yamato-Secretary_Married.ogg	Idle
-Secretary Married	Kai	提督、少しお疲れではないですか？大和が特製紅茶、お入れしましょうか。気持ちが休まりますよ。ちょっと、待っていて下さいね。	Admiral, are you feeling a bit tired? Shall I make some special tea for you? It will help you feel relaxed. Ufu♪ Please wait a little while.		YamatoKai-Secretary_Married.ogg	Idle
-Wedding	Default	提督、いつもありがとうございます。連合艦隊の旗艦を務めるよりも、敵戦艦と撃ちあうよりも、今、こうしている時が私は一番好き。大和は…ずっと提督の、あなたの側で、頑張ります。	Admiral, as always, thank you so much. Even more than serving as flagship of the Combined Fleet... and more than fighting enemy battleships... it's now... this moment... that I love the most. I will... always, Admiral... at my darling's side, I shall do my best.		Yamato-Wedding.ogg	Wedding
-Looking At Scores	Default	大本営からの通信ですか？	A communiqué from the Imperial Headquarters?		Yamato-Looking_At_Scores.ogg	IdleBonus
-Looking At Scores	Kai	我が艦隊の戦績ですか？楽しみです。	Our fleet's military records? Looking forward to it.		YamatoKai-Looking_At_Scores.ogg	IdleBonus
-Joining A Fleet	Default	戦艦大和、連合艦隊、出撃です！	Battleship Yamato, combined fleet, launching!		Yamato-Joining_A_Fleet.ogg	BattleStart
-Joining A Fleet	Kai	旗艦大和、出撃します！	Flagship Yamato, launching!		YamatoKai-Joining_A_Fleet.ogg	BattleStart
-Equipment 1	Default	改装ですね？ありがたいです！	A remodel, then? Thank you so much!		Yamato-Equipment_1.ogg	TapBonus
-Equipment 2	Kai	対空、対艦。どちら重視かなぁ？	Anti-air, Anti-ship. Which one should I be focused on...?	Over the years Yamato replaced few of its secondary guns in exchange for better anti-air capability, to counter the increasing threat of aerial attacks.	YamatoKai-Equipment_1.ogg	IdleBonus
-Equipment 2	Default	あ、ありがとうございます！	T-thank you so much!		Yamato-Equipment_2.ogg	TapBonus
-Equipment 3	Kai	大和、嬉しい。提督、感謝です♪	Yamato is pleased. Thank you, admiral!		YamatoKai-Equipment_2.ogg	TapBonus
-Equipment 3	Default	行くわ！	Off I go!	⇧ shared with expedition selection, resource collection, instant repair and development	Yamato-Equipment_3.ogg	StartBattle
-Supply	Default	ありがたく頂きます。	I am grateful for your assistance.	She often speaks in very polite/honorific form.	Yamato-Supply.ogg	TapBonus
-Docking Minor	Default	ちょっと、お風呂に行ってきます。	I'm going to the bath for a bit.		Yamato-Docking_Minor.ogg	DockingMinor
-Docking Minor	Kai	短めのお風呂、いただきます。	I shall take a short bath.		YamatoKai-Docking_Minor.ogg	DockingMinor
-Docking Major	Default	イッタッタ～ ごめんなさい、私がここまでやられるなんて～	Ow-w-w. I'm sorry, I didn't expect they'd get me that badly~	Literally "have been had to that extent", implying the damage she received were beyond her expectations.	Yamato-Docking_Major.ogg	DockingMajor
-Docking Major	Kai	あ、甘く見た訳じゃないんだけど、ごめんなさい。	I...I didn't underestimate (the enemy), though I'm sorry.		YamatoKai-Docking_Major.ogg	DockingMajor
-Docking Complete	Default	損傷艦の修復が完了致しました。	Repairs on the damaged ship are completed.		Yamato-Docking_Complete.ogg	DockingComplete
-Docking Complete	Kai	修理完了の艦娘が在るみたいです。	Repairing of the ship daughter seems to be completed.		YamatoKai-Docking_Complete.ogg	DockingComplete
-Construction	Default	新造艦の建造が完了したようです。	The construction of the new ship seems to be complete.		Yamato-Construction.ogg	AddShip
-Construction	Kai	新しい艦娘（かんむす）が戦列に加わりました。	New ship girls has been added to our lineup.		YamatoKai-Construction.ogg	AddShip
-Returning From Sortie	Default	お疲れ様です。艦隊、帰投しました。	Thank you for your hard work. The fleet has returned.		Yamato-Returning_From_Sortie.ogg	BattleComplete
-Returning From Sortie	Kai	艦隊が無事帰投しました。良かったぁ～！	Our fleet has returned safely. That's great~!		YamatoKai-Returning_From_Sortie.ogg	BattleComplete
-Starting A Sortie	Default	戦艦大和、推して参ります。	Battleship Yamato, heading forth!		Yamato-Starting_A_Sortie.ogg	StartBattle
-Battle Start	Default	さぁ、やるわ！砲雷撃戦、用意！	Yeah, let's go! Naval battle, ready!		Yamato-Battle_Start.ogg	StartDayBattle
-Battle Start	Kai	大和、砲雷撃戦、はじめます！	Yamato, commence firing!		YamatoKai-Battle_Start.ogg	StartDayBattle
-Attack	Default	第一・第二主砲、斉射、始め！	First and second cannons, volley fire, start!		Yamato-Attack.ogg	DayBattle
-Attack	Kai	敵艦捕捉、全主砲薙ぎ払え！	Enemy ship acquired, fire broadside!	⇧ shared with day/night special attacks, support expedition team arrival	YamatoKai-Attack.ogg	DayBattle
-Night Battle	Default	戦艦大和、夜戦を敢行します！	Battleship Yamato, starting night battle!		Yamato-Night_Battle.ogg	StartNightBattle
-Night Battle	Kai	戦艦大和、突撃します！	Battleship Yamato, charging in!		YamatoKai-Night_Battle.ogg	StartNightBattle
-Night Attack	Default	夾叉(きょうさ)か･･･うん、次は直撃させます。	Bracket fire, huh... Yes, the next shot will be a direct hit.	夾叉 (Kyousa), or bracket, means a succession of two salvos, one over and one short, or one right and one left, with no straddles. When this happens, minor adjustments are needed.(while straddle means both short and over, or both right and left shots occur in the SAME salvo)	Yamato-Night_Attack.ogg	NightBattle
-Night Attack	Kai	そうか･･･それなら･･･やるしかないわね！	Is that so... well then, I have to do this!		YamatoKai-Night_Attack.ogg	NightBattle
-MVP	Default	大和が一番ですか。少し晴れがましいですね。次の海戦もお任せ下さいね。	I'm number one? I'm a bit proud of myself. Leave the next sortie to me!		Yamato-MVP.ogg	MVP
-Minor Damage 1	Default	そ、それで直撃のつもりなの！？	D-did you think you landed a direct hit?		Yamato-Minor_Damage_1.ogg	MinorDamage
-Minor Damage 2	Default	傾斜復元しないと…。注水を急いで！	I'm starting to list... ballast pumps, hurry!		Yamato-Minor_Damage_2.ogg	MinorDamage
-Major Damage	Default	くっ、こんな所で、大和は、沈みません！	Hmph, Yamato, will not, sink at such place!	She was listing two or three times during Operation Ten-Go	Yamato-Major_Damage.ogg	MajorDamage
-Sunk	Default	また…逝くのね…総員…最上甲板…武蔵…信濃…あとは頼みます…	Again... I pass away... all hands... top deck... Musashi... Shinano... I leave the rest to you...	Yamato was ultimately destroyed by a magazine explosion, unleashing a mushroom cloud more than 3.7 miles high that could be seen almost a hundred miles away on Kyushu. Note that historically both Musashi and Shinano were sunk earlier than Yamato.	Yamato-Sunk.ogg	Sunk
-00:00	Kai	マルマルマルマル。深夜ですね。	0000. It's night-time.		Yamato_Kai-00.ogg	Hourly
-01:00	Kai	マルヒトマルマル。提督、そろそろお休みにならないと。	0100. Admiral, shouldn't you be going to bed soon?		Yamato_Kai-01.ogg	Hourly
-02:00	Kai	提督？まだ寝なくて大丈夫ですか？現在時刻マルフタマルマルです。	Admiral? Not going to bed, are you okay? It is now 0200.		Yamato_Kai-02.ogg	Hourly
-03:00	Kai	マルサンマルマル。そろそろ流石にお疲れじゃないですか？	0300. At this time, certainly shouldn't you be tired?		Yamato_Kai-03.ogg	Hourly
-04:00	Kai	現在時刻マルヨンマルマルです。提督、そろそろ朝になっちゃいます。	It is now 0400. Admiral, it will soon be morning.		Yamato_Kai-04.ogg	Hourly
-05:00	Kai	提督、マルゴーマルマルです。空が白み始めてきちゃいましたね。	Admiral, 0500. The sky is becoming white now.		Yamato_Kai-05.ogg	Hourly
-06:00	Kai	朝です。マルロクマルマル。提督、朝は本当に御早いですね。	It's Morning. 0600. Admiral, the morning really came quickly, didn't it?		Yamato_Kai-06.ogg	Hourly
-07:00	Kai	マルナナマルマル、朝食の時間。大和ホテル自慢のコンソメ御飲みになります？	0700, Breakfast time. How about some of Hotel Yamato's famous consomme?	The Yamato was used as a meeting place for high-level officers, so she had a very good mess; so good that Yamamoto gained weight from living on the Yamato.	Yamato_Kai-07.ogg	Hourly
-08:00	Kai	現在時刻マルハチマルマルです。連合艦隊旗艦としてそろそろ動きますね。	It is now 0800. The combined fleet will be moving soon.	IJN fleet operations started at 0800.	Yamato_Kai-08.ogg	Hourly
-09:00	Kai	マルキュウマルマルです。提督、今日の作戦行動はどうされますか？	0900. Admiral, how is today's battle mobilization going?		Yamato_Kai-09.ogg	Hourly
-10:00	Kai	提督、他の艦隊の運用はどうされます？時刻は今、ヒトマルマルマルです。	Admiral, how are the other fleets? It is currently 1000.		Yamato_Kai-10.ogg	Hourly
-11:00	Kai	ヒトヒトマルマル。そろそろ昼食の準備をしないと…。何がいいですか？	1100. I have to start preparing for lunch soon... What would be good?		Yamato_Kai-11.ogg	Hourly
-12:00	Kai	ヒトフタマルマル ランチタイムに大和ホテル自慢の…あぁ…ホテルじゃないです	1200. Hotel Yamato's famous lunch time's... wait, I'm not a hotel.		Yamato_Kai-12.ogg	Hourly
-13:00	Kai	ヒトサンマルマル、です。食後は少し眠くなりますね。	It's 1300. You get a bit tired after eating, yes?		Yamato_Kai-13.ogg	Hourly
-14:00	Kai	ヒトヨンマルマルです。ふぁ～…はっ！あ、寝てませんよ！？	1400. Zzz... ah! I-I'm not asleep!		Yamato_Kai-14.ogg	Hourly
-15:00	Kai	ヒトゴーマルマル。提督、ラムネでも飲まれますか？	1500. Admiral, will you have a Ramune?		Yamato_Kai-15.ogg	Hourly
-16:00	Kai	ヒトロクマルマル。そろそろ夕暮れ時ですね。	1600. It's just becoming dusk.		Yamato_Kai-16.ogg	Hourly
-17:00	Kai	ヒトナナマルマル、提督、そろそろ日が暮れて来ました。	1700, Admiral, it's almost time for the sunset.		Yamato_Kai-17.ogg	Hourly
-18:00	Kai	現在時刻ヒトハチマルマルです。今日は半舷上陸にしちゃいます？	It is now 1800. Shall we let half the ship go ashore today?	The ship's crew was divided into port and starboard, with alternating shore leave while docked.	Yamato_Kai-18.ogg	Hourly
-19:00	Kai	ヒトキュウマルマル。艦隊執務はここまでにして、お夕食にしましょう。	1900. The fleet work has ended, let's have dinner.	Non-combat ops in the IJN ended, as a rule, at 1800.	Yamato_Kai-19.ogg	Hourly
-20:00	Kai	フタマルマルマルです。ディナーはフルコースですよー、なんたって大和ホテルの…	2000. Dinner is a full course~, after all, Hotel Yamato's...		Yamato_Kai-20.ogg	Hourly
-21:00	Kai	フタヒトマルマル。提督、大和の居住性、いかがでしょうか？	2100. Admiral, why not partake of Yamato's livability?	Even ratings on the Yamato got a personal locker on board; a rarity in the IJN.	Yamato_Kai-21.ogg	Hourly
-22:00	Kai	現在時刻、フタフタマルマルです。そろそろお風呂タイムかな？	It is now 2200. Time for a bath, yes?		Yamato_Kai-22.ogg	Hourly
-23:00	Kai	時刻はフタサンマルマルです。提督、本日も一日、本当にお疲れ様でした。	It is 2300. Admiral, today, as always, thank you for your hard work.		Yamato_Kai-23.ogg	Hourly
-Hinamatsuri 2016	Default	提督、ひな祭りですか？あら、かわいい、いいですね。武蔵？何を照れてるの？いいじゃない、ね？	Admiral, is it Hinamatsuri? Oh my, how cute, it's good, isn't? Musashi? Why are you embarrassed? It's good, right?		Yamato_Hinamatsuri_2016.ogg	Special
-White Day 2016	Default	提督！いいんですか、大和もいただいて？すみません。ありがとうございます。いただきますね。来年は頑張りますから！	Admiral! Is is alright, for Yamato to take these? I'm sorry. Thank you very much. I humbly accept. I'll do my best next year!	Probably talking about their Hina dolls, while Musashi is embarrassed.	Yamato_White_Day_2016.ogg	Special
-Spring 2016	Default	もうすぐ春…か。うふふっ。桜を見ると不思議な気持ちになるわ、不思議。え？これは、涙？なんで…？	Spring is just around the corner, huh... Ufufu. Watching the cherry blossoms really gives me a mysterious feeling. Eh? These are... tears? Why...?		Yamato_Spring_2016.ogg	Special
-Third Anniversary 2016	Default	提督、艦隊は三周年を迎えました。おめでとうございます。大和も、大和も嬉しいです！ラムネで、乾杯しましょう！	Admiral, our fleet has reached its third year. Congratulations. I, Yamato... I am so happy for this occassion! Let's make a toast with some Ramune.	It seems she remembers Operation Ten-Go. She went to Okinawa in Apr 6, 1945. On the other side, it could be a hay fever.	Yamato_Third_Anniversary.ogg	Special
-Rainy Season 2016	Default	Iowaさん？ あ、かわいいですね、そのてるてる坊主。ねぇ、よかったら一緒に作りましょう。大和のはね、ここをこうして…。	Iowa-san? Ah, isn't that teru-teru bouzu cute? Say, would you like to make one together? For the ones I make, it goes like...		Yamato_Rainy_Season_2016.ogg	Special
-Mid-Summer 2016	Default	提督、そんなに見ないでください！赤と白で少し派手だったかしら…そっ、そうですか？なら、よかったです。提督、ご一緒に。	Admiral, don't stare that much! Red and white is a little flashy isn't it... I-is that so? Then, that's good. Admiral, together then.		Yamato_Mid-Summer_2016.ogg	Special
+Event	Model	Japanese	English	Note	Command	Voice
+Introduction	Yamato	大和型戦艦、一番艦、大和。推して参ります！	First of the Yamato-class battleships, Yamato. Heading forth!		SetSecretary	Yamato-Introduction.ogg
+Introduction	Yamato Kai	大和型戦艦一番艦大和、対空火器を大幅に強化致しました。	First of the Yamato-class battleships, Yamato. Now with much upgraded anti-air weaponry.	After being damaged by American submarine, Yamato returned to Kure for extensive repairs. Two secondary guns were removed and replaced with anti-aircraft flak guns and Radar.	SetSecretary	YamatoKai-Introduction.ogg
+Library	Yamato	大和型戦艦一番艦、大和です。艦隊決戦の切り札として、呉海軍工廠で極秘建造されました。当時の最高技術の粋を結集されたこの体、二番艦の武蔵とともに、連合艦隊の中枢戦力として頑張ります！	First of the Yamato-class battleships, Yamato. As the trump card for the Decisive Battle, I was made in utmost secrecy at the Kure Naval Yard. With the most up-to-date and sophisticated technology concentrated in my body, along with the 2nd ship, Musashi, I will do my best as the centre of the combined fleet!	Decisive Naval Battle, or Kantai Kessen, was the IJN's strategic doctrine during WWII, in which after a series of operations had weakened the US fleet, battleships would finish the last, and presumably, the strongest part of the fleet.	SetSecretary	Yamato-Library.ogg
+Secretary 1	Yamato	提督、なんでしょう？	Admiral, what is it?		Tap	Yamato-Secretary_1.ogg
+Secretary 1	Yamato Kai	提督～？ あの～、いえ、いいですけど…	Admiral~? Erm~ no, its okay, but...		Tap	YamatoKai-Secretary_1.ogg
+Secretary 2	Yamato	ホテルですって？ち、違います！	You called me a hotel? N-no, I'm not!	Due to her highly luxurious living facility and the fact that she spent most of her service life in the harbor, she was nicknamed "Yamato Hotel".	Tap	Yamato-Secretary_2.ogg
+Secretary 2	Yamato Kai	んもぉ～、ホテルなんて言わせませんよ！	Geez... stop calling me "hotel" already!	Refer to Secretary 3 Kai note	Tap	YamatoKai-Secretary_2.ogg
+Secretary 3	Yamato	あのー？ そんなに気になります？ やっぱり副砲がちょっと多いの？	Erm... are you that interested? Well, is it because I have a lot of secondary guns?	2 triple 155 mm turrets were removed later to make space for more anti-aircraft armaments.	Tap	Yamato-Secretary_3.ogg
+Secretary 3	Yamato Kai	提督？ あの、まあ…居住性は他の娘とは段違いではあるのだけれど…いいの？	Admiral? Um... well, my living conditions are noticeably different than the other girls'. ...Is that okay?	Air conditioned quarters, bathhouse, kitchen with refrigeration facility. full course meal for officers with live band playing in the background. Most of these considered highly luxurious for combat vessels of its time.	Tap	YamatoKai-Secretary_3.ogg
+Idle	Yamato	ん…あ…提督ごめんなさい。主砲ちょっと邪魔ですか？	Mm... ah... I'm sorry, admiral. Are my main guns in your way?	Yamato's main cannons are the largest naval guns in the world.	Idle	Yamato-Idle.ogg
+Secretary Married	Yamato	提督、少しお疲れではないですか？	Admiral, are you not a bit tired?		Idle	Yamato-Secretary_Married.ogg
+Secretary Married	Yamato Kai	提督、少しお疲れではないですか？大和が特製紅茶、お入れしましょうか。気持ちが休まりますよ。ちょっと、待っていて下さいね。	Admiral, are you feeling a bit tired? Shall I make some special tea for you? It will help you feel relaxed. Ufu♪ Please wait a little while.		Idle	YamatoKai-Secretary_Married.ogg
+Wedding	Yamato	提督、いつもありがとうございます。連合艦隊の旗艦を務めるよりも、敵戦艦と撃ちあうよりも、今、こうしている時が私は一番好き。大和は…ずっと提督の、あなたの側で、頑張ります。	Admiral, as always, thank you so much. Even more than serving as flagship of the Combined Fleet... and more than fighting enemy battleships... it's now... this moment... that I love the most. I will... always, Admiral... at my darling's side, I shall do my best.		Wedding	Yamato-Wedding.ogg
+Looking At Scores	Yamato	大本営からの通信ですか？	A communiqué from the Imperial Headquarters?		IdleBonus	Yamato-Looking_At_Scores.ogg
+Looking At Scores	Yamato Kai	我が艦隊の戦績ですか？楽しみです。	Our fleet's military records? Looking forward to it.		IdleBonus	YamatoKai-Looking_At_Scores.ogg
+Joining A Fleet	Yamato	戦艦大和、連合艦隊、出撃です！	Battleship Yamato, combined fleet, launching!		BattleStart	Yamato-Joining_A_Fleet.ogg
+Joining A Fleet	Yamato Kai	旗艦大和、出撃します！	Flagship Yamato, launching!		BattleStart	YamatoKai-Joining_A_Fleet.ogg
+Equipment 1	Yamato	改装ですね？ありがたいです！	A remodel, then? Thank you so much!		TapBonus	Yamato-Equipment_1.ogg
+Equipment 2	Yamato Kai	対空、対艦。どちら重視かなぁ？	Anti-air, Anti-ship. Which one should I be focused on...?	Over the years Yamato replaced few of its secondary guns in exchange for better anti-air capability, to counter the increasing threat of aerial attacks.	TapBonus	YamatoKai-Equipment_1.ogg
+Equipment 2	Yamato	あ、ありがとうございます！	T-thank you so much!		TapBonus	Yamato-Equipment_2.ogg
+Equipment 3	Yamato Kai	大和、嬉しい。提督、感謝です♪	Yamato is pleased. Thank you, admiral!		TapBonus	YamatoKai-Equipment_2.ogg
+Equipment 3	Yamato	行くわ！	Off I go!	⇧ shared with expedition selection, resource collection, instant repair and development	BattleStart	Yamato-Equipment_3.ogg
+Supply	Yamato	ありがたく頂きます。	I am grateful for your assistance.	She often speaks in very polite/honorific form.	TapBonus	Yamato-Supply.ogg
+Docking Minor	Yamato	ちょっと、お風呂に行ってきます。	I'm going to the bath for a bit.		DockingMinor	Yamato-Docking_Minor.ogg
+Docking Minor	Yamato Kai	短めのお風呂、いただきます。	I shall take a short bath.		DockingMinor	YamatoKai-Docking_Minor.ogg
+Docking Major	Yamato	イッタッタ～ ごめんなさい、私がここまでやられるなんて～	Ow-w-w. I'm sorry, I didn't expect they'd get me that badly~	Literally "have been had to that extent", implying the damage she received were beyond her expectations.	DockingMajor	Yamato-Docking_Major.ogg
+Docking Major	Yamato Kai	あ、甘く見た訳じゃないんだけど、ごめんなさい。	I...I didn't underestimate (the enemy), though I'm sorry.		DockingMajor	YamatoKai-Docking_Major.ogg
+Docking Complete	Yamato	損傷艦の修復が完了致しました。	Repairs on the damaged ship are completed.		DockingComplete	Yamato-Docking_Complete.ogg
+Docking Complete	Yamato Kai	修理完了の艦娘が在るみたいです。	Repairing of the ship daughter seems to be completed.		DockingComplete	YamatoKai-Docking_Complete.ogg
+Construction	Yamato	新造艦の建造が完了したようです。	The construction of the new ship seems to be complete.		AddShip	Yamato-Construction.ogg
+Construction	Yamato Kai	新しい艦娘（かんむす）が戦列に加わりました。	New ship girls has been added to our lineup.		AddShip	YamatoKai-Construction.ogg
+Returning From Sortie	Yamato	お疲れ様です。艦隊、帰投しました。	Thank you for your hard work. The fleet has returned.		BattleComplete	Yamato-Returning_From_Sortie.ogg
+Returning From Sortie	Yamato Kai	艦隊が無事帰投しました。良かったぁ～！	Our fleet has returned safely. That's great~!		BattleComplete	YamatoKai-Returning_From_Sortie.ogg
+Starting A Sortie	Yamato	戦艦大和、推して参ります。	Battleship Yamato, heading forth!		BattleStart	Yamato-Starting_A_Sortie.ogg
+Battle Start	Yamato	さぁ、やるわ！砲雷撃戦、用意！	Yeah, let's go! Naval battle, ready!		BattleStartDay	Yamato-Battle_Start.ogg
+Battle Start	Yamato Kai	大和、砲雷撃戦、はじめます！	Yamato, commence firing!		BattleStartDay	YamatoKai-Battle_Start.ogg
+Attack	Yamato	第一・第二主砲、斉射、始め！	First and second cannons, volley fire, start!		BattleDay	Yamato-Attack.ogg
+Attack	Yamato Kai	敵艦捕捉、全主砲薙ぎ払え！	Enemy ship acquired, fire broadside!	⇧ shared with day/night special attacks, support expedition team arrival	BattleDay	YamatoKai-Attack.ogg
+Night Battle	Yamato	戦艦大和、夜戦を敢行します！	Battleship Yamato, starting night battle!		BattleStartNight	Yamato-Night_Battle.ogg
+Night Battle	Yamato Kai	戦艦大和、突撃します！	Battleship Yamato, charging in!		BattleStartNight	YamatoKai-Night_Battle.ogg
+Night Attack	Yamato	夾叉(きょうさ)か･･･うん、次は直撃させます。	Bracket fire, huh... Yes, the next shot will be a direct hit.	夾叉 (Kyousa), or bracket, means a succession of two salvos, one over and one short, or one right and one left, with no straddles. When this happens, minor adjustments are needed.(while straddle means both short and over, or both right and left shots occur in the SAME salvo)	BattleNight	Yamato-Night_Attack.ogg
+Night Attack	Yamato Kai	そうか･･･それなら･･･やるしかないわね！	Is that so... well then, I have to do this!		BattleNight	YamatoKai-Night_Attack.ogg
+MVP	Yamato	大和が一番ですか。少し晴れがましいですね。次の海戦もお任せ下さいね。	I'm number one? I'm a bit proud of myself. Leave the next sortie to me!		MVP	Yamato-MVP.ogg
+Minor Damage 1	Yamato	そ、それで直撃のつもりなの！？	D-did you think you landed a direct hit?		MinorDamage	Yamato-Minor_Damage_1.ogg
+Minor Damage 2	Yamato	傾斜復元しないと…。注水を急いで！	I'm starting to list... ballast pumps, hurry!		MinorDamage	Yamato-Minor_Damage_2.ogg
+Major Damage	Yamato	くっ、こんな所で、大和は、沈みません！	Hmph, Yamato, will not, sink at such place!	She was listing two or three times during Operation Ten-Go	MajorDamage	Yamato-Major_Damage.ogg
+Sunk	Yamato	また…逝くのね…総員…最上甲板…武蔵…信濃…あとは頼みます…	Again... I pass away... all hands... top deck... Musashi... Shinano... I leave the rest to you...	Yamato was ultimately destroyed by a magazine explosion, unleashing a mushroom cloud more than 3.7 miles high that could be seen almost a hundred miles away on Kyushu. Note that historically both Musashi and Shinano were sunk earlier than Yamato.	Sunk	Yamato-Sunk.ogg
+00:00	Yamato Kai	マルマルマルマル。深夜ですね。	0000. It's night-time.		Hourly	Yamato_Kai-00.ogg
+01:00	Yamato Kai	マルヒトマルマル。提督、そろそろお休みにならないと。	0100. Admiral, shouldn't you be going to bed soon?		Hourly	Yamato_Kai-01.ogg
+02:00	Yamato Kai	提督？まだ寝なくて大丈夫ですか？現在時刻マルフタマルマルです。	Admiral? Not going to bed, are you okay? It is now 0200.		Hourly	Yamato_Kai-02.ogg
+03:00	Yamato Kai	マルサンマルマル。そろそろ流石にお疲れじゃないですか？	0300. At this time, certainly shouldn't you be tired?		Hourly	Yamato_Kai-03.ogg
+04:00	Yamato Kai	現在時刻マルヨンマルマルです。提督、そろそろ朝になっちゃいます。	It is now 0400. Admiral, it will soon be morning.		Hourly	Yamato_Kai-04.ogg
+05:00	Yamato Kai	提督、マルゴーマルマルです。空が白み始めてきちゃいましたね。	Admiral, 0500. The sky is becoming white now.		Hourly	Yamato_Kai-05.ogg
+06:00	Yamato Kai	朝です。マルロクマルマル。提督、朝は本当に御早いですね。	It's Morning. 0600. Admiral, the morning really came quickly, didn't it?		Hourly	Yamato_Kai-06.ogg
+07:00	Yamato Kai	マルナナマルマル、朝食の時間。大和ホテル自慢のコンソメ御飲みになります？	0700, Breakfast time. How about some of Hotel Yamato's famous consomme?	The Yamato was used as a meeting place for high-level officers, so she had a very good mess; so good that Yamamoto gained weight from living on the Yamato.	Hourly	Yamato_Kai-07.ogg
+08:00	Yamato Kai	現在時刻マルハチマルマルです。連合艦隊旗艦としてそろそろ動きますね。	It is now 0800. The combined fleet will be moving soon.	IJN fleet operations started at 0800.	Hourly	Yamato_Kai-08.ogg
+09:00	Yamato Kai	マルキュウマルマルです。提督、今日の作戦行動はどうされますか？	0900. Admiral, how is today's battle mobilization going?		Hourly	Yamato_Kai-09.ogg
+10:00	Yamato Kai	提督、他の艦隊の運用はどうされます？時刻は今、ヒトマルマルマルです。	Admiral, how are the other fleets? It is currently 1000.		Hourly	Yamato_Kai-10.ogg
+11:00	Yamato Kai	ヒトヒトマルマル。そろそろ昼食の準備をしないと…。何がいいですか？	1100. I have to start preparing for lunch soon... What would be good?		Hourly	Yamato_Kai-11.ogg
+12:00	Yamato Kai	ヒトフタマルマル ランチタイムに大和ホテル自慢の…あぁ…ホテルじゃないです	1200. Hotel Yamato's famous lunch time's... wait, I'm not a hotel.		Hourly	Yamato_Kai-12.ogg
+13:00	Yamato Kai	ヒトサンマルマル、です。食後は少し眠くなりますね。	It's 1300. You get a bit tired after eating, yes?		Hourly	Yamato_Kai-13.ogg
+14:00	Yamato Kai	ヒトヨンマルマルです。ふぁ～…はっ！あ、寝てませんよ！？	1400. Zzz... ah! I-I'm not asleep!		Hourly	Yamato_Kai-14.ogg
+15:00	Yamato Kai	ヒトゴーマルマル。提督、ラムネでも飲まれますか？	1500. Admiral, will you have a Ramune?		Hourly	Yamato_Kai-15.ogg
+16:00	Yamato Kai	ヒトロクマルマル。そろそろ夕暮れ時ですね。	1600. It's just becoming dusk.		Hourly	Yamato_Kai-16.ogg
+17:00	Yamato Kai	ヒトナナマルマル、提督、そろそろ日が暮れて来ました。	1700, Admiral, it's almost time for the sunset.		Hourly	Yamato_Kai-17.ogg
+18:00	Yamato Kai	現在時刻ヒトハチマルマルです。今日は半舷上陸にしちゃいます？	It is now 1800. Shall we let half the ship go ashore today?	The ship's crew was divided into port and starboard, with alternating shore leave while docked.	Hourly	Yamato_Kai-18.ogg
+19:00	Yamato Kai	ヒトキュウマルマル。艦隊執務はここまでにして、お夕食にしましょう。	1900. The fleet work has ended, let's have dinner.	Non-combat ops in the IJN ended, as a rule, at 1800.	Hourly	Yamato_Kai-19.ogg
+20:00	Yamato Kai	フタマルマルマルです。ディナーはフルコースですよー、なんたって大和ホテルの…	2000. Dinner is a full course~, after all, Hotel Yamato's...		Hourly	Yamato_Kai-20.ogg
+21:00	Yamato Kai	フタヒトマルマル。提督、大和の居住性、いかがでしょうか？	2100. Admiral, why not partake of Yamato's livability?	Even ratings on the Yamato got a personal locker on board; a rarity in the IJN.	Hourly	Yamato_Kai-21.ogg
+22:00	Yamato Kai	現在時刻、フタフタマルマルです。そろそろお風呂タイムかな？	It is now 2200. Time for a bath, yes?		Hourly	Yamato_Kai-22.ogg
+23:00	Yamato Kai	時刻はフタサンマルマルです。提督、本日も一日、本当にお疲れ様でした。	It is 2300. Admiral, today, as always, thank you for your hard work.		Hourly	Yamato_Kai-23.ogg
+Hinamatsuri 2016	Yamato	提督、ひな祭りですか？あら、かわいい、いいですね。武蔵？何を照れてるの？いいじゃない、ね？	Admiral, is it Hinamatsuri? Oh my, how cute, it's good, isn't? Musashi? Why are you embarrassed? It's good, right?		Special	Yamato_Hinamatsuri_2016.ogg
+White Day 2016	Yamato	提督！いいんですか、大和もいただいて？すみません。ありがとうございます。いただきますね。来年は頑張りますから！	Admiral! Is is alright, for Yamato to take these? I'm sorry. Thank you very much. I humbly accept. I'll do my best next year!	Probably talking about their Hina dolls, while Musashi is embarrassed.	Special	Yamato_White_Day_2016.ogg
+Spring 2016	Yamato	もうすぐ春…か。うふふっ。桜を見ると不思議な気持ちになるわ、不思議。え？これは、涙？なんで…？	Spring is just around the corner, huh... Ufufu. Watching the cherry blossoms really gives me a mysterious feeling. Eh? These are... tears? Why...?		Special	Yamato_Spring_2016.ogg
+Third Anniversary 2016	Yamato	提督、艦隊は三周年を迎えました。おめでとうございます。大和も、大和も嬉しいです！ラムネで、乾杯しましょう！	Admiral, our fleet has reached its third year. Congratulations. I, Yamato... I am so happy for this occassion! Let's make a toast with some Ramune.	It seems she remembers Operation Ten-Go. She went to Okinawa in Apr 6, 1945. On the other side, it could be a hay fever.	Special	Yamato_Third_Anniversary.ogg
+Rainy Season 2016	Yamato	Iowaさん？ あ、かわいいですね、そのてるてる坊主。ねぇ、よかったら一緒に作りましょう。大和のはね、ここをこうして…。	Iowa-san? Ah, isn't that teru-teru bouzu cute? Say, would you like to make one together? For the ones I make, it goes like...		Special	Yamato_Rainy_Season_2016.ogg
+Mid-Summer 2016	Yamato	提督、そんなに見ないでください！赤と白で少し派手だったかしら…そっ、そうですか？なら、よかったです。提督、ご一緒に。	Admiral, don't stare that much! Red and white is a little flashy isn't it... I-is that so? Then, that's good. Admiral, together then.		Special	Yamato_Mid-Summer_2016.ogg
+Final Battle 2018	Yamato	主砲、諸元修正急いで下さい。戦艦大和、全主砲、全力射撃、行きます。ってー！	Main guns, please hurry up with a firing solution. Battleship Yamato, opening fire with all guns. Fire!	Friendly Fleet line	Special	Yamato_FriendFleet.mp3
+3rd Anniversary	Yamato	提督、艦隊は三周年を迎えました。おめでとうございます！大和も、大和も嬉しいです！ラムネで、乾杯しましょう♪	The fleet’s 3rd Anniversary is here, Admiral. Congratulations! I’m, I’m happy! Let’s have a toast with ramune♪		Special	Yamato_3rd_Anniversary_Sec1.mp3
+Autumn 2016	Yamato	提督、秋ですね。秋は食べ物が美味しい季節。私も、新しいフルコース考えちゃいますね！	It’s autumn, Admiral. Autumn is the season of delicious food. I’ve got a new full course thought up too!		Special	Yamato_Autumn_2016_Sec1.mp3
+Saury Festival 2016	Yamato	秋刀魚？秋刀魚漁支援ですか？了解しました。この戦艦大和、北方海域に向かいましょう！	Saury? Support for saury fishing? Roger that. Battleship Yamato, heading to the Northern Waters!		Special	Yamato_Sec1_Saury_2016.mp3
+Christmas 2016	Yamato	メリークリスマス！提督、大和烹炊所フルパワーでクリスマススペシャルディナーをご用意しました。七面鳥も焼き上がりましたよ。あ、あれ？瑞鶴さん？	Merry Christmas! I’ve used the full power of my galley to make a special Christmas dinner, Admiral. I’ve even roasted a turkey. H-huh? Zuikaku?		Special	Yamato_Christmas_2016_Sec1.mp3
+End of Year 2016	Yamato	鳳翔さん、これわどこしまえば…あぁ、そこですね？了解です。はぁ、大掃除は大変。提督は大和に任せて、ゆっくりしてくださいね？	Where should I put this, Houshou-san… Ah, over there? Roger. Whew, spring cleaning is hard work. Please leave this to me and get a good rest alright, Admiral?		Special	Yamato_End_Of_Year_2016_Sec1.mp3
+New Year 2017	Yamato	提督、新年あけましておめでとうございます。本年も大和と第一戦隊をどうぞよろしくおねがいします。さあ、いきましょう。	Happy New Year, Admiral. Please look after the 1st Fleet and I this year too. Now, let’s go.		Special	Yamato_New_Year_2017_sec1.mp3
+Valentine’s Day 2017	Yamato	よーし、大和の烹炊所フル活用しちゃった。チョコレットの前菜に、チョコスープ、メーンヂイシュはステーキのチョコレットソース掛け。	Alright, I made full use of my galley. Chocolate appetizers, chocolate soup and steak with chocolate sauce as a main dish.		Special	Yamato_Valentine_Sec1.ogg
+4th Anniversary	Yamato	提督、艦隊はついに四周年を迎えました！感謝ですね。大和も本当に嬉しいです。ラムネで…いえ、フルコースでお祝いしましょう！	The fleet has finally reached it’s 4th Anniversary, Admiral! Thank you. I’m really happy too. Let’s celebrate with Ramune… No, with a full course!		Special	Yamato_4th_Anniversary_Sec1_2017.mp3
+Rainy Season 2017	Yamato	瑞雲…祭りですか、日向さん? はい、大和にも確かにそういった計画もあったのですが… えぇ、それとは、違う?	A Zuiun… Festival, Hyuuga-san? Yes, I recall I had plans for something like that too… Eh, that’s different?	Secretary 2. Zuiun Festival line.	Special	Yamato_Rainy_Season_Sec2_2017.mp3
+Early Summer 2017	Yamato	提督、少し厚くなってきましたね。今年も夏がくるですね。えぇ、水着ですか？あぁ、はい。一応武蔵と一緒に買ってあって。	It’s gotten a bit hotter, Admiral. Summer is here again this year. Eh, a swimsuit? Ah, yes. I went and bought one with Musashi just in case.		Special	Yamato_Sec1_Summer_2017.mp3
+Late Autumn 2017	Yamato	武蔵？どうしたの？寒いの？機関部の調子でを悪いの？そう、ならいいけれど。何かあったら、お姉さんを相談してね？	Musashi? What’s wrong? Are you cold? Is there something wrong with your engine room? I see, that’s good then. Let me know if you need anything alright?		Special	Yamato_Late_Autumn_2017_Sec1.mp3
+Valentine’s Day 2018	Yamato	もちろんデザートは、大和特製ハート型チョコケーキ。よし、完璧！さあ、提督をお呼びしましょう。提督！提督ー！あれ、提督？	Of course it’ll be my special heart-shaped chocolate cake for desert. Alright, it’s done! Now to call the Admiral. Admiral! Admiraaal! Huh, Admiral?		Special	Yamato_Valentines_2018_Sec_2.mp3
+5th Anniversary	Yamato	提督、艦隊はついに五周年を迎えました。おめでとうございます。大和も本当に感謝です。ラムネで…いえ、ワインとフルコースお祝いしましょう。	The fleet is celebrating it’s 5th Anniversary, Admiral. Congratulations. I am truly grateful. Let’s celebrate with raumube… No, with wine and a full course meal.		Special	Yamato_5th_Anniversary_Sec1.mp3
+6th Anniversary	Yamato	提督、艦隊はついに六周年を迎えました。本当におめでとうございます。感謝ですね。大和も嬉しいです。お祝いのフルコース 、腕によりをかけて、ご用意しますね。	Admiral, the fleet has reached it's 6th Anniversary. My sincerest congratulations. I'm grateful. I'm happy too. I'll put my all into making a celebratory full course.        		Special	Yamato_6th_Anniversary_Sec2.mp3
+7th Anniversary	Yamato	提督、艦隊は、ついに七周年を迎えました。おめでとうございます！七年、考え深いですね？大和ラムネで…いえ、とっておきなワインで乾杯しましょう！	Admiral, the fleet's 7th Anniversary is finally her. Congratulations! Shall we look back on these past 7 years? Let's have a toast with some Yamato Ramune... No, with a special reserve!		Special	Yamato_7th_Anniversary_Secretary_2.mp3

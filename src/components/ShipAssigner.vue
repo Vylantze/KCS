@@ -24,7 +24,7 @@
     -->
 
     <div class="overflow-container">
-      <div class="main-content">
+      <div ref="shipAssignerMainContent" class="main-content">
         <div v-for="(row, rowIndex) in splitArray" :key="rowIndex">
           <div class="d-flex">
             <div
@@ -73,6 +73,9 @@ export default {
       selectedShipName: "selectedShipName",
       selectedSpriteName: "selectedSpriteName"
     }),
+    mainContent() {
+      return this.$refs.shipAssignerMainContent;
+    },
     shipSprites() {
       if (!this.shipNames || !this.database) return [];
       return this.shipNames.map(shipName => this.database[shipName].Sprites); //.reduce((t, s) => t.concat(s))
@@ -180,6 +183,13 @@ export default {
       this.currentShip = ship;
       this.generateSplitArray(this.currentShipSpritesKeys);
     },
+    scrollMainContentToTop() {
+      try {
+        this.mainContent.scrollTop = 0;
+      } catch (e) {
+        logError("[ShipAssigner] Unable to scroll main content. ", e);
+      }
+    },
     prevship() {
       if (!this.shipNames || this.shipNames.length <= 1) {
         return;
@@ -190,6 +200,7 @@ export default {
       } else {
         this.changeCurrentShip(this.shipNames[index - 1]);
       }
+      this.scrollMainContentToTop();
     },
     nextship() {
       if (!this.shipNames || this.shipNames.length <= 1) {
@@ -201,6 +212,7 @@ export default {
       } else {
         this.changeCurrentShip(this.shipNames[index + 1]);
       }
+      this.scrollMainContentToTop();
     },
     generateSplitArray(spritesArray) {
       if (
@@ -211,7 +223,7 @@ export default {
       ) {
         return;
       }
-      let priorityList = ["Base", "Kai", "Kai Ni"];
+      //let priorityList = ["Base", "Kai", "Kai Ni"];
       let spriteDB = this.shipSprites[this.currentShipNameIndex];
 
       if (!spriteDB) {
@@ -221,18 +233,7 @@ export default {
       try {
         let generatedArray = [];
         let spriteList = JSON.parse(JSON.stringify(spritesArray)).sort(
-          (a, b) => {
-            for (let i = 0; i < priorityList.length; i++) {
-              if (spriteDB[a].Model == priorityList[i]) {
-                return -1;
-              }
-              if (spriteDB[b].Model == priorityList[i]) {
-                return 1;
-              }
-            }
-            // If it is none of the priority ones, return no change
-            return 0;
-          }
+          (a, b) => spriteDB[a].Index - spriteDB[b].Index
         );
 
         for (

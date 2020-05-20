@@ -32,7 +32,13 @@ function kcdbMake(kanmusu, shipDir, databaseDir) {
 
   const linesPath = path.join(dirpath, 'lines.txt');
   if (!fs.existsSync(linesPath)) {
-    console.log("Unable to find lines at ", linesPath);
+    console.log("Unable to find lines.txt at ", linesPath);
+    return;
+  }
+
+  const spriteDataPath = path.join(dirpath, 'spriteData.txt');
+  if (!fs.existsSync(spriteDataPath)) {
+    console.log("Unable to find spriteData.txt at ", linesPath);
     return;
   }
 
@@ -51,8 +57,10 @@ function kcdbMake(kanmusu, shipDir, databaseDir) {
   const voiceFiles = fs.readdirSync(voicePath);
   const spriteFiles = fs.readdirSync(spritePath);
 
-  const data = fs.readFileSync(linesPath, "utf8");
-  const lines = data.replace(/\r/g, '').split('\n');
+  const lineData = fs.readFileSync(linesPath, "utf8");
+  const lines = lineData.replace(/\r/g, '').split('\n');
+  const spriteDataRaw = fs.readFileSync(spriteDataPath, "utf8");
+  const spriteData = spriteDataRaw.replace(/\r/g, '').split('\n');
 
   //const srcSpritePath = `ship/${kanmusu}/sprites/`;
   //const srcVoicePath = `ship/${kanmusu}/voices/`;
@@ -106,34 +114,49 @@ function kcdbMake(kanmusu, shipDir, databaseDir) {
     database.Events[key] = entry;
   });
 
+  // Map sprite data object
+  const spriteDatabase = {};
+  spriteData.map((line, index) => {
+    let split = line.split('\t');
+
+    if (split.length != 2) {
+      console.log(`[spriteData] This line has something wrong [${line}]`);
+      return;
+    }
+
+    let key = split[0];
+    let entry = {};
+    entry.Models = split[1].split('|');
+    entry.Index = index;
+    spriteDatabase[key] = entry;
+  });
+
   // Now get the sprite data
   spriteFiles.map(filename => {
     try {
       let name = filename.replace(/_Full|_Damaged|_Card|_Banner/g, '').replace(path.extname(filename), '').replace(/_/g, ' ').trim();
+      let bannerInfo = filename.replace(path.extname(filename), '').replace(/_/g, ' ').replace(name, '').replace(/ /g, '').trim();
       if (!database.Sprites[name]) {
         database.Sprites[name] = {};
       }
 
+      //console.log(filename, `[BannerInfo:${bannerInfo}]`, `[Card:${filename.includes("_Card")}/Banner:${filename.includes("_Banner")}/Damaged:${filename.includes("_Damaged")}]`);
+
       let filepath = srcSpritePath + filename;
-      if (filename.includes("_Card")) {
-        database.Sprites[name].Card = filepath;
-      } else if (filename.includes("_Banner")) {
-        database.Sprites[name].Banner = filepath;
-      } else if (filename.includes("_Damaged")) {
+      if (bannerInfo == "Full") {
+        database.Sprites[name].Normal = filepath;
+      } else if (bannerInfo == "FullDamaged") {
         database.Sprites[name].Damaged = filepath;
       } else {
-        database.Sprites[name].Normal = filepath;
+        database.Sprites[name][bannerInfo] = filepath;
       }
 
-      if (filename.includes("Kai_Ni")) {
-        database.Sprites[name].Model = "Kai Ni";
-      } else if (filename.includes("Kai")) {
-        database.Sprites[name].Model = "Kai";
-      } else if (name == titleCase(kanmusu)) {
-        database.Sprites[name].Model = "Base";
-      } else {
-        database.Sprites[name].Model = "Default";
+      if (!spriteDatabase[name]) {
+        console.log(`SpriteDatabase does not contain [${name}]`);
+        return;
       }
+
+      database.Sprites[name] = { ...database.Sprites[name], ...spriteDatabase[name] };
     } catch (e) {
       console.warn(`Failed to process sprite [${filename}]`);
     }
