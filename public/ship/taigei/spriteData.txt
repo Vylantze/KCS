@@ -1,3 +1,4 @@
+Banner	Taigei
 Taigei	Taigei
 Ryuuhou	Ryuuhou
 Ryuuhou Kai	Ryuuhou|Ryuuhou Kai

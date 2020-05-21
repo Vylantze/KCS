@@ -118,7 +118,7 @@ export default {
       if (!this.currentShipDB) {
         return null;
       }
-      return this.database[this.currentShip].Sprites;
+      return this.currentShipDB.Sprites;
     },
     currentShipSpritesKeys() {
       if (!this.currentShipSprites || this.currentShipSprites.length == 0) {
@@ -135,10 +135,20 @@ export default {
       return this.currentShipSprites[this.currentShip];
     },
     currentShipDefaultBanner() {
-      if (!this.currentShipDefaultSprites) {
+      if (!this.currentShipDB) {
         return null;
       }
-      return this.currentShipDefaultSprites.Banner;
+      let defaultBanner = this.currentShipDB.DefaultBanner;
+      console.log("DefaultBanner", defaultBanner);
+      if (!defaultBanner) {
+        return null;
+      }
+
+      console.log(
+        "DefaultBannerSprites",
+        this.currentShipDB.Sprites[defaultBanner]
+      );
+      return this.currentShipDB.Sprites[defaultBanner].Banner;
     }
   },
   async mounted() {

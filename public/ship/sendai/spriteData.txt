@@ -1,3 +1,4 @@
+Banner	Sendai Kai Ni
 Sendai	Sendai
 Sendai Kai	Sendai|Sendai Kai
 Sendai Kai Ni	Sendai|Sendai Kai|Sendai Kai Ni

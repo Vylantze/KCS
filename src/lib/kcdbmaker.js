@@ -74,6 +74,7 @@ function kcdbMake(kanmusu, shipDir, databaseDir) {
     Events: {}, // Contains all the events and their relevant data
     Commands: {}, // Contains a key mapped list of commands and a subarray of events that belong to that command e.g. { 'Command X': [ ... ] }
     Sprites: {}, // Should contain objects holding { Normal, Damaged, Banner, Card } data
+    DefaultBanner: null, // Default banner to use for display
   };
   var headers = [];
   var length = 0;
@@ -125,6 +126,12 @@ function kcdbMake(kanmusu, shipDir, databaseDir) {
     }
 
     let key = split[0];
+
+    if (key == "Banner") {
+      database.DefaultBanner = split[1];
+      return;
+    }
+
     let entry = {};
     entry.Models = split[1].split('|');
     entry.Index = index;
