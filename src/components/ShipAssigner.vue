@@ -7,12 +7,12 @@
       <div class="left">
         <button class="standard-button info" @click="prevship">Prev</button>
       </div>
-      <div class="center-div">
-        <img
-          v-if="windowWidth > mobileWidth"
-          :src="getSprite(currentShipDefaultBanner)"
-          class="banner"
-        />
+      <div class="center-div fixed">
+        <!--v-if="windowWidth > mobileWidth"-->
+        <img :src="getSprite(currentShipDefaultBanner)" class="banner" />
+        <div class="header-text absolute center-div">
+          <!--<h3>{{ currentShip }}</h3>-->
+        </div>
       </div>
       <div class="right">
         <button class="standard-button info" @click="nextship">Next</button>
@@ -26,23 +26,24 @@
     <div class="overflow-container">
       <div ref="shipAssignerMainContent" class="main-content">
         <div v-for="(row, rowIndex) in splitArray" :key="rowIndex">
-          <div class="d-flex">
+          <div class="d-flex card-row" :class="{ last: rowIndex == splitArray.length - 1 }">
             <div
               v-for="(shipSpriteName, index) in row"
               :key="`${rowIndex}-${index}`"
               class="card-holder"
               :class="{ ml: index != 0 }"
             >
-              <div
-                v-if="Boolean(currentShipSprites[shipSpriteName])"
-                class="center-div card"
-                :class="{ selected: shipSpriteName == selectedSpriteName }"
-                @click="changeShipAndSprite(shipSpriteName)"
-              >
-                <img
-                  :src="getSprite(currentShipSprites[shipSpriteName].Card)"
-                  :width="shipCardWidth"
-                />
+              <div v-if="Boolean(currentShipSprites[shipSpriteName])" class="center-div">
+                <div
+                  class="card"
+                  :class="{ selected: shipSpriteName == selectedSpriteName }"
+                  @click="changeShipAndSprite(shipSpriteName)"
+                >
+                  <img
+                    :src="getSprite(currentShipSprites[shipSpriteName].Card)"
+                    :width="shipCardWidth"
+                  />
+                </div>
               </div>
             </div>
           </div>
@@ -258,6 +259,10 @@ export default {
 </script>
 
 <style lang="less" scoped>
+@text-shadow-pos-width: 1px;
+@text-shadow-neg-width: 1px;
+@text-shadow-color: #000000;
+
 .ship-assigner {
   width: 100%;
   height: 100%;
@@ -267,6 +272,14 @@ export default {
     display: flex;
     margin-top: 10px;
     margin-bottom: 10px;
+
+    .header-text {
+      text-shadow: @text-shadow-pos-width @text-shadow-pos-width
+          @text-shadow-color,
+        @text-shadow-neg-width @text-shadow-neg-width @text-shadow-color,
+        @text-shadow-neg-width @text-shadow-pos-width @text-shadow-color,
+        @text-shadow-pos-width @text-shadow-neg-width @text-shadow-color;
+    }
 
     .left {
       display: flex;
@@ -295,9 +308,15 @@ export default {
     }
   }
 
+  .card-row {
+    margin-bottom: 20px;
+    &.last {
+      margin-bottom: 0px;
+    }
+  }
+
   .card-holder {
     flex: 1;
-    margin-bottom: 20px;
 
     .card {
       height: 100%;
