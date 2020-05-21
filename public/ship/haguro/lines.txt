@@ -1,0 +1,47 @@
+Event	Model	Japanese	English	Note	Command	Voice
+Introduction	Haguro	羽黒です。妙高型重巡洋艦姉妹の末っ娘です。あ、あの…ごめんなさいっ！	I'm Haguro. I'm the youngest of the Myoukou-class heavy cruiser sisters. U-um... I'm sorry!	Haguro was actually the third of the Myoukou-class cruisers. The youngest would be Ashigara, as she was laid down, launched and commissioned later than Haguro was.	SetSecretary	Haguro-Introduction.ogg
+Introduction	Haguro Kai Ni	妙高型重巡洋艦、羽黒です。皆さんと共に、全力で戦線を支えますっ！	Fourth ship of the Myoukou-class heavy cruisers, Haguro. Together with everyone, I will support the front lines!		SetSecretary	HaguroKai2-Introduction.ogg
+Library	Haguro	長崎で生まれたの。スラバヤ沖海戦、珊瑚海海戦、ミッドウェー海戦、第二次ソロモン海戦、マリアナ海戦など数々の海戦に参加しました。あの…頑張ります！	I was born in Nagasaki. I participated in many battles, in the Battle of the Java Sea, the Battle of the Coral Sea, the Battle of Midway, the Battle of the Eastern Solomons, and the Battle of the Philippine Sea. Um... I try my best!		SetSecretary	Haguro-Library.ogg
+Secretary 1	Haguro	あの…司令官さん？	Um... Commander?		Tap	Haguro-Secretary_1.ogg
+Secretary 2	Haguro	し…司令官さん？…ごめんなさい！	C-commander? ...I'm sorry!		Tap	Haguro-Secretary_2.ogg
+Secretary 2	Haguro Kai Ni	司令官さん?…大丈夫、行けます！	Commander? ... It's all right, I'm good!		Tap	HaguroKai2-Secretary_2.ogg
+Secretary 3	Haguro	あの…すみません…それは何か新しいコミュニケーションなのでしょうか…	Um... excuse me... Is this some new way of communication?		Tap	Haguro-Secretary_3.ogg
+Idle	Haguro Kai	あ、あの…司令官…さん？羽黒、一応ここで待っています、ね？	E, excuse me, commander…? Haguro is waiting for you here in case of trouble...		Idle	HaguroKai-Idle.ogg
+Secretary Married	Haguro	司令官さん…いつか戦いが終わって静かな海になるといいですね。私、祈っています。司令官さんならきっと…	Commander… I hope this war will be over and the sea will get quiet. I pray for it. Commander… you will surely…		Tap	Haguro-Secretary_Married.ogg
+Wedding	Haguro	この戦いが終わったら…し、司令官さんと一緒に…！あの…あ、あのあの！	After this battle is over… T-together with the Commander..! Erm.. Ummm.. Errrmm…	Marriage after the war is over death flag.	Wedding	Haguro-Wedding.ogg
+Looking At Scores	Haguro	あ…お知らせが届いたって…	Ah... a notice has arrived...		IdleBonus	Haguro-Looking_At_Scores.ogg
+Joining A Fleet	Haguro	こんな私ですが…精一杯頑張りますね！	Picking even me... I'll try my absolute best!		BattleStart	Haguro-Joining_A_Fleet.ogg
+Joining A Fleet	Haguro Kai Ni	第五戦隊,羽黑，出撃します！	Haguro of The Fifth Squadron, heading out!		BattleStart	HaguroKai2-Joining_A_Fleet.ogg
+Equipment 1	Haguro	私なんて…強化していただかなくても…	I... don't need to receive this kind of strength...		TapBonus	Haguro-Equipment_1.ogg
+Equipment 1	Haguro Kai Ni	頂いた装備、大切に使います。	I will cherish the equipment I've received.		TapBonus	HaguroKai2-Equipment_1.ogg
+Equipment 2	Haguro	あの…他の人を改造してあげて？	Um... could you remodel the others too?		TapBonus	Haguro-Equipment_2.ogg
+Equipment 2	Haguro Kai Ni	他の子の改装を…優先してください。	Please remodel... the other girls first.		TapBonus	HaguroKai2-Equipment_2.ogg
+Equipment 3	Haguro	ごめんなさい！	I'm sorry!	⇧ shared with expedition selection, resource collection, instant repair and development	TapBonus	Haguro-Equipment_3.ogg
+Supply	Haguro	私なんて、強化していただかなくても…	I... don't need to receive this kind of strength...		TapBonus	Haguro-Supply.ogg
+Supply	Haguro Kai Ni	い、いただきます！	I… I'm receiving it, thank you.		TapBonus	HaguroKai-Supply.ogg
+Docking Minor	Haguro	私より、あの娘を先に…	The other girls (ships) should go first.		DockingMinor	Haguro-Docking_Minor.ogg
+Docking Major	Haguro	はい、もう少しで轟沈するところでした…	Okay. Any more and I would have sunk instantly back there.		DockingMajor	Haguro-Docking_Major.ogg
+Docking Complete	Haguro	あの…艦の修理が、完了してた。	Um... The ship repair.. has been finished.		DockingComplete	Haguro-Docking_Complete.ogg
+Construction	Haguro	新しい仲間が進水されたみたいです	It seems a new comrade has been launched.		AddShip	Haguro-Construction.ogg
+Returning From Sortie	Haguro	作戦完了って…あの…報告が…	The battle is complete... Um... Just reporting...		BattleComplete	Haguro-Returning_From_Sortie.ogg
+Starting A Sortie	Haguro	あなた達の背中は私が守ります！	I'll protect everyone's backs!		BattleStart	Haguro-Starting_A_Sortie.ogg
+Battle Start	Haguro	撃ち方、始めてくださーい！	Assault team, please begin!		BattleStart	Haguro-Battle_Start.ogg
+Attack	Haguro	砲雷撃戦って、これでいいのかしら…	Guns and torpedoes engaged, I hope this is enough...		BattleDay	Haguro-Attack.ogg
+Attack	Haguro Kai Ni	五倍の相手だって･･･支えて見せます！	Even if there are five times the enemies...I will fight them all!	Referring to the Battle of the Malacca Strait, also known as the Sinking of the Haguro. She fought five British destroyers by herself.	BattleDay	HaguroKai2-Attack.ogg
+Night Battle	Haguro	これ以上やらせません！	You won't advance any further!		BattleStartNight	Haguro-Night_Battle.ogg
+Night Attack	Haguro	全砲門、開いて下さい！	All gun ports, please open!		BattleNight	Haguro-Night_Attack.ogg
+MVP	Haguro	このまま、全ての戦いが終わってしまえばいいのに	As it is, it would be better if all the fighting could end.		MVP	Haguro-MVP.ogg
+Minor Damage 1	Haguro	ああっ！	Aah!?		MinorDamage	Haguro-Minor_Damage_1.ogg
+Minor Damage 2	Haguro	やめてぇっ！	Stop...!		MinorDamage	Haguro-Minor_Damage_2.ogg
+Minor Damage 2	Haguro Kai Ni	被弾…二番砲塔!?…まだ行けます！	I'm hit...second turret!?...I can still continue!	Referring to the Battle of Leyte Gulf; her second turret was directly hit by US aircraft.	MinorDamage	HaguroKai2-Minor_Damage_2.ogg
+Major Damage	Haguro	ダメ…見ないで…見ないでぇー！	No... Don't look... Don't loook!		MajorDamage	Haguro-Major_Damage.ogg
+Sunk	Haguro	あの艦（コ）達、ちゃんと逃げ切れたかな…　ああ、もう何も、何も見えない…	The other girls (ships), could they manage to hold on... Ah, no more, I can't see any more...	Referring to her last battle. She helped the destroyer Kamikaze leave the battlefield and continued fighting off the enemy. Kamikaze was the last Imperial Japan Naval destroyer that needed to flee the area. Kamikaze went on to fight against USS Hawkbill one-on-one.	Sunk	Haguro-Sunk.ogg
+White Day 2015	Haguro	ん？　この可愛らしいクッキーを、私に！？　司令官さん…本当に、ありがとうございます！　ぐすっ、うぅ…	Hmm? Are these lovely cookies for me!? Thank you so very much… Commander! *sniff*		Special	Haguro.ogg
+2nd Anniversary	Haguro	司令官さん、二周年ですね、本当に…ありがとうございます！羽黒も、嬉しいです！	It’s the 2nd anniversary, Commander. Thank you… so very much! I’m having fun too!		Special	058_Haguro_2ndAnniv.mp3
+Midsummer 2015	Haguro	夏ですね。…えぇ？ 泳がないのか、って？だって、水着とかないし…あ、あの…え、えええっ！？	It’s summer. …Eh? Aren’t I going to swim? I mean, I don’t have a swimsuit… Uh-umm… E-eeeeeh!?		Special	Haguro_Mid_Summer.ogg
+Early Autumn 2015	Haguro	秋は、静かですね。羽黒、この季節、好きなんです。司令官さんはどうですか？	Autumn is peaceful. I like this season. What about you, Commander?		Special	Haguro_Early_Autumn2015.ogg
+Christmas 2015	Haguro	司令官さん、メリークリスマス！あ、あの…プレゼントもしよかったら…あの…	Merry Christmas, Commander! Uh-umm… If you don’t mind, here’s a present… Umm…		Special	Haguro_Christmas_2015_Sec1.ogg
+New Year 2016	Haguro	新年、明けましておめでとうございます。今年もどうぞ…よろしく…お願いします！	Happy New Year. Please… take care of me… this year too!		Special	Haguro_New_Years_Day_2016.ogg
+Setsubun 2016	Haguro	司令官さん、節分ですね。あの…羽黒が鬼役をしましょうか？…えぇ、それは…	It’s Setsubun, Commander. Umm… Shall I play the Oni? …Eh, that’s…		Special	Haguro_Setsubun_2016_Sec1.ogg
+Valentine’s Day 2016	Haguro	あの、司令官さん、このチョコレート…よかったら受け取ってください。	Ummm, please accept these chocolates… if you don’t mind, Commander.		Special	Haguro_Valentine_Sec1.ogg
+3rd Anniversary	Haguro	し、司令官さん、今日は記念日ですね。羽黒も本当に嬉しい… 嬉しいです！はい！	T-today is an anniversary, Commander. I’m really happy… I’m having fun! Yes!		Special	Haguro_3rd_Anniversary_Sec1.mp3
