@@ -1,0 +1,65 @@
+Event	Model	Japanese	English	Note	Command	Voice
+Introduction	Akizuki	秋月型防空駆逐艦、一番艦、秋月。ここに推参致しました。お任せください！	Akizuki-class anti-air destroyer, first ship, Akizuki. I'm reporting in here. Please leave it to me!		SetSecretary	Akizuki-Introduction.ogg
+Library	Akizuki	艦隊防空のために建造された乙型一等駆逐艦、秋月型駆逐艦一番艦、秋月です。4基8門の長10ｃｍ砲と高射装置を備えた防空艦として、寮艦の初月らと共に第61駆逐隊を編成しました。頑張ります！	Designed for the fleet's anti-air, Type-B first class destroyer, Akizuki-class 1st destroyer, Akizuki. As an anti-air ship equipped with 4x 8-barrel Long 10cm guns and anti-aircraft fire director, along with Hatsuzuki and the others, we formed the 61st DesDiv. I'll do my best!		SetSecretary	Akizuki-Library_Info.ogg
+Secretary 1	Akizuki	秋月、推参します！	Akizuki, reporting in!		Tap	Akizuki-Secretary_1.ogg
+Secretary 2	Akizuki	この秋月の長10cm砲と高射装置。この力で、艦隊をきっとお守りします！	My long 10cm guns and anti-aircraft fire director. With this power, I'll definitely protect the fleet!		Tap	Akizuki-Secretary_2.ogg
+Secretary 2	Akizuki Kai	増設された高射装置と長10cm砲。秋月の本当の力…これで、艦隊をお守りします！	The added anti-aircraft fire director and long 10cm guns. Akizuki's real power... with this, I'll protect the fleet!		Tap	AkizukiKai-Secretary_2.ogg
+Secretary 3	Akizuki	長10cm砲ちゃん、あんまり暴れないでぇ！ あら、あらら？ 提…督？ ああっ、失礼致しました！	Choujuusenchihou-chan, don't struggle! Eh, huh? Ad...miral? Ahh! Please excuse me!		Tap	Akizuki-Secretary_3.ogg
+Idle	Akizuki	長10cmよし、高射装置よし、酸素魚雷、よし…よし！ 万全ね、大丈夫！ えっと、あとは…	Long 10cm, check! Anti-aircraft fire director, check! Oxygen torpedoes, check... alright! Everything's perfect! Umm, next is...		Idle	Akizuki-Idle.ogg
+Secretary Married	Akizuki	司令、いつもお疲れ様です。この秋月が、艦隊と司令をお護りします。だ、大丈夫！	Commander, thanks as always. This Akizuki will protect the fleet, and you. Yeah, it's alright!		Tap	Akizuki-Secretary_Married.ogg
+Wedding	Akizuki	司令、秋月をお呼びでしょうか？　あの、対空戦に不備が？　そうではなくって？　では、翔鶴さんになにか？　でもなくって？　…ほぁ、もしかして、これ…あ、ありがとうございます！	Commander, did you call me? Um, was my anti-air inadequate? That's not it? Then does it have to do with Shoukaku-san? Not that either? ...Howaa~, could this be... T-thank you very much!		Wedding	Akizuki-Wedding.ogg
+Looking At Scores	Akizuki	そうですね。艦隊の今を知ることは、大事です！	That's true. It's important to know what the fleet knows!		IdleBonus	Akizuki-Looking_At_Scores.ogg
+Joining A Fleet	Akizuki	防空駆逐艦、秋月。出撃致します！	Anti-air destroyer, Akizuki. Prepared to sortie.		BattleStart	Akizuki-Joining_A_Fleet.ogg
+Equipment 1	Akizuki	ありがとうございます！よい装備…	Thank you! It's good equipment...		TapBonus	Akizuki-Equipment_1.ogg
+Equipment 2	Akizuki	これなら敵機動部隊にも負けません！	With this, I won't lose to the enemy task force!		TapBonus	Akizuki-Equipment_2.ogg
+Equipment 3	Akizuki	やらせません！	I won't let them!	⇧ shared with expedition selection, resource collection, instant repair and development	TapBonus	Akizuki-Equipment_3.ogg
+Supply	Akizuki	補給、ありがとうございます！	Thank you for the supplies!		TapBonus	Akizuki-Supply.ogg
+Supply	Akizuki Kai	大切な補給物資、ありがとうございます！	Thank you for the important supply materials!		TapBonus	AkizukiKai-Supply.ogg
+Docking Minor	Akizuki	す、少しだけ、お休みを…	J-just for a bit, I'll take a break...		DockingMinor	Akizuki-Docking_Minor.ogg
+Docking Major	Akizuki	高射装置も、しっかり装備しなくちゃ…	My anti-air fire director too, I need to firmly attach it...		DockingMajor	Akizuki-Docking_Major.ogg
+Docking Complete	Akizuki	修理中の艦が、ドックを出るみたい。	It seems that the under repairing ship leaves dock.		DockingComplete	Akizuki-Docking_Complete.ogg
+Construction	Akizuki	新造艦が生まれたみたいですね！	It seems like a new ship was born!		AddShip	Akizuki-Construction.ogg
+Returning From Sortie	Akizuki	艦隊が無事帰投しました。皆さん、お疲れです！	The fleet has safely returned. Everyone, good work!		BattleComplete	Akizuki-Returning_From_Sortie.ogg
+Starting A Sortie	Akizuki	第61駆逐隊、直ちに抜錨。出撃です！	61st DesDiv, setting sail immediately. Setting off!		BattleStart	Akizuki-Starting_A_Sortie.ogg
+Battle Start	Akizuki	さあ、始めましょう。撃ち方、始め！	Now, shall we begin? Begin firing!		BattleStart	Akizuki-Battle_Start.ogg
+Attack	Akizuki	この秋月が健在な限り、やらせはしません！	While this Akizuki still has strength, I won't let you!	⇧ shared with day/night special attacks, support expedition team arrival	BattleDay	Akizuki-Attack.ogg
+Night Battle	Akizuki	秋月の夜戦、お見せしましょうか。	Akizuki's night battle, shall I show it to you?		BattleStartNight	Akizuki-Night_Battle.ogg
+Night Attack	Akizuki	弾幕が薄い…ような気がします。弾幕です！	I feel like... the barrage is light. Barrage!		BattleNight	Akizuki-Night_Attack.ogg
+MVP	Akizuki	秋月、艦隊をお守りしました。大丈夫、次もきっと、大丈夫です！	Akizuki protected the fleet. It's alright, next time, too, will be alright!		MVP	Akizuki-MVP.ogg
+Minor Damage 1	Akizuki	くっ！まだ行けます！	Kugh! I can still go on!		MinorDamage	Akizuki-Minor_Damage_1.ogg
+Minor Damage 2	Akizuki	魚雷の誘爆を防いで！ 大丈夫！	Don't let it detonate the torpedoes! It's alright !		MinorDamage	Akizuki-Minor_Damage_2.ogg
+Major Damage	Akizuki	まだ…まだ、沈みません！艦隊の防空を…私はっ！	Not yet... I won't sink yet! The fleet's anti-air... I will-!		MajorDamage	Akizuki-Major_Damage.ogg
+Major Damage	Akizuki Kai	被弾！？ 魚雷を全て放棄して、誘爆を防いで！ まだ……まだ大丈夫！	Hit!? Abandon all torpedoes, prevent detonation!... not yet... I can keep going!		MajorDamage	AkizukiKai-Major_Damage.ogg
+Sunk	Akizuki	翔鶴さんも…大鳳さんも…健在？　ふぅ…、大丈夫…艦隊は…だいじょう…ぶ…	Shoukaku-san... Taihou-san... are you well? Ugh..., alright... the fleet is... alri... ght...		Sunk	Akizuki-Sunk.ogg
+00:00	Akizuki	司令、この秋月が、時刻を報告します。現在時刻、マルマルマルマル、です！	Commander, Akizuki will report the time. The current time is 0000!		Hourly	Akizuki-00.ogg
+01:00	Akizuki	マルヒトマルマルをご報告します。こんな形でよろしいでしょうか、司令？	The 0100 report. Is this the right way, Commander?		Hourly	Akizuki-01.ogg
+02:00	Akizuki	マルフタマルマルです。今夜は月が…月が綺麗ですね、司令。ん、司令？	0200. The moon tonight... the moon sure is beautiful, commander. Eh, commander?	A reference to an anecdotal incident where Meiji era writer Natsume Sōseki, during his time as an English teacher, suggested to his students that the English phrase "I love you" be translated as "The moon is beautiful" (月が綺麗ですね).	Hourly	Akizuki-02.ogg
+03:00	Akizuki	マルサンマルマルです、司令。この時間はとても静かですね。本当に静かです…	0300, Commander. It's very quiet at this time. It's really quiet...		Hourly	Akizuki-03.ogg
+04:00	Akizuki	マルヨンマルマルです。司令、眠くはありませんか？　濃い目のお茶、入れましょう。	0400. Commander, are you not tired?　Let's have some strong tea.		Hourly	Akizuki-04.ogg
+05:00	Akizuki	マルゴーマルマルとなりました、司令。はい。秋月、総員起こしの準備、了解です！	It is now 0500. Commander. Yes. Akizuki, prepared to wake everyone, roger!		Hourly	Akizuki-05.ogg
+06:00	Akizuki	マルロクマルマルです。おはようございます、司令。はい、気持ちのよい朝ですね♪	0600. Good morning, Commander. Yes, it is a nice morning♪		Hourly	Akizuki-06.ogg
+07:00	Akizuki	マルナナマルマルです。司令、朝食の御用意、こちらです。簡単で…すみません	0700. Commander, I'm preparing breakfast over here. I'm sorry that it's... simple.		Hourly	Akizuki-07.ogg
+08:00	Akizuki	マルハチマルマル。第六一駆逐隊、出撃準備、完了です。いつでも抜錨、出来ます！	0800. 61st DesDiv, sortie preparations complete. We can set sail at any time!		Hourly	Akizuki-08.ogg
+09:00	Akizuki	マルキュウマルマルです。護衛する主力艦は戦艦？　空母ですか？　お任せください♪	0900. The capital ship of the escort is a battleship? Carrier? Leave it to me!		Hourly	Akizuki-09.ogg
+10:00	Akizuki	ヒトマルマルマルをご報告します。司令、演習もしっかりこなしていきたいですね	It's the 1000 report. Commander, I wish to properly complete the exercises as well.		Hourly	Akizuki-10.ogg
+11:00	Akizuki	ヒトヒトマルマルです。司令、お昼はどうなさいますか？　秋月がご用意しましょうか？	1100. Commander, what will you have for lunch? Shall I prepare it for you?		Hourly	Akizuki-11.ogg
+12:00	Akizuki	ヒトフタマルマルです。司令、握り飯と沢庵のお昼です。あ…簡単で、すいません…	1200. Commander, lunch is rice balls and pickled radish. Ah, sorry that it's simple...	*Food was in short supply towards the end of the war and even the comparatively extravagant IJN had to cut down as much as they could afford on rations, hence the simple meal.	Hourly	Akizuki-12.ogg
+13:00	Akizuki	ヒトサンマルマルとなりました。司令、すみません。夕食は豪華に頑張りますから！	It is now 1300. Commander, I apologize. I'll try my best to prepare a wonderful dinner!		Hourly	Akizuki-13.ogg
+14:00	Akizuki	ヒトヨンマルマルです。初月、元気かなぁ…あ、司令。午後も頑張りましょう！	1400. I wonder how Hatsuzuki is... Ah, Commander. Let's do our best in the afternoon too!		Hourly	Akizuki-14.ogg
+15:00	Akizuki	ヒトゴーマルマルです。あ、はい。明石さんにもとってもお世話になりました。	1500. Ah, yes. I've been in the care of Akashi-san.		Hourly	Akizuki-15.ogg
+16:00	Akizuki	ヒトロクマルマルです。はい、後部にも高射装置を付けましたから、もう万全です！	1600. Yes, I've attached an anti-air fire director on the stern as well. It's perfect!		Hourly	Akizuki-16.ogg
+17:00	Akizuki	ヒトナナマルマルをご報告します。日が落ちますから、対空警戒もここまでですね。	It's the 1700 report. The sun is setting, so the anti-aircraft watch is ending.		Hourly	Akizuki-17.ogg
+18:00	Akizuki	ヒトハチマルマルとなりました。はい、夕食の準備、秋月、豪華に頑張ります！	It is now 1800. Yes, Akizuki will do her best to prepare a wonderful dinner!		Hourly	Akizuki-18.ogg
+19:00	Akizuki	ヒトキュウマルマルです！　熱々の麦飯、沢庵、そして牛缶に、お味噌汁も♪　どう？	1900! Piping hot barley and rice, pickled radish, also canned beef, and miso soup♪ How is it?	*Although more along the lines of an ordinary meal today, this would be considered extravagant due to low food supply. See 12:00 note	Hourly	Akizuki-19.ogg
+20:00	Akizuki	フタマルマルマル。はい、秋月、今日はすこし奮発してしまいました。どうでした？	2000. Yes, today, I pushed myself a bit extra. How was I?		Hourly	Akizuki-20.ogg
+21:00	Akizuki	フタヒトマルマルです。え、涼月ですか？　はい、自慢の妹ですよ。ええ！	2100. Eh, Suzutsuki? Yes, she's a little sister I'm proud of. Ei!		Hourly	Akizuki-21.ogg
+22:00	Akizuki	フタフタマルマル。あ、翔鶴さん、瑞鶴さん。お疲れ様です。はい、大丈夫です！	2200. Ah, Shoukaku-san, Zuikaku-san. Good work. Yes, I'm alright!		Hourly	Akizuki-22.ogg
+23:00	Akizuki	フタサンマルマル。少し、緊張しました。はぁ…司令、本日も大変お疲れ様でした。	2300. I was a bit nervous. Haa... Commander, very good work today.		Hourly	Akizuki-23.ogg
+Summer 2019 Event	Akizuki	秋月、推参。突入了解。やらせませ！	Akizuki has arrived. Understood, charging in. I won't let them beat me!		BattleDay	Ship_Voice_Akizuki_Kai_Summer_2019_Event_Friend_Fleet_1.mp3
+Christmas 2014	Akizuki	メリー・クリスマスです、司令！秋月、七面鳥を焼いたんですよ。あっ、だめっ！？何で！？	Merry Christmas, Commander! I roasted a turkey! Ah, I shouldn’t have!? Why!?		Special	Akizuki_christmas2014.ogg
+New Year 2015	Akizuki	あけましておめでとうございます、司令！本年も、どうぞよろしくお願い致します！	Happy New Year, Commander! Please treat me well this year too!		Special	Akizuki_2015newyear.ogg
+2nd Anniversary	Akizuki	二周年おめでとうございます司令！これからも秋月、艦隊防空がんばります！	Congratulations on the 2nd anniversary, Commander! I’ll continue to work hard doing fleet air defense!		Special	221_Akizuki_2ndAnniv.mp3
+3rd Anniversary	Akizuki	アーケード？司令、アーケードって何ですか？…ふむふむ。秋月、勉強になります！	Arcade? What’s an “arcade”, Commander? …I see, I see. I learned something!		Special	Akizuki_3rd_Anniversary_Sec1.mp3
+Autumn 2019	Akizuki	秋月、鎮守府秋祭り、全力で参加します。テルちゃん、ハツちゃん、司令、一緒に行きましょう！	I, Akizuki, will be giving my all for the Naval District Autumn Festival. Teru, Hatsu, Commander, let's go together!		Special	Akizuki_Autumn_2019_Sec1.mp3
+Saury 2019	Akizuki	秋月、秋刀魚漁場の保護と秋刀魚漁支援、全力で事を当たります。そうです、やらせませ！	I'll do my best to protect the saury fisheries and support the saury fishing. That's right, leave it to me!		Special	Akizuki_Saury_2019_Sec1.mp3
+7th Anniversary	Akizuki	今日は大切な日ですね。大丈夫、秋月もご一緒します、司令。秋月も嬉しいです。	Today is an important day. Don't worry, I'll be by your side, Commander. I'm happy too.		Special	Akizuki_7th_Anniversary_Secretary_1.mp3
