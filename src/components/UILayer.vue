@@ -364,7 +364,6 @@ export default {
         this.seAudio.pause();
       }
 
-      console.log("Changing SE to ", seFile);
       this.seAudio.src = seFile;
       this.seAudio.load();
       this.seAudio.play();

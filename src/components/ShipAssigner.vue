@@ -139,15 +139,12 @@ export default {
         return null;
       }
       let defaultBanner = this.currentShipDB.DefaultBanner;
-      console.log("DefaultBanner", defaultBanner);
+      log("DefaultBanner", defaultBanner);
       if (!defaultBanner) {
         return null;
       }
 
-      console.log(
-        "DefaultBannerSprites",
-        this.currentShipDB.Sprites[defaultBanner]
-      );
+      log("DefaultBannerSprites", this.currentShipDB.Sprites[defaultBanner]);
       return this.currentShipDB.Sprites[defaultBanner].Banner;
     }
   },

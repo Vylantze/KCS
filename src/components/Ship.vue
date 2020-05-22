@@ -160,7 +160,6 @@ export default {
       if (this.useSpecialLinesOnly) {
         return this.shipSpecialEventNames;
       }
-      console.log("use special lines only", this.useSpecialLinesOnly);
 
       try {
         let tapList = this.shipDB.Commands.Tap;
