@@ -10,7 +10,10 @@
           :class="{ 'selected': selectedBgm && selectedBgm.Source == source }"
           @click="changeSelectedBgm(BGMs[source])"
         >
-          <div class="left">{{ BGMs[source].English }}</div>
+          <div class="left">
+            <span v-show="windowWidth < mobileWidth">•&nbsp;&nbsp;</span>
+            <span>{{ BGMs[source].English }}</span>
+          </div>
           <div v-show="windowWidth > mobileWidth" class="right">{{ BGMs[source].Japanese }}</div>
         </div>
       </div>
