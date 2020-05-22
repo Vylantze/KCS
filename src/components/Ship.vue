@@ -132,7 +132,9 @@ export default {
     shipSpecialEventNames() {
       if (!this.shipDB || !this.shipDB.Commands) return [];
       try {
-        return this.shipDB.Commands.Special;
+        return this.shipDB.Commands.Special.concat(
+          this.shipDB.Commands.Wedding
+        );
       } catch (e) {
         window.logError("[Ship] Unexpected error in shipSpecialEventNames.", e);
       }
@@ -295,7 +297,10 @@ export default {
         promise
           .then(() => {
             this.$store.commit("setSubtitle", this.currentEvent.English);
-            if (this.currentEvent.Command == "Special") {
+            if (
+              this.currentEvent.Command == "Special" ||
+              this.currentEvent.Command == "Wedding"
+            ) {
               this.$store.commit("setTitle", this.currentEvent.Event);
             } else {
               this.$store.commit("setTitle", null);

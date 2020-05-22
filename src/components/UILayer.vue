@@ -30,7 +30,7 @@
 
           <h3>Ship</h3>
           <div>
-            <div class="ship-setting">
+            <div class="ship-setting" :class="{ disabled: useSpecialLinesOnly }">
               <div class="label">Use equipment changing and resupply lines as tap lines.</div>
               <div>
                 <div
@@ -235,7 +235,9 @@ export default {
       }
     },
     toggleBonusLines() {
-      this.$store.commit("setUseBonusLines", !this.useBonusLines);
+      if (!this.useSpecialLinesOnly) {
+        this.$store.commit("setUseBonusLines", !this.useBonusLines);
+      }
     },
     toggleSpecialLines() {
       this.$store.commit("setUseSpecialLines", !this.useSpecialLines);
