@@ -19,21 +19,21 @@
           <div class="slider-setting" style="margin-bottom: 5px;">
             <div class="label">Overall</div>
             <div class="slider-holder center-div">
-              <input type="range" min="1" max="100" v-model="overallSlider" class="slider" />
+              <input type="range" min="0" max="100" v-model="overallSlider" class="slider" />
             </div>
             <div class="label right">{{ Math.floor(overallVolume * 100) }}%</div>
           </div>
           <div class="slider-setting" style="margin-bottom: 5px;">
             <div class="label">BGM</div>
             <div class="slider-holder center-div">
-              <input type="range" min="1" max="100" v-model="bgmSlider" class="slider" />
+              <input type="range" min="0" max="100" v-model="bgmSlider" class="slider" />
             </div>
             <div class="label right">{{ Math.floor(bgmVolume * 100) }}%</div>
           </div>
           <div class="slider-setting">
             <div class="label">Voice</div>
             <div class="slider-holder center-div">
-              <input type="range" min="1" max="100" v-model="voiceSlider" class="slider" />
+              <input type="range" min="0" max="100" v-model="voiceSlider" class="slider" />
             </div>
             <div class="label right">{{ Math.floor(voiceVolume * 100) }}%</div>
           </div>
