@@ -94,9 +94,6 @@ function kcdbMake(kanmusu, shipDir, databaseDir) {
     let entry = {};
     headers.map((header, headerIndex) => {
       entry[header] = split[headerIndex];
-      if (header == 'Model') {
-        key = `${key}/${entry[header]}`;
-      }
       if (header == 'Command') {
         if (!database.Commands[entry[header]]) { database.Commands[entry[header]] = []; }
         database.Commands[entry[header]].push(key);
@@ -112,7 +109,8 @@ function kcdbMake(kanmusu, shipDir, databaseDir) {
       }
     });
 
-    database.Events[key] = entry;
+    if (!database.Events[key]) database.Events[key] = [];
+    database.Events[key].push(entry);
   });
 
   // Map sprite data object

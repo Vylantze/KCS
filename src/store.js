@@ -181,7 +181,7 @@ const store = new Vuex.Store({
             window.logError(`[populateData] Unable to read bgm database at path [${bgmPath}]`, e);
           }
 
-          window.log('Ship data', shipNames, database);
+          window.log('Ship data', database);
           window.log('Bgm data', bgmDatabase);
         },
         invokeHourlyEvent: () => {

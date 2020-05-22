@@ -156,6 +156,17 @@ export default {
       return [];
     },
 
+    // Get allowed model types
+    shipSpriteModels() {
+      if (!this.shipDB) return null;
+      try {
+        return this.shipDB.Sprites[this.shipSprite].Models;
+      } catch (e) {
+        window.logError("[Ship] Unexpected error in shipSpriteModels.", e);
+      }
+      return null;
+    },
+
     // Get normal sprite
     shipNormalImagePath() {
       if (!this.shipDB) return null;
@@ -241,7 +252,7 @@ export default {
       }
 
       window.log(
-        `Playing voice [${this.currentEvent.Event}].`,
+        `Playing voice [${this.currentEvent.Model}/${this.currentEvent.Event}].`,
         this.currentEvent
       );
 
@@ -323,10 +334,27 @@ export default {
       this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
     },
     getEventDataFromEventNames(eventList) {
-      if (!this.shipDB || !eventList || eventList.length == 0) return [];
+      if (
+        !this.shipDB ||
+        !eventList ||
+        eventList.length == 0 ||
+        !this.shipSpriteModels
+      )
+        return [];
+      let models = this.shipSpriteModels;
+      let eventDataList = [];
       try {
-        return eventList.map(event => {
-          return this.shipDB.Events[event];
+        eventList.map(eventName => {
+          let array = this.shipDB.Events[eventName];
+          if (array.length == 1) {
+            eventDataList.push(array[0]);
+          } else {
+            array.map(event => {
+              if (models.includes(event.Model)) {
+                eventDataList.push(event);
+              }
+            });
+          }
         });
       } catch (e) {
         window.logError(
@@ -335,7 +363,7 @@ export default {
           e
         );
       }
-      return [];
+      return eventDataList;
     },
     loadImage(imageName) {
       if (!imageName) return null;
