@@ -2,7 +2,74 @@
   <div class="ui-layer" :style="{ width: `${uiWidth}px` }">
     <div v-if="menuOpen" class="menu-closer">
       <div v-if="menuOpen == 'settings'" class="menu center limit-size">
-        <div class="settings" style="margin-top: 20px;">
+        <div class="settings">
+          <h3>Volume</h3>
+          <div>
+            <div class="slider-setting">
+              <div class="label">Overall</div>
+              <div class="slider-holder center-div">
+                <input type="range" min="0" max="100" v-model="overallSlider" class="slider" />
+              </div>
+              <div class="label right">{{ Math.floor(overallVolume * 100) }}%</div>
+            </div>
+            <div class="slider-setting">
+              <div class="label">BGM</div>
+              <div class="slider-holder center-div">
+                <input type="range" min="0" max="100" v-model="bgmSlider" class="slider" />
+              </div>
+              <div class="label right">{{ Math.floor(bgmVolume * 100) }}%</div>
+            </div>
+            <div class="slider-setting">
+              <div class="label">Voice</div>
+              <div class="slider-holder center-div">
+                <input type="range" min="0" max="100" v-model="voiceSlider" class="slider" />
+              </div>
+              <div class="label right">{{ Math.floor(voiceVolume * 100) }}%</div>
+            </div>
+          </div>
+
+          <h3>Ship</h3>
+          <div>
+            <div class="ship-setting">
+              <div class="label">Use equipment changing and resupply lines as tap lines.</div>
+              <div>
+                <div
+                  class="checkbox"
+                  :class="{ unchecked: !useBonusLines }"
+                  @click="toggleBonusLines"
+                >
+                  <span>✅</span>
+                </div>
+              </div>
+            </div>
+            <div class="ship-setting">
+              <div class="label">Turn on ship's special occasion lines.</div>
+              <div>
+                <div
+                  class="checkbox"
+                  :class="{ unchecked: !useSpecialLines }"
+                  @click="toggleSpecialLines"
+                >
+                  <span>✅</span>
+                </div>
+              </div>
+            </div>
+            <div class="ship-setting" :class="{ disabled: !useSpecialLines }">
+              <div class="sub-label">↪ Only use special occasion lines.</div>
+              <div>
+                <div
+                  class="checkbox"
+                  :class="{ unchecked: !useSpecialLinesOnly }"
+                  @click="toggleUseSpecialLinesOnly"
+                >
+                  <span>✅</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Buttons -->
+          <h3>Misc</h3>
           <div class="d-flex">
             <button class="standard-button info" @click="openMenu('bgm')">Change BGM</button>
             <button
@@ -11,31 +78,8 @@
               style="margin-left: 5px"
               @click="toggleHideButtons()"
             >
-              <div style="width: 60px">{{ hideButtons ? "Show" : "Hide" }} Buttons</div>
+              <div style="width: 60px">{{ hideButtons ? "Show" : "Hide" }} UI</div>
             </button>
-          </div>
-
-          <h3>Volume</h3>
-          <div class="slider-setting" style="margin-bottom: 5px;">
-            <div class="label">Overall</div>
-            <div class="slider-holder center-div">
-              <input type="range" min="0" max="100" v-model="overallSlider" class="slider" />
-            </div>
-            <div class="label right">{{ Math.floor(overallVolume * 100) }}%</div>
-          </div>
-          <div class="slider-setting" style="margin-bottom: 5px;">
-            <div class="label">BGM</div>
-            <div class="slider-holder center-div">
-              <input type="range" min="0" max="100" v-model="bgmSlider" class="slider" />
-            </div>
-            <div class="label right">{{ Math.floor(bgmVolume * 100) }}%</div>
-          </div>
-          <div class="slider-setting">
-            <div class="label">Voice</div>
-            <div class="slider-holder center-div">
-              <input type="range" min="0" max="100" v-model="voiceSlider" class="slider" />
-            </div>
-            <div class="label right">{{ Math.floor(voiceVolume * 100) }}%</div>
           </div>
         </div>
       </div>
@@ -83,6 +127,10 @@
         :style="{ 'max-width': subtitleMaxWidth }"
       >{{ subtitle }}</div>
     </div>
+
+    <div class="title-container">
+      <div v-show="Boolean(title)" class="title">{{ title }}</div>
+    </div>
   </div>
 </template>
 
@@ -110,7 +158,11 @@ export default {
   },
   computed: {
     ...mapGetters({
-      subtitle: "subtitle"
+      subtitle: "subtitle",
+      title: "title",
+      useSpecialLines: "useSpecialLines",
+      useSpecialLinesOnly: "useSpecialLinesOnly",
+      useBonusLines: "useBonusLines"
     }),
     ...mapState({
       overallVolume: s => s.main.overallVolume,
@@ -181,6 +233,18 @@ export default {
       } catch (e) {
         window.logError("[App] Error in resize. ", e);
       }
+    },
+    toggleBonusLines() {
+      this.$store.commit("setUseBonusLines", !this.useBonusLines);
+    },
+    toggleSpecialLines() {
+      this.$store.commit("setUseSpecialLines", !this.useSpecialLines);
+    },
+    toggleUseSpecialLinesOnly() {
+      // Only allow change if special lines is active
+      if (this.useSpecialLines) {
+        this.$store.commit("setUseSpecialLinesOnly", !this.useSpecialLinesOnly);
+      }
     }
   }
 };
@@ -201,13 +265,44 @@ export default {
 
   .slider-setting {
     display: flex;
+    margin-bottom: 5px;
 
     .label {
+      display: flex;
+      align-items: center;
       width: 60px;
 
       &.right {
         width: 45px;
-        text-align: right;
+        justify-content: flex-end;
+      }
+    }
+  }
+
+  .ship-setting {
+    display: flex;
+    margin-bottom: 5px;
+
+    .label {
+      display: flex;
+      align-items: center;
+      flex: 1;
+    }
+
+    .sub-label {
+      margin-left: 10px;
+      flex: 1;
+    }
+
+    .checkbox {
+      background-color: black;
+      display: flex;
+      align-items: center;
+
+      &.unchecked {
+        span {
+          opacity: 0;
+        }
       }
     }
   }
@@ -305,6 +400,28 @@ export default {
     padding: 0px 20px;
     max-width: 500px;
     flex: 1;
+  }
+
+  .title-container {
+    pointer-events: none;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    max-width: 100%;
+    width: 100%;
+
+    display: flex;
+
+    .title {
+      pointer-events: none;
+      text-align: center;
+      margin: 10px;
+      font-size: 4vmin;
+
+      padding: 5px 10px;
+      background-color: rgba(0, 0, 0, 0.8);
+      color: white;
+    }
   }
 
   .subtitles-container {

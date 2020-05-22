@@ -47,12 +47,18 @@ const store = new Vuex.Store({
         database: {},
         bgm: {},
         subtitle: null,
+        title: null,
         selectedBgmName: "Main Menu",
         selectedShipName: "Yamato",
         selectedSpriteName: "Yamato",
         overallVolume: 1.0,
         bgmVolume: 1.0,
         voiceVolume: 1.0,
+
+        // Ship settings
+        useSpecialLines: false, // Whether the special occasion lines can be heard
+        useSpecialLinesOnly: false, // Whether only the special occasion lines will be heard
+        useBonusLines: false, // Whether only the TapBonus and IdleBonus lines will be heard
       },
       getters: {
         database: s => JSON.parse(JSON.stringify(s.database)),
@@ -64,8 +70,12 @@ const store = new Vuex.Store({
         selectedShipName: s => JSON.parse(JSON.stringify(s.selectedShipName)),
         selectedSpriteName: s => JSON.parse(JSON.stringify(s.selectedSpriteName)),
         subtitle: s => JSON.parse(JSON.stringify(s.subtitle)),
+        title: s => JSON.parse(JSON.stringify(s.title)),
         bgmVolume: s => s.bgmVolume * s.overallVolume,
         voiceVolume: s => s.voiceVolume * s.overallVolume,
+        useSpecialLines: s => JSON.parse(JSON.stringify(s.useSpecialLines)),
+        useSpecialLinesOnly: s => JSON.parse(JSON.stringify(s.useSpecialLinesOnly)),
+        useBonusLines: s => JSON.parse(JSON.stringify(s.useBonusLines)),
       },
       mutations: {
         setDatabase(s, database) {
@@ -76,6 +86,9 @@ const store = new Vuex.Store({
         },
         setBgm(s, bgm) {
           s.bgm = bgm;
+        },
+        setTitle(s, title) {
+          s.title = title;
         },
         setSubtitle(s, subtitle) {
           s.subtitle = subtitle;
@@ -107,6 +120,18 @@ const store = new Vuex.Store({
         setVoiceVolume(s, voiceVolume) {
           utils.saveSetting("voiceVolume", voiceVolume);
           s.voiceVolume = voiceVolume;
+        },
+        setUseSpecialLines(s, useSpecialLines) {
+          utils.saveSetting("useSpecialLines", useSpecialLines);
+          s.useSpecialLines = useSpecialLines;
+        },
+        setUseSpecialLinesOnly(s, useSpecialLinesOnly) {
+          utils.saveSetting("useSpecialLinesOnly", useSpecialLinesOnly);
+          s.useSpecialLinesOnly = useSpecialLinesOnly;
+        },
+        setUseBonusLines(s, useBonusLines) {
+          utils.saveSetting("useBonusLines", useBonusLines);
+          s.useBonusLines = useBonusLines;
         }
       },
       actions: {
@@ -117,7 +142,10 @@ const store = new Vuex.Store({
             "setSelectedSpriteName",
             "setOverallVolume",
             "setBgmVolume",
-            "setVoiceVolume"
+            "setVoiceVolume",
+            "setUseSpecialLines",
+            "setUseSpecialLinesOnly",
+            "setUseBonusLines"
           ];
           let variableName = [
             "selectedBgmName",
@@ -125,7 +153,10 @@ const store = new Vuex.Store({
             "selectedSpriteName",
             "overallVolume",
             "bgmVolume",
-            "voiceVolume"
+            "voiceVolume",
+            "useSpecialLines",
+            "useSpecialLinesOnly",
+            "useBonusLines"
           ];
           let length = setters.length;
 

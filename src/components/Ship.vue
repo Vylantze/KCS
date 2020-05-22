@@ -48,7 +48,11 @@ export default {
     ...mapGetters({
       selectedShipName: "selectedShipName",
       shipSprite: "selectedSpriteName",
-      voiceVolume: "voiceVolume"
+      voiceVolume: "voiceVolume",
+
+      useSpecialLines: "useSpecialLines",
+      useSpecialLinesOnly: "useSpecialLinesOnly",
+      useBonusLines: "useBonusLines"
     }),
     shipName() {
       return this.selectedShipName;
@@ -124,11 +128,25 @@ export default {
       }
       return [];
     },
+    // Special
+    shipSpecialEventNames() {
+      if (!this.shipDB || !this.shipDB.Commands) return [];
+      try {
+        return this.shipDB.Commands.Special;
+      } catch (e) {
+        window.logError("[Ship] Unexpected error in shipSpecialEventNames.", e);
+      }
+      return [];
+    },
     // Idle
     shipIdleEventNames() {
       if (!this.shipDB || !this.shipDB.Commands) return [];
       try {
-        return this.shipDB.Commands.Idle.concat(this.shipDB.Commands.IdleBonus);
+        let idleList = this.shipDB.Commands.Idle;
+        if (this.useBonusLines) {
+          idleList = idleList.concat(this.shipDB.Commands.IdleBonus);
+        }
+        return idleList;
       } catch (e) {
         window.logError("[Ship] Unexpected error in shipIdleEventNames.", e);
       }
@@ -137,8 +155,20 @@ export default {
     // Tap
     shipTapEventNames() {
       if (!this.shipDB || !this.shipDB.Commands) return [];
+      if (this.useSpecialLinesOnly) {
+        return this.shipSpecialEventNames;
+      }
+      console.log("use special lines only", this.useSpecialLinesOnly);
+
       try {
-        return this.shipDB.Commands.Tap.concat(this.shipDB.Commands.TapBonus);
+        let tapList = this.shipDB.Commands.Tap;
+        if (this.useBonusLines) {
+          tapList = tapList.concat(this.shipDB.Commands.TapBonus);
+        }
+        if (this.useSpecialLines) {
+          tapList = tapList.concat(this.shipSpecialEventNames);
+        }
+        return tapList;
       } catch (e) {
         window.logError("[Ship] Unexpected error in shipTapEventNames.", e);
       }
@@ -243,8 +273,9 @@ export default {
       this.onTap();
     },
     audioHasEnded() {
-      this.currentEvent = null;
+      this.$store.commit("setTitle", null);
       this.$store.commit("setSubtitle", null);
+      this.currentEvent = null;
     },
     playCurrentEvent() {
       if (this.audio) {
@@ -264,6 +295,11 @@ export default {
         promise
           .then(() => {
             this.$store.commit("setSubtitle", this.currentEvent.English);
+            if (this.currentEvent.Command == "Special") {
+              this.$store.commit("setTitle", this.currentEvent.Event);
+            } else {
+              this.$store.commit("setTitle", null);
+            }
           })
           .catch(e => {
             throw e;
