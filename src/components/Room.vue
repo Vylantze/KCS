@@ -69,7 +69,7 @@ export default {
   },
   watch: {
     selectedBgm(newBgm, oldBgm) {
-      log("SelectedBgm chagne", oldBgm, newBgm);
+      log("SelectedBgm change", oldBgm, newBgm);
       if (this.bgmAudio && this.selectedBgm) {
         this.playBgmAudio();
       }

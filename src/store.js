@@ -46,6 +46,7 @@ const store = new Vuex.Store({
         shipNames: [],
         database: {},
         bgm: {},
+        se: {},
         subtitle: null,
         title: null,
         selectedBgmName: "Main Menu",
@@ -53,6 +54,7 @@ const store = new Vuex.Store({
         selectedSpriteName: "Yamato",
         overallVolume: 1.0,
         bgmVolume: 1.0,
+        seVolume: 1.0,
         voiceVolume: 1.0,
 
         // Ship settings
@@ -64,6 +66,7 @@ const store = new Vuex.Store({
         database: s => JSON.parse(JSON.stringify(s.database)),
         shipNames: s => JSON.parse(JSON.stringify(s.shipNames)),
         BGMs: s => JSON.parse(JSON.stringify(s.bgm.Events)),
+        SEs: s => JSON.parse(JSON.stringify(s.se)),
         bgmCategories: s => JSON.parse(JSON.stringify(s.bgm.Categories)),
         bgmCategoryOrder: s => JSON.parse(JSON.stringify(s.bgm.CategoryOrder)),
         selectedBgm: s => s.selectedBgmName ? JSON.parse(JSON.stringify(s.bgm.Events[s.selectedBgmName])) : null,
@@ -72,6 +75,7 @@ const store = new Vuex.Store({
         subtitle: s => JSON.parse(JSON.stringify(s.subtitle)),
         title: s => JSON.parse(JSON.stringify(s.title)),
         bgmVolume: s => s.bgmVolume * s.overallVolume,
+        seVolume: s => s.seVolume * s.overallVolume,
         voiceVolume: s => s.voiceVolume * s.overallVolume,
         useSpecialLines: s => JSON.parse(JSON.stringify(s.useSpecialLines)),
         useSpecialLinesOnly: s => JSON.parse(JSON.stringify(s.useSpecialLinesOnly)),
@@ -86,6 +90,9 @@ const store = new Vuex.Store({
         },
         setBgm(s, bgm) {
           s.bgm = bgm;
+        },
+        setSe(s, se) {
+          s.se = se;
         },
         setTitle(s, title) {
           s.title = title;
@@ -117,6 +124,10 @@ const store = new Vuex.Store({
           utils.saveSetting("bgmVolume", bgmVolume);
           s.bgmVolume = bgmVolume;
         },
+        setSeVolume(s, seVolume) {
+          utils.saveSetting("seVolume", seVolume);
+          s.seVolume = seVolume;
+        },
         setVoiceVolume(s, voiceVolume) {
           utils.saveSetting("voiceVolume", voiceVolume);
           s.voiceVolume = voiceVolume;
@@ -142,6 +153,7 @@ const store = new Vuex.Store({
             "setSelectedSpriteName",
             "setOverallVolume",
             "setBgmVolume",
+            "setSeVolume",
             "setVoiceVolume",
             "setUseSpecialLines",
             "setUseSpecialLinesOnly",
@@ -153,6 +165,7 @@ const store = new Vuex.Store({
             "selectedSpriteName",
             "overallVolume",
             "bgmVolume",
+            "seVolume",
             "voiceVolume",
             "useSpecialLines",
             "useSpecialLinesOnly",
@@ -212,8 +225,22 @@ const store = new Vuex.Store({
             window.logError(`[populateData] Unable to read bgm database at path [${bgmPath}]`, e);
           }
 
+          //
+          // Populate the se data
+          //
+          let sePath = path.join(databasePath, "se.json");
+          let seDatabase = {};
+          try {
+            let seData = fs.readFileSync(sePath);
+            seDatabase = JSON.parse(seData);
+            s.commit('setSe', seDatabase);
+          } catch (e) {
+            window.logError(`[populateData] Unable to read se database at path [${sePath}]`, e);
+          }
+
           window.log('Ship data', database);
           window.log('Bgm data', bgmDatabase);
+          window.log('SE data', seDatabase);
         },
         invokeHourlyEvent: () => {
           let hourly = new CustomEvent('hourly', { detail: `${new Date().getHours()}:00` });

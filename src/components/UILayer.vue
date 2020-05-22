@@ -12,6 +12,7 @@
               </div>
               <div class="label right">{{ Math.floor(overallVolume * 100) }}%</div>
             </div>
+
             <div class="slider-setting">
               <div class="label">BGM</div>
               <div class="slider-holder center-div">
@@ -19,6 +20,15 @@
               </div>
               <div class="label right">{{ Math.floor(bgmVolume * 100) }}%</div>
             </div>
+
+            <div class="slider-setting">
+              <div class="label">SE</div>
+              <div class="slider-holder center-div">
+                <input type="range" min="0" max="100" v-model="seSlider" class="slider" />
+              </div>
+              <div class="label right">{{ Math.floor(seVolume * 100) }}%</div>
+            </div>
+
             <div class="slider-setting">
               <div class="label">Voice</div>
               <div class="slider-holder center-div">
@@ -71,7 +81,7 @@
           <!-- Buttons -->
           <h3>Misc</h3>
           <div class="d-flex">
-            <button class="standard-button info" @click="openMenu('bgm')">Change BGM</button>
+            <button class="standard-button info" @click="openBgm">Change BGM</button>
             <button
               class="standard-button"
               :class="{ 'info': hideButtons, 'danger': !hideButtons }"
@@ -84,20 +94,20 @@
         </div>
       </div>
 
-      <div v-if="menuOpen == 'ship-selector'" class="menu center-div">
-        <ShipAssigner @closeMenu="closeMenu()" />
+      <div v-if="menuOpen == 'composition'" class="menu center-div">
+        <ShipAssigner
+          @shipChanged="shipChanged()"
+          @closeMenu="closeMenu()"
+          @buttonPress="genericButtonPress()"
+        />
       </div>
 
       <div v-if="menuOpen == 'bgm'" class="menu center-div">
-        <BGM />
+        <BGM @buttonPress="genericButtonPress()" />
       </div>
 
       <div class="back-button-holder center-div">
-        <button
-          v-if="menuOpen == 'bgm'"
-          class="standard-button info"
-          @click="openMenu('settings')"
-        >Back</button>
+        <button v-if="menuOpen == 'bgm'" class="standard-button info" @click="openSettings">Back</button>
         <button
           v-else-if="Boolean(menuOpen)"
           class="standard-button info"
@@ -106,20 +116,51 @@
       </div>
     </div>
 
-    <div class="ship-selector-button clickable" @click="openMenu('ship-selector')">
+    <!-- Sortie button -->
+    <div class="sortie-button clickable" @click="sortieShip">
       <img
-        src="img/ship_select.png"
-        :width="shipSelectorWidth"
+        src="img/sortie_button.png"
+        :width="sortieButtonWidth"
         :class="{ 'set-transparent': hideButtons }"
       />
     </div>
+
+    <!-- Ship change button -->
+    <div
+      class="composition-button clickable"
+      :style="{ bottom: `${13 + Math.max(compositionButtonHeight * 1.5, compositionButtonMinHeight)}px` }"
+      @click="changeShip"
+    >
+      <img
+        src="img/composition_button.png"
+        :width="compositionButtonWidth"
+        :class="{ 'set-transparent': hideButtons }"
+      />
+    </div>
+
+    <!-- Repair button -->
+    <div
+      class="repair-button clickable"
+      :style="{ left: `${16 + Math.max(compositionButtonWidth * 1.5, compositionButtonMinWidth)}px` }"
+      @click="repairShip"
+    >
+      <img
+        src="img/repair_button.png"
+        :width="repairButtonWidth"
+        :class="{ 'set-transparent': hideButtons }"
+      />
+    </div>
+
+    <!-- Settings menu button -->
     <div
       class="settings-button clickable center-div"
       :class="{ 'set-transparent': hideButtons }"
-      @click="openMenu('settings')"
+      @click="openSettings"
     >
       <img src="img/settings.png" />
     </div>
+
+    <!-- Subtitles -->
     <div class="subtitles-container center-div">
       <div
         v-show="Boolean(subtitle)"
@@ -128,6 +169,7 @@
       >{{ subtitle }}</div>
     </div>
 
+    <!-- Top left title -->
     <div class="title-container">
       <div v-show="Boolean(title)" class="title">{{ title }}</div>
     </div>
@@ -148,7 +190,14 @@ export default {
   },
   data() {
     return {
-      shipSelectorWidth: null,
+      seAudio: new Audio(),
+
+      compositionButtonWidth: null,
+      compositionButtonHeight: null,
+      compositionButtonMinWidth: 90,
+      compositionButtonMinHeight: (90 / 249.0) * 198,
+      sortieButtonWidth: null,
+      repairButtonWidth: null,
       subtitleMaxWidth: null,
 
       uiWidth: null,
@@ -160,6 +209,7 @@ export default {
     ...mapGetters({
       subtitle: "subtitle",
       title: "title",
+      seDB: "SEs",
       useSpecialLines: "useSpecialLines",
       useSpecialLinesOnly: "useSpecialLinesOnly",
       useBonusLines: "useBonusLines"
@@ -167,6 +217,7 @@ export default {
     ...mapState({
       overallVolume: s => s.main.overallVolume,
       bgmVolume: s => s.main.bgmVolume,
+      seVolume: s => s.main.seVolume,
       voiceVolume: s => s.main.voiceVolume
     }),
     overallSlider: {
@@ -185,6 +236,14 @@ export default {
         this.$store.commit("setBgmVolume", value / 100.0);
       }
     },
+    seSlider: {
+      get() {
+        return this.seVolume * 100;
+      },
+      set(value) {
+        this.$store.commit("setSeVolume", value / 100.0);
+      }
+    },
     voiceSlider: {
       get() {
         return this.voiceVolume * 100;
@@ -194,9 +253,16 @@ export default {
       }
     }
   },
+  watch: {
+    seVolume() {
+      this.seAudio.volume = this.seVolume;
+    }
+  },
   async mounted() {
     this.resizeUI();
     window.addEventListener("resize", this.resizeUI);
+
+    this.seAudio.volume = this.seVolume;
   },
   beforeDestroy() {
     // Unregister the event listener before destroying this Vue instance
@@ -207,17 +273,40 @@ export default {
     calculateWidthFromHeight(naturalWidth, naturalHeight, currentHeight) {
       return (currentHeight * naturalWidth) / (naturalHeight * 1.0);
     },
-    closeMenu() {
+    closeMenu(suppressAudio) {
+      if (!suppressAudio) {
+        this.playSeAudio(this.seDB["Return"]);
+      }
       this.menuOpen = null;
+    },
+    genericButtonPress() {
+      this.playSeAudio(this.seDB["Accept/Cancel Quest"]);
+    },
+    shipChanged() {
+      this.playSeAudio(this.seDB["Assigning Ship"]);
+      this.closeMenu(true);
     },
     openMenu(name) {
       if (this.menuOpen != name) {
         this.menuOpen = name;
+        return true;
       } else {
         this.closeMenu();
+        return false;
+      }
+    },
+    openSettings() {
+      if (this.openMenu("settings")) {
+        this.playSeAudio(this.seDB["Return"]);
+      }
+    },
+    openBgm() {
+      if (this.openMenu("bgm")) {
+        this.playSeAudio(this.seDB["Accept/Cancel Quest"]);
       }
     },
     toggleHideButtons() {
+      this.playSeAudio(this.seDB["Accept/Cancel Quest"]);
       this.hideButtons = !this.hideButtons;
     },
     resizeUI() {
@@ -229,24 +318,56 @@ export default {
         );
         let widthToUse = Math.min(this.uiWidth, window.innerWidth);
         this.subtitleMaxWidth = widthToUse < 500 ? null : "60%";
-        this.shipSelectorWidth = widthToUse * 0.15;
+        this.compositionButtonWidth = widthToUse * 0.1;
+        this.compositionButtonHeight =
+          (this.compositionButtonWidth / 249.0) * 198;
+        this.sortieButtonWidth = widthToUse * 0.15;
+        this.repairButtonWidth = widthToUse * 0.1;
       } catch (e) {
         window.logError("[App] Error in resize. ", e);
       }
     },
+    changeShip() {
+      if (this.openMenu("composition")) {
+        this.playSeAudio(this.seDB["Select"]);
+      }
+    },
+    sortieShip() {
+      this.playSeAudio(this.seDB["Select"]);
+    },
+    repairShip() {
+      this.playSeAudio(this.seDB["Resupply"]);
+    },
     toggleBonusLines() {
       if (!this.useSpecialLinesOnly) {
+        this.playSeAudio(this.seDB["Accept/Cancel Quest"]);
         this.$store.commit("setUseBonusLines", !this.useBonusLines);
       }
     },
     toggleSpecialLines() {
+      this.playSeAudio(this.seDB["Accept/Cancel Quest"]);
       this.$store.commit("setUseSpecialLines", !this.useSpecialLines);
     },
     toggleUseSpecialLinesOnly() {
       // Only allow change if special lines is active
       if (this.useSpecialLines) {
+        this.playSeAudio(this.seDB["Accept/Cancel Quest"]);
         this.$store.commit("setUseSpecialLinesOnly", !this.useSpecialLinesOnly);
       }
+    },
+    playSeAudio(seFile) {
+      if (!seFile) {
+        return;
+      }
+
+      if (this.seAudio) {
+        this.seAudio.pause();
+      }
+
+      console.log("Changing SE to ", seFile);
+      this.seAudio.src = seFile;
+      this.seAudio.load();
+      this.seAudio.play();
     }
   }
 };
@@ -446,13 +567,33 @@ export default {
     }
   }
 
-  .ship-selector-button {
+  .sortie-button {
     position: absolute;
     bottom: 8px;
     left: 16px;
 
     img {
-      min-width: 80px;
+      min-width: 90px;
+    }
+  }
+
+  .composition-button {
+    position: absolute;
+    bottom: 8px;
+    left: 16px;
+
+    img {
+      min-width: 60px;
+    }
+  }
+
+  .repair-button {
+    position: absolute;
+    bottom: 8px;
+    left: 16px;
+
+    img {
+      min-width: 60px;
     }
   }
 

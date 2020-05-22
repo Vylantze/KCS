@@ -305,7 +305,7 @@ function seMake(publicDir, databaseDir) {
       }
     });
 
-    database[key] = entry;
+    database[key] = entry.File;
   });
 
   // Create a json file

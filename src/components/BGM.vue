@@ -62,6 +62,7 @@ export default {
       );
     },
     changeSelectedBgm(bgm) {
+      this.$emit("buttonPress");
       this.$store.commit("setSelectedBgm", bgm);
     }
   }

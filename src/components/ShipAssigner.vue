@@ -179,7 +179,7 @@ export default {
     changeShipAndSprite(sprite) {
       this.$store.commit("setSelectedShipName", this.currentShip);
       this.$store.commit("setSelectedSpriteName", sprite);
-      this.$emit("closeMenu");
+      this.$emit("shipChanged");
     },
     getSprite(filename) {
       if (!filename || !this.spritesDir) {
@@ -202,6 +202,7 @@ export default {
       if (!this.shipNames || this.shipNames.length <= 1) {
         return;
       }
+      this.$emit("buttonPress");
       let index = this.currentShipNameIndex;
       if (index == 0) {
         this.changeCurrentShip(this.shipNames[this.shipNames.length - 1]);
@@ -214,6 +215,7 @@ export default {
       if (!this.shipNames || this.shipNames.length <= 1) {
         return;
       }
+      this.$emit("buttonPress");
       let index = this.currentShipNameIndex;
       if (index == this.shipNames.length - 1) {
         this.changeCurrentShip(this.shipNames[0]);
