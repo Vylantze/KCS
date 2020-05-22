@@ -59,7 +59,7 @@
       "__dev": true,
       "__resources": true,
       "__ship": true,
-      "__roomBackground": true,
+      "__room": true,
       "__mobileMode": true,
       "__static": true
     },

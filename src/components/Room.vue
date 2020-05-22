@@ -51,7 +51,8 @@ export default {
     ...mapGetters({
       BGMs: "BGMs",
       selectedBgm: "selectedBgm",
-      bgmVolume: "bgmVolume"
+      bgmVolume: "bgmVolume",
+      shipName: "selectedShipName"
     }),
     canvas() {
       return document.getElementById("room-canvas");
@@ -75,6 +76,9 @@ export default {
     },
     bgmVolume() {
       this.bgmAudio.volume = this.bgmVolume;
+    },
+    shipName() {
+      this.drawBackground();
     }
   },
   async mounted() {
@@ -111,21 +115,53 @@ export default {
     async loadBackground() {
       this.roomWall = await this.loadImage("backgrounds/room_background.png");
       this.roomWindow = await this.loadImage("backgrounds/room_window.png");
-      this.roomObject = await this.loadImage("backgrounds/room_objects.png");
+      this.roomDesk = await this.loadImage("backgrounds/Mahogany_desk.png");
+      this.roomWallObject = await this.loadImage(
+        "backgrounds/Old_world_map.png"
+      );
+      this.roomWallObjectAkizuki = this.roomObjects = await this.loadImage(
+        "backgrounds/Spring_Type_B_sisters_panel.png"
+      );
     },
     // To get the correct ratio
     calculateWidthFromHeight(height) {
-      return (
-        (height * __roomBackground.naturalWidth) /
-        (__roomBackground.naturalHeight * 1.0)
-      );
+      return (height * __room.naturalWidth) / (__room.naturalHeight * 1.0);
     },
     drawBackground() {
       let height = window.innerHeight;
       let width = this.calculateWidthFromHeight(height);
       this.ctx.drawImage(this.roomWall, 0, 0, width, height);
       this.ctx.drawImage(this.roomWindow, 0, 0, width, height);
-      this.ctx.drawImage(this.roomObject, 0, 0, width, height);
+
+      // Draw wall object
+      let objectToDraw = this.getWallObjectToDraw();
+      this.ctx.drawImage(
+        objectToDraw,
+        0,
+        0,
+        (__room.wallObject.width / __room.naturalWidth) * width,
+        (__room.wallObject.height / __room.naturalHeight) * height
+      );
+
+      // Draw desk
+      let deskWidth = (__room.desk.width / __room.naturalWidth) * width;
+      let deskHeight = (__room.desk.height / __room.naturalHeight) * height;
+
+      this.ctx.drawImage(
+        this.roomDesk,
+        0,
+        height - deskHeight,
+        deskWidth,
+        deskHeight
+      );
+    },
+    getWallObjectToDraw() {
+      return this.shipName == "Akizuki" ||
+        this.shipName == "Teruzuki" ||
+        this.shipName == "Hatsuzuki" ||
+        this.shipName == "Suzutsuki"
+        ? this.roomWallObjectAkizuki
+        : this.roomWallObject;
     },
     playBgmAudio() {
       if (this.bgmAudio) {

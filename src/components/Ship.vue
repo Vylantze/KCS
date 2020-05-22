@@ -393,8 +393,8 @@ export default {
         this.clearCanvas();
         this.canvas.height = window.innerHeight;
         this.canvas.width = this.calculateWidthFromHeight(
-          __roomBackground.naturalWidth,
-          __roomBackground.naturalHeight,
+          __room.naturalWidth,
+          __room.naturalHeight,
           window.innerHeight
         );
         this.drawShip();

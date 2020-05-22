@@ -166,10 +166,7 @@ export default {
   methods: {
     // To get the correct ratio
     calculateWidthFromHeight(height) {
-      return (
-        (height * __roomBackground.naturalWidth) /
-        (__roomBackground.naturalHeight * 1.0)
-      );
+      return (height * __room.naturalWidth) / (__room.naturalHeight * 1.0);
     },
     recalculateWidth() {
       this.windowWidth = Math.min(

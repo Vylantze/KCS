@@ -12,9 +12,17 @@ Vue.use(Vuex);
 const isDevelopment = process.env.NODE_ENV !== 'production';
 
 window.__dev = isDevelopment;
-window.__roomBackground = {
+window.__room = {
   naturalWidth: 800,
-  naturalHeight: 480
+  naturalHeight: 480,
+  desk: {
+    width: 362,
+    height: 346,
+  },
+  wallObject: {
+    width: 144,
+    height: 178,
+  },
 };
 window.__mobileMode = {
   width: 600,
@@ -41,7 +49,7 @@ const store = new Vuex.Store({
         subtitle: null,
         selectedBgmName: "Main Menu",
         selectedShipName: "Yamato",
-        selectedSpriteName: "Yamato Summer",
+        selectedSpriteName: "Yamato",
         overallVolume: 1.0,
         bgmVolume: 1.0,
         voiceVolume: 1.0,
