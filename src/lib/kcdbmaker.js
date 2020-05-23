@@ -315,6 +315,70 @@ function seMake(publicDir, databaseDir) {
   console.log(`['se.json] created at [${databaseFile}]`);
 }
 
+function titleMake(publicDir, databaseDir) {
+  const dirpath = path.join(publicDir, "title");
+  if (!fs.existsSync(dirpath)) {
+    console.log(`[titleMake] Unable to find title folder at [${dirpath}]`);
+    return;
+  }
+
+  const titleDataPath = path.join(dirpath, "title.txt");
+  if (!fs.existsSync(titleDataPath)) {
+    console.log(`[titleMake] Unable to find title.txt at [${titleDataPath}]`);
+    return;
+  }
+
+  const titleFiles = fs.readdirSync(dirpath);
+  const data = fs.readFileSync(titleDataPath, "utf8");
+  const titleData = data.replace(/\r/g, '').split('\n');
+
+  // Set up the database. Just contain all data directly, keyed by the source
+  const database = {};
+
+  // Now get the bgm data
+  var headers = [];
+  var length = 0;
+  titleData.map((line, index) => {
+    let split = line.split('\t');
+    if (index == 0) {
+      length = split.length;
+      headers = split;
+      return;
+    }
+
+    if (split.length != length) {
+      console.log(`This line has something wrong [${line}]`);
+      return;
+    }
+
+    let key = split[0];
+    let entry = {};
+    headers.map((header, headerIndex) => {
+      entry[header] = split[headerIndex];
+
+      if (header == 'File') {
+        if (titleFiles.includes(entry[header])) {
+          entry[header] = `title/${entry[header]}`;
+        } else {
+          console.log(`Cannot find sound file for [${key}/${entry[header]}].`, entry);
+          entry[header] = null;
+        }
+      }
+    });
+
+    if (!database[key]) {
+      database[key] = [];
+    }
+    database[key].push(entry);
+  });
+
+  // Create a json file
+  let databaseFile = path.join(databaseDir, 'title.json');
+  fs.writeFileSync(databaseFile, JSON.stringify(database));
+
+  console.log(`['title.json] created at [${databaseFile}]`);
+}
+
 function runBgmMakeFromNode() {
   let databasePath = path.join(process.cwd(), 'public', 'database');
   if (!fs.existsSync(databasePath)) { fs.mkdirSync(databasePath, { recursive: true }); }
@@ -325,6 +389,12 @@ function runSEMakeFromNode() {
   let databasePath = path.join(process.cwd(), 'public', 'database');
   if (!fs.existsSync(databasePath)) { fs.mkdirSync(databasePath, { recursive: true }); }
   seMake(path.join(process.cwd(), 'public'), databasePath);
+}
+
+function runTitleMakeFromNode() {
+  let databasePath = path.join(process.cwd(), 'public', 'database');
+  if (!fs.existsSync(databasePath)) { fs.mkdirSync(databasePath, { recursive: true }); }
+  titleMake(path.join(process.cwd(), 'public'), databasePath);
 }
 
 function runKCMakeFromNode() {
@@ -357,6 +427,9 @@ function runAllKCMakeFromNode() {
       kcdbMake(ship, shipPath, databasePath);
     });
 
+    runBgmMakeFromNode();
+    runSEMakeFromNode();
+    runTitleMakeFromNode();
   } catch (e) {
     console.log("Unable to run maker from the following: ", process.argv, e);
     return;
@@ -367,8 +440,10 @@ module.exports = {
   runBgmMakeFromNode,
   runSEMakeFromNode,
   runKCMakeFromNode,
+  runTitleMakeFromNode,
   runAllKCMakeFromNode,
   bgmMake,
   kcdbMake,
-  seMake
+  seMake,
+  titleMake
 };

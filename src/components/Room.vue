@@ -98,6 +98,10 @@ export default {
   beforeDestroy() {
     // Unregister the event listener before destroying this Vue instance
     window.removeEventListener("resize", this.resizeCanvas);
+    if (this.bgmAudio) {
+      this.bgmAudio.pause();
+      this.bgmAudio = null;
+    }
   },
   methods: {
     clearCanvas() {

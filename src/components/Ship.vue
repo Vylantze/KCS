@@ -250,6 +250,10 @@ export default {
     // Unregister the event listener before destroying this Vue instance
     window.removeEventListener("resize", this.resizeCanvas);
     window.removeEventListener("hourly", this.onHourly);
+    if (this.audio) {
+      this.audio.pause();
+      this.audio = null;
+    }
   },
   methods: {
     clickOnShip(event) {

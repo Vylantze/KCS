@@ -117,47 +117,77 @@
     </div>
 
     <!-- Sortie button -->
-    <div class="sortie-button clickable" @click="sortieShip">
+    <div
+      class="sortie-button clickable"
+      :class="{ 'set-transparent': hideButtons }"
+      @mouseover="sortieButtonHover = true"
+      @mouseleave="sortieButtonHover = false"
+      @click="sortieShip"
+    >
+      <img v-show="!sortieButtonHover" src="img/sortie_button.png" :width="sortieButtonWidth" />
       <img
-        src="img/sortie_button.png"
+        v-show="sortieButtonHover"
+        src="img/sortie_button_highlight.png"
         :width="sortieButtonWidth"
-        :class="{ 'set-transparent': hideButtons }"
       />
     </div>
 
     <!-- Ship change button -->
     <div
       class="composition-button clickable"
+      :class="{ 'set-transparent': hideButtons }"
+      @mouseover="compositionButtonHover = true"
+      @mouseleave="compositionButtonHover = false"
       :style="{ bottom: `${13 + Math.max(compositionButtonHeight * 1.5, compositionButtonMinHeight)}px` }"
       @click="changeShip"
     >
       <img
+        v-show="!compositionButtonHover"
         src="img/composition_button.png"
         :width="compositionButtonWidth"
-        :class="{ 'set-transparent': hideButtons }"
       />
+      <div v-show="compositionButtonHover" class="fixed" style="pointer-events: none;">
+        <img src="img/highlight_button.png" :width="compositionButtonWidth" />
+        <img
+          src="img/composition_button_highlight.png"
+          class="absolute"
+          style="top: 0; left: 0;"
+          :width="compositionButtonWidth"
+        />
+      </div>
     </div>
 
     <!-- Repair button -->
     <div
       class="repair-button clickable"
+      :class="{ 'set-transparent': hideButtons }"
+      @mouseover="repairButtonHover = true"
+      @mouseleave="repairButtonHover = false"
       :style="{ left: `${16 + Math.max(compositionButtonWidth * 1.5, compositionButtonMinWidth)}px` }"
       @click="repairShip"
     >
-      <img
-        src="img/repair_button.png"
-        :width="repairButtonWidth"
-        :class="{ 'set-transparent': hideButtons }"
-      />
+      <img v-show="!repairButtonHover" src="img/docking_button.png" :width="repairButtonWidth" />
+      <div v-show="repairButtonHover" class="fixed" style="pointer-events: none;">
+        <img src="img/highlight_button.png" :width="compositionButtonWidth" />
+        <img
+          src="img/docking_button_highlight.png"
+          class="absolute"
+          style="top: 0; left: 0;"
+          :width="compositionButtonWidth"
+        />
+      </div>
     </div>
 
     <!-- Settings menu button -->
     <div
       class="settings-button clickable center-div"
       :class="{ 'set-transparent': hideButtons }"
+      @mouseover="settingsButtonHover = true"
+      @mouseleave="settingsButtonHover = false"
       @click="openSettings"
     >
-      <img src="img/settings.png" />
+      <img v-show="!settingsButtonHover" src="img/settings.png" />
+      <img v-show="settingsButtonHover" src="img/settings_highlighted.png" />
     </div>
 
     <!-- Subtitles -->
@@ -202,7 +232,12 @@ export default {
 
       uiWidth: null,
       menuOpen: null,
-      hideButtons: false
+      hideButtons: false,
+
+      compositionButtonHover: false,
+      sortieButtonHover: false,
+      repairButtonHover: false,
+      settingsButtonHover: false
     };
   },
   computed: {
@@ -600,13 +635,13 @@ export default {
     position: absolute;
     bottom: 10px;
     right: 10px;
-    background-color: #20a0a3;
-    border-radius: 50%;
-    height: 40px;
-    width: 40px;
+    //background-color: #20a0a3;
+    //border-radius: 50%;
+    //height: 40px;
+    //width: 40px;
 
     img {
-      width: 35px;
+      width: 40px;
     }
   }
 }

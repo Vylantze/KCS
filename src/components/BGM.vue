@@ -45,6 +45,13 @@ export default {
   async mounted() {
     this.recalculateWidth();
     window.addEventListener("resize", this.recalculateWidth);
+
+    try {
+      var elem = document.getElementsByClassName("list-item selected");
+      elem[0].scrollIntoView();
+    } catch (e) {
+      logError("[BGM] Unable to scroll to selected bgm element.", e);
+    }
   },
   beforeDestroy() {
     // Unregister the event listener before destroying this Vue instance
