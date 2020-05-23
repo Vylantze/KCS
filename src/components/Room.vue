@@ -100,6 +100,7 @@ export default {
     window.removeEventListener("resize", this.resizeCanvas);
     if (this.bgmAudio) {
       this.bgmAudio.pause();
+      this.bgmAudio.src = "";
       this.bgmAudio = null;
     }
   },

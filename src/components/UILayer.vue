@@ -80,7 +80,7 @@
 
           <!-- Buttons -->
           <h3>Misc</h3>
-          <div class="d-flex">
+          <div class="d-flex" style="margin-bottom: 20px;">
             <button class="standard-button info" @click="openBgm">Change BGM</button>
             <button
               class="standard-button"
@@ -220,6 +220,7 @@ export default {
   },
   data() {
     return {
+      audio: {},
       seAudio: new Audio(),
 
       compositionButtonWidth: null,
@@ -290,8 +291,13 @@ export default {
   },
   watch: {
     seVolume() {
-      this.seAudio.volume = this.seVolume;
+      Object.keys(this.audio).map(key => {
+        this.audio[key].volume = this.seVolume;
+      });
     }
+  },
+  created() {
+    this.createSeAudio();
   },
   async mounted() {
     this.resizeUI();
@@ -302,6 +308,13 @@ export default {
   beforeDestroy() {
     // Unregister the event listener before destroying this Vue instance
     window.removeEventListener("resize", this.resizeUI);
+
+    Object.keys(this.audio).map(key => {
+      this.audio[key].pause();
+      this.audio[key].src = "";
+      this.audio[key] = null;
+    });
+    this.audio = null;
   },
   methods: {
     // To get the correct ratio
@@ -310,15 +323,27 @@ export default {
     },
     closeMenu(suppressAudio) {
       if (!suppressAudio) {
-        this.playSeAudio(this.seDB["Return"]);
+        this.playSeAudio("Return");
       }
       this.menuOpen = null;
     },
+    createSeAudio() {
+      if (!this.seDB) {
+        logError("[UILayer][createSeAudio] seDB not found");
+        return;
+      }
+      Object.keys(this.seDB).map(key => {
+        this.audio[key] = new Audio();
+        this.audio[key].volume = this.seVolume;
+        this.audio[key].src = this.seDB[key];
+        this.audio[key].load();
+      });
+    },
     genericButtonPress() {
-      this.playSeAudio(this.seDB["Accept/Cancel Quest"]);
+      this.playSeAudio("Accept/Cancel Quest");
     },
     shipChanged() {
-      this.playSeAudio(this.seDB["Assigning Ship"]);
+      this.playSeAudio("Assigning Ship");
       this.closeMenu(true);
     },
     openMenu(name) {
@@ -332,16 +357,16 @@ export default {
     },
     openSettings() {
       if (this.openMenu("settings")) {
-        this.playSeAudio(this.seDB["Return"]);
+        this.playSeAudio("Return");
       }
     },
     openBgm() {
       if (this.openMenu("bgm")) {
-        this.playSeAudio(this.seDB["Accept/Cancel Quest"]);
+        this.playSeAudio("Accept/Cancel Quest");
       }
     },
     toggleHideButtons() {
-      this.playSeAudio(this.seDB["Accept/Cancel Quest"]);
+      this.playSeAudio("Accept/Cancel Quest");
       this.hideButtons = !this.hideButtons;
     },
     resizeUI() {
@@ -364,44 +389,47 @@ export default {
     },
     changeShip() {
       if (this.openMenu("composition")) {
-        this.playSeAudio(this.seDB["Select"]);
+        this.playSeAudio("Select");
       }
     },
     sortieShip() {
-      this.playSeAudio(this.seDB["Select"]);
+      this.playSeAudio("Select");
     },
     repairShip() {
-      this.playSeAudio(this.seDB["Resupply"]);
+      this.playSeAudio("Resupply");
     },
     toggleBonusLines() {
       if (!this.useSpecialLinesOnly) {
-        this.playSeAudio(this.seDB["Accept/Cancel Quest"]);
+        this.playSeAudio("Accept/Cancel Quest");
         this.$store.commit("setUseBonusLines", !this.useBonusLines);
       }
     },
     toggleSpecialLines() {
-      this.playSeAudio(this.seDB["Accept/Cancel Quest"]);
+      this.playSeAudio("Accept/Cancel Quest");
       this.$store.commit("setUseSpecialLines", !this.useSpecialLines);
     },
     toggleUseSpecialLinesOnly() {
       // Only allow change if special lines is active
       if (this.useSpecialLines) {
-        this.playSeAudio(this.seDB["Accept/Cancel Quest"]);
+        this.playSeAudio("Accept/Cancel Quest");
         this.$store.commit("setUseSpecialLinesOnly", !this.useSpecialLinesOnly);
       }
     },
-    playSeAudio(seFile) {
-      if (!seFile) {
+    playSeAudio(seName) {
+      if (!seName || !this.seDB || !this.seDB[seName]) {
         return;
       }
 
-      if (this.seAudio) {
-        this.seAudio.pause();
+      if (!this.audio[seName]) {
+        this.audio[seName] = new Audio();
+        this.audio[seName].volume = this.seVolume;
+        this.audio[seName].src = this.seDB[seName];
+        this.audio[seName].load();
+      } else {
+        this.audio[seName].pause();
+        this.audio[seName].currentTime = 0;
       }
-
-      this.seAudio.src = seFile;
-      this.seAudio.load();
-      this.seAudio.play();
+      this.audio[seName].play();
     }
   }
 };

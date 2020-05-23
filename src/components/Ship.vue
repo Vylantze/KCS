@@ -252,6 +252,7 @@ export default {
     window.removeEventListener("hourly", this.onHourly);
     if (this.audio) {
       this.audio.pause();
+      this.audio.src = "";
       this.audio = null;
     }
   },
