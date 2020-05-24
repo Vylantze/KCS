@@ -106,7 +106,7 @@ const store = new Vuex.Store({
         useSpecialLinesOnly: s => JSON.parse(JSON.stringify(s.useSpecialLinesOnly)),
         useBonusLines: s => JSON.parse(JSON.stringify(s.useBonusLines)),
 
-        disclaimer: () => "This app is free and for private use only. No shipgirls can be during the running of this app. They are just pretending."
+        disclaimer: () => "This app is free and for private use only. No shipgirls can be hurt during the running of this app. They are just pretending."
       },
       mutations: {
         setDatabase(s, database) {
