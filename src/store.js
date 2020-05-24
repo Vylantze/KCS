@@ -80,25 +80,33 @@ const store = new Vuex.Store({
       },
       getters: {
         database: s => JSON.parse(JSON.stringify(s.database)),
-        shipNames: s => JSON.parse(JSON.stringify(s.shipNames)),
         BGMs: s => JSON.parse(JSON.stringify(s.bgm.Events)),
         SEs: s => JSON.parse(JSON.stringify(s.se)),
         titleLines: s => JSON.parse(JSON.stringify(s.titleLines)),
+        shipNames: s => JSON.parse(JSON.stringify(s.shipNames)),
+
         combatMode: s => JSON.parse(JSON.stringify(s.combatMode)),
         loadingMode: s => JSON.parse(JSON.stringify(s.loadingMode)),
+
         bgmCategories: s => JSON.parse(JSON.stringify(s.bgm.Categories)),
         bgmCategoryOrder: s => JSON.parse(JSON.stringify(s.bgm.CategoryOrder)),
+
         selectedBgm: s => s.selectedBgmName ? JSON.parse(JSON.stringify(s.bgm.Events[s.selectedBgmName])) : null,
         selectedShipName: s => JSON.parse(JSON.stringify(s.selectedShipName)),
         selectedSpriteName: s => JSON.parse(JSON.stringify(s.selectedSpriteName)),
+
         subtitle: s => JSON.parse(JSON.stringify(s.subtitle)),
         title: s => JSON.parse(JSON.stringify(s.title)),
+
         bgmVolume: s => s.bgmVolume * s.overallVolume,
         seVolume: s => s.seVolume * s.overallVolume,
         voiceVolume: s => s.voiceVolume * s.overallVolume,
+
         useSpecialLines: s => JSON.parse(JSON.stringify(s.useSpecialLines)),
         useSpecialLinesOnly: s => JSON.parse(JSON.stringify(s.useSpecialLinesOnly)),
         useBonusLines: s => JSON.parse(JSON.stringify(s.useBonusLines)),
+
+        disclaimer: () => "This app is free and for private use only. No shipgirls can be during the running of this app. They are just pretending."
       },
       mutations: {
         setDatabase(s, database) {

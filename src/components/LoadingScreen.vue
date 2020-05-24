@@ -4,10 +4,7 @@
 
     <!-- Disclaimer -->
     <div class="disclaimer-container center-div">
-      <div
-        class="disclaimer"
-        :style="{ 'max-width': screenWidth }"
-      >This app is fanmade, free and for private use only.</div>
+      <div class="disclaimer" :style="{ 'max-width': screenWidth }">{{ disclaimer }}</div>
     </div>
   </div>
 </template>
@@ -28,7 +25,8 @@ export default {
   computed: {
     ...mapGetters({
       voiceVolume: "voiceVolume",
-      titleDB: "titleLines"
+      titleDB: "titleLines",
+      disclaimer: "disclaimer"
     })
   },
   created() {

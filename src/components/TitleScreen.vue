@@ -27,10 +27,7 @@
 
     <!-- Disclaimer -->
     <div class="disclaimer-container center-div">
-      <div
-        class="disclaimer"
-        :style="{ 'max-width': screenWidth }"
-      >This app is fanmade, free and for private use only.</div>
+      <div class="disclaimer" :style="{ 'max-width': screenWidth }">{{ disclaimer }}</div>
     </div>
 
     <div class="fade-out-screen" :class="{ 'show': showFadeScreen }" />
@@ -56,7 +53,8 @@ export default {
   computed: {
     ...mapGetters({
       voiceVolume: "voiceVolume",
-      titleDB: "titleLines"
+      titleDB: "titleLines",
+      disclaimer: "disclaimer"
     })
   },
   created() {
@@ -176,7 +174,7 @@ export default {
       font-size: 0.7em; //2vmin;
 
       padding: 5px;
-      color: rgba(0, 0, 0, 0.8);
+      color: rgba(0, 0, 0, 0.7);
     }
   }
 
