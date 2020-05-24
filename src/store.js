@@ -23,6 +23,10 @@ window.__room = {
     width: 144,
     height: 178,
   },
+  loading: {
+    width: 145,
+    height: 145,
+  }
 };
 window.__mobileMode = {
   width: 600,
@@ -43,15 +47,27 @@ const store = new Vuex.Store({
   modules: {
     main: {
       state: {
-        shipNames: [],
-        database: {},
-        bgm: {},
-        se: {},
+        // Databases
+        database: {}, // Main ship database
+        bgm: {}, // BGM database
+        se: {}, // SE database
+        titleLines: {}, // Title lines database
+        shipNames: [], // The list of ship names that are available
+
+        // Subtitle/overlays
         subtitle: null,
         title: null,
+
+        // Selected items
         selectedBgmName: "Main Menu",
         selectedShipName: "Yamato",
         selectedSpriteName: "Yamato",
+
+        // Overall states
+        combatMode: false, // Indicates whether the game is in combat mode
+        loadingMode: false, // Indicates whether the game is in combat mode
+
+        // Volume settings
         overallVolume: 1.0,
         bgmVolume: 1.0,
         seVolume: 1.0,
@@ -67,6 +83,9 @@ const store = new Vuex.Store({
         shipNames: s => JSON.parse(JSON.stringify(s.shipNames)),
         BGMs: s => JSON.parse(JSON.stringify(s.bgm.Events)),
         SEs: s => JSON.parse(JSON.stringify(s.se)),
+        titleLines: s => JSON.parse(JSON.stringify(s.titleLines)),
+        combatMode: s => JSON.parse(JSON.stringify(s.combatMode)),
+        loadingMode: s => JSON.parse(JSON.stringify(s.loadingMode)),
         bgmCategories: s => JSON.parse(JSON.stringify(s.bgm.Categories)),
         bgmCategoryOrder: s => JSON.parse(JSON.stringify(s.bgm.CategoryOrder)),
         selectedBgm: s => s.selectedBgmName ? JSON.parse(JSON.stringify(s.bgm.Events[s.selectedBgmName])) : null,
@@ -94,6 +113,17 @@ const store = new Vuex.Store({
         setSe(s, se) {
           s.se = se;
         },
+        // Set the ship lines for the title screen
+        setTitleLines(s, titleLines) {
+          s.titleLines = titleLines;
+        },
+        setCombatMode(s, combatMode) {
+          s.combatMode = combatMode;
+        },
+        setLoadingMode(s, loadingMode) {
+          s.loadingMode = loadingMode;
+        },
+        // Set the title subtitle
         setTitle(s, title) {
           s.title = title;
         },
@@ -238,9 +268,22 @@ const store = new Vuex.Store({
             window.logError(`[populateData] Unable to read se database at path [${sePath}]`, e);
           }
 
+          // Populate the title data
+          let titleLinesPath = path.join(databasePath, "title.json");
+          let titleLinesDatabase = {};
+          try {
+            let titleData = fs.readFileSync(titleLinesPath);
+            titleLinesDatabase = JSON.parse(titleData);
+            s.commit('setTitleLines', titleLinesDatabase);
+          } catch (e) {
+            window.logError(`[populateData] Unable to read title database at path [${titleLinesPath}]`, e);
+          }
+
+
           window.log('Ship data', database);
           window.log('Bgm data', bgmDatabase);
           window.log('SE data', seDatabase);
+          window.log('Title data', titleLinesDatabase);
         },
         invokeHourlyEvent: () => {
           let hourly = new CustomEvent('hourly', { detail: `${new Date().getHours()}:00` });

@@ -43,3 +43,9 @@ Kancolle	Title41.ogg	Myoukou
 Kancolle	Title42.ogg	Myoukou
 Kancolle	Title43.ogg	Fubuki
 Kancolle	Title44.ogg	Fubuki
+AkatsukiSuihesen	046.mp3	???
+Starting	085.mp3	???
+TTKEntering	018.mp3	???
+Kancolle	021.mp3	???
+TTKEntering	017.mp3	???
+Kancolle	065.mp3	???

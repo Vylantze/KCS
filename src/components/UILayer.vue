@@ -125,11 +125,21 @@
       @click="sortieShip"
     >
       <img v-show="!sortieButtonHover" src="img/sortie_button.png" :width="sortieButtonWidth" />
-      <img
-        v-show="sortieButtonHover"
-        src="img/sortie_button_highlight.png"
-        :width="sortieButtonWidth"
-      />
+      <div v-show="sortieButtonHover" class="fixed" style="pointer-events: none;">
+        <img src="img/sortie_button_highlighted_part1.png" :width="sortieButtonWidth" />
+        <img
+          src="img/sortie_button_highlighted_part2.png"
+          class="absolute highlight-button"
+          style="top: 0; left: 0;"
+          :width="sortieButtonWidth"
+        />
+        <img
+          src="img/sortie_button_highlighted_part3.png"
+          class="absolute"
+          style="top: 0; left: 0;"
+          :width="sortieButtonWidth"
+        />
+      </div>
     </div>
 
     <!-- Ship change button -->
@@ -147,7 +157,11 @@
         :width="compositionButtonWidth"
       />
       <div v-show="compositionButtonHover" class="fixed" style="pointer-events: none;">
-        <img src="img/highlight_button.png" :width="compositionButtonWidth" />
+        <img
+          src="img/highlight_button.png"
+          class="highlight-button"
+          :width="compositionButtonWidth"
+        />
         <img
           src="img/composition_button_highlight.png"
           class="absolute"
@@ -168,7 +182,11 @@
     >
       <img v-show="!repairButtonHover" src="img/docking_button.png" :width="repairButtonWidth" />
       <div v-show="repairButtonHover" class="fixed" style="pointer-events: none;">
-        <img src="img/highlight_button.png" :width="compositionButtonWidth" />
+        <img
+          src="img/highlight_button.png"
+          class="highlight-button"
+          :width="compositionButtonWidth"
+        />
         <img
           src="img/docking_button_highlight.png"
           class="absolute"
@@ -607,6 +625,21 @@ export default {
       background-color: rgba(0, 0, 0, 0.8);
       color: white;
     }
+  }
+
+  @keyframes spingear {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  .highlight-button {
+    animation-name: spingear;
+    animation-duration: 8s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
   }
 
   .subtitles-container {

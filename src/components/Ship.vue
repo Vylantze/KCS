@@ -52,7 +52,9 @@ export default {
 
       useSpecialLines: "useSpecialLines",
       useSpecialLinesOnly: "useSpecialLinesOnly",
-      useBonusLines: "useBonusLines"
+      useBonusLines: "useBonusLines",
+
+      loading: "loadingMode"
     }),
     shipName() {
       return this.selectedShipName;
@@ -234,6 +236,17 @@ export default {
     },
     voiceVolume() {
       this.audio.volume = this.voiceVolume;
+    },
+    loading(newData) {
+      if (!this.audio) {
+        return;
+      }
+      if (newData) {
+        // If true
+        this.audio.pause();
+      } else {
+        this.onAdd();
+      }
     }
   },
   async mounted() {
@@ -287,6 +300,7 @@ export default {
       if (this.audio) {
         this.audio.pause();
       }
+      if (this.loading) return;
 
       window.log(
         `Playing voice [${this.currentEvent.Model}/${this.currentEvent.Event}].`,
@@ -297,6 +311,7 @@ export default {
         let currentVoice = path.join(this.voicesDir, this.currentEvent.Voice);
         this.audio.src = currentVoice;
         this.audio.load();
+
         let promise = this.audio.play();
         promise
           .then(() => {

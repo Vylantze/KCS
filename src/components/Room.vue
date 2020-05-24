@@ -52,7 +52,8 @@ export default {
       BGMs: "BGMs",
       selectedBgm: "selectedBgm",
       bgmVolume: "bgmVolume",
-      shipName: "selectedShipName"
+      shipName: "selectedShipName",
+      loading: "loadingMode"
     }),
     canvas() {
       return document.getElementById("room-canvas");
@@ -70,7 +71,7 @@ export default {
   watch: {
     selectedBgm(newBgm, oldBgm) {
       log("SelectedBgm change", oldBgm, newBgm);
-      if (this.bgmAudio && this.selectedBgm) {
+      if (this.bgmAudio && this.selectedBgm && !this.loading) {
         this.playBgmAudio();
       }
     },
@@ -79,6 +80,17 @@ export default {
     },
     shipName() {
       this.drawBackground();
+    },
+    loading(newData) {
+      if (!this.bgmAudio) {
+        return;
+      }
+      if (newData) {
+        // If true
+        this.bgmAudio.pause();
+      } else {
+        this.bgmAudio.play();
+      }
     }
   },
   async mounted() {
@@ -176,15 +188,16 @@ export default {
       if (!this.selectedBgm) {
         return;
       }
-
-      window.log(
-        `Playing BGM [${this.selectedBgm.English}].`,
-        this.selectedBgm
-      );
       let currentFile = this.selectedBgm.File;
       this.bgmAudio.src = currentFile;
       this.bgmAudio.load();
-      this.bgmAudio.play();
+      if (!this.loading) {
+        window.log(
+          `Playing BGM [${this.selectedBgm.English}].`,
+          this.selectedBgm
+        );
+        this.bgmAudio.play();
+      }
     },
     resizeCanvas() {
       if (window.innerHeight == this.previousWindowInnerHeight) {
