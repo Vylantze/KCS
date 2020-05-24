@@ -4,7 +4,7 @@ module.exports = {
   pluginOptions: {
     electronBuilder: {
       builderOptions: {
-        productName: 'KCEmulator',
+        productName: 'KCSimulator',
         win: {
           icon: './public/favicon.ico'
         }

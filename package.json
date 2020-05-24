@@ -2,7 +2,7 @@
   "name": "kce",
   "version": "0.1.0",
   "author": "Arc",
-  "description": "KCEmulator",
+  "description": "KCSimulator",
   "private": true,
   "scripts": {
     "bgmmake": "node -e \"require('./src/lib/kcdbmaker').runBgmMakeFromNode()\"",
