@@ -1,8 +1,28 @@
 <template>
-  <div class="title-screen center-div" @click.stop="startGame">
+  <div class="title-screen center-div">
     <img src="img/bg_h.png" :width="screenWidth" />
     <div class="title-foreground center-div">
-      <img src="img/kancolle_logo.png" class="title-logo" :width="logoWidth" />
+      <div class="title-foreground-center-container">
+        <div>
+          <img src="img/kancolle_logo.png" class="title-logo" :width="logoWidth" />
+        </div>
+
+        <div
+          class="start-button clickable"
+          :style="{ 'margin-top': `${logoMargin}px` }"
+          @mouseover="startButtonHover = true"
+          @mouseleave="startButtonHover = false"
+          @click.stop="startGame"
+        >
+          <img v-if="startButtonClicked" src="img/game_start_button_clicked.png" :width="logoWidth" />
+          <img
+            v-else-if="startButtonHover"
+            src="img/game_start_button_highlighted.png"
+            :width="logoWidth"
+          />
+          <img v-else src="img/game_start_button.png" :width="logoWidth" />
+        </div>
+      </div>
     </div>
     <div class="fade-out-screen" :class="{ 'show': showFadeScreen }" />
   </div>
@@ -16,7 +36,11 @@ export default {
   data() {
     return {
       screenWidth: null,
+      logoWidth: null,
+      logoMargin: null,
       showFadeScreen: false,
+      startButtonHover: false,
+      startButtonClicked: false,
       kancolleStartLine: new Audio() // Line for clicking the start button
     };
   },
@@ -79,17 +103,19 @@ export default {
           window.innerHeight
         );
         this.logoWidth = 0.3 * this.screenWidth;
+        this.logoMargin = window.innerHeight * 0.05;
       } catch (e) {
         logError("[TitleScreen] Error in resize. ", e);
       }
     },
     startGame() {
-      if (this.showFadeScreen) {
+      if (this.showFadeScreen || this.startButtonClicked) {
         return;
       }
 
-      this.kancolleStartLine.play();
+      this.startButtonClicked = true;
       this.showFadeScreen = true;
+      this.kancolleStartLine.play();
       window.setTimeout(() => {
         window.dispatchEvent(new CustomEvent("startGame"));
       }, 2000);
@@ -110,13 +136,24 @@ export default {
     left: 0;
     height: 100%;
     width: 100%;
-  }
 
-  .title-logo {
-    min-width: 300px;
+    .title-foreground-center-container {
+      justify-content: center;
+    }
+
+    .start-button {
+      img {
+        min-width: 300px;
+      }
+    }
+
+    .title-logo {
+      min-width: 300px;
+    }
   }
 
   .fade-out-screen {
+    pointer-events: none;
     position: absolute;
     top: 0;
     left: 0;
