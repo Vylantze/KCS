@@ -24,6 +24,15 @@
         </div>
       </div>
     </div>
+
+    <!-- Disclaimer -->
+    <div class="disclaimer-container center-div">
+      <div
+        class="disclaimer"
+        :style="{ 'max-width': screenWidth }"
+      >This app is fanmade, free and for private use only.</div>
+    </div>
+
     <div class="fade-out-screen" :class="{ 'show': showFadeScreen }" />
   </div>
 </template>
@@ -149,6 +158,25 @@ export default {
 
     .title-logo {
       min-width: 300px;
+    }
+  }
+
+  .disclaimer-container {
+    pointer-events: none;
+    position: absolute;
+    bottom: 2%;
+    left: 0px;
+    max-width: 100%;
+    width: 100%;
+
+    .disclaimer {
+      pointer-events: none;
+      text-align: center;
+      margin: 0px 10px;
+      font-size: 0.7em; //2vmin;
+
+      padding: 5px;
+      color: rgba(0, 0, 0, 0.8);
     }
   }
 

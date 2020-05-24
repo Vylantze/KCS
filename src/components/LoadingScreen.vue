@@ -1,6 +1,14 @@
 <template>
   <div class="loading-screen center-div" :class="{ 'show': showFadeScreen }">
     <img src="img/loading.gif" :width="loaderWidth" />
+
+    <!-- Disclaimer -->
+    <div class="disclaimer-container center-div">
+      <div
+        class="disclaimer"
+        :style="{ 'max-width': screenWidth }"
+      >This app is fanmade, free and for private use only.</div>
+    </div>
   </div>
 </template>
 
@@ -68,13 +76,12 @@ export default {
     },
     calculateGifWidth() {
       try {
-        this.loaderWidth =
-          0.15 *
-          this.calculateWidthFromHeight(
-            __room.naturalWidth,
-            __room.naturalHeight,
-            window.innerHeight
-          );
+        this.screenWidth = this.calculateWidthFromHeight(
+          __room.naturalWidth,
+          __room.naturalHeight,
+          window.innerHeight
+        );
+        this.loaderWidth = this.screenWidth * 0.15;
       } catch (e) {
         logError("[TitleScreen] Error in resize. ", e);
       }
@@ -112,6 +119,25 @@ export default {
 
   &.show {
     opacity: 0;
+  }
+
+  .disclaimer-container {
+    pointer-events: none;
+    position: absolute;
+    bottom: 2%;
+    left: 0px;
+    max-width: 100%;
+    width: 100%;
+
+    .disclaimer {
+      pointer-events: none;
+      text-align: center;
+      margin: 0px 10px;
+      font-size: 0.7em; //2vmin;
+
+      padding: 5px;
+      color: rgba(255, 255, 255, 0.2);
+    }
   }
 }
 </style>
