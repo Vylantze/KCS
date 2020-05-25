@@ -258,11 +258,7 @@ export default {
       this.resetIdleTimeout();
     },
     useIdleLines() {
-      if (this.useIdleLines) {
-        this.resetIdleTimeout();
-      } else {
-        window.clearTimeout(this.idleTimeout);
-      }
+      this.resetIdleTimeout();
     }
   },
   async mounted() {
@@ -313,6 +309,10 @@ export default {
     resetIdleTimeout() {
       if (this.idleTimeout) {
         window.clearTimeout(this.idleTimeout);
+      }
+
+      if (!this.useIdleLines) {
+        return;
       }
 
       let now = new Date();
@@ -417,6 +417,10 @@ export default {
     onIdle() {
       if (this.idleTimeout) {
         window.clearTimeout(this.idleTimeout);
+      }
+
+      if (!this.useIdleLines) {
+        return;
       }
 
       if (this.audio) {
