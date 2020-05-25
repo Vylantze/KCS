@@ -42,6 +42,7 @@
                   <img
                     :src="getSprite(currentShipSprites[shipSpriteName].Card)"
                     :width="shipCardWidth"
+                    @load="scrollToSelectedElement"
                   />
                 </div>
               </div>
@@ -148,7 +149,7 @@ export default {
       return this.currentShipDB.Sprites[defaultBanner].Banner;
     }
   },
-  async mounted() {
+  created() {
     this.changeCurrentShip(this.selectedShipName);
     this.recalculateWidth();
 
@@ -172,6 +173,20 @@ export default {
       );
       this.numberOfShipsInRow = this.windowWidth < this.mobileWidth ? 1 : 3;
       this.generateSplitArray(this.currentShipSpritesKeys);
+    },
+    scrollToSelectedElement() {
+      try {
+        var elem = document.getElementsByClassName("card selected");
+        if (!elem || elem.length == 0) {
+          return;
+        }
+        elem[0].scrollIntoView();
+      } catch (e) {
+        logError(
+          "[ShipAssigner] Unable to scroll to selected ship sprite's element.",
+          e
+        );
+      }
     },
     changeShipAndSprite(sprite) {
       this.$store.commit("setSelectedShipName", this.currentShip);

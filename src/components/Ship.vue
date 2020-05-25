@@ -310,7 +310,7 @@ export default {
       log(
         `resetIdleTimeout wait ${
           this.idleLineWait
-        } min from [${now.getHours()}:${now.getMinutes()}]`
+        } min from [${now.getHours()}:${now.getMinutes()}:${now.getSeconds()}]`
       );
 
       this.idleTimeout = window.setTimeout(
