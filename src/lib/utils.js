@@ -26,7 +26,8 @@ function saveSetting(key, value) {
 function loadSetting(key) {
   try {
     return JSON.parse(localStorage.getItem(key));
-  } catch {
+  } catch (e) {
+    logError("[saveSetting] Error", e);
     return null;
   }
 }

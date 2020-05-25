@@ -125,7 +125,14 @@
             <div class="slider-setting" :class="{ disabled: useSpecialLinesOnly || !useIdleLines }">
               <div class="label">Idle</div>
               <div class="slider-holder center-div">
-                <input type="range" min="1" max="12" v-model="idleLineWaitSlider" class="slider" />
+                <input
+                  type="range"
+                  min="1"
+                  max="12"
+                  v-model="idleLineWaitSlider"
+                  class="slider"
+                  :class="{ disabled: useSpecialLinesOnly || !useIdleLines }"
+                />
               </div>
               <div class="label right" style="margin-left: 10px;">{{ Math.floor(idleLineWait) }} min</div>
             </div>

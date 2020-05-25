@@ -69,8 +69,8 @@ const store = new Vuex.Store({
 
         // Volume settings
         overallVolume: 1.0,
-        bgmVolume: 1.0,
-        seVolume: 1.0,
+        bgmVolume: 0.5,
+        seVolume: 0.2,
         voiceVolume: 1.0,
 
         overallVolumeMute: false,
@@ -267,11 +267,16 @@ const store = new Vuex.Store({
             "useBonusLines",
             "useAllModelLines"
           ];
+
+          if (setters.length != variableName.length) {
+            logError(`[store] Setter length (${setters.length}) and variableName length (${variableName.length}) are different.`);
+          }
+
           let length = setters.length;
 
           for (let i = 0; i < length; i++) {
             let loadedData = utils.loadSetting(variableName[i]);
-            if (loadedData) {
+            if (loadedData != null) {
               log(`Setting [${variableName[i]}]:`, loadedData);
               s.commit(setters[i], loadedData);
             }
