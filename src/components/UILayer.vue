@@ -65,7 +65,7 @@
             </div>
 
             <div class="ship-setting" :class="{ disabled: useSpecialLinesOnly }">
-              <div class="label">Use equipment changing and resupply lines as tap lines.</div>
+              <div class="label">Use miscellaneous as bonus lines.</div>
               <div>
                 <div
                   class="checkbox"
