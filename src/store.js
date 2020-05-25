@@ -73,7 +73,13 @@ const store = new Vuex.Store({
         seVolume: 1.0,
         voiceVolume: 1.0,
 
+        overallVolumeMute: false,
+        bgmVolumeMute: false,
+        seVolumeMute: false,
+        voiceVolumeMute: false,
+
         // Ship settings
+        idleLineWait: 5,
         useSpecialLines: false, // Whether the special occasion lines can be heard
         useSpecialLinesOnly: false, // Whether only the special occasion lines will be heard
         useBonusLines: false, // Whether only the TapBonus and IdleBonus lines will be heard
@@ -98,9 +104,11 @@ const store = new Vuex.Store({
         subtitle: s => JSON.parse(JSON.stringify(s.subtitle)),
         title: s => JSON.parse(JSON.stringify(s.title)),
 
-        bgmVolume: s => s.bgmVolume * s.overallVolume,
-        seVolume: s => s.seVolume * s.overallVolume,
-        voiceVolume: s => s.voiceVolume * s.overallVolume,
+        bgmVolume: s => s.overallVolumeMute || s.bgmVolumeMute ? 0 : s.bgmVolume * s.overallVolume,
+        seVolume: s => s.overallVolumeMute || s.seVolumeMute ? 0 : s.seVolume * s.overallVolume,
+        voiceVolume: s => s.overallVolumeMute || s.voiceVolumeMute ? 0 : s.voiceVolume * s.overallVolume,
+
+        idleLineWait: s => JSON.parse(JSON.stringify(s.idleLineWait)),
 
         useSpecialLines: s => JSON.parse(JSON.stringify(s.useSpecialLines)),
         useSpecialLinesOnly: s => JSON.parse(JSON.stringify(s.useSpecialLinesOnly)),
@@ -109,6 +117,7 @@ const store = new Vuex.Store({
         disclaimer: () => "This app is free and for private use only. No shipgirls can be hurt during the running of this app. They are just pretending."
       },
       mutations: {
+        // set databases
         setDatabase(s, database) {
           s.database = database;
         },
@@ -154,6 +163,7 @@ const store = new Vuex.Store({
           utils.saveSetting("selectedSpriteName", selectedSpriteName);
           s.selectedSpriteName = selectedSpriteName;
         },
+        // Set volume
         setOverallVolume(s, overallVolume) {
           utils.saveSetting("overallVolume", overallVolume);
           s.overallVolume = overallVolume;
@@ -169,6 +179,28 @@ const store = new Vuex.Store({
         setVoiceVolume(s, voiceVolume) {
           utils.saveSetting("voiceVolume", voiceVolume);
           s.voiceVolume = voiceVolume;
+        },
+        // Set mute
+        setOverallVolumeMute(s, overallVolumeMute) {
+          utils.saveSetting("overallVolumeMute", overallVolumeMute);
+          s.overallVolumeMute = overallVolumeMute;
+        },
+        setBgmVolumeMute(s, bgmVolumeMute) {
+          utils.saveSetting("bgmVolumeMute", bgmVolumeMute);
+          s.bgmVolumeMute = bgmVolumeMute;
+        },
+        setSeVolumeMute(s, seVolumeMute) {
+          utils.saveSetting("seVolumeMute", seVolumeMute);
+          s.seVolumeMute = seVolumeMute;
+        },
+        setVoiceVolumeMute(s, voiceVolumeMute) {
+          utils.saveSetting("voiceVolumeMute", voiceVolumeMute);
+          s.voiceVolumeMute = voiceVolumeMute;
+        },
+        // Set Ship settings
+        setIdleLineWait(s, idleLineWait) {
+          utils.saveSetting("idleLineWait", idleLineWait);
+          s.idleLineWait = idleLineWait;
         },
         setUseSpecialLines(s, useSpecialLines) {
           utils.saveSetting("useSpecialLines", useSpecialLines);
@@ -193,6 +225,11 @@ const store = new Vuex.Store({
             "setBgmVolume",
             "setSeVolume",
             "setVoiceVolume",
+            "setOverallVolumeMute",
+            "setBgmVolumeMute",
+            "setSeVolumeMute",
+            "setVoiceVolumeMute",
+            "setIdleLineWait",
             "setUseSpecialLines",
             "setUseSpecialLinesOnly",
             "setUseBonusLines"
@@ -205,6 +242,11 @@ const store = new Vuex.Store({
             "bgmVolume",
             "seVolume",
             "voiceVolume",
+            "overallVolumeMute",
+            "bgmVolumeMute",
+            "seVolumeMute",
+            "voiceVolumeMute",
+            "idleLineWait",
             "useSpecialLines",
             "useSpecialLinesOnly",
             "useBonusLines"

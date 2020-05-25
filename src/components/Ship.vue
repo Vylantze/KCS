@@ -40,6 +40,8 @@ export default {
       damaged: false,
       currentEvent: null,
 
+      idleTimeout: null,
+
       shipDB: null,
       ctx: null // Canvas context
     };
@@ -53,6 +55,8 @@ export default {
       useSpecialLines: "useSpecialLines",
       useSpecialLinesOnly: "useSpecialLinesOnly",
       useBonusLines: "useBonusLines",
+
+      idleLineWait: "idleLineWait",
 
       loading: "loadingMode"
     }),
@@ -247,6 +251,9 @@ export default {
       } else {
         this.onAdd();
       }
+    },
+    idleLineWait() {
+      this.resetIdleTimeout();
     }
   },
   async mounted() {
@@ -263,6 +270,9 @@ export default {
     // Unregister the event listener before destroying this Vue instance
     window.removeEventListener("resize", this.resizeCanvas);
     window.removeEventListener("hourly", this.onHourly);
+    if (this.idleTimeout) {
+      window.clearTimeout(this.idleTimeout);
+    }
     if (this.audio) {
       this.audio.pause();
       this.audio.src = "";
@@ -291,6 +301,23 @@ export default {
       // If success, allow
       this.onTap();
     },
+    resetIdleTimeout() {
+      if (this.idleTimeout) {
+        window.clearTimeout(this.idleTimeout);
+      }
+
+      let now = new Date();
+      log(
+        `resetIdleTimeout wait ${
+          this.idleLineWait
+        } min from [${now.getHours()}:${now.getMinutes()}]`
+      );
+
+      this.idleTimeout = window.setTimeout(
+        this.onIdle,
+        this.idleLineWait * 60 * 1000
+      );
+    },
     audioHasEnded() {
       this.$store.commit("setTitle", null);
       this.$store.commit("setSubtitle", null);
@@ -315,6 +342,7 @@ export default {
         let promise = this.audio.play();
         promise
           .then(() => {
+            this.resetIdleTimeout();
             this.$store.commit("setSubtitle", this.currentEvent.English);
             if (
               this.currentEvent.Command == "Special" ||
@@ -332,33 +360,43 @@ export default {
         logError("[Ship][playCurrentEvent] Error.", e);
       }
     },
-    onAdd() {
-      if (this.shipTapEventNames.length == 0) {
+    selectAndPlayEvent(eventType, eventNames) {
+      if (!eventNames || eventNames.length == 0) {
         return;
       }
       try {
-        let list = this.getEventDataFromEventNames(
-          this.shipSetSecretaryEventNames
-        );
+        let list = this.getEventDataFromEventNames(eventNames);
         if (!list || list.length == 0) return;
         this.currentEvent = list[Math.floor(Math.random() * list.length)];
         this.playCurrentEvent();
       } catch (e) {
-        window.logError("[Ship] Error in 'onAdd'.", e);
+        window.logError(`[Ship] Error for '${eventType}'.`, e);
       }
     },
+    onIdle() {
+      if (this.idleTimeout) {
+        window.clearTimeout(this.idleTimeout);
+      }
+
+      if (this.audio) {
+        if (!this.audio.paused && !this.audio.ended) {
+          // Wait for the audio to finish playing
+
+          this.idleTimeout = window.setTimeout(() => {
+            // Wait another 3 seconds as padding.
+            this.onIdle();
+          }, 3000);
+          return;
+        }
+      }
+
+      this.selectAndPlayEvent("onIdle", this.shipIdleEventNames);
+    },
+    onAdd() {
+      this.selectAndPlayEvent("onAdd", this.shipSetSecretaryEventNames);
+    },
     onTap() {
-      if (this.shipTapEventNames.length == 0) {
-        return;
-      }
-      try {
-        let list = this.getEventDataFromEventNames(this.shipTapEventNames);
-        if (!list || list.length == 0) return;
-        this.currentEvent = list[Math.floor(Math.random() * list.length)];
-        this.playCurrentEvent();
-      } catch (e) {
-        window.logError("[Ship] Error in 'onTap'.", e);
-      }
+      this.selectAndPlayEvent("onTap", this.shipTapEventNames);
     },
     onHourly(hourlyEvent) {
       if (this.audio) {
@@ -366,9 +404,7 @@ export default {
           // Wait for the audio to finish playing
           window.setTimeout(() => {
             // Wait another 3 seconds as padding.
-            window.setTimeout(() => {
-              this.onHourly(hourlyEvent);
-            });
+            this.onHourly(hourlyEvent);
           }, 3000);
           return;
         }

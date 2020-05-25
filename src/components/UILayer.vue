@@ -10,6 +10,10 @@
               <div class="slider-holder center-div">
                 <input type="range" min="0" max="100" v-model="overallSlider" class="slider" />
               </div>
+              <div class="volume-icon" @click.stop="toggleMuteOverall">
+                <img v-show="!overallVolumeMute" src="img/volume.png" />
+                <img v-show="overallVolumeMute" src="img/volume_mute.png" />
+              </div>
               <div class="label right">{{ Math.floor(overallVolume * 100) }}%</div>
             </div>
 
@@ -17,6 +21,10 @@
               <div class="label">BGM</div>
               <div class="slider-holder center-div">
                 <input type="range" min="0" max="100" v-model="bgmSlider" class="slider" />
+              </div>
+              <div class="volume-icon" @click.stop="toggleMuteBgm">
+                <img v-show="!bgmVolumeMute" src="img/volume.png" />
+                <img v-show="bgmVolumeMute" src="img/volume_mute.png" />
               </div>
               <div class="label right">{{ Math.floor(bgmVolume * 100) }}%</div>
             </div>
@@ -26,6 +34,10 @@
               <div class="slider-holder center-div">
                 <input type="range" min="0" max="100" v-model="seSlider" class="slider" />
               </div>
+              <div class="volume-icon" @click.stop="toggleMuteSe">
+                <img v-show="!seVolumeMute" src="img/volume.png" />
+                <img v-show="seVolumeMute" src="img/volume_mute.png" />
+              </div>
               <div class="label right">{{ Math.floor(seVolume * 100) }}%</div>
             </div>
 
@@ -34,12 +46,24 @@
               <div class="slider-holder center-div">
                 <input type="range" min="0" max="100" v-model="voiceSlider" class="slider" />
               </div>
+              <div class="volume-icon" @click.stop="toggleMuteVoice">
+                <img v-show="!voiceVolumeMute" src="img/volume.png" />
+                <img v-show="voiceVolumeMute" src="img/volume_mute.png" />
+              </div>
               <div class="label right">{{ Math.floor(voiceVolume * 100) }}%</div>
             </div>
           </div>
 
           <h3>Ship</h3>
           <div>
+            <div class="slider-setting">
+              <div class="label">Idle</div>
+              <div class="slider-holder center-div">
+                <input type="range" min="1" max="12" v-model="idleLineWaitSlider" class="slider" />
+              </div>
+              <div class="label right" style="margin-left: 10px;">{{ Math.floor(idleLineWait) }} min</div>
+            </div>
+
             <div class="ship-setting" :class="{ disabled: useSpecialLinesOnly }">
               <div class="label">Use equipment changing and resupply lines as tap lines.</div>
               <div>
@@ -264,15 +288,25 @@ export default {
       subtitle: "subtitle",
       title: "title",
       seDB: "SEs",
+
       useSpecialLines: "useSpecialLines",
       useSpecialLinesOnly: "useSpecialLinesOnly",
-      useBonusLines: "useBonusLines"
+      useBonusLines: "useBonusLines",
+
+      finalSeVolume: "seVolume"
     }),
     ...mapState({
       overallVolume: s => s.main.overallVolume,
       bgmVolume: s => s.main.bgmVolume,
       seVolume: s => s.main.seVolume,
-      voiceVolume: s => s.main.voiceVolume
+      voiceVolume: s => s.main.voiceVolume,
+
+      overallVolumeMute: s => s.main.overallVolumeMute,
+      bgmVolumeMute: s => s.main.bgmVolumeMute,
+      seVolumeMute: s => s.main.seVolumeMute,
+      voiceVolumeMute: s => s.main.voiceVolumeMute,
+
+      idleLineWait: s => s.main.idleLineWait
     }),
     overallSlider: {
       get() {
@@ -305,12 +339,20 @@ export default {
       set(value) {
         this.$store.commit("setVoiceVolume", value / 100.0);
       }
+    },
+    idleLineWaitSlider: {
+      get() {
+        return this.idleLineWait / 5;
+      },
+      set(value) {
+        this.$store.commit("setIdleLineWait", value * 5);
+      }
     }
   },
   watch: {
-    seVolume() {
+    finalSeVolume() {
       Object.keys(this.audio).map(key => {
-        this.audio[key].volume = this.seVolume;
+        this.audio[key].volume = this.finalSeVolume;
       });
     }
   },
@@ -382,6 +424,22 @@ export default {
       if (this.openMenu("bgm")) {
         this.playSeAudio("Accept/Cancel Quest");
       }
+    },
+    toggleMuteOverall() {
+      this.$store.commit("setOverallVolumeMute", !this.overallVolumeMute);
+      this.playSeAudio("Unlocking Ship/Equipment");
+    },
+    toggleMuteBgm() {
+      this.$store.commit("setBgmVolumeMute", !this.bgmVolumeMute);
+      this.playSeAudio("Unlocking Ship/Equipment");
+    },
+    toggleMuteSe() {
+      this.$store.commit("setSeVolumeMute", !this.seVolumeMute);
+      this.playSeAudio("Unlocking Ship/Equipment");
+    },
+    toggleMuteVoice() {
+      this.$store.commit("setVoiceVolumeMute", !this.voiceVolumeMute);
+      this.playSeAudio("Unlocking Ship/Equipment");
     },
     toggleHideButtons() {
       this.playSeAudio("Accept/Cancel Quest");
@@ -476,8 +534,19 @@ export default {
       width: 60px;
 
       &.right {
-        width: 45px;
+        width: 50px;
         justify-content: flex-end;
+      }
+    }
+
+    .volume-icon {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      margin-right: -5px;
+
+      img {
+        height: 20px;
       }
     }
   }
@@ -627,16 +696,8 @@ export default {
     }
   }
 
-  @keyframes spingear {
-    0% {
-      transform: rotate(0deg);
-    }
-    100% {
-      transform: rotate(360deg);
-    }
-  }
   .highlight-button {
-    animation-name: spingear;
+    animation-name: spin360;
     animation-duration: 8s;
     animation-timing-function: linear;
     animation-iteration-count: infinite;

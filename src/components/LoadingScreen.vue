@@ -37,13 +37,10 @@ export default {
       return;
     }
 
-    let loadList = this.titleDB.AkatsukiSuihesen.concat(
-      this.titleDB.TTKEntering,
-      this.titleDB.Yoroshiku
-    );
-
     // Set the loadLine
-    this.loadLine.src = this.getRandomEventFileNameFromList(loadList);
+    this.loadLine.src = this.getRandomEventFileNameFromList(
+      this.titleDB.TitleCall02
+    );
     this.loadLine.load();
     this.loadLine.onended = () => {
       this.loadLine.src = "";

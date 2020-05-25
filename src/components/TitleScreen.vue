@@ -68,7 +68,7 @@ export default {
 
     // Set the startLine
     this.kancolleStartLine.src = this.getRandomEventFileNameFromList(
-      this.titleDB.Starting.concat(this.titleDB.Kancolle)
+      this.titleDB.TitleCall01
     );
     if (this.kancolleStartLine.src) {
       this.kancolleStartLine.load();

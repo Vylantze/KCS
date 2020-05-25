@@ -1,51 +1,51 @@
-Event	File	Ship
-Kancolle	Title01.ogg	Akagi
-Starting	Title02.ogg	Mogami
-Yoroshiku	Title03.ogg	Myoukou
-Yoroshiku	Title04.ogg	Fusou
-Kancolle	Title05.ogg	Fusou
-Starting	Title06.ogg	Ikazuchi
-Yoroshiku	Title07.ogg	Mutsuki
-Kancolle	Title08.ogg	Mutsuki
-Starting	Title09.ogg	Chiyoda
-Yoroshiku	Title10.ogg	Tatsuta
-Kancolle	Title11.ogg	Mutsuki
-Starting	Title12.ogg	Chiyoda
-Kancolle	Title13.ogg	Kongou
-Starting	Title14.ogg	Nagato
-Yoroshiku	Title15.ogg	Fubuki
-Kancolle	Title16.ogg	Haruna
-Starting	Title17.ogg	Nagato
-TTKEntering	Title18.ogg	Nagato
-Kancolle	Title19.ogg	Tatsuta
-AkatsukiSuihesen	Title20.ogg	Ryuujou
-TTKEntering	Title21.ogg	Mogami
-Kancolle	Title22.ogg	Tatsuta
-AkatsukiSuihesen	Title23.ogg	Haruna
-TTKEntering	Title24.ogg	Chiyoda
-Kancolle	Title25.ogg	Tatsuta
-AkatsukiSuihesen	Title26.ogg	Tatsuta
-TTKEntering	Title27.ogg	Sazanami
-Kancolle	Title28.ogg	Ooi
-AkatsukiSuihesen	Title29.ogg	Ooi
-TTKEntering	Title30.ogg	Hatsushimo
-Kancolle	Title31.ogg	Ooi
-Starting	Title32.ogg	Sazanami
-TTKEntering	Title33.ogg	Yuudachi
-Kancolle	Title34.ogg	Nagato
-Starting	Title35.ogg	Hatsushimo
-Kancolle	Title36.ogg	Nagato
-Starting	Title37.ogg	Yamato
-Kancolle	Title38.ogg	Nagato
-Kancolle	Title39.ogg	Mogami
-Kancolle	Title40.ogg	Mogami
-Kancolle	Title41.ogg	Myoukou
-Kancolle	Title42.ogg	Myoukou
-Kancolle	Title43.ogg	Fubuki
-Kancolle	Title44.ogg	Fubuki
-AkatsukiSuihesen	046.mp3	???
-Starting	085.mp3	???
-TTKEntering	018.mp3	???
-Kancolle	021.mp3	???
-TTKEntering	017.mp3	???
-Kancolle	065.mp3	???
+Event	File	Ship	Note
+TitleCall01	Title01.ogg	Akagi	Kancolle
+TitleCall01	Title02.ogg	Mogami	Starting
+TitleCall02	Title03.ogg	Myoukou	Yoroshiku
+TitleCall02	Title04.ogg	Fusou	Yoroshiku
+TitleCall01	Title05.ogg	Fusou	Kancolle
+TitleCall01	Title06.ogg	Ikazuchi	Starting
+TitleCall02	Title07.ogg	Mutsuki	Yoroshiku
+TitleCall01	Title08.ogg	Mutsuki	Kancolle
+TitleCall01	Title09.ogg	Chiyoda	Starting
+TitleCall02	Title10.ogg	Tatsuta	Yoroshiku
+TitleCall01	Title11.ogg	Mutsuki	Kancolle
+TitleCall01	Title12.ogg	Chiyoda	Starting
+TitleCall01	Title13.ogg	Kongou	Kancolle
+TitleCall01	Title14.ogg	Nagato	Starting
+TitleCall02	Title15.ogg	Fubuki	Yoroshiku
+TitleCall01	Title16.ogg	Haruna	Kancolle
+TitleCall01	Title17.ogg	Nagato	Starting
+TitleCall02	Title18.ogg	Nagato	TTKEntering
+TitleCall01	Title19.ogg	Tatsuta	Kancolle
+TitleCall02	Title20.ogg	Ryuujou	AkatsukiSuihesen
+TitleCall02	Title21.ogg	Mogami	TTKEntering
+TitleCall01	Title22.ogg	Tatsuta	Kancolle
+TitleCall02	Title23.ogg	Haruna	AkatsukiSuihesen
+TitleCall02	Title24.ogg	Chiyoda	TTKEntering
+TitleCall01	Title25.ogg	Tatsuta	Kancolle
+TitleCall02	Title26.ogg	Tatsuta	AkatsukiSuihesen
+TitleCall02	Title27.ogg	Sazanami	TTKEntering
+TitleCall01	Title28.ogg	Ooi	Kancolle
+TitleCall02	Title29.ogg	Ooi	AkatsukiSuihesen
+TitleCall02	Title30.ogg	Hatsushimo	TTKEntering
+TitleCall01	Title31.ogg	Ooi	Kancolle
+TitleCall01	Title32.ogg	Sazanami	Starting
+TitleCall02	Title33.ogg	Yuudachi	TTKEntering
+TitleCall01	Title34.ogg	Nagato	Kancolle
+TitleCall01	Title35.ogg	Hatsushimo	Starting
+TitleCall01	Title36.ogg	Nagato	Kancolle
+TitleCall01	Title37.ogg	Yamato	Starting
+TitleCall01	Title38.ogg	Nagato	Kancolle
+TitleCall01	Title39.ogg	Mogami	Kancolle
+TitleCall01	Title40.ogg	Mogami	Kancolle
+TitleCall01	Title41.ogg	Myoukou	Kancolle
+TitleCall01	Title42.ogg	Myoukou	Kancolle
+TitleCall01	Title43.ogg	Fubuki	Kancolle
+TitleCall01	Title44.ogg	Fubuki	Kancolle
+TitleCall02	046.mp3	???	AkatsukiSuihesen
+TitleCall01	085.mp3	???	Starting
+TitleCall02	018.mp3	???	TTKEntering
+TitleCall01	021.mp3	???	Kancolle
+TitleCall02	017.mp3	???	TTKEntering
+TitleCall01	065.mp3	???	Kancolle
