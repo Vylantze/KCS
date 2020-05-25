@@ -56,18 +56,25 @@
 
           <h3>Ship</h3>
           <div>
-            <div class="slider-setting">
-              <div class="label">Idle</div>
-              <div class="slider-holder center-div">
-                <input type="range" min="1" max="12" v-model="idleLineWaitSlider" class="slider" />
+            <div class="ship-setting">
+              <div
+                class="label"
+              >Enable any line from all models to be used regardless of current ship model.</div>
+              <div>
+                <div
+                  class="checkbox"
+                  :class="{ unchecked: !useAllModelLines }"
+                  @click="toggleAllModelLines"
+                >
+                  <span>✅</span>
+                </div>
               </div>
-              <div class="label right" style="margin-left: 10px;">{{ Math.floor(idleLineWait) }} min</div>
             </div>
 
             <div class="ship-setting" :class="{ disabled: useSpecialLinesOnly }">
               <div
                 class="label"
-              >Use miscellaneous lines (like equipment and resupply) as bonus lines.</div>
+              >Enable miscellaneous lines (like equipment and resupply) as bonus lines.</div>
               <div>
                 <div
                   class="checkbox"
@@ -79,7 +86,7 @@
               </div>
             </div>
             <div class="ship-setting">
-              <div class="label">Turn on ship's special occasion lines.</div>
+              <div class="label">Enable ship's special occasion lines.</div>
               <div>
                 <div
                   class="checkbox"
@@ -101,6 +108,26 @@
                   <span>✅</span>
                 </div>
               </div>
+            </div>
+
+            <div class="ship-setting" :class="{ disabled: useSpecialLinesOnly }">
+              <div class="label">Enable Idle lines.</div>
+              <div>
+                <div
+                  class="checkbox"
+                  :class="{ unchecked: !useIdleLines }"
+                  @click="toggleIdleLines"
+                >
+                  <span>✅</span>
+                </div>
+              </div>
+            </div>
+            <div class="slider-setting" :class="{ disabled: useSpecialLinesOnly || !useIdleLines }">
+              <div class="label">Idle</div>
+              <div class="slider-holder center-div">
+                <input type="range" min="1" max="12" v-model="idleLineWaitSlider" class="slider" />
+              </div>
+              <div class="label right" style="margin-left: 10px;">{{ Math.floor(idleLineWait) }} min</div>
             </div>
           </div>
 
@@ -291,6 +318,8 @@ export default {
       title: "title",
       seDB: "SEs",
 
+      useAllModelLines: "useAllModelLines",
+      useIdleLines: "useIdleLines",
       useSpecialLines: "useSpecialLines",
       useSpecialLinesOnly: "useSpecialLinesOnly",
       useBonusLines: "useBonusLines",
@@ -475,6 +504,16 @@ export default {
     },
     repairShip() {
       this.playSeAudio("Resupply");
+    },
+    toggleAllModelLines() {
+      this.playSeAudio("Accept/Cancel Quest");
+      this.$store.commit("setUseAllModelLines", !this.useAllModelLines);
+    },
+    toggleIdleLines() {
+      if (!this.useSpecialLinesOnly) {
+        this.playSeAudio("Accept/Cancel Quest");
+        this.$store.commit("setUseIdleLines", !this.useIdleLines);
+      }
     },
     toggleBonusLines() {
       if (!this.useSpecialLinesOnly) {

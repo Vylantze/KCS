@@ -55,6 +55,8 @@ export default {
       useSpecialLines: "useSpecialLines",
       useSpecialLinesOnly: "useSpecialLinesOnly",
       useBonusLines: "useBonusLines",
+      useAllModelLines: "useAllModelLines",
+      useIdleLines: "useIdleLines",
 
       idleLineWait: "idleLineWait",
 
@@ -254,6 +256,13 @@ export default {
     },
     idleLineWait() {
       this.resetIdleTimeout();
+    },
+    useIdleLines() {
+      if (this.useIdleLines) {
+        this.resetIdleTimeout();
+      } else {
+        window.clearTimeout(this.idleTimeout);
+      }
     }
   },
   async mounted() {
@@ -373,6 +382,38 @@ export default {
         window.logError(`[Ship] Error for '${eventType}'.`, e);
       }
     },
+    getEventDataFromEventNames(eventList) {
+      if (
+        !this.shipDB ||
+        !eventList ||
+        eventList.length == 0 ||
+        !this.shipSpriteModels
+      )
+        return [];
+      let models = this.shipSpriteModels;
+      let eventDataList = [];
+      try {
+        eventList.map(eventName => {
+          let array = this.shipDB.Events[eventName];
+          if (array.length == 1) {
+            eventDataList.push(array[0]);
+          } else {
+            array.map(event => {
+              if (this.useAllModelLines || models.includes(event.Model)) {
+                eventDataList.push(event);
+              }
+            });
+          }
+        });
+      } catch (e) {
+        window.logError(
+          "[Ship] Unexpected error in getVoiceFilesFromEventList.",
+          eventList,
+          e
+        );
+      }
+      return eventDataList;
+    },
     onIdle() {
       if (this.idleTimeout) {
         window.clearTimeout(this.idleTimeout);
@@ -428,38 +469,6 @@ export default {
     },
     clearCanvas() {
       this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-    },
-    getEventDataFromEventNames(eventList) {
-      if (
-        !this.shipDB ||
-        !eventList ||
-        eventList.length == 0 ||
-        !this.shipSpriteModels
-      )
-        return [];
-      let models = this.shipSpriteModels;
-      let eventDataList = [];
-      try {
-        eventList.map(eventName => {
-          let array = this.shipDB.Events[eventName];
-          if (array.length == 1) {
-            eventDataList.push(array[0]);
-          } else {
-            array.map(event => {
-              if (models.includes(event.Model)) {
-                eventDataList.push(event);
-              }
-            });
-          }
-        });
-      } catch (e) {
-        window.logError(
-          "[Ship] Unexpected error in getVoiceFilesFromEventList.",
-          eventList,
-          e
-        );
-      }
-      return eventDataList;
     },
     loadImage(imageName) {
       if (!imageName) return null;

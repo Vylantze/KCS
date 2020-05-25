@@ -80,6 +80,8 @@ const store = new Vuex.Store({
 
         // Ship settings
         idleLineWait: 5,
+        useAllModelLines: false,
+        useIdleLines: true,
         useSpecialLines: false, // Whether the special occasion lines can be heard
         useSpecialLinesOnly: false, // Whether only the special occasion lines will be heard
         useBonusLines: false, // Whether only the TapBonus and IdleBonus lines will be heard
@@ -110,9 +112,11 @@ const store = new Vuex.Store({
 
         idleLineWait: s => JSON.parse(JSON.stringify(s.idleLineWait)),
 
+        useIdleLines: s => JSON.parse(JSON.stringify(s.useIdleLines)),
         useSpecialLines: s => JSON.parse(JSON.stringify(s.useSpecialLines)),
         useSpecialLinesOnly: s => JSON.parse(JSON.stringify(s.useSpecialLinesOnly)),
         useBonusLines: s => JSON.parse(JSON.stringify(s.useBonusLines)),
+        useAllModelLines: s => JSON.parse(JSON.stringify(s.useAllModelLines)),
 
         disclaimer: () => "This app is free and for private use only. No shipgirls can be hurt during the running of this app. They are just pretending."
       },
@@ -202,6 +206,10 @@ const store = new Vuex.Store({
           utils.saveSetting("idleLineWait", idleLineWait);
           s.idleLineWait = idleLineWait;
         },
+        setUseIdleLines(s, useIdleLines) {
+          utils.saveSetting("useIdleLines", useIdleLines);
+          s.useIdleLines = useIdleLines;
+        },
         setUseSpecialLines(s, useSpecialLines) {
           utils.saveSetting("useSpecialLines", useSpecialLines);
           s.useSpecialLines = useSpecialLines;
@@ -209,6 +217,10 @@ const store = new Vuex.Store({
         setUseSpecialLinesOnly(s, useSpecialLinesOnly) {
           utils.saveSetting("useSpecialLinesOnly", useSpecialLinesOnly);
           s.useSpecialLinesOnly = useSpecialLinesOnly;
+        },
+        setUseAllModelLines(s, useAllModelLines) {
+          utils.saveSetting("useAllModelLines", useAllModelLines);
+          s.useAllModelLines = useAllModelLines;
         },
         setUseBonusLines(s, useBonusLines) {
           utils.saveSetting("useBonusLines", useBonusLines);
@@ -230,9 +242,11 @@ const store = new Vuex.Store({
             "setSeVolumeMute",
             "setVoiceVolumeMute",
             "setIdleLineWait",
+            "setUseIdleLines",
             "setUseSpecialLines",
             "setUseSpecialLinesOnly",
-            "setUseBonusLines"
+            "setUseBonusLines",
+            "setUseAllModelLines"
           ];
           let variableName = [
             "selectedBgmName",
@@ -247,9 +261,11 @@ const store = new Vuex.Store({
             "seVolumeMute",
             "voiceVolumeMute",
             "idleLineWait",
+            "useIdleLines",
             "useSpecialLines",
             "useSpecialLinesOnly",
-            "useBonusLines"
+            "useBonusLines",
+            "useAllModelLines"
           ];
           let length = setters.length;
 
