@@ -65,7 +65,9 @@
             </div>
 
             <div class="ship-setting" :class="{ disabled: useSpecialLinesOnly }">
-              <div class="label">Use miscellaneous as bonus lines.</div>
+              <div
+                class="label"
+              >Use miscellaneous lines (like equipment and resupply) as bonus lines.</div>
               <div>
                 <div
                   class="checkbox"
