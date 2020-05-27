@@ -26,8 +26,8 @@ Construction	Haguro	新しい仲間が進水されたみたいです	It seems a 
 Returning From Sortie	Haguro	作戦完了って…あの…報告が…	The battle is complete... Um... Just reporting...		BattleComplete	Haguro-Returning_From_Sortie.ogg
 Starting A Sortie	Haguro	あなた達の背中は私が守ります！	I'll protect everyone's backs!		BattleStart	Haguro-Starting_A_Sortie.ogg
 Battle Start	Haguro	撃ち方、始めてくださーい！	Assault team, please begin!		BattleStart	Haguro-Battle_Start.ogg
-Attack	Haguro	砲雷撃戦って、これでいいのかしら…	Guns and torpedoes engaged, I hope this is enough...		BattleDay	Haguro-Attack.ogg
-Attack	Haguro Kai Ni	五倍の相手だって･･･支えて見せます！	Even if there are five times the enemies...I will fight them all!	Referring to the Battle of the Malacca Strait, also known as the Sinking of the Haguro. She fought five British destroyers by herself.	BattleDay	HaguroKai2-Attack.ogg
+Attack	Haguro	砲雷撃戦って、これでいいのかしら…	Guns and torpedoes engaged, I hope this is enough...		Battle	Haguro-Attack.ogg
+Attack	Haguro Kai Ni	五倍の相手だって･･･支えて見せます！	Even if there are five times the enemies...I will fight them all!	Referring to the Battle of the Malacca Strait, also known as the Sinking of the Haguro. She fought five British destroyers by herself.	Battle	HaguroKai2-Attack.ogg
 Night Battle	Haguro	これ以上やらせません！	You won't advance any further!		BattleStartNight	Haguro-Night_Battle.ogg
 Night Attack	Haguro	全砲門、開いて下さい！	All gun ports, please open!		BattleNight	Haguro-Night_Attack.ogg
 MVP	Haguro	このまま、全ての戦いが終わってしまえばいいのに	As it is, it would be better if all the fighting could end.		MVP	Haguro-MVP.ogg

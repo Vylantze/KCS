@@ -508,6 +508,7 @@ export default {
     },
     sortieShip() {
       this.playSeAudio("Select");
+      window.dispatchEvent(new CustomEvent("battleStart"));
     },
     repairShip() {
       this.playSeAudio("Resupply");

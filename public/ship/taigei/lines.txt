@@ -48,9 +48,9 @@ Battle Start	Taigei	敵艦発見！…ど…どうしましょう……！	Enemy
 Battle Start	Ryuuhou	気持ちいい…第一攻撃隊、発艦！	This feels great... First assault squad, launch!		BattleStartDay	Ryuuhou-Battle_Start.ogg
 Air Battle (Ryuuhou)	Ryuuhou	七面鳥ですか？！　誰が…私の…？　いいえ、精鋭たちです！侮らないで！	Turkey?! Are you saying I'm one? I'm sorry, but we're the elite. Don't underestimate us!	The IJN's greatly reduced naval air power led to the so-called 'Turkey Shoot' at the Marianas, where planes were shot down quite easily by the US fleet	BattleDay	Ryuuhou-Air_Battle.ogg
 Air Battle (Ryuuhou)	Ryuuhou Kai	私達、改装空母をなめないで！	Don't make light of us remodeled carriers!		BattleDay	RyuuhouKai-Air_Battle.ogg
-Attack	Taigei	えっ！？えーっと…こ、攻撃！？	Eh?! Err... f-fire?!		BattleDay	Taigei-Attack.ogg
-Attack	Ryuuhou	続けていきます！　龍鳳、攻撃隊、発艦！	There's more coming! Ryuuhou assault squadron, launch!	The 2 waves of planes Ryuuhou sent out were lost in the Marianas Turkey Shoot.	BattleDay	Ryuuhou-Attack.ogg
-Attack	Ryuuhou Kai	艦載機があれば、私だって！	Even I can fight if I have planes!	⇧ shared with day/night special attacks, support expedition team arrival	BattleDay	RyuuhouKai-Attack.ogg
+Attack	Taigei	えっ！？えーっと…こ、攻撃！？	Eh?! Err... f-fire?!		Battle	Taigei-Attack.ogg
+Attack	Ryuuhou	続けていきます！　龍鳳、攻撃隊、発艦！	There's more coming! Ryuuhou assault squadron, launch!	The 2 waves of planes Ryuuhou sent out were lost in the Marianas Turkey Shoot.	Battle	Ryuuhou-Attack.ogg
+Attack	Ryuuhou Kai	艦載機があれば、私だって！	Even I can fight if I have planes!	⇧ shared with day/night special attacks, support expedition team arrival	Battle	RyuuhouKai-Attack.ogg
 Night Battle	Taigei	この武装で艦隊戦は…無理かもー！	A fleet battle with these armaments... it might be impossible!		BattleStartNight	Taigei-Night_Battle.ogg
 Night Battle	Ryuuhou	追撃に移行します。全艦、突撃！	Moving into the chase. All ships, launch assault!		BattleStartNight	Ryuuhou-Night_Battle.ogg
 Night Attack	Taigei	当たって…当たってぇー！	Hit, please hit!		BattleNight	Taigei-Night_Attack.ogg

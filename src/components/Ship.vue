@@ -41,6 +41,10 @@ export default {
       currentEvent: null,
 
       idleTimeout: null,
+      shipMovementX: 0,
+      shipMovementY: 0,
+      shipMovementSpeed: 5,
+      isShipAnimationFinished: false,
 
       shipDB: null,
       ctx: null // Canvas context
@@ -265,7 +269,9 @@ export default {
     this.ctx = this.canvas.getContext("2d");
     window.addEventListener("resize", this.resizeCanvas);
     window.addEventListener("hourly", this.onHourly);
+    window.addEventListener("battleStart", this.battleStart);
     this.canvas.addEventListener("click", this.clickOnShip);
+
     this.audio.onended = this.audioHasEnded;
 
     this.audio.volume = this.voiceVolume;
@@ -275,6 +281,7 @@ export default {
     // Unregister the event listener before destroying this Vue instance
     window.removeEventListener("resize", this.resizeCanvas);
     window.removeEventListener("hourly", this.onHourly);
+    window.removeEventListener("battleStart", this.battleStart);
     if (this.idleTimeout) {
       window.clearTimeout(this.idleTimeout);
     }
@@ -305,6 +312,37 @@ export default {
 
       // If success, allow
       this.onTap();
+    },
+    battleStart() {
+      let daytime = false;
+
+      let currentHour = new Date().getHours();
+      if (currentHour >= 7 && currentHour < 19) {
+        daytime = true;
+      }
+
+      log("IsDaytime? ", daytime);
+      this.isShipAnimationFinished = false;
+
+      let animateLeaveRight = () => {
+        let reqAnimFrame =
+          window.requestAnimationFrame ||
+          window.mozRequestAnimationFrame ||
+          window.webkitRequestAnimationFrame ||
+          window.msRequestAnimationFrame ||
+          window.oRequestAnimationFrame;
+
+        this.shipMovementX += this.shipMovementSpeed;
+        if (this.isShipAnimationFinished) {
+          this.shipMovementX = 0;
+        } else {
+          reqAnimFrame(animateLeaveRight);
+        }
+
+        this.resizeCanvas();
+      };
+
+      animateLeaveRight();
     },
     resetIdleTimeout() {
       if (this.idleTimeout) {
@@ -447,15 +485,18 @@ export default {
       if (this.audio) {
         if (!this.audio.paused && !this.audio.ended) {
           // Wait for the audio to finish playing
+          let rewrappedEvent = JSON.parse(JSON.stringify(hourlyEvent));
           window.setTimeout(() => {
+            log("Rewrapped event.", hourlyEvent);
             // Wait another 3 seconds as padding.
-            this.onHourly(hourlyEvent);
+            this.onHourly(rewrappedEvent);
           }, 3000);
           return;
         }
       }
 
       try {
+        log("Playing hourly event.", hourlyEvent);
         let list = this.getEventDataFromEventNames(this.shipHourlyEventNames);
         if (!list || list.length == 0) return;
         list.map(event => {
@@ -511,17 +552,26 @@ export default {
       let shipCenterY = height / 2.0;
       let canvasCenterY = this.canvas.height / 2.0;
       let yOffset =
-        this.shipYPositionOffset + (shipCenterY - canvasCenterY) / 2.0;
+        this.shipYPositionOffset +
+        (shipCenterY - canvasCenterY) / 2.0 +
+        this.shipMovementY;
 
       // Some maths need to be done to decide on the X position of the shipgirl
       let canvasCenterX = this.canvas.width / 2.0;
       let shipCenterX = width / 2.0; // Used to set the ship in the center of the expected point
-      let shipExpectedPosition =
-        Math.min(this.canvas.width, window.innerWidth) * 0.8;
+      let widthToUse = Math.min(this.canvas.width, window.innerWidth);
+      let shipExpectedPosition = widthToUse * 0.8;
       let shipActualPosition = Math.max(canvasCenterX, shipExpectedPosition);
-      let xOffset = this.shipXPositionOffset + shipActualPosition - shipCenterX;
+      let xOffset =
+        this.shipXPositionOffset +
+        shipActualPosition -
+        shipCenterX +
+        this.shipMovementX;
 
       this.ctx.drawImage(this.defaultSprite, xOffset, yOffset, width, height);
+      if (!this.isShipAnimationFinished && xOffset >= widthToUse) {
+        this.isShipAnimationFinished = true;
+      }
     },
     resizeCanvas() {
       //window.log(`Ship Resize: ${this.canvas.width}, ${this.canvas.height}`);

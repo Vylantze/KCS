@@ -29,7 +29,7 @@ Returning From Sortie	Sendai Kai Ni	三水戦、帰投したよ！	DesRon3 has r
 Starting A Sortie	Sendai	絶対夜戦してよね？約束よ？	You must night battle, okay? Promise?		BattleStart	Sendai-Starting_A_Sortie.ogg
 Battle Start	Sendai	砲雷撃戦、用意！てーっ！	Naval battle, ready! Goooo!		BattleStart	Sendai-Battle_Start.ogg
 Battle Start	Sendai Kai Ni	さぁ仕掛けるよ！よーい、撃てーっ！！	Now, let's get started. Ready, aim... fire!		BattleStart	SendaiKai2-Battle_Start.ogg
-Attack	Sendai	突撃よ！	Charge!	⇧ shared with day/night special attacks, support expedition team arrival	BattleDay	Sendai-Attack.ogg
+Attack	Sendai	突撃よ！	Charge!	⇧ shared with day/night special attacks, support expedition team arrival	Battle	Sendai-Attack.ogg
 Night Battle	Sendai	やったぁ！待ちに待った夜戦だぁ！	Finally! My long-awaited night battle!		BattleStartNight	Sendai-Night_Battle.ogg
 Night Attack	Sendai	さあ、私と夜戦しよ！	Now, night battle with me!		BattleNight	Sendai-Night_Attack.ogg
 MVP	Sendai	当然の結果ね。いいのいいの。そんなに褒めなくっても。	This is the expected outcome. It's fine, it's fine. You don't need to praise me so much.		MVP	Sendai-MVP.ogg
@@ -62,7 +62,7 @@ Sunk	Sendai	もっと…夜戦で…暴れたかったなぁ…	I wanted to... g
 21:00	Sendai Kai Ni	夜戦の時間だよ。フタヒトマルマル。夜だよ、夜！何度でも言うけどさ、夜はいいよね。夜は！さ！！	It's time for a night battle. 2100. It's really nighttime now! No matter what anyone says, the nighttime is great. Am I right?!		Hourly	Sendai-21.ogg
 22:00	Sendai Kai Ni	よーる！フタフタマルマール！いいねいいね、夜戦だね！ふぇ？戻れって？えっ…なんでなんで？なんでよ！？	Night~ time~ 2200. Night battles sure are great~ Eh? Go back? What?! Why?!	Shigure... Ooi... Naganami... Yuubari... Shoukaku... Hatsukaze... Zuikaku... Nagato... Kinu...	Hourly	Sendai-22.ogg
 23:00	Sendai Kai Ni	フタサンマルマル。戻ったけどさ…提督なんでよ？え、母港に私にいてほしい？し、仕方ないな…夜戦…	2300. We're back now, but... why, Admiral? Eh, you want me in port? It can't be helped then... night battles...		Hourly	Sendai-23.ogg
-Fall 2019 Event 1	Sendai	三水戦、川内、参上！さあ、みんな、突っ込むよ！	DesRon3, Sendai, has arrived! Come one, everyone, charge!		BattleDay	Ship_Voice_Sendai_Kai_Ni_Fall_2019_Event_Friend_Fleet_1.mp3
+Fall 2019 Event 1	Sendai	三水戦、川内、参上！さあ、みんな、突っ込むよ！	DesRon3, Sendai, has arrived! Come one, everyone, charge!		Battle	Ship_Voice_Sendai_Kai_Ni_Fall_2019_Event_Friend_Fleet_1.mp3
 Fall 2019 Event 2	Sendai	川内、参上！やったね！夜戦だよ！いけぇー！	Sendai, has arrived! Alright! It's a night battle! Let's goooooooo!		BattleNight	Ship_Voice_Sendai_Kai_Ni_Fall_2019_Event_Friend_Fleet_2.mp3
 Rainy Season 2015	Sendai	梅雨かぁ…艤装が傷むから嫌なんだよねー。でもいっか、夜戦は雨もなにもないしね。	The rainy season… I don’t want to ruin my clothes. But oh well, rain doesn’t affect night battles.		Special	Sendai_Rainy_Secretary_1.ogg
 Early Summer 2015	Sendai	夏だぁ！！やったぁ！！夜戦の季節だぁ！！提督、夜戦だよ夜戦！！はやく！！や・せ・ん！！	It’s summer!! Alright!! It’s the season for night battles!! Let’s have a night battle, Admiral!! Hurry!! Let’s. Night. Battle!!		Special	Sendai_Early_Summer_HQ.ogg

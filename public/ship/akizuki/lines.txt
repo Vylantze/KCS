@@ -22,7 +22,7 @@ Construction	Akizuki	新造艦が生まれたみたいですね！	It seems like
 Returning From Sortie	Akizuki	艦隊が無事帰投しました。皆さん、お疲れです！	The fleet has safely returned. Everyone, good work!		BattleComplete	Akizuki-Returning_From_Sortie.ogg
 Starting A Sortie	Akizuki	第61駆逐隊、直ちに抜錨。出撃です！	61st DesDiv, setting sail immediately. Setting off!		BattleStart	Akizuki-Starting_A_Sortie.ogg
 Battle Start	Akizuki	さあ、始めましょう。撃ち方、始め！	Now, shall we begin? Begin firing!		BattleStart	Akizuki-Battle_Start.ogg
-Attack	Akizuki	この秋月が健在な限り、やらせはしません！	While this Akizuki still has strength, I won't let you!	⇧ shared with day/night special attacks, support expedition team arrival	BattleDay	Akizuki-Attack.ogg
+Attack	Akizuki	この秋月が健在な限り、やらせはしません！	While this Akizuki still has strength, I won't let you!	⇧ shared with day/night special attacks, support expedition team arrival	Battle	Akizuki-Attack.ogg
 Night Battle	Akizuki	秋月の夜戦、お見せしましょうか。	Akizuki's night battle, shall I show it to you?		BattleStartNight	Akizuki-Night_Battle.ogg
 Night Attack	Akizuki	弾幕が薄い…ような気がします。弾幕です！	I feel like... the barrage is light. Barrage!		BattleNight	Akizuki-Night_Attack.ogg
 MVP	Akizuki	秋月、艦隊をお守りしました。大丈夫、次もきっと、大丈夫です！	Akizuki protected the fleet. It's alright, next time, too, will be alright!		MVP	Akizuki-MVP.ogg

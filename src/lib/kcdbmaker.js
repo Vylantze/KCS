@@ -96,7 +96,9 @@ function kcdbMake(kanmusu, shipDir, databaseDir) {
       entry[header] = split[headerIndex];
       if (header == 'Command') {
         if (!database.Commands[entry[header]]) { database.Commands[entry[header]] = []; }
-        database.Commands[entry[header]].push(key);
+        if (!database.Commands[entry[header]].includes(key)) {
+          database.Commands[entry[header]].push(key);
+        }
       }
 
       if (header == 'Voice') {

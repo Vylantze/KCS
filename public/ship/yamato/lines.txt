@@ -35,8 +35,8 @@ Returning From Sortie	Yamato Kai	艦隊が無事帰投しました。良かっ�
 Starting A Sortie	Yamato	戦艦大和、推して参ります。	Battleship Yamato, heading forth!		BattleStart	Yamato-Starting_A_Sortie.ogg
 Battle Start	Yamato	さぁ、やるわ！砲雷撃戦、用意！	Yeah, let's go! Naval battle, ready!		BattleStartDay	Yamato-Battle_Start.ogg
 Battle Start	Yamato Kai	大和、砲雷撃戦、はじめます！	Yamato, commence firing!		BattleStartDay	YamatoKai-Battle_Start.ogg
-Attack	Yamato	第一・第二主砲、斉射、始め！	First and second cannons, volley fire, start!		BattleDay	Yamato-Attack.ogg
-Attack	Yamato Kai	敵艦捕捉、全主砲薙ぎ払え！	Enemy ship acquired, fire broadside!	⇧ shared with day/night special attacks, support expedition team arrival	BattleDay	YamatoKai-Attack.ogg
+Attack	Yamato	第一・第二主砲、斉射、始め！	First and second cannons, volley fire, start!		Battle	Yamato-Attack.ogg
+Attack	Yamato Kai	敵艦捕捉、全主砲薙ぎ払え！	Enemy ship acquired, fire broadside!	⇧ shared with day/night special attacks, support expedition team arrival	Battle	YamatoKai-Attack.ogg
 Night Battle	Yamato	戦艦大和、夜戦を敢行します！	Battleship Yamato, starting night battle!		BattleStartNight	Yamato-Night_Battle.ogg
 Night Battle	Yamato Kai	戦艦大和、突撃します！	Battleship Yamato, charging in!		BattleStartNight	YamatoKai-Night_Battle.ogg
 Night Attack	Yamato	夾叉(きょうさ)か･･･うん、次は直撃させます。	Bracket fire, huh... Yes, the next shot will be a direct hit.	夾叉 (Kyousa), or bracket, means a succession of two salvos, one over and one short, or one right and one left, with no straddles. When this happens, minor adjustments are needed.(while straddle means both short and over, or both right and left shots occur in the SAME salvo)	BattleNight	Yamato-Night_Attack.ogg
