@@ -148,9 +148,12 @@ const store = new Vuex.Store({
             if (combatMode && dateTime > new Date()) {
               s.combatMode = combatMode;
               utils.saveSetting("combatMode", combatMode);
+
+              let timeLeft = dateTime.getTime() - new Date().getTime();
               combatModeInterval = window.setInterval(() => {
                 s.commit('setCombatMode', null);
-              }, (dateTime.getTime() - new Date().getTime()));
+              }, timeLeft);
+              log('Time left until Combat ends: ', timeLeft);
             }
           } catch (e) {
             combatMode = null;
