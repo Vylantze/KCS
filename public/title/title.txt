@@ -49,3 +49,6 @@ TitleCall02	018.mp3	???	TTKEntering
 TitleCall01	021.mp3	???	Kancolle
 TitleCall02	017.mp3	???	TTKEntering
 TitleCall01	065.mp3	???	Kancolle
+TitleCall01	037.mp3	???	Kancolle
+TitleCall01	013.mp3	???	Kancolle
+TitleCall01	040.mp3	???	Starting

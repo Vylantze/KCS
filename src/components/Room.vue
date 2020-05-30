@@ -40,6 +40,7 @@ export default {
       roomWall: null,
       roomWindow: null,
       roomObject: null,
+      roomCombatBg: null,
 
       bgmAudio: new Audio(),
 
@@ -53,7 +54,8 @@ export default {
       selectedBgm: "selectedBgm",
       bgmVolume: "bgmVolume",
       shipName: "selectedShipName",
-      loading: "loadingMode"
+      loading: "loadingMode",
+      combatMode: "combatMode"
     }),
     canvas() {
       return document.getElementById("room-canvas");
@@ -91,6 +93,9 @@ export default {
       } else {
         this.bgmAudio.play();
       }
+    },
+    combatMode() {
+      this.drawBackground();
     }
   },
   async mounted() {
@@ -139,6 +144,7 @@ export default {
       this.roomWallObjectAkizuki = this.roomObjects = await this.loadImage(
         "backgrounds/Spring_Type_B_sisters_panel.png"
       );
+      this.roomCombatBg = await this.loadImage("img/bg_h.png");
     },
     // To get the correct ratio
     calculateWidthFromHeight(height) {
@@ -147,6 +153,12 @@ export default {
     drawBackground() {
       let height = window.innerHeight;
       let width = this.calculateWidthFromHeight(height);
+
+      if (this.combatMode) {
+        this.ctx.drawImage(this.roomCombatBg, 0, 0, width, height);
+        return;
+      }
+
       this.ctx.drawImage(this.roomWall, 0, 0, width, height);
       this.ctx.drawImage(this.roomWindow, 0, 0, width, height);
 

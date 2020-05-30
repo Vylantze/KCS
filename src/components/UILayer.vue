@@ -178,10 +178,10 @@
 
     <!-- Sortie button -->
     <div
-      class="sortie-button clickable"
-      :class="{ 'set-transparent': hideButtons }"
-      @mouseover="sortieButtonHover = true"
-      @mouseleave="sortieButtonHover = false"
+      class="sortie-button"
+      :class="{ 'set-transparent': hideButtons, disabled: disableSortieButton, clickable: !disableSortieButton }"
+      @mouseover="setButtonHoverState('sortieButtonHover', true)"
+      @mouseleave="setButtonHoverState('sortieButtonHover', false)"
       @click="sortieShip"
     >
       <img v-show="!sortieButtonHover" src="img/sortie_button.png" :width="sortieButtonWidth" />
@@ -204,10 +204,11 @@
 
     <!-- Ship change button -->
     <div
-      class="composition-button clickable"
-      :class="{ 'set-transparent': hideButtons }"
-      @mouseover="compositionButtonHover = true"
-      @mouseleave="compositionButtonHover = false"
+      v-if="!combatMode"
+      class="composition-button"
+      :class="{ 'set-transparent': hideButtons, disabled: disableCompositionButton, clickable: !disableCompositionButton  }"
+      @mouseover="setButtonHoverState('compositionButtonHover', true)"
+      @mouseleave="setButtonHoverState('compositionButtonHover', false)"
       :style="{ bottom: `${13 + Math.max(compositionButtonHeight * 1.5, compositionButtonMinHeight)}px` }"
       @click="changeShip"
     >
@@ -233,10 +234,11 @@
 
     <!-- Repair button -->
     <div
-      class="repair-button clickable"
-      :class="{ 'set-transparent': hideButtons }"
-      @mouseover="repairButtonHover = true"
-      @mouseleave="repairButtonHover = false"
+      v-if="!combatMode"
+      class="repair-button"
+      :class="{ 'set-transparent': hideButtons, disabled: disableRepairButton, clickable: !disableRepairButton }"
+      @mouseover="setButtonHoverState('repairButtonHover', true)"
+      @mouseleave="setButtonHoverState('repairButtonHover', false)"
       :style="{ left: `${16 + Math.max(compositionButtonWidth * 1.5, compositionButtonMinWidth)}px` }"
       @click="repairShip"
     >
@@ -316,7 +318,12 @@ export default {
       compositionButtonHover: false,
       sortieButtonHover: false,
       repairButtonHover: false,
-      settingsButtonHover: false
+      settingsButtonHover: false,
+
+      disableShipButtons: false,
+      disableShipComposition: false,
+      disableShipRepair: false,
+      disableShipSortie: false
     };
   },
   computed: {
@@ -331,7 +338,9 @@ export default {
       useSpecialLinesOnly: "useSpecialLinesOnly",
       useBonusLines: "useBonusLines",
 
-      finalSeVolume: "seVolume"
+      finalSeVolume: "seVolume",
+
+      combatMode: "combatMode"
     }),
     ...mapState({
       overallVolume: s => s.main.overallVolume,
@@ -346,6 +355,15 @@ export default {
 
       idleLineWait: s => s.main.idleLineWait
     }),
+    disableSortieButton() {
+      return this.disableShipButtons || this.disableShipSortie;
+    },
+    disableCompositionButton() {
+      return this.disableShipButtons || this.disableShipComposition;
+    },
+    disableRepairButton() {
+      return this.disableShipButtons || this.disableShipRepair;
+    },
     overallSlider: {
       get() {
         return this.overallVolume * 100;
@@ -392,6 +410,11 @@ export default {
       Object.keys(this.audio).map(key => {
         this.audio[key].volume = this.finalSeVolume;
       });
+    },
+    combatMode() {
+      this.disableShipButtons = false;
+      this.disableShipComposition = false;
+      this.disableShipRepair = false;
     }
   },
   created() {
@@ -501,14 +524,46 @@ export default {
         window.logError("[App] Error in resize. ", e);
       }
     },
+    setButtonHoverState(buttonName, state) {
+      let relation = {
+        sortieButtonHover: "disableSortieButton",
+        compositionButtonHover: "disableCompositionButton",
+        repairButtonHover: "disableRepairButton"
+      };
+
+      // If the button corresponding does not exist, return
+      if (!relation[buttonName]) {
+        return;
+      }
+      let disabled = this[relation[buttonName]];
+      if (!disabled) {
+        this[buttonName] = state;
+      }
+    },
     changeShip() {
+      if (this.disableCompositionButton) {
+        return;
+      }
       if (this.openMenu("composition")) {
         this.playSeAudio("Select");
       }
     },
     sortieShip() {
+      if (this.disableSortieButton) {
+        return;
+      }
+      this.disableShipButtons = true;
+      this.disableShipComposition = true;
+      this.disableShipRepair = true;
+
+      this.sortieButtonHover = false;
+
       this.playSeAudio("Select");
-      window.dispatchEvent(new CustomEvent("battleStart"));
+      if (!this.combatMode) {
+        window.dispatchEvent(new CustomEvent("battleStart"));
+      } else {
+        window.dispatchEvent(new CustomEvent("battleEnd"));
+      }
     },
     repairShip() {
       this.playSeAudio("Resupply");

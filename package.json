@@ -61,6 +61,7 @@
       "__ship": true,
       "__room": true,
       "__mobileMode": true,
+      "__combatModeLength": true,
       "__static": true
     },
     "parserOptions": {

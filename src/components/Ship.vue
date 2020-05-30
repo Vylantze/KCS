@@ -44,6 +44,7 @@ export default {
       shipMovementX: 0,
       shipMovementY: 0,
       shipMovementSpeed: 5,
+
       isShipAnimationFinished: false,
 
       shipDB: null,
@@ -64,7 +65,8 @@ export default {
 
       idleLineWait: "idleLineWait",
 
-      loading: "loadingMode"
+      loading: "loadingMode",
+      combatMode: "combatMode"
     }),
     shipName() {
       return this.selectedShipName;
@@ -270,18 +272,25 @@ export default {
     window.addEventListener("resize", this.resizeCanvas);
     window.addEventListener("hourly", this.onHourly);
     window.addEventListener("battleStart", this.battleStart);
+    window.addEventListener("battleEnd", this.battleEnd);
     this.canvas.addEventListener("click", this.clickOnShip);
 
     this.audio.onended = this.audioHasEnded;
-
     this.audio.volume = this.voiceVolume;
-    await this.loadShip();
+
+    if (this.combatMode) {
+      log("Entering combat mode");
+      this.shipXOffsetModifier = -0.5;
+    }
+
+    this.loadShip();
   },
   beforeDestroy() {
     // Unregister the event listener before destroying this Vue instance
     window.removeEventListener("resize", this.resizeCanvas);
     window.removeEventListener("hourly", this.onHourly);
     window.removeEventListener("battleStart", this.battleStart);
+    window.removeEventListener("battleEnd", this.battleEnd);
     if (this.idleTimeout) {
       window.clearTimeout(this.idleTimeout);
     }
@@ -323,8 +332,16 @@ export default {
 
       log("IsDaytime? ", daytime);
       this.isShipAnimationFinished = false;
+      this.shipXOffsetModifier = 0;
+
+      var phase1Complete = false;
 
       let animateLeaveRight = () => {
+        // These are the conditions to end prematurely.
+        if (this.isShipAnimationFinished && this.shipXOffsetModifier == 0) {
+          return;
+        }
+
         let reqAnimFrame =
           window.requestAnimationFrame ||
           window.mozRequestAnimationFrame ||
@@ -332,10 +349,24 @@ export default {
           window.msRequestAnimationFrame ||
           window.oRequestAnimationFrame;
 
-        this.shipMovementX += this.shipMovementSpeed;
-        if (this.isShipAnimationFinished) {
-          this.shipMovementX = 0;
+        if (phase1Complete && this.shipXOffsetModifier > -0.5) {
+          this.shipXOffsetModifier = -0.5;
+          // End
+          return;
+        }
+
+        if (this.isShipAnimationFinished && !phase1Complete) {
+          this.shipXOffsetModifier = -1.0;
+          this.isShipAnimationFinished = false;
+          phase1Complete = true;
+          log("Starting Combat Phase");
+          this.$store.commit(
+            "setCombatMode",
+            new Date(new Date().getTime() + __combatModeLength)
+          );
+          reqAnimFrame(animateLeaveRight);
         } else {
+          this.shipXOffsetModifier += this.shipMovementSpeed * 0.001; // If using shipXOffsetModifier, it is % based.
           reqAnimFrame(animateLeaveRight);
         }
 
@@ -343,6 +374,13 @@ export default {
       };
 
       animateLeaveRight();
+    },
+    battleEnd() {
+      log("Ending Combat Phase");
+      this.$store.commit("setCombatMode", null);
+      this.shipXOffsetModifier = 0;
+      this.isShipAnimationFinished = true;
+      this.resizeCanvas();
     },
     resetIdleTimeout() {
       if (this.idleTimeout) {
@@ -375,6 +413,7 @@ export default {
         this.audio.pause();
       }
       if (this.loading) return;
+      if (this.currentEvent == null) return;
 
       window.log(
         `Playing voice [${this.currentEvent.Model}/${this.currentEvent.Event}].`,

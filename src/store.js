@@ -28,6 +28,7 @@ window.__room = {
     height: 145,
   }
 };
+window.__combatModeLength = 5 * 60 * 1000; // In milliseconds
 window.__mobileMode = {
   width: 600,
 };
@@ -42,6 +43,8 @@ if (isDevelopment) {
   window.log = () => { };
   window.logError = () => { };
 }
+
+var combatModeInterval = null;
 
 const store = new Vuex.Store({
   modules: {
@@ -139,7 +142,28 @@ const store = new Vuex.Store({
           s.titleLines = titleLines;
         },
         setCombatMode(s, combatMode) {
-          s.combatMode = combatMode;
+          // Input the end time
+          try {
+            let dateTime = new Date(combatMode);
+            if (combatMode && dateTime > new Date()) {
+              s.combatMode = combatMode;
+              utils.saveSetting("combatMode", combatMode);
+              combatModeInterval = window.setInterval(() => {
+                s.commit('setCombatMode', null);
+              }, (dateTime.getTime() - new Date().getTime()));
+            }
+          } catch (e) {
+            combatMode = null;
+            log("[setCombatMode] Error. ", e);
+          }
+
+          if (!combatMode) {
+            s.combatMode = null;
+            utils.saveSetting("combatMode", null);
+            if (combatModeInterval) {
+              window.clearInterval(combatModeInterval);
+            }
+          }
         },
         setLoadingMode(s, loadingMode) {
           s.loadingMode = loadingMode;
@@ -246,7 +270,8 @@ const store = new Vuex.Store({
             "setUseSpecialLines",
             "setUseSpecialLinesOnly",
             "setUseBonusLines",
-            "setUseAllModelLines"
+            "setUseAllModelLines",
+            "setCombatMode",
           ];
           let variableName = [
             "selectedBgmName",
@@ -265,7 +290,8 @@ const store = new Vuex.Store({
             "useSpecialLines",
             "useSpecialLinesOnly",
             "useBonusLines",
-            "useAllModelLines"
+            "useAllModelLines",
+            "combatMode"
           ];
 
           if (setters.length != variableName.length) {
