@@ -1,6 +1,8 @@
 <template>
   <div class="title-screen center-div">
-    <img src="img/bg_h.png" :width="screenWidth" />
+    <div class="absolute center-div">
+      <img src="img/bg_h.png" :width="screenWidthPixels" />
+    </div>
     <div class="title-foreground center-div">
       <div class="title-foreground-center-container">
         <div>
@@ -55,7 +57,13 @@ export default {
       voiceVolume: "voiceVolume",
       titleDB: "titleLines",
       disclaimer: "disclaimer"
-    })
+    }),
+    screenWidthPixels() {
+      return `${this.screenWidth}px`;
+    },
+    screenHeightPixels() {
+      return `${this.screenHeight}px`;
+    }
   },
   created() {
     this.calculateScreenWidth();
@@ -109,7 +117,8 @@ export default {
           __room.naturalHeight,
           window.innerHeight
         );
-        this.logoWidth = 0.3 * this.screenWidth;
+        this.screenHeight = window.innerHeight;
+        this.logoWidth = Math.min(0.3 * this.screenWidth, window.innerWidth);
         this.logoMargin = window.innerHeight * 0.05;
       } catch (e) {
         logError("[TitleScreen] Error in resize. ", e);

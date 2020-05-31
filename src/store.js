@@ -4,45 +4,11 @@ import Vuex from 'vuex';
 import path from 'path';
 import fs from 'fs';
 
+import './lib/preload';
 import utils from './lib/utils';
 
 Vue.config.productionTip = false;
 Vue.use(Vuex);
-
-const isDevelopment = process.env.NODE_ENV !== 'production';
-
-window.__dev = isDevelopment;
-window.__room = {
-  naturalWidth: 800,
-  naturalHeight: 480,
-  desk: {
-    width: 362,
-    height: 346,
-  },
-  wallObject: {
-    width: 144,
-    height: 178,
-  },
-  loading: {
-    width: 145,
-    height: 145,
-  }
-};
-window.__combatModeLength = 5 * 60 * 1000; // In milliseconds
-window.__mobileMode = {
-  width: 600,
-};
-window.__resources = path.resolve(path.join(__static, ".."));
-window.__ship = "ship";
-//window.__ship = isDevelopment ? path.join(__resources, "packed", "ship") : path.join(__resources, "ship"); // Old one for .asar packaging
-
-if (isDevelopment) {
-  window.log = console.log.bind(window.console);
-  window.logError = console.warn.bind(window.console);
-} else {
-  window.log = () => { };
-  window.logError = () => { };
-}
 
 var combatModeInterval = null;
 
@@ -151,7 +117,8 @@ const store = new Vuex.Store({
 
               let timeLeft = dateTime.getTime() - new Date().getTime();
               combatModeInterval = window.setInterval(() => {
-                s.commit('setCombatMode', null);
+                s.combatMode = null;
+                window.dispatchEvent(new CustomEvent("battleEnd"));
               }, timeLeft);
               log('Time left until Combat ends: ', timeLeft);
             }
@@ -386,7 +353,8 @@ const store = new Vuex.Store({
           window.log('Title data', titleLinesDatabase);
         },
         invokeHourlyEvent: () => {
-          let hourly = new CustomEvent('hourly', { detail: `${new Date().getHours()}:00` });
+          let hour = new Date().getHours();
+          let hourly = new CustomEvent('hourly', { detail: `${hour.pad(2)}:00` });
           window.dispatchEvent(hourly);
         },
         startIntervalTimer: s => {
@@ -398,6 +366,9 @@ const store = new Vuex.Store({
               s.dispatch('invokeHourlyEvent');
             }, hourInMilliseconds);
           }, timeToHourChange);
+        },
+        startEventListeners() {
+          return null;
         },
         getDatabase: (s, shipName) => {
           try {

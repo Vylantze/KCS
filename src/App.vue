@@ -40,6 +40,7 @@ export default {
   created() {
     this.$store.dispatch("loadSettings");
     this.$store.dispatch("populateData");
+    this.$store.dispatch("startEventListeners");
     this.$store.dispatch("startIntervalTimer");
     window.addEventListener("startGame", this.exitTitleScreen);
     window.addEventListener("loadComplete", this.loadComplete);

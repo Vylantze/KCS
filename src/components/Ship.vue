@@ -22,16 +22,24 @@ import { mapGetters } from "vuex";
 
 const path = require("path");
 const heightModifier = 1.3; // of total canvas height
+const shipExpectedPositionRatio = 0.8;
+const reqAnimFrame =
+  window.requestAnimationFrame ||
+  window.mozRequestAnimationFrame ||
+  window.webkitRequestAnimationFrame ||
+  window.msRequestAnimationFrame ||
+  window.oRequestAnimationFrame;
 
 export default {
   name: "Ship",
   data() {
     return {
       windowHeight: 0,
+      canvasCalculatedWidth: 0,
 
-      // percentage based. Allows ship to 'hide' out of the window
-      shipXOffsetModifier: 0,
-      shipYOffsetModifier: 0,
+      // % based. Allows ship to 'hide' out of the window
+      shipXPositionModifier: 0,
+      shipYPositionModifier: 0,
 
       defaultSprite: null,
       damagedSprite: null,
@@ -41,11 +49,10 @@ export default {
       currentEvent: null,
 
       idleTimeout: null,
-      shipMovementX: 0,
-      shipMovementY: 0,
       shipMovementSpeed: 5,
 
-      isShipAnimationFinished: false,
+      isShipAnimationFinished: true,
+      dayMode: false,
 
       shipDB: null,
       ctx: null // Canvas context
@@ -111,10 +118,13 @@ export default {
     },
 
     shipXPositionOffset() {
-      return this.canvas.width * this.shipXOffsetModifier;
+      return (
+        this.shipXPositionModifier *
+        Math.min(this.canvasCalculatedWidth, window.innerWidth)
+      );
     },
     shipYPositionOffset() {
-      return this.canvas.height * this.shipYOffsetModifier;
+      return this.shipYPositionModifier * this.windowHeight;
     },
 
     //
@@ -127,13 +137,20 @@ export default {
       } catch (e) {
         window.logError("[Ship] Unexpected error in shipCommands.", e);
       }
-      return {};
+      return null;
     },
     // SetSecretary
     shipSetSecretaryEventNames() {
       if (!this.shipDB || !this.shipDB.Commands) return [];
       try {
-        return this.shipDB.Commands.SetSecretary;
+        // If in combat mode (takes priority)
+        if (this.combatMode) {
+          return this.shipBattleStartEventNames;
+        }
+
+        return Array.isArray(this.shipDB.Commands.SetSecretary)
+          ? this.shipDB.Commands.SetSecretary
+          : [];
       } catch (e) {
         window.logError(
           "[Ship] Unexpected error in shipSetSecretaryEventNames.",
@@ -144,11 +161,15 @@ export default {
     },
     // Special
     shipSpecialEventNames() {
-      if (!this.shipDB || !this.shipDB.Commands) return [];
+      if (!this.shipDB || !this.shipDB.Commands || this.combatMode) return [];
       try {
-        return this.shipDB.Commands.Special.concat(
-          this.shipDB.Commands.Wedding
-        );
+        let specialList = Array.isArray(this.shipDB.Commands.Special)
+          ? this.shipDB.Commands.Special
+          : [];
+        if (Array.isArray(this.shipDB.Commands.Wedding)) {
+          specialList = specialList.concat(this.shipDB.Commands.Wedding);
+        }
+        return specialList;
       } catch (e) {
         window.logError("[Ship] Unexpected error in shipSpecialEventNames.", e);
       }
@@ -158,8 +179,18 @@ export default {
     shipIdleEventNames() {
       if (!this.shipDB || !this.shipDB.Commands) return [];
       try {
-        let idleList = this.shipDB.Commands.Idle;
-        if (this.useBonusLines) {
+        // If in combat mode (takes priority)
+        if (this.combatMode) {
+          return this.shipBattleEventNames;
+        }
+
+        let idleList = Array.isArray(this.shipDB.Commands.Idle)
+          ? this.shipDB.Commands.Idle
+          : [];
+        if (
+          this.useBonusLines &&
+          Array.isArray(this.shipDB.Commands.IdleBonus)
+        ) {
           idleList = idleList.concat(this.shipDB.Commands.IdleBonus);
         }
         return idleList;
@@ -171,16 +202,28 @@ export default {
     // Tap
     shipTapEventNames() {
       if (!this.shipDB || !this.shipDB.Commands) return [];
-      if (this.useSpecialLinesOnly) {
-        return this.shipSpecialEventNames;
-      }
 
       try {
-        let tapList = this.shipDB.Commands.Tap;
-        if (this.useBonusLines) {
+        // If in combat mode (takes priority)
+        if (this.combatMode) {
+          return this.shipBattleEventNames;
+        }
+
+        // If in special mode, return the special mode lines
+        if (this.useSpecialLinesOnly) {
+          return this.shipSpecialEventNames;
+        }
+
+        let tapList = Array.isArray(this.shipDB.Commands.Tap)
+          ? this.shipDB.Commands.Tap
+          : [];
+        if (
+          this.useBonusLines &&
+          Array.isArray(this.shipDB.Commands.TapBonus)
+        ) {
           tapList = tapList.concat(this.shipDB.Commands.TapBonus);
         }
-        if (this.useSpecialLines) {
+        if (this.useSpecialLines && Array.isArray(this.shipSpecialEventNames)) {
           tapList = tapList.concat(this.shipSpecialEventNames);
         }
         return tapList;
@@ -191,12 +234,80 @@ export default {
     },
     // Hourly
     shipHourlyEventNames() {
-      if (!this.shipDB || !this.shipDB.Commands || !this.shipDB.Commands.Hourly)
-        return [];
+      if (!this.shipDB || !this.shipDB.Commands) return [];
       try {
-        return this.shipDB.Commands.Hourly;
+        return Array.isArray(this.shipDB.Commands.Hourly)
+          ? this.shipDB.Commands.Hourly
+          : [];
       } catch (e) {
         window.logError("[Ship] Unexpected error in shipHourlyEventNames.", e);
+      }
+      return [];
+    },
+    // Battle
+    shipBattleEventNames() {
+      if (!this.shipDB || !this.shipDB.Commands) return [];
+      try {
+        let battleList = Array.isArray(this.shipDB.Commands.Battle)
+          ? this.shipDB.Commands.Battle
+          : [];
+
+        let dayTime = this.defineDayMode();
+        if (dayTime && Array.isArray(this.shipDB.Commands.BattleDay)) {
+          battleList = battleList.concat(this.shipDB.Commands.BattleDay);
+        }
+        if (!dayTime && Array.isArray(this.shipDB.Commands.BattleNight)) {
+          battleList = battleList.concat(this.shipDB.Commands.BattleNight);
+        }
+
+        return battleList;
+      } catch (e) {
+        window.logError("[Ship] Unexpected error in shipBattleEventNames.", e);
+      }
+      return [];
+    },
+    // BattleStart
+    shipBattleStartEventNames() {
+      if (!this.shipDB || !this.shipDB.Commands) return [];
+      try {
+        let battleStartList = Array.isArray(this.shipDB.Commands.BattleStart)
+          ? this.shipDB.Commands.BattleStart
+          : [];
+
+        let dayTime = this.defineDayMode();
+        if (dayTime && Array.isArray(this.shipDB.Commands.BattleStartDay)) {
+          battleStartList = battleStartList.concat(
+            this.shipDB.Commands.BattleStartDay
+          );
+        }
+        if (!dayTime && Array.isArray(this.shipDB.Commands.BattleStartNight)) {
+          battleStartList = battleStartList.concat(
+            this.shipDB.Commands.BattleStartNight
+          );
+        }
+
+        return battleStartList;
+      } catch (e) {
+        window.logError(
+          "[Ship] Unexpected error in shipBattleStartEventNames.",
+          e
+        );
+      }
+      return [];
+    },
+    // BattleComplete
+    shipBattleCompleteEventNames() {
+      if (!this.shipDB || !this.shipDB.Commands) return [];
+
+      try {
+        return Array.isArray(this.shipDB.Commands.BattleComplete)
+          ? this.shipDB.Commands.BattleComplete
+          : [];
+      } catch (e) {
+        window.logError(
+          "[Ship] Unexpected error in shipBattleCompleteEventNames.",
+          e
+        );
       }
       return [];
     },
@@ -265,7 +376,8 @@ export default {
     },
     useIdleLines() {
       this.resetIdleTimeout();
-    }
+    },
+    combatMode() {}
   },
   async mounted() {
     this.ctx = this.canvas.getContext("2d");
@@ -277,11 +389,6 @@ export default {
 
     this.audio.onended = this.audioHasEnded;
     this.audio.volume = this.voiceVolume;
-
-    if (this.combatMode) {
-      log("Entering combat mode");
-      this.shipXOffsetModifier = -0.5;
-    }
 
     this.loadShip();
   },
@@ -322,65 +429,60 @@ export default {
       // If success, allow
       this.onTap();
     },
-    battleStart() {
-      let daytime = false;
-
+    defineDayMode() {
       let currentHour = new Date().getHours();
-      if (currentHour >= 7 && currentHour < 19) {
-        daytime = true;
-      }
-
-      log("IsDaytime? ", daytime);
-      this.isShipAnimationFinished = false;
-      this.shipXOffsetModifier = 0;
-
-      var phase1Complete = false;
-
-      let animateLeaveRight = () => {
+      this.dayMode = currentHour >= 7 && currentHour < 19;
+      return this.dayMode;
+    },
+    animateExitRight(callback) {
+      let exitRight = () => {
         // These are the conditions to end prematurely.
-        if (this.isShipAnimationFinished && this.shipXOffsetModifier == 0) {
+        if (this.isShipAnimationFinished) {
+          if (callback && typeof callback === "function") {
+            callback();
+          }
           return;
         }
 
-        let reqAnimFrame =
-          window.requestAnimationFrame ||
-          window.mozRequestAnimationFrame ||
-          window.webkitRequestAnimationFrame ||
-          window.msRequestAnimationFrame ||
-          window.oRequestAnimationFrame;
-
-        if (phase1Complete && this.shipXOffsetModifier > -0.5) {
-          this.shipXOffsetModifier = -0.5;
-          // End
-          return;
-        }
-
-        if (this.isShipAnimationFinished && !phase1Complete) {
-          this.shipXOffsetModifier = -1.0;
-          this.isShipAnimationFinished = false;
-          phase1Complete = true;
-          log("Starting Combat Phase");
-          this.$store.commit(
-            "setCombatMode",
-            new Date(new Date().getTime() + __combatModeLength)
-          );
-          reqAnimFrame(animateLeaveRight);
-        } else {
-          this.shipXOffsetModifier += this.shipMovementSpeed * 0.001; // If using shipXOffsetModifier, it is % based.
-          reqAnimFrame(animateLeaveRight);
-        }
+        let shipMovementInRatio =
+          this.shipMovementSpeed /
+          Math.min(window.innerWidth, this.canvasCalculatedWidth);
+        this.shipXPositionModifier += shipMovementInRatio;
+        reqAnimFrame(exitRight);
 
         this.resizeCanvas();
       };
+      exitRight();
+    },
+    battleStart() {
+      this.defineDayMode();
+      this.isShipAnimationFinished = false;
+      this.shipXPositionModifier = 0;
 
-      animateLeaveRight();
+      this.animateExitRight(() => {
+        this.$store.commit(
+          "setCombatMode",
+          new Date().getTime() + __combatModeLength
+        );
+
+        this.shipXPositionModifier = 0;
+        this.resizeCanvas();
+      });
+
+      // Play audio
+      this.selectAndPlayEvent("onBattleStart", this.shipBattleStartEventNames);
     },
     battleEnd() {
       log("Ending Combat Phase");
       this.$store.commit("setCombatMode", null);
-      this.shipXOffsetModifier = 0;
+      this.shipXPositionModifier = 0;
       this.isShipAnimationFinished = true;
       this.resizeCanvas();
+
+      this.selectAndPlayEvent(
+        "onBattleComplete",
+        this.shipBattleCompleteEventNames
+      );
     },
     resetIdleTimeout() {
       if (this.idleTimeout) {
@@ -569,7 +671,15 @@ export default {
         await this.getDatabase();
         this.defaultSprite = await this.loadImage(this.shipNormalImagePath);
         this.damagedSprite = await this.loadImage(this.shipDamagedImagePath);
-        this.resizeCanvas();
+
+        if (this.combatMode) {
+          log("Entering combat mode");
+          this.defineDayMode();
+          //TODO
+          //this.shipXPositionModifier = 0.3 * Math.min(window.innerWidth, this.canvas.width);
+        }
+
+        this.resizeCanvas(); // Also calls draw ship
 
         // Play SetSecretary event
         this.onAdd();
@@ -591,38 +701,45 @@ export default {
       let shipCenterY = height / 2.0;
       let canvasCenterY = this.canvas.height / 2.0;
       let yOffset =
-        this.shipYPositionOffset +
-        (shipCenterY - canvasCenterY) / 2.0 +
-        this.shipMovementY;
+        this.shipYPositionOffset + (shipCenterY - canvasCenterY) / 2.0;
 
       // Some maths need to be done to decide on the X position of the shipgirl
       let canvasCenterX = this.canvas.width / 2.0;
       let shipCenterX = width / 2.0; // Used to set the ship in the center of the expected point
       let widthToUse = Math.min(this.canvas.width, window.innerWidth);
-      let shipExpectedPosition = widthToUse * 0.8;
+      let shipExpectedPosition = widthToUse * shipExpectedPositionRatio;
       let shipActualPosition = Math.max(canvasCenterX, shipExpectedPosition);
-      let xOffset =
-        this.shipXPositionOffset +
-        shipActualPosition -
-        shipCenterX +
-        this.shipMovementX;
+      let xOffset = this.shipXPositionOffset + shipActualPosition - shipCenterX;
 
       this.ctx.drawImage(this.defaultSprite, xOffset, yOffset, width, height);
-      if (!this.isShipAnimationFinished && xOffset >= widthToUse) {
-        this.isShipAnimationFinished = true;
+      if (!this.isShipAnimationFinished) {
+        let endOfWindow = canvasCenterX + widthToUse / 2.0;
+        if (xOffset >= endOfWindow) {
+          log(
+            `[DrawShip] Ending animation [xOffset:${xOffset}, widthToUse:${widthToUse}]`
+          );
+          this.isShipAnimationFinished = true;
+        }
       }
     },
     resizeCanvas() {
       //window.log(`Ship Resize: ${this.canvas.width}, ${this.canvas.height}`);
       try {
-        this.windowHeight = window.innerHeight;
         this.clearCanvas();
-        this.canvas.height = window.innerHeight;
-        this.canvas.width = this.calculateWidthFromHeight(
+        this.windowHeight = window.innerHeight;
+        this.canvasCalculatedWidth = this.calculateWidthFromHeight(
           __room.naturalWidth,
           __room.naturalHeight,
           window.innerHeight
         );
+        this.canvas.height = window.innerHeight;
+        this.canvas.width = this.canvasCalculatedWidth;
+
+        if (this.combatMode && this.isShipAnimationFinished) {
+          //TODO
+          //this.shipXPositionOffset = 0.3 * Math.min(window.innerWidth, this.canvas.width);
+        }
+
         this.drawShip();
       } catch (e) {
         window.logError("[Ship] Error in resize. ", e);
