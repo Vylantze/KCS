@@ -22,7 +22,8 @@ import { mapGetters } from "vuex";
 
 const path = require("path");
 const heightModifier = 1.3; // of total canvas height
-const shipExpectedPositionRatio = 0.8;
+const shipDefaultExpectedPositionRatio = 0.8;
+const shipCombatExpectedPositionRatio = 0.3;
 const reqAnimFrame =
   window.requestAnimationFrame ||
   window.mozRequestAnimationFrame ||
@@ -40,6 +41,7 @@ export default {
       // % based. Allows ship to 'hide' out of the window
       shipXPositionModifier: 0,
       shipYPositionModifier: 0,
+      shipExpectedPositionRatio: shipDefaultExpectedPositionRatio,
 
       defaultSprite: null,
       damagedSprite: null,
@@ -435,18 +437,31 @@ export default {
       return this.dayMode;
     },
     animateExitRight(callback) {
+      this.isShipAnimationFinished = false;
+      this.shipXPositionModifier = 0;
+
       let exitRight = () => {
+        let widthToUse = Math.min(
+          window.innerWidth,
+          this.canvasCalculatedWidth
+        );
+        let absoluteBarrier = widthToUse + this.shipWidth;
+        let absoluteBarrierRatio =
+          absoluteBarrier / widthToUse - this.shipExpectedPositionRatio;
+
         // These are the conditions to end prematurely.
-        if (this.isShipAnimationFinished) {
+        if (
+          this.isShipAnimationFinished ||
+          this.shipXPositionModifier >= absoluteBarrierRatio
+        ) {
+          this.isShipAnimationFinished = true; // In case it did not end by the boolean
           if (callback && typeof callback === "function") {
             callback();
           }
           return;
         }
 
-        let shipMovementInRatio =
-          this.shipMovementSpeed /
-          Math.min(window.innerWidth, this.canvasCalculatedWidth);
+        let shipMovementInRatio = this.shipMovementSpeed / widthToUse;
         this.shipXPositionModifier += shipMovementInRatio;
         reqAnimFrame(exitRight);
 
@@ -454,19 +469,56 @@ export default {
       };
       exitRight();
     },
+    animateEnterLeft(callback) {
+      let initialWidth = Math.min(
+        window.innerWidth,
+        this.canvasCalculatedWidth
+      );
+      let startPoint = 0 - this.shipWidth;
+      let startPointRatio =
+        startPoint / initialWidth - this.shipExpectedPositionRatio;
+
+      this.isShipAnimationFinished = false;
+      this.shipXPositionModifier = startPointRatio;
+
+      let enterLeft = () => {
+        // These are the conditions to end prematurely.
+        if (this.isShipAnimationFinished || this.shipXPositionModifier >= 0) {
+          this.isShipAnimationFinished = true; // In case it did not end by the boolean
+          if (callback && typeof callback === "function") {
+            callback();
+          }
+          return;
+        }
+
+        let widthToUse = Math.min(
+          window.innerWidth,
+          this.canvasCalculatedWidth
+        );
+        let shipMovementInRatio = this.shipMovementSpeed / widthToUse;
+        this.shipXPositionModifier += shipMovementInRatio;
+        reqAnimFrame(enterLeft);
+
+        this.resizeCanvas();
+      };
+      enterLeft();
+    },
     battleStart() {
       this.defineDayMode();
-      this.isShipAnimationFinished = false;
-      this.shipXPositionModifier = 0;
 
       this.animateExitRight(() => {
+        // Turn on combat mode
+        this.shipExpectedPositionRatio = shipCombatExpectedPositionRatio;
         this.$store.commit(
           "setCombatMode",
           new Date().getTime() + __combatModeLength
         );
 
-        this.shipXPositionModifier = 0;
-        this.resizeCanvas();
+        this.animateEnterLeft(() => {
+          // Once done, reset the position modifier
+          this.shipXPositionModifier = 0;
+          this.resizeCanvas();
+        });
       });
 
       // Play audio
@@ -477,6 +529,7 @@ export default {
       this.$store.commit("setCombatMode", null);
       this.shipXPositionModifier = 0;
       this.isShipAnimationFinished = true;
+      this.shipExpectedPositionRatio = shipDefaultExpectedPositionRatio;
       this.resizeCanvas();
 
       this.selectAndPlayEvent(
@@ -675,8 +728,9 @@ export default {
         if (this.combatMode) {
           log("Entering combat mode");
           this.defineDayMode();
-          //TODO
-          //this.shipXPositionModifier = 0.3 * Math.min(window.innerWidth, this.canvas.width);
+          this.shipExpectedPositionRatio = shipCombatExpectedPositionRatio;
+        } else {
+          this.shipExpectedPositionRatio = shipDefaultExpectedPositionRatio;
         }
 
         this.resizeCanvas(); // Also calls draw ship
@@ -707,20 +761,22 @@ export default {
       let canvasCenterX = this.canvas.width / 2.0;
       let shipCenterX = width / 2.0; // Used to set the ship in the center of the expected point
       let widthToUse = Math.min(this.canvas.width, window.innerWidth);
-      let shipExpectedPosition = widthToUse * shipExpectedPositionRatio;
-      let shipActualPosition = Math.max(canvasCenterX, shipExpectedPosition);
+      let shipExpectedPosition = 0;
+      let shipActualPosition = 0;
+
+      if (this.shipExpectedPositionRatio >= 0.5) {
+        shipExpectedPosition = widthToUse * this.shipExpectedPositionRatio;
+        shipActualPosition = Math.max(canvasCenterX, shipExpectedPosition);
+      } else {
+        // Reverse psychology (by pretending we're calculating from the right instead of the left)
+        shipExpectedPosition =
+          this.canvas.width - widthToUse * (1 - this.shipExpectedPositionRatio);
+        shipActualPosition = Math.min(canvasCenterX, shipExpectedPosition);
+      }
+
       let xOffset = this.shipXPositionOffset + shipActualPosition - shipCenterX;
 
       this.ctx.drawImage(this.defaultSprite, xOffset, yOffset, width, height);
-      if (!this.isShipAnimationFinished) {
-        let endOfWindow = canvasCenterX + widthToUse / 2.0;
-        if (xOffset >= endOfWindow) {
-          log(
-            `[DrawShip] Ending animation [xOffset:${xOffset}, widthToUse:${widthToUse}]`
-          );
-          this.isShipAnimationFinished = true;
-        }
-      }
     },
     resizeCanvas() {
       //window.log(`Ship Resize: ${this.canvas.width}, ${this.canvas.height}`);
@@ -734,11 +790,6 @@ export default {
         );
         this.canvas.height = window.innerHeight;
         this.canvas.width = this.canvasCalculatedWidth;
-
-        if (this.combatMode && this.isShipAnimationFinished) {
-          //TODO
-          //this.shipXPositionOffset = 0.3 * Math.min(window.innerWidth, this.canvas.width);
-        }
 
         this.drawShip();
       } catch (e) {
