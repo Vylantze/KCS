@@ -301,7 +301,6 @@ export default {
   data() {
     return {
       audio: {},
-      seAudio: new Audio(),
 
       compositionButtonWidth: null,
       compositionButtonHeight: null,
@@ -423,8 +422,6 @@ export default {
   async mounted() {
     this.resizeUI();
     window.addEventListener("resize", this.resizeUI);
-
-    this.seAudio.volume = this.seVolume;
   },
   beforeDestroy() {
     // Unregister the event listener before destroying this Vue instance
@@ -455,7 +452,7 @@ export default {
       }
       Object.keys(this.seDB).map(key => {
         this.audio[key] = new Audio();
-        this.audio[key].volume = this.seVolume;
+        this.audio[key].volume = this.finalSeVolume;
         this.audio[key].src = this.seDB[key];
         this.audio[key].load();
       });
