@@ -339,7 +339,8 @@ export default {
 
       finalSeVolume: "seVolume",
 
-      combatMode: "combatMode"
+      combatMode: "combatMode",
+      damagedMode: "damagedMode"
     }),
     ...mapState({
       overallVolume: s => s.main.overallVolume,
@@ -361,7 +362,11 @@ export default {
       return this.disableShipButtons || this.disableShipComposition;
     },
     disableRepairButton() {
-      return this.disableShipButtons || this.disableShipRepair;
+      return (
+        this.disableShipButtons ||
+        this.disableShipRepair ||
+        (!this.damagedMode && !__dev)
+      );
     },
     overallSlider: {
       get() {
@@ -563,7 +568,11 @@ export default {
       }
     },
     repairShip() {
+      if (this.disableRepairButton) {
+        return;
+      }
       this.playSeAudio("Resupply");
+      this.$store.commit("setDamagedMode", !this.damagedMode);
     },
     toggleAllModelLines() {
       this.playSeAudio("Accept/Cancel Quest");

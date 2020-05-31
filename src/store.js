@@ -34,7 +34,8 @@ const store = new Vuex.Store({
 
         // Overall states
         combatMode: false, // Indicates whether the game is in combat mode
-        loadingMode: false, // Indicates whether the game is in combat mode
+        loadingMode: false, // Indicates whether the game is loading
+        damagedMode: false, // Indicates whether the ship is damaged
 
         // Volume settings
         overallVolume: 1.0,
@@ -64,6 +65,7 @@ const store = new Vuex.Store({
 
         combatMode: s => JSON.parse(JSON.stringify(s.combatMode)),
         loadingMode: s => JSON.parse(JSON.stringify(s.loadingMode)),
+        damagedMode: s => JSON.parse(JSON.stringify(s.damagedMode)),
 
         bgmCategories: s => JSON.parse(JSON.stringify(s.bgm.Categories)),
         bgmCategoryOrder: s => JSON.parse(JSON.stringify(s.bgm.CategoryOrder)),
@@ -108,23 +110,26 @@ const store = new Vuex.Store({
           s.titleLines = titleLines;
         },
         setCombatMode(s, combatMode) {
-          // Input the end time
-          try {
-            let dateTime = new Date(combatMode);
-            if (combatMode && dateTime > new Date()) {
-              s.combatMode = combatMode;
-              utils.saveSetting("combatMode", combatMode);
+          // Expects input of the end time
 
-              let timeLeft = dateTime.getTime() - new Date().getTime();
-              combatModeInterval = window.setInterval(() => {
-                s.combatMode = null;
-                window.dispatchEvent(new CustomEvent("battleEnd"));
-              }, timeLeft);
-              log('Time left until Combat ends: ', timeLeft);
+          if (combatMode) {
+            try {
+              let dateTime = new Date(combatMode);
+              if (combatMode && dateTime > new Date()) {
+                s.combatMode = combatMode;
+                utils.saveSetting("combatMode", combatMode);
+
+                let timeLeft = dateTime.getTime() - new Date().getTime();
+                combatModeInterval = window.setInterval(() => {
+                  s.combatMode = null;
+                  window.dispatchEvent(new CustomEvent("battleEnd"));
+                }, timeLeft);
+                log('Time left until Combat ends: ', timeLeft);
+              }
+            } catch (e) {
+              combatMode = null;
+              log("[setCombatMode] Error. ", e);
             }
-          } catch (e) {
-            combatMode = null;
-            log("[setCombatMode] Error. ", e);
           }
 
           if (!combatMode) {
@@ -137,6 +142,10 @@ const store = new Vuex.Store({
         },
         setLoadingMode(s, loadingMode) {
           s.loadingMode = loadingMode;
+        },
+        setDamagedMode(s, damagedMode) {
+          log("setDamagedMode", damagedMode);
+          s.damagedMode = damagedMode;
         },
         // Set the title subtitle
         setTitle(s, title) {
@@ -227,41 +236,51 @@ const store = new Vuex.Store({
             "setSelectedBgmName",
             "setSelectedShipName",
             "setSelectedSpriteName",
+
             "setOverallVolume",
             "setBgmVolume",
             "setSeVolume",
             "setVoiceVolume",
+
             "setOverallVolumeMute",
             "setBgmVolumeMute",
             "setSeVolumeMute",
             "setVoiceVolumeMute",
+
             "setIdleLineWait",
             "setUseIdleLines",
             "setUseSpecialLines",
             "setUseSpecialLinesOnly",
             "setUseBonusLines",
             "setUseAllModelLines",
+
             "setCombatMode",
+            "setDamagedMode",
           ];
           let variableName = [
             "selectedBgmName",
             "selectedShipName",
             "selectedSpriteName",
+
             "overallVolume",
             "bgmVolume",
             "seVolume",
             "voiceVolume",
+
             "overallVolumeMute",
             "bgmVolumeMute",
             "seVolumeMute",
             "voiceVolumeMute",
+
             "idleLineWait",
             "useIdleLines",
             "useSpecialLines",
             "useSpecialLinesOnly",
             "useBonusLines",
             "useAllModelLines",
-            "combatMode"
+
+            "combatMode",
+            "damagedMode",
           ];
 
           if (setters.length != variableName.length) {

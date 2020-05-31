@@ -21,6 +21,11 @@
 
     .foreground {
       user-select: none;
+      -moz-user-select: none;
+      -webkit-user-drag: none;
+      -webkit-user-select: none;
+      -ms-user-select: none;
+
       top: 0;
       left: 0;
       width: 100%;
@@ -68,6 +73,9 @@ export default {
     },
     mainMenuBGM() {
       return this.BGMs ? this.BGMs["Main Menu"] : null;
+    },
+    combatStandbyBgm() {
+      return this.BGMs ? this.BGMs["Sortie / PvP / Expedition"] : null;
     }
   },
   watch: {
@@ -95,6 +103,7 @@ export default {
       }
     },
     combatMode() {
+      this.playBgmAudio();
       this.drawBackground();
     }
   },
@@ -192,22 +201,36 @@ export default {
         ? this.roomWallObjectAkizuki
         : this.roomWallObject;
     },
+    isDayTime() {
+      let currentHour = new Date().getHours();
+      return currentHour >= 7 && currentHour < 19;
+    },
+    combatBgm() {
+      if (!this.BGMs) {
+        return null;
+      }
+      return this.isDayTime ? this.BGMs["Battle"] : this.BGMs["Night Battle"];
+    },
     playBgmAudio() {
       if (this.bgmAudio) {
         this.bgmAudio.pause();
       }
 
-      if (!this.selectedBgm) {
+      // Set the bgm to play
+      let bgm = this.selectedBgm;
+      if (this.combatMode) {
+        bgm = this.combatBgm();
+      }
+
+      if (!bgm) {
         return;
       }
-      let currentFile = this.selectedBgm.File;
+
+      let currentFile = bgm.File;
       this.bgmAudio.src = currentFile;
       this.bgmAudio.load();
       if (!this.loading) {
-        window.log(
-          `Playing BGM [${this.selectedBgm.English}].`,
-          this.selectedBgm
-        );
+        window.log(`Playing BGM [${bgm.English}].`, bgm);
         this.bgmAudio.play();
       }
     },

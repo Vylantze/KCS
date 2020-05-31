@@ -54,7 +54,6 @@ export default {
       shipMovementSpeed: 5,
 
       isShipAnimationFinished: true,
-      dayMode: false,
 
       shipDB: null,
       ctx: null // Canvas context
@@ -75,7 +74,8 @@ export default {
       idleLineWait: "idleLineWait",
 
       loading: "loadingMode",
-      combatMode: "combatMode"
+      combatMode: "combatMode",
+      damagedMode: "damagedMode"
     }),
     shipName() {
       return this.selectedShipName;
@@ -254,7 +254,7 @@ export default {
           ? this.shipDB.Commands.Battle
           : [];
 
-        let dayTime = this.defineDayMode();
+        let dayTime = this.isDayTime();
         if (dayTime && Array.isArray(this.shipDB.Commands.BattleDay)) {
           battleList = battleList.concat(this.shipDB.Commands.BattleDay);
         }
@@ -276,7 +276,7 @@ export default {
           ? this.shipDB.Commands.BattleStart
           : [];
 
-        let dayTime = this.defineDayMode();
+        let dayTime = this.isDayTime();
         if (dayTime && Array.isArray(this.shipDB.Commands.BattleStartDay)) {
           battleStartList = battleStartList.concat(
             this.shipDB.Commands.BattleStartDay
@@ -347,7 +347,7 @@ export default {
           this.shipDB.Sprites[this.shipSprite].Damaged
         );
       } catch (e) {
-        window.logError("[Ship] Unexpected error in shipNormalImagePath.", e);
+        window.logError("[Ship] Unexpected error in shipDamagedImagePath.", e);
       }
       return null;
     }
@@ -379,7 +379,9 @@ export default {
     useIdleLines() {
       this.resetIdleTimeout();
     },
-    combatMode() {}
+    damagedMode() {
+      this.resizeCanvas();
+    }
   },
   async mounted() {
     this.ctx = this.canvas.getContext("2d");
@@ -431,10 +433,9 @@ export default {
       // If success, allow
       this.onTap();
     },
-    defineDayMode() {
+    isDayTime() {
       let currentHour = new Date().getHours();
-      this.dayMode = currentHour >= 7 && currentHour < 19;
-      return this.dayMode;
+      return currentHour >= 7 && currentHour < 19;
     },
     animateExitRight(callback) {
       this.isShipAnimationFinished = false;
@@ -504,8 +505,6 @@ export default {
       enterLeft();
     },
     battleStart() {
-      this.defineDayMode();
-
       this.animateExitRight(() => {
         // Turn on combat mode
         this.shipExpectedPositionRatio = shipCombatExpectedPositionRatio;
@@ -727,7 +726,6 @@ export default {
 
         if (this.combatMode) {
           log("Entering combat mode");
-          this.defineDayMode();
           this.shipExpectedPositionRatio = shipCombatExpectedPositionRatio;
         } else {
           this.shipExpectedPositionRatio = shipDefaultExpectedPositionRatio;
@@ -776,7 +774,11 @@ export default {
 
       let xOffset = this.shipXPositionOffset + shipActualPosition - shipCenterX;
 
-      this.ctx.drawImage(this.defaultSprite, xOffset, yOffset, width, height);
+      let spriteToDraw = this.damagedMode
+        ? this.damagedSprite
+        : this.defaultSprite;
+      log("Sprite to draw", spriteToDraw);
+      this.ctx.drawImage(spriteToDraw, xOffset, yOffset, width, height);
     },
     resizeCanvas() {
       //window.log(`Ship Resize: ${this.canvas.width}, ${this.canvas.height}`);
