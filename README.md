@@ -1,4 +1,4 @@
-# kce
+# KCS
 
 ## Project setup
 ```
