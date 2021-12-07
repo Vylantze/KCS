@@ -154,7 +154,7 @@
         </div>
       </div>
 
-      <div v-if="menuOpen == 'composition'" class="menu center-div">
+      <div v-if="menuOpen == 'composition'" class="menu center-div composition">
         <ShipAssigner
           @shipChanged="shipChanged()"
           @closeMenu="closeMenu()"
@@ -356,15 +356,16 @@ export default {
       idleLineWait: s => s.main.idleLineWait
     }),
     disableSortieButton() {
-      return this.disableShipButtons || this.disableShipSortie;
+      return this.disableShipButtons || this.disableShipSortie || this.menuOpen;
     },
     disableCompositionButton() {
-      return this.disableShipButtons || this.disableShipComposition;
+      return this.disableShipButtons || this.disableShipComposition || this.menuOpen;
     },
     disableRepairButton() {
       return (
         this.disableShipButtons ||
         this.disableShipRepair ||
+        this.menuOpen ||
         (!this.damagedMode && !__dev)
       );
     },
@@ -546,6 +547,7 @@ export default {
       if (this.disableCompositionButton) {
         return;
       }
+      this.setButtonHoverState('compositionButtonHover', false);
       if (this.openMenu("composition")) {
         this.playSeAudio("Select");
       }
@@ -554,6 +556,7 @@ export default {
       if (this.disableSortieButton) {
         return;
       }
+      this.setButtonHoverState('sortieButtonHover', false);
       this.disableShipButtons = true;
       this.disableShipComposition = true;
       this.disableShipRepair = true;
@@ -571,6 +574,7 @@ export default {
       if (this.disableRepairButton) {
         return;
       }
+      this.setButtonHoverState('repairButtonHover', false);
       this.playSeAudio("Resupply");
       this.$store.commit("setDamagedMode", !this.damagedMode);
     },
@@ -731,9 +735,12 @@ export default {
     overflow: hidden;
 
     .back-button-holder {
-      position: absolute;
-      top: calc(65% + 20px);
       width: 100%;
+      pointer-events: none;
+
+      button {
+        pointer-events: auto;
+      }
     }
 
     ::-webkit-scrollbar {
@@ -765,12 +772,17 @@ export default {
     width: 80%;
     height: 65%;
     color: white;
+    z-index: 100;
 
     overflow-y: auto;
 
     &.center {
       display: flex;
       justify-content: center;
+    }
+
+    &.composition {
+      height: 85%;
     }
 
     &.limit-size {
