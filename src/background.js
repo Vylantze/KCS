@@ -15,18 +15,22 @@ let win;
 protocol.registerSchemesAsPrivileged([{ scheme: 'app', privileges: { secure: true, standard: true } }]);
 
 function createWindow() {
+  const windowWidth = 885;
+  const windowHeight = 480;
+  const windowRatio = windowWidth / (1.0 * windowHeight);
+
   // Create the browser window.
   win = new BrowserWindow({
     webSecurity: !isDevelopment,
     minWidth: 400,
     minHeight: 600,
-    width: 885,
-    height: 480,
+    width: windowWidth,
+    height: windowHeight,
     webPreferences: {
       nodeIntegration: true,
       //contextIsolation: true, // protect against prototype pollution
       //enableRemoteModule: false, // turn off remote
-    }
+    },
   });
 
   if (process.env.WEBPACK_DEV_SERVER_URL) {

@@ -385,7 +385,7 @@ export default {
   },
   async mounted() {
     this.ctx = this.canvas.getContext("2d");
-    window.addEventListener("resize", this.resizeCanvas);
+    window.addEventListener("resize", this.windowResizeHandler);
     window.addEventListener("hourly", this.onHourly);
     window.addEventListener("battleStart", this.battleStart);
     window.addEventListener("battleEnd", this.battleEnd);
@@ -398,7 +398,7 @@ export default {
   },
   beforeDestroy() {
     // Unregister the event listener before destroying this Vue instance
-    window.removeEventListener("resize", this.resizeCanvas);
+    window.removeEventListener("resize", this.windowResizeHandler);
     window.removeEventListener("hourly", this.onHourly);
     window.removeEventListener("battleStart", this.battleStart);
     window.removeEventListener("battleEnd", this.battleEnd);
@@ -436,6 +436,9 @@ export default {
     isDayTime() {
       let currentHour = new Date().getHours();
       return currentHour >= 7 && currentHour < 19;
+    },
+    windowResizeHandler() {
+      this.resizeCanvas();
     },
     animateExitRight(callback) {
       this.isShipAnimationFinished = false;
