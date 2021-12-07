@@ -10,7 +10,7 @@ Vue.use(Vuex);
 // Database import
 import bgm from './database/bgm.json'
 import se from './database/se.json'
-import title from './database/title.json'
+import titleLines from './database/title.json'
 
 import akizuki from './database/ship/akizuki.json'
 import haguro from './database/ship/haguro.json'
@@ -34,9 +34,6 @@ const store = new Vuex.Store({
       state: {
         // Databases
         database: {}, // Main ship database
-        bgm: {}, // BGM database
-        se: {}, // SE database
-        titleLines: {}, // Title lines database
         shipNames: [], // The list of ship names that are available
 
         // Subtitle/overlays
@@ -74,19 +71,19 @@ const store = new Vuex.Store({
       },
       getters: {
         database: s => JSON.parse(JSON.stringify(s.database)),
-        BGMs: s => JSON.parse(JSON.stringify(s.bgm.Events)),
-        SEs: s => JSON.parse(JSON.stringify(s.se)),
-        titleLines: s => JSON.parse(JSON.stringify(s.titleLines)),
+        BGMs: () => JSON.parse(JSON.stringify(bgm.Events)),
+        SEs: () => JSON.parse(JSON.stringify(se)),
+        titleLines: () => JSON.parse(JSON.stringify(titleLines)),
         shipNames: s => JSON.parse(JSON.stringify(s.shipNames)),
 
         combatMode: s => JSON.parse(JSON.stringify(s.combatMode)),
         loadingMode: s => JSON.parse(JSON.stringify(s.loadingMode)),
         damagedMode: s => JSON.parse(JSON.stringify(s.damagedMode)),
 
-        bgmCategories: s => JSON.parse(JSON.stringify(s.bgm.Categories)),
-        bgmCategoryOrder: s => JSON.parse(JSON.stringify(s.bgm.CategoryOrder)),
+        bgmCategories: () => JSON.parse(JSON.stringify(bgm.Categories)),
+        bgmCategoryOrder: () => JSON.parse(JSON.stringify(bgm.CategoryOrder)),
 
-        selectedBgm: s => s.selectedBgmName && s.bgm && s.bgm.Events ? JSON.parse(JSON.stringify(s.bgm.Events[s.selectedBgmName])) : null,
+        selectedBgm: s => s.selectedBgmName ? JSON.parse(JSON.stringify(bgm.Events[s.selectedBgmName])) : null,
         selectedShipName: s => JSON.parse(JSON.stringify(s.selectedShipName)),
         selectedSpriteName: s => JSON.parse(JSON.stringify(s.selectedSpriteName)),
 
@@ -114,16 +111,6 @@ const store = new Vuex.Store({
         },
         setShipNames(s, shipNames) {
           s.shipNames = shipNames;
-        },
-        setBgm(s, bgm) {
-          s.bgm = bgm;
-        },
-        setSe(s, se) {
-          s.se = se;
-        },
-        // Set the ship lines for the title screen
-        setTitleLines(s, titleLines) {
-          s.titleLines = titleLines;
         },
         setCombatMode(s, combatMode) {
           // Expects input of the end time
@@ -334,35 +321,10 @@ const store = new Vuex.Store({
           s.commit('setDatabase', database);
           s.commit('setShipNames', shipNames);
 
-          //
-          // Populate the bgm data
-          //
-          try {
-            s.commit('setBgm', bgm);
-          } catch (e) {
-            window.logError(`[populateData] Unable to read bgm database`, e);
-          }
-
-          //
-          // Populate the se data
-          //
-          try {
-            s.commit('setSe', se);
-          } catch (e) {
-            window.logError(`[populateData] Unable to read se database`, e);
-          }
-
-          // Populate the title data
-          try {
-            s.commit('setTitleLines', title);
-          } catch (e) {
-            window.logError(`[populateData] Unable to read title database`, e);
-          }
-
           window.log('Ship data', database);
           window.log('Bgm data', bgm);
           window.log('SE data', se);
-          window.log('Title data', title);
+          window.log('Title data', titleLines);
         },
         invokeHourlyEvent: () => {
           let hour = new Date().getHours();
