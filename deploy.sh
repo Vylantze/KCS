@@ -1,25 +1,29 @@
-#!/usr/bin/env sh
+#!/bin/sh
+# Script to manage github pages deployment using a 'distribution' directory
+# Ref: http://www.damian.oquanta.info/posts/one-line-deployment-of-your-site-to-gh-pages.html
+# https://gist.github.com/cobyism/4730490
+#
+# This script assumes '${TARGET_DEPLOYMENT_BRANCH}' branch is the target deployment branch
+#  note: in the case of standard github pages, this is is 'gh-pages')
+#  note: in the case of a user github pages, this is is 'master')
+# This script will deploy the CURRENT branch to TARGET_DEPLOYMENT_BRANCH
+set -o
 
-# abort on errors
-set -e
+TARGET_DEPLOYMENT_BRANCH='gh-pages'
+DISTRIBUTION_DIRECTORY='dist'
 
-# build
-npm run build
+npm run deploy
 
-# navigate into the build output directory
-cd dist
+git add ${DISTRIBUTION_DIRECTORY} -f
 
-# if you are deploying to a custom domain
-# echo 'www.example.com' > CNAME
+git commit -m "build"
 
-git init
-git add -A
-git commit -m 'deploy'
+# Create the subtree
+git subtree split --prefix ${DISTRIBUTION_DIRECTORY} -b ${TARGET_DEPLOYMENT_BRANCH}
 
-# if you are deploying to https://<USERNAME>.github.io
-# git push -f git@github.com:Vylantze/KCS.git main
+# Because this is a 'force push' the branch must not be 'protected'
+git push -f origin ${TARGET_DEPLOYMENT_BRANCH}:${TARGET_DEPLOYMENT_BRANCH}
 
-# if you are deploying to https://<USERNAME>.github.io/<REPO>
-git push -f git@github.com:Vylantze/KCS.git main:gh-pages
-
-cd -
+# Remove the branch locally as its not needed.
+# Deployment is simplified by re-creating the force pushing the branch
+git branch -D ${TARGET_DEPLOYMENT_BRANCH}
