@@ -377,14 +377,15 @@ const store = new Vuex.Store({
           window.dispatchEvent(hourly);
         },
         startIntervalTimer: s => {
-          let hourInMilliseconds = 1000 * 60 * 60;
-          let timeToHourChange = 3600000 - new Date().getTime() % 3600000 + 1;
-          window.setTimeout(() => {
-            s.dispatch('invokeHourlyEvent');
-            window.setInterval(() => {
+          var previousHour = new Date().getHours();
+          window.setInterval(() => {
+            // Check this every second
+            let currentHour = new Date().getHours();
+            if (currentHour !== previousHour) {
+              previousHour = currentHour;
               s.dispatch('invokeHourlyEvent');
-            }, hourInMilliseconds);
-          }, timeToHourChange);
+            }
+          }, 1000);
         },
         startEventListeners() {
           return null;
