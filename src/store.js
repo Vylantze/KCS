@@ -51,7 +51,7 @@ const store = new Vuex.Store({
         damagedMode: false, // Indicates whether the ship is damaged
 
         // Volume settings
-        overallVolume: 1.0,
+        overallVolume: 0.2,
         bgmVolume: 0.5,
         seVolume: 0.2,
         voiceVolume: 1.0,
