@@ -19,7 +19,8 @@
     "postuninstall": "electron-builder install-app-deps",
     "dev": "vue-cli-service electron:serve",
     "pack": "asar pack ship/yamato packed/ship/yamato.asar",
-    "build": "npm-run-all clean electron:build",
+    "build-electron": "npm-run-all clean electron:build",
+    "build": "vue-cli-service build --mode heroku",
     "deploy": "vue-cli-service build --mode production"
   },
   "main": "background.js",

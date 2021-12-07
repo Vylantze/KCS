@@ -1,7 +1,7 @@
 // vue.config.js
 module.exports = {
   // options...
-  publicPath: '/',
+  publicPath: process.env.NODE_ENV === 'production' ? '/KCS' : '/',
   pluginOptions: {
     electronBuilder: {
       builderOptions: {
