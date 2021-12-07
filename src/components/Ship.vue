@@ -110,7 +110,7 @@ export default {
       return this.windowHeight * heightModifier;
     },
     shipWidth() {
-      let sprite = this.damaged ? this.damagedSprite : this.defaultSprite;
+      let sprite = this.damagedMode ? this.damagedSprite : this.defaultSprite;
       if (!sprite) return 0;
       return this.calculateWidthFromHeight(
         sprite.naturalWidth,

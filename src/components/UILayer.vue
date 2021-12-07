@@ -365,8 +365,7 @@ export default {
       return (
         this.disableShipButtons ||
         this.disableShipRepair ||
-        this.menuOpen ||
-        !this.damagedMode
+        this.menuOpen
       );
     },
     overallSlider: {
