@@ -1,14 +1,30 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 
-import path from 'path';
-import fs from 'fs';
-
 import './lib/preload';
 import utils from './lib/utils';
 
 Vue.config.productionTip = false;
 Vue.use(Vuex);
+
+// Database import
+import bgm from './database/bgm.json'
+import se from './database/se.json'
+import title from './database/title.json'
+
+import akizuki from './database/ship/akizuki.json'
+import haguro from './database/ship/haguro.json'
+import sendai from './database/ship/sendai.json'
+import taigei from './database/ship/taigei.json'
+import yamato from './database/ship/yamato.json'
+
+const ships = [
+  akizuki,
+  haguro,
+  sendai,
+  taigei,
+  yamato,
+];
 
 var combatModeInterval = null;
 
@@ -70,7 +86,7 @@ const store = new Vuex.Store({
         bgmCategories: s => JSON.parse(JSON.stringify(s.bgm.Categories)),
         bgmCategoryOrder: s => JSON.parse(JSON.stringify(s.bgm.CategoryOrder)),
 
-        selectedBgm: s => s.selectedBgmName ? JSON.parse(JSON.stringify(s.bgm.Events[s.selectedBgmName])) : null,
+        selectedBgm: s => s.selectedBgmName && s.bgm && s.bgm.Events ? JSON.parse(JSON.stringify(s.bgm.Events[s.selectedBgmName])) : null,
         selectedShipName: s => JSON.parse(JSON.stringify(s.selectedShipName)),
         selectedSpriteName: s => JSON.parse(JSON.stringify(s.selectedSpriteName)),
 
@@ -298,29 +314,19 @@ const store = new Vuex.Store({
           }
         },
         populateData: s => {
-          let databasePath = path.join(__static, "database");
-          if (!fs.existsSync(databasePath)) {
-            window.logError(`[populateData] Unable to get database path at [${databasePath}]`);
-            return;
-          }
-
           //
           // Populate the ships
           //
-          let shipDatabasePath = path.join(databasePath, "ship");
-          let list = fs.readdirSync(shipDatabasePath);
-
           let shipNames = [];
           let database = {};
-          list.map(filename => {
+          ships.map(ship => {
             try {
-              let fileData = fs.readFileSync(path.join(shipDatabasePath, filename));
-              let databaseData = JSON.parse(fileData);
+              let databaseData = JSON.parse(JSON.stringify(ship));
               let shipName = databaseData.Name;
               shipNames.push(shipName);
               database[shipName] = databaseData;
             } catch (e) {
-              window.logError(`[populateData] Unable to read ship database at path [${shipDatabasePath}]`, e);
+              window.logError(`[populateData] Unable to read ship database`, e);
             }
           });
           log("ShipNames", shipNames);
@@ -331,45 +337,32 @@ const store = new Vuex.Store({
           //
           // Populate the bgm data
           //
-          let bgmPath = path.join(databasePath, "bgm.json");
-          let bgmDatabase = {};
           try {
-            let bgmData = fs.readFileSync(bgmPath);
-            bgmDatabase = JSON.parse(bgmData);
-            s.commit('setBgm', bgmDatabase);
+            s.commit('setBgm', bgm);
           } catch (e) {
-            window.logError(`[populateData] Unable to read bgm database at path [${bgmPath}]`, e);
+            window.logError(`[populateData] Unable to read bgm database`, e);
           }
 
           //
           // Populate the se data
           //
-          let sePath = path.join(databasePath, "se.json");
-          let seDatabase = {};
           try {
-            let seData = fs.readFileSync(sePath);
-            seDatabase = JSON.parse(seData);
-            s.commit('setSe', seDatabase);
+            s.commit('setSe', se);
           } catch (e) {
-            window.logError(`[populateData] Unable to read se database at path [${sePath}]`, e);
+            window.logError(`[populateData] Unable to read se database`, e);
           }
 
           // Populate the title data
-          let titleLinesPath = path.join(databasePath, "title.json");
-          let titleLinesDatabase = {};
           try {
-            let titleData = fs.readFileSync(titleLinesPath);
-            titleLinesDatabase = JSON.parse(titleData);
-            s.commit('setTitleLines', titleLinesDatabase);
+            s.commit('setTitleLines', title);
           } catch (e) {
-            window.logError(`[populateData] Unable to read title database at path [${titleLinesPath}]`, e);
+            window.logError(`[populateData] Unable to read title database`, e);
           }
 
-
           window.log('Ship data', database);
-          window.log('Bgm data', bgmDatabase);
-          window.log('SE data', seDatabase);
-          window.log('Title data', titleLinesDatabase);
+          window.log('Bgm data', bgm);
+          window.log('SE data', se);
+          window.log('Title data', title);
         },
         invokeHourlyEvent: () => {
           let hour = new Date().getHours();

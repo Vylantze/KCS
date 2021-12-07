@@ -1,5 +1,3 @@
-import path from 'path';
-
 const isDevelopment = process.env.NODE_ENV !== 'production';
 
 window.__dev = isDevelopment;
@@ -23,9 +21,7 @@ window.__combatModeLength = 1 * 60 * 1000; // In milliseconds
 window.__mobileMode = {
   width: 600,
 };
-window.__resources = path.resolve(path.join(__static, ".."));
 window.__ship = "ship";
-//window.__ship = isDevelopment ? path.join(__resources, "packed", "ship") : path.join(__resources, "ship"); // Old one for .asar packaging
 
 if (isDevelopment) {
   window.log = console.log.bind(window.console);
