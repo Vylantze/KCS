@@ -140,7 +140,7 @@
 
           <!-- Buttons -->
           <h3>Misc</h3>
-          <div class="d-flex" style="padding-bottom: 20px;">
+          <div class="d-flex" style="margin-bottom: 20px;">
             <button class="standard-button info" @click="openBgm">Change BGM</button>
             <button
               class="standard-button"
@@ -176,98 +176,107 @@
       </div>
     </div>
 
-    <!-- Sortie button -->
-    <div
-      class="sortie-button"
-      :class="{ 'set-transparent': hideButtons, disabled: disableSortieButton, clickable: !disableSortieButton }"
-      @mouseover="setButtonHoverState('sortieButtonHover', true)"
-      @mouseleave="setButtonHoverState('sortieButtonHover', false)"
-      @click="sortieShip"
-    >
-      <img v-show="!sortieButtonHover" src="img/sortie_button.png" :width="sortieButtonWidth" />
-      <div v-show="sortieButtonHover" class="fixed" style="pointer-events: none;">
-        <img src="img/sortie_button_highlighted_part1.png" :width="sortieButtonWidth" />
-        <img
-          src="img/sortie_button_highlighted_part2.png"
-          class="absolute highlight-button"
-          style="top: 0; left: 0;"
-          :width="sortieButtonWidth"
-        />
-        <img
-          src="img/sortie_button_highlighted_part3.png"
-          class="absolute"
-          style="top: 0; left: 0;"
-          :width="sortieButtonWidth"
-        />
-      </div>
-    </div>
 
-    <!-- Ship change button -->
-    <div
-      v-if="!combatMode"
-      class="composition-button"
-      :class="{ 'set-transparent': hideButtons, disabled: disableCompositionButton, clickable: !disableCompositionButton  }"
-      @mouseover="setButtonHoverState('compositionButtonHover', true)"
-      @mouseleave="setButtonHoverState('compositionButtonHover', false)"
-      :style="{ bottom: `${13 + Math.max(compositionButtonHeight * 1.5, compositionButtonMinHeight)}px` }"
-      @click="changeShip"
-    >
-      <img
-        v-show="!compositionButtonHover"
-        src="img/composition_button.png"
-        :width="compositionButtonWidth"
-      />
-      <div v-show="compositionButtonHover" class="fixed" style="pointer-events: none;">
-        <img
-          src="img/highlight_button.png"
-          class="highlight-button"
-          :width="compositionButtonWidth"
-        />
-        <img
-          src="img/composition_button_highlight.png"
-          class="absolute"
-          style="top: 0; left: 0;"
-          :width="compositionButtonWidth"
-        />
-      </div>
-    </div>
+    <div class="button-wrapper" :class="{ 'min-mode': belowMin }">
+      <div class="buttons-left">
+        <!-- Sortie button -->
+        <div
+          class="sortie-button"
+          :class="{ 'set-transparent': hideButtons, disabled: disableSortieButton, clickable: !disableSortieButton, 'min-mode': belowMin }"
+          @mouseover="setButtonHoverState('sortieButtonHover', true)"
+          @mouseleave="setButtonHoverState('sortieButtonHover', false)"
+          @click="sortieShip"
+        >
+          <img v-show="!sortieButtonHover" src="img/sortie_button.png" :width="sortieButtonWidth" />
+          <div v-show="sortieButtonHover" class="fixed" style="pointer-events: none;">
+            <img src="img/sortie_button_highlighted_part1.png" :width="sortieButtonWidth" />
+            <img
+              src="img/sortie_button_highlighted_part2.png"
+              class="absolute highlight-button"
+              style="top: 0; left: 0;"
+              :width="sortieButtonWidth"
+            />
+            <img
+              src="img/sortie_button_highlighted_part3.png"
+              class="absolute"
+              style="top: 0; left: 0;"
+              :width="sortieButtonWidth"
+            />
+          </div>
+        </div>
 
-    <!-- Repair button -->
-    <div
-      v-if="!combatMode"
-      class="repair-button"
-      :class="{ 'set-transparent': hideButtons, disabled: disableRepairButton, clickable: !disableRepairButton }"
-      @mouseover="setButtonHoverState('repairButtonHover', true)"
-      @mouseleave="setButtonHoverState('repairButtonHover', false)"
-      :style="{ left: `${16 + Math.max(compositionButtonWidth * 1.5, compositionButtonMinWidth)}px` }"
-      @click="repairShip"
-    >
-      <img v-show="!repairButtonHover" src="img/docking_button.png" :width="repairButtonWidth" />
-      <div v-show="repairButtonHover" class="fixed" style="pointer-events: none;">
-        <img
-          src="img/highlight_button.png"
-          class="highlight-button"
-          :width="compositionButtonWidth"
-        />
-        <img
-          src="img/docking_button_highlight.png"
-          class="absolute"
-          style="top: 0; left: 0;"
-          :width="compositionButtonWidth"
-        />
-      </div>
-    </div>
+        <!-- Ship change button -->
+        <div
+          v-if="!combatMode"
+          class="composition-button"
+          :class="{ 'set-transparent': hideButtons, disabled: disableCompositionButton, clickable: !disableCompositionButton, 'min-mode': belowMin }"
+          @mouseover="setButtonHoverState('compositionButtonHover', true)"
+          @mouseleave="setButtonHoverState('compositionButtonHover', false)"
+          :style="{ bottom: belowMin ? '0px' : `${13 + Math.max(compositionButtonHeight * 1.5, compositionButtonMinHeight)}px` }"
+          @click="changeShip"
+        >
+          <img
+            v-show="!compositionButtonHover"
+            src="img/composition_button.png"
+            :width="compositionButtonWidth"
+          />
+          <div v-show="compositionButtonHover" class="fixed" style="pointer-events: none;">
+            <img
+              src="img/highlight_button.png"
+              class="highlight-button"
+              :width="compositionButtonWidth"
+            />
+            <img
+              src="img/composition_button_highlight.png"
+              class="absolute"
+              style="top: 0; left: 0;"
+              :width="compositionButtonWidth"
+            />
+          </div>
+        </div>
 
-    <!-- Settings menu button -->
-    <div
-      class="settings-button clickable center-div"
-      :class="{ 'set-transparent': hideButtons }"
-      @mouseover="settingsButtonHover = true"
-      @mouseleave="settingsButtonHover = false"
-      @click="openSettings"
-    >
-      <img v-show="!settingsButtonHover" src="img/settings.png" />
-      <img v-show="settingsButtonHover" src="img/settings_highlighted.png" />
+        <!-- Repair button -->
+        <div
+          v-if="!combatMode"
+          class="repair-button"
+          :class="{ 'set-transparent': hideButtons, disabled: disableRepairButton, clickable: !disableRepairButton, 'min-mode': belowMin }"
+          @mouseover="setButtonHoverState('repairButtonHover', true)"
+          @mouseleave="setButtonHoverState('repairButtonHover', false)"
+          :style="{ left: belowMin ? '0px' : `${16 + Math.max(compositionButtonWidth * 1.5, compositionButtonMinWidth)}px` }"
+          @click="repairShip"
+        >
+          <img v-show="!repairButtonHover" src="img/docking_button.png" :width="repairButtonWidth" />
+          <div v-show="repairButtonHover" class="fixed" style="pointer-events: none;">
+            <img
+              src="img/highlight_button.png"
+              class="highlight-button"
+              :width="compositionButtonWidth"
+            />
+            <img
+              src="img/docking_button_highlight.png"
+              class="absolute"
+              style="top: 0; left: 0;"
+              :width="compositionButtonWidth"
+            />
+          </div>
+        </div>
+      </div>
+
+      <div class="buttons-center" />
+      
+      <div class="buttons-right">
+        <!-- Settings menu button -->
+        <div
+          class="settings-button clickable center-div"
+          :class="{ 'set-transparent': hideButtons, 'min-mode': belowMin }"
+          @mouseover="settingsButtonHover = true"
+          @mouseleave="settingsButtonHover = false"
+          @click="openSettings"
+        >
+          <img v-show="!settingsButtonHover" src="img/settings.png" />
+          <img v-show="settingsButtonHover" src="img/settings_highlighted.png" />
+        </div>
+      </div>
     </div>
 
     <!-- Subtitles -->
@@ -311,6 +320,8 @@ export default {
       subtitleMaxWidth: null,
 
       uiWidth: null,
+      windowWidth: null,
+      windowHeight: null,
       menuOpen: null,
       hideButtons: false,
 
@@ -360,6 +371,15 @@ export default {
     },
     disableCompositionButton() {
       return this.disableShipButtons || this.disableShipComposition || this.menuOpen;
+    },
+    belowMinWidth() {
+      return this.windowWidth < window.__minSize.width;
+    },
+    belowMinHeight() {
+      return this.windowHeight < window.__minSize.height;
+    },
+    belowMin() {
+      return this.belowMinWidth || this.belowMinHeight;
     },
     disableRepairButton() {
       return (
@@ -515,13 +535,15 @@ export default {
           __room.naturalHeight,
           window.innerHeight
         );
+        this.windowWidth = window.innerWidth;
+        this.windowHeight = window.innerHeight;
         let widthToUse = Math.min(this.uiWidth, window.innerWidth);
         this.subtitleMaxWidth = widthToUse < 500 ? null : "60%";
-        this.compositionButtonWidth = widthToUse * 0.1;
-        this.compositionButtonHeight =
+        this.compositionButtonWidth = this.belowMin ? "100%" : widthToUse * 0.1;
+        this.compositionButtonHeight = this.belowMin ? null : 
           (this.compositionButtonWidth / 249.0) * 198;
-        this.sortieButtonWidth = widthToUse * 0.15;
-        this.repairButtonWidth = widthToUse * 0.1;
+        this.sortieButtonWidth = this.belowMin ? "100%" : widthToUse * 0.15;
+        this.repairButtonWidth = this.belowMin ? "100%" : widthToUse * 0.1;
       } catch (e) {
         window.logError("[App] Error in resize. ", e);
       }
@@ -850,7 +872,18 @@ export default {
     left: 16px;
 
     img {
+      pointer-events: none;
       min-width: 90px;
+    }
+
+    &.min-mode {
+      position: static;
+      flex: 2;
+      height: 100%;
+      img {
+        min-width: 0px;
+        height: 100%;
+      }
     }
   }
 
@@ -860,7 +893,18 @@ export default {
     left: 16px;
 
     img {
+      pointer-events: none;
       min-width: 60px;
+    }
+
+    &.min-mode {
+      position: static;
+      flex: 1;
+      height: 100%;
+      img {
+        min-width: 0px;
+        height: 100%;
+      }
     }
   }
 
@@ -870,7 +914,17 @@ export default {
     left: 16px;
 
     img {
+      pointer-events: none;
       min-width: 60px;
+    }
+
+    &.min-mode {
+      position: static;
+      flex: 1;
+      img {
+        min-width: 0px;
+        height: 100%;
+      }
     }
   }
 
@@ -885,6 +939,48 @@ export default {
 
     img {
       width: 40px;
+    }
+
+    &.min-mode {
+      position: static;
+      flex: 1;
+      height: 100%;
+
+      img {
+        min-width: 0px;
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+
+  .button-wrapper {
+    &.min-mode {
+      position: absolute;
+      bottom: 2%;
+      left: 2%;
+      right: 2%;
+
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      max-height: 20%;
+
+      .buttons-left {
+        display: flex;
+        width: 40%;
+        align-items: flex-end;
+      }
+
+      .buttons-center {
+        width: 50%;
+      }
+
+      .buttons-right {
+        display: flex;
+        align-items: flex-end;
+        width: 10%;
+      }
     }
   }
 }

@@ -21,6 +21,10 @@ window.__combatModeLength = 1 * 60 * 1000; // In milliseconds
 window.__mobileMode = {
   width: 600,
 };
+window.__minSize = {
+  width: 300,
+  height: 300,
+};
 window.__ship = "ship";
 
 if (isDevelopment) {
