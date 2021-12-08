@@ -23,7 +23,7 @@ window.__mobileMode = {
 };
 window.__minSize = {
   width: 300,
-  height: 300,
+  height: 450,
 };
 window.__ship = "ship";
 

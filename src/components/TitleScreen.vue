@@ -1,37 +1,56 @@
 <template>
   <div class="title-screen center-div">
-    <div class="absolute center-div unclickable">
-      <img src="img/bg_h.png" :width="screenWidthPixels" />
+    <div class="background-image">
+      <img src="img/bg_h.png" height="100%" />
     </div>
     <div class="title-foreground center-div">
       <div class="title-foreground-center-container">
         <div class="title-logo-wrapper unclickable">
-          <img src="img/kancolle_logo.png" class="title-logo unclickable" :width="logoWidth" />
+          <img 
+            src="img/kancolle_logo.png" 
+            class="title-logo unclickable"
+            :class="{ 'min-mode': belowMin }"
+            :style="{ 'width': logoWidth, 'max-height': logoMaxHeight, 'max-width': `${maxWidth}px` }" 
+          />
         </div>
 
-        <div
-          class="start-button clickable"
-          :style="{ 'margin-top': `${logoMargin}px` }"
-          @mouseover="startButtonHover = true"
-          @mouseleave="startButtonHover = false"
-          @click.stop="startGame"
-        >
-          <div class="unclickable">
-            <img v-if="startButtonClicked" src="img/game_start_button_clicked.png" :width="logoWidth" />
+        <div class="center-div">
+          <div
+            class="start-button center-div clickable"
+            :class="{ 'min-mode': belowMin }"
+            :style="{ 'margin-top': `${logoMargin}px`, 'width': logoWidth, }"
+            @mouseover="startButtonHover = true"
+            @mouseleave="startButtonHover = false"
+            @click.stop="startGame"
+          >
+            <img 
+              v-if="startButtonClicked"
+              class="unclickable"
+              src="img/game_start_button_clicked.png"
+              width="100%"
+              :style="{ 'max-width': `${maxWidth}px` }" 
+            />
             <img
               v-else-if="startButtonHover"
+              class="unclickable"
               src="img/game_start_button_highlighted.png"
-              :width="logoWidth"
+              width="100%"
+              :style="{ 'max-width': `${maxWidth}px` }" 
             />
-            <img v-else src="img/game_start_button.png" :width="logoWidth" />
+            <img v-else
+              class="unclickable"
+              src="img/game_start_button.png"
+              width="100%"
+              :style="{ 'max-width': `${maxWidth}px` }" 
+            />
           </div>
         </div>
       </div>
     </div>
 
     <!-- Disclaimer -->
-    <div class="disclaimer-container center-div">
-      <div class="disclaimer" :style="{ 'max-width': screenWidth }">{{ disclaimer }}</div>
+    <div class="disclaimer-container center-div" :class="{ 'min-mode': belowMin }">
+      <div class="disclaimer" :style="{ 'max-width': `${maxWidth}px` }">{{ disclaimer }}</div>
     </div>
 
     <div class="fade-out-screen" :class="{ 'show': showFadeScreen }" />
@@ -46,7 +65,10 @@ export default {
   data() {
     return {
       screenWidth: null,
+      screenHeight: null,
+
       logoWidth: null,
+      logoMaxHeight: null, 
       logoMargin: null,
       showFadeScreen: false,
       startButtonHover: false,
@@ -54,7 +76,7 @@ export default {
 
       loadCounter: 0,
       loadLimit: 6,
-
+      
       kancolleStartLine: new Audio() // Line for clicking the start button
     };
   },
@@ -64,12 +86,21 @@ export default {
       titleDB: "titleLines",
       disclaimer: "disclaimer"
     }),
-    screenWidthPixels() {
-      return `${this.screenWidth}px`;
-    },
     screenHeightPixels() {
       return `${this.screenHeight}px`;
-    }
+    },
+    belowMinWidth() {
+      return this.screenWidth < window.__minSize.width;
+    },
+    belowMinHeight() {
+      return this.screenHeight < window.__minSize.height;
+    },
+    belowMin() {
+      return this.belowMinWidth || this.belowMinHeight;
+    },
+    maxWidth() {
+      return this.screenHeight / 720.0 * 1200.0;
+    },
   },
   created() {
     window.dispatchEvent(new CustomEvent("startLoad"));
@@ -151,7 +182,9 @@ export default {
           window.innerHeight
         );
         this.screenHeight = window.innerHeight;
-        this.logoWidth = Math.min(0.3 * this.screenWidth, window.innerWidth);
+        this.screenWidth = window.innerWidth;
+        this.logoWidth = this.belowMin ? "50%" : `${Math.min(0.3 * this.screenWidth, window.innerWidth)}px`;
+        this.logoMaxHeight = this.belowMin ? "25%" : null;
         this.logoMargin = window.innerHeight * 0.05;
       } catch (e) {
         logError("[TitleScreen] Error in resize. ", e);
@@ -179,6 +212,17 @@ export default {
   height: 100%;
   width: 100%;
 
+  .background-image {
+    pointer-events: none;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
   .title-foreground {
     position: absolute;
     top: 0;
@@ -194,10 +238,29 @@ export default {
       img {
         min-width: 300px;
       }
+
+      &.min-mode {
+        margin: 10 0;
+
+        img {
+          min-width: 0px;
+        }
+      }
+    }
+
+    .title-logo-wrapper {
+      display: flex;
+      justify-content: center;
+      width: 100%;
     }
 
     .title-logo {
       min-width: 300px;
+      width: 100%;
+
+      &.min-mode {
+        min-width: 0px;
+      }
     }
   }
 
@@ -214,9 +277,15 @@ export default {
       text-align: center;
       margin: 0px 10px;
       font-size: 0.7em; //2vmin;
+      word-wrap: break-word;
+      width: 100%;
 
       padding: 5px;
       color: rgba(0, 0, 0, 0.7);
+    }
+
+    &.min-mode {
+      display: none;
     }
   }
 
