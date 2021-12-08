@@ -326,6 +326,20 @@ const store = new Vuex.Store({
           window.log('SE data', se);
           window.log('Title data', titleLines);
         },
+        loadImage: (s, { imagePath, postLoad }) => {
+          const image = new Image();
+          image.onload = () => {
+            if (postLoad && typeof postLoad === 'function') postLoad()
+          };
+          image.src = imagePath;
+        },
+        loadAudio: (s, { audioPath, postLoad }) => {
+          const audio = new Audio();
+          audio.oncanplaythrough = () => {
+            if (postLoad && typeof postLoad === 'function') postLoad()
+          };
+          audio.src = audioPath;
+        },
         invokeHourlyEvent: () => {
           let hour = new Date().getHours();
           let hourly = new CustomEvent('hourly', { detail: `${hour.pad(2)}:00` });
