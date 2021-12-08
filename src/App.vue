@@ -79,7 +79,7 @@ export default {
         window.setTimeout(() => {
           window.dispatchEvent(new CustomEvent("endLoad"));
           this.$store.dispatch("preloadShipCards");
-        }, 2000);
+        }, 500);
       }
     },
     onRoomLoad() {
