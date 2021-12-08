@@ -78,6 +78,7 @@ export default {
         window.dispatchEvent(new CustomEvent("showFadeScreen"));
         window.setTimeout(() => {
           window.dispatchEvent(new CustomEvent("endLoad"));
+          this.$store.dispatch("preloadShipCards");
         }, 2000);
       }
     },
@@ -98,7 +99,6 @@ export default {
 
       this.titleScreen = false;
       window.dispatchEvent(new CustomEvent("playLoadLine")); // Only play when entering game after title screen
-      this.$store.dispatch("preloadAllShipCards");
     },
     startLoad() {
       this.$store.commit("setLoadingMode", true);

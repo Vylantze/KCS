@@ -3,6 +3,7 @@ import Vuex from 'vuex';
 
 import './lib/preload';
 import utils from './lib/utils';
+import path from "path";
 
 Vue.config.productionTip = false;
 Vue.use(Vuex);
@@ -390,8 +391,28 @@ const store = new Vuex.Store({
             window.logError(`Unable to get database for [${shipName}]`, e);
           }
         },
-        preloadAllShipCards: () => {
+        preloadShipCards: s => {
           // Preload ship cards
+          ships.map(ship => {
+            try {
+              let shipFileName = ship.FileName;
+              let spritesList = Object.keys(ship.Sprites);
+              spritesList.forEach(spriteName => {
+                if (!ship.Sprites[spriteName]) { return; }
+                let card = ship.Sprites[spriteName].Card;
+                if (!card) { return; }
+                let imagePath = path.join(window.__ship, shipFileName, "sprites", card);
+                s.dispatch("loadImage", {
+                  imagePath,
+                  postLoad: () => {
+                    console.log(`[preloadShipCards] Loaded ${card}`);
+                  },
+                });
+              });
+            } catch (e) {
+              console.warn(`[preloadShipCards][${ship.Name}] Error`, e);
+            }
+          });
         },
       },
     }
