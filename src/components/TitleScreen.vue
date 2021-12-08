@@ -1,12 +1,12 @@
 <template>
   <div class="title-screen center-div">
-    <div class="absolute center-div">
+    <div class="absolute center-div unclickable">
       <img src="img/bg_h.png" :width="screenWidthPixels" />
     </div>
     <div class="title-foreground center-div">
       <div class="title-foreground-center-container">
-        <div>
-          <img src="img/kancolle_logo.png" class="title-logo" :width="logoWidth" />
+        <div class="title-logo-wrapper unclickable">
+          <img src="img/kancolle_logo.png" class="title-logo unclickable" :width="logoWidth" />
         </div>
 
         <div
@@ -16,13 +16,15 @@
           @mouseleave="startButtonHover = false"
           @click.stop="startGame"
         >
-          <img v-if="startButtonClicked" src="img/game_start_button_clicked.png" :width="logoWidth" />
-          <img
-            v-else-if="startButtonHover"
-            src="img/game_start_button_highlighted.png"
-            :width="logoWidth"
-          />
-          <img v-else src="img/game_start_button.png" :width="logoWidth" />
+          <div class="unclickable">
+            <img v-if="startButtonClicked" src="img/game_start_button_clicked.png" :width="logoWidth" />
+            <img
+              v-else-if="startButtonHover"
+              src="img/game_start_button_highlighted.png"
+              :width="logoWidth"
+            />
+            <img v-else src="img/game_start_button.png" :width="logoWidth" />
+          </div>
         </div>
       </div>
     </div>
@@ -49,6 +51,10 @@ export default {
       showFadeScreen: false,
       startButtonHover: false,
       startButtonClicked: false,
+
+      loadCounter: 0,
+      loadLimit: 6,
+
       kancolleStartLine: new Audio() // Line for clicking the start button
     };
   },
@@ -66,6 +72,7 @@ export default {
     }
   },
   created() {
+    window.dispatchEvent(new CustomEvent("startLoad"));
     this.calculateScreenWidth();
     this.kancolleStartLine.volume = this.voiceVolume;
 
@@ -75,6 +82,7 @@ export default {
     }
 
     // Set the startLine
+    this.kancolleStartLine.oncanplaythrough = this.onLoad;
     this.kancolleStartLine.src = this.getRandomEventFileNameFromList(
       this.titleDB.TitleCall01
     );
@@ -85,6 +93,20 @@ export default {
         this.kancolleStartLine = null;
       };
     }
+
+    // Load images
+    let imageList = [
+      "img/bg_h.png",
+      "img/kancolle_logo.png",
+      "img/game_start_button_clicked.png",
+      "img/game_start_button_highlighted.png",
+      "img/game_start_button.png",
+    ];
+    imageList.forEach(img => this.$store.dispatch('loadImage', {
+      imagePath: img,
+      postLoad: this.onLoad,
+    }))
+
     window.addEventListener("resize", this.calculateScreenWidth);
   },
   beforeDestroy() {
@@ -92,6 +114,13 @@ export default {
     window.removeEventListener("resize", this.calculateScreenWidth);
   },
   methods: {
+    onLoad() {
+      this.loadCounter++;
+      console.log('Loading', this.loadCounter)
+      if (this.loadCounter >= this.loadLimit) {
+        window.dispatchEvent(new CustomEvent("endLoad"));
+      }
+    },
     // To get the correct ratio
     calculateWidthFromHeight(naturalWidth, naturalHeight, currentHeight) {
       return (currentHeight * naturalWidth) / (naturalHeight * 1.0);
