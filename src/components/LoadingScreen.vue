@@ -48,24 +48,31 @@ export default {
       this.loadLine.src = "";
       this.loadLine = null;
       this.showFadeScreen = true;
-      window.setTimeout(() => {
-        window.dispatchEvent(new CustomEvent("endLoad"));
-      }, 2000);
+      window.dispatchEvent(new CustomEvent("loadLineEnded"));
     };
 
     this.calculateGifWidth();
 
     window.addEventListener("playLoadLine", this.playLoadLine);
     window.addEventListener("resize", this.calculateGifWidth);
+    window.addEventListener("showFadeScreen", this.showFadeScreenFunc);
   },
   beforeDestroy() {
     // Unregister the event listener before destroying this Vue instance
     window.removeEventListener("resize", this.calculateGifWidth);
     window.removeEventListener("playLoadLine", this.playLoadLine);
+    window.removeEventListener("showFadeScreen", this.showFadeScreenFunc);
   },
   methods: {
     playLoadLine() {
+      console.log("[LoadingScreen] Playing load line");
       this.loadLine.play();
+    },
+    showFadeScreenFunc() {
+      this.showFadeScreen = true;
+      window.setTimeout(() => {
+        this.showFadeScreen = false;
+      }, 3000);
     },
     // To get the correct ratio
     calculateWidthFromHeight(naturalWidth, naturalHeight, currentHeight) {

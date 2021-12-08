@@ -82,7 +82,9 @@ export default {
     }
 
     // Set the startLine
-    this.kancolleStartLine.oncanplaythrough = this.onLoad;
+    this.kancolleStartLine.oncanplaythrough = () => {
+      this.onLoad("audio");
+    };
     this.kancolleStartLine.src = this.getRandomEventFileNameFromList(
       this.titleDB.TitleCall01
     );
@@ -104,7 +106,9 @@ export default {
     ];
     imageList.forEach(img => this.$store.dispatch('loadImage', {
       imagePath: img,
-      postLoad: this.onLoad,
+      postLoad: () => {
+        this.onLoad(img);
+      },
     }))
 
     window.addEventListener("resize", this.calculateScreenWidth);
@@ -114,9 +118,9 @@ export default {
     window.removeEventListener("resize", this.calculateScreenWidth);
   },
   methods: {
-    onLoad() {
+    onLoad(loadedItem) {
       this.loadCounter++;
-      console.log('Loading', this.loadCounter)
+      console.log("[TitleScreen] Loaded", loadedItem);
       if (this.loadCounter >= this.loadLimit) {
         window.dispatchEvent(new CustomEvent("endLoad"));
       }

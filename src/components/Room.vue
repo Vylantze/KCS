@@ -49,6 +49,9 @@ export default {
 
       bgmAudio: new Audio(),
 
+      loadCounter: 0,
+      loadLimit: 7,
+
       ctx: null, // Canvas context
       previousWindowInnerHeight: 0
     };
@@ -115,9 +118,10 @@ export default {
     if (!this.selectedBgm) {
       this.$store.commit("setSelectedBgm", this.mainMenuBGM);
     }
+
     this.bgmAudio.volume = this.bgmVolume;
     this.bgmAudio.loop = true;
-    this.playBgmAudio(); // Let the watcher activate it for us
+    this.playBgmAudio(true); // Let the watcher activate it for us
 
     window.addEventListener("resize", this.resizeCanvas);
   },
@@ -134,13 +138,20 @@ export default {
     clearCanvas() {
       this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
     },
-    loadImage(imageName) {
-      return new Promise(resolve => {
-        let image = new Image();
-        image.onload = () => {
-          resolve(image);
-        };
-        image.src = imageName;
+    onLoad(loadedItem) {
+      this.loadCounter++;
+      console.log("[Room] Loaded", loadedItem);
+      if (this.loadCounter >= this.loadLimit) {
+        window.dispatchEvent(new CustomEvent("roomLoaded"));
+      }
+    },
+    async loadImage(imagePath) {
+      if (!imagePath) return;
+      return await this.$store.dispatch('loadImage', {
+          imagePath,
+          postLoad: () => {
+            this.onLoad(imagePath);
+          },
       });
     },
     async loadBackground() {
@@ -154,6 +165,7 @@ export default {
         "backgrounds/Spring_Type_B_sisters_panel.png"
       );
       this.roomCombatBg = await this.loadImage("img/bg_h.png");
+      console.log("[Room] Images loaded");
     },
     // To get the correct ratio
     calculateWidthFromHeight(height) {
@@ -211,7 +223,7 @@ export default {
       }
       return this.isDayTime ? this.BGMs["Battle"] : this.BGMs["Night Battle"];
     },
-    playBgmAudio() {
+    playBgmAudio(firstLoad = false) {
       if (this.bgmAudio) {
         this.bgmAudio.pause();
       }
@@ -224,6 +236,14 @@ export default {
 
       if (!bgm) {
         return;
+      }
+
+      if (firstLoad) {
+        this.bgmAudio.oncanplaythrough = () => {
+          this.onLoad(currentFile);
+        };
+      } else {
+        this.bgmAudio.oncanplaythrough = null;
       }
 
       let currentFile = bgm.File;

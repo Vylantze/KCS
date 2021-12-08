@@ -32,7 +32,11 @@ export default {
   data() {
     return {
       titleScreen: true,
-      loadingScreen: false
+      loadingScreen: false,
+
+      roomLoaded: false,
+      shipLoaded: false,
+      lineEnded: false,
     };
   },
   created() {
@@ -51,10 +55,50 @@ export default {
     window.removeEventListener("endLoad", this.endLoad);
   },
   methods: {
+    onLoad(item) {
+      console.log(`[App] ${item} loaded`);
+      switch(item) {
+        case "room": 
+          this.roomLoaded = true;
+          break;
+        case "ship": 
+          this.shipLoaded = true;
+          break;
+        case "lineEnd": 
+          this.lineEnded = true;
+          break;
+        default:
+          break;
+      }
+      if (this.roomLoaded && this.shipLoaded && this.lineEnded) {
+        window.removeEventListener("roomLoaded", this.onRoomLoad);
+        window.removeEventListener("shipLoaded", this.onShipLoad);
+        window.removeEventListener("loadLineEnded", this.onLoadLineEnded);
+        
+        window.dispatchEvent(new CustomEvent("showFadeScreen"));
+        window.setTimeout(() => {
+          window.dispatchEvent(new CustomEvent("endLoad"));
+        }, 2000);
+      }
+    },
+    onRoomLoad() {
+      this.onLoad("room")
+    },
+    onShipLoad() {
+      this.onLoad("ship")
+    },
+    onLoadLineEnded() {
+      this.onLoad("lineEnd")
+    },
     exitTitleScreen() {
       this.startLoad();
+      window.addEventListener("roomLoaded", this.onRoomLoad);
+      window.addEventListener("shipLoaded", this.onShipLoad);
+      window.addEventListener("loadLineEnded", this.onLoadLineEnded);
+
       this.titleScreen = false;
       window.dispatchEvent(new CustomEvent("playLoadLine")); // Only play when entering game after title screen
+      this.$store.dispatch("preloadAllShipCards");
     },
     startLoad() {
       this.$store.commit("setLoadingMode", true);

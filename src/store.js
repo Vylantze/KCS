@@ -327,18 +327,42 @@ const store = new Vuex.Store({
           window.log('Title data', titleLines);
         },
         loadImage: (s, { imagePath, postLoad }) => {
-          const image = new Image();
-          image.onload = () => {
-            if (postLoad && typeof postLoad === 'function') postLoad()
-          };
-          image.src = imagePath;
+          return new Promise(resolve => {
+            try {
+              let image = new Image();
+              image.onload = () => {
+                if (postLoad && typeof postLoad === 'function') postLoad();
+                resolve(image);
+              };
+              image.onerror = (e) => {
+                console.warn('[loadImage] onerror', e);
+                resolve(null);
+              }
+              image.src = imagePath;
+            } catch (e) {
+              console.warn('[loadImage] Error', e);
+              resolve(null);
+            }
+          });
         },
         loadAudio: (s, { audioPath, postLoad }) => {
-          const audio = new Audio();
-          audio.oncanplaythrough = () => {
-            if (postLoad && typeof postLoad === 'function') postLoad()
-          };
-          audio.src = audioPath;
+          return new Promise(resolve => {
+            try {
+              const audio = new Audio();
+              audio.oncanplaythrough = () => {
+                if (postLoad && typeof postLoad === 'function') postLoad();
+                resolve(audio);
+              };
+              audio.onerror = (e) => {
+                console.warn('[loadAudio] onerror', e);
+                resolve(null);
+              }
+              audio.src = audioPath;
+            } catch (e) {
+              console.warn('[loadAudio] Error', e);
+              resolve(null);
+            }
+          });
         },
         invokeHourlyEvent: () => {
           let hour = new Date().getHours();
@@ -365,7 +389,10 @@ const store = new Vuex.Store({
           } catch (e) {
             window.logError(`Unable to get database for [${shipName}]`, e);
           }
-        }
+        },
+        preloadAllShipCards: () => {
+          // Preload ship cards
+        },
       },
     }
   },
