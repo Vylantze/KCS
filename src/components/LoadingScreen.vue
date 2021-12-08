@@ -1,10 +1,12 @@
 <template>
-  <div class="loading-screen center-div" :class="{ 'show': showFadeScreen }">
-    <img src="img/loading.gif" :width="loaderWidth" />
+  <div class="loading-screen-container center-div">
+    <div class="loading-screen center-div" :class="{ 'show': showFadeScreen }">
+      <img src="img/loading.gif" :width="loaderWidth" />
 
-    <!-- Disclaimer -->
-    <div class="disclaimer-container center-div">
-      <div class="disclaimer" :style="{ 'max-width': screenWidth }">{{ disclaimer }}</div>
+      <!-- Disclaimer -->
+      <div class="disclaimer-container center-div">
+        <div class="disclaimer" :style="{ 'max-width': screenWidth }">{{ disclaimer }}</div>
+      </div>
     </div>
   </div>
 </template>
@@ -47,7 +49,7 @@ export default {
       this.loadLine = null;
       this.showFadeScreen = true;
       window.setTimeout(() => {
-        window.dispatchEvent(new CustomEvent("loadComplete"));
+        window.dispatchEvent(new CustomEvent("endLoad"));
       }, 2000);
     };
 
@@ -107,6 +109,7 @@ export default {
   opacity: 1;
   transition: opacity 1.5s ease-out;
   background-color: black;
+  pointer-events: none;
 
   img {
     min-width: 150px;
@@ -134,5 +137,16 @@ export default {
       color: rgba(255, 255, 255, 0.2);
     }
   }
+}
+
+.loading-screen-container {
+  height: 100%;
+  width: 100%;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  display: block;
 }
 </style>

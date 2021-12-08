@@ -9,9 +9,7 @@
         <UILayer />
       </div>
     </div>
-    <div class="loading-screen-container center-div">
-      <LoadingScreen v-show="loadingScreen" />
-    </div>
+    <LoadingScreen v-show="loadingScreen" />
   </div>
 </template>
 
@@ -43,21 +41,26 @@ export default {
     this.$store.dispatch("startEventListeners");
     this.$store.dispatch("startIntervalTimer");
     window.addEventListener("startGame", this.exitTitleScreen);
-    window.addEventListener("loadComplete", this.loadComplete);
+    window.addEventListener("startLoad", this.startLoad);
+    window.addEventListener("endLoad", this.endLoad);
   },
   beforeDestroy() {
     // Unregister the event listener before destroying this Vue instance
     window.removeEventListener("startGame", this.exitTitleScreen);
-    window.removeEventListener("loadComplete", this.loadComplete);
+    window.removeEventListener("startLoad", this.startLoad);
+    window.removeEventListener("endLoad", this.endLoad);
   },
   methods: {
     exitTitleScreen() {
+      this.startLoad();
+      this.titleScreen = false;
+      window.dispatchEvent(new CustomEvent("playLoadLine")); // Only play when entering game after title screen
+    },
+    startLoad() {
       this.$store.commit("setLoadingMode", true);
       this.loadingScreen = true;
-      this.titleScreen = false;
-      window.dispatchEvent(new CustomEvent("playLoadLine"));
     },
-    loadComplete() {
+    endLoad() {
       this.loadingScreen = false;
       this.$store.commit("setLoadingMode", false);
     }
@@ -93,17 +96,6 @@ export default {
     height: 100%;
     width: 100%;
     z-index: 100;
-  }
-
-  .loading-screen-container {
-    height: 100%;
-    width: 100%;
-    pointer-events: none;
-
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 1000;
   }
 }
 </style>
