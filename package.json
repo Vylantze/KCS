@@ -20,8 +20,8 @@
     "dev": "vue-cli-service electron:serve",
     "pack": "asar pack ship/yamato packed/ship/yamato.asar",
     "build-electron": "npm-run-all clean electron:build",
-    "build": "vue-cli-service build --mode heroku",
-    "deploy": "vue-cli-service build --mode production"
+    "build": "vue-cli-service build --mode production",
+    "deploy": "vue-cli-service build --mode ghpages"
   },
   "main": "background.js",
   "dependencies": {
