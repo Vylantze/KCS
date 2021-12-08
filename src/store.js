@@ -396,6 +396,7 @@ const store = new Vuex.Store({
           ships.map(ship => {
             try {
               let shipFileName = ship.FileName;
+              let defaultBanner = ship.DefaultBanner;
               let spritesList = Object.keys(ship.Sprites);
               spritesList.forEach(spriteName => {
                 if (!ship.Sprites[spriteName]) { return; }
@@ -408,6 +409,19 @@ const store = new Vuex.Store({
                     console.log(`[preloadShipCards] Loaded ${card}`);
                   },
                 });
+
+                if (defaultBanner == spriteName) {
+                  let banner = ship.Sprites[spriteName].Banner;
+                  if (banner) {
+                    let bannerPath = path.join(window.__ship, shipFileName, "sprites", banner);
+                    s.dispatch("loadImage", {
+                      imagePath: bannerPath,
+                      postLoad: () => {
+                        console.log(`[preloadShipCards] Loaded ${banner}`);
+                      },
+                    });
+                  }
+                }
               });
             } catch (e) {
               console.warn(`[preloadShipCards][${ship.Name}] Error`, e);
