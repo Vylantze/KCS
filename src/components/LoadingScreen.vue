@@ -1,10 +1,12 @@
 <template>
-  <div class="loading-screen center-div" :class="{ 'show': showFadeScreen }">
-    <img src="img/loading.gif" :width="loaderWidth" />
+  <div class="loading-screen-container center-div">
+    <div class="loading-screen center-div" :class="{ 'show': showFadeScreen }">
+      <img src="img/loading.gif" :width="loaderWidth" />
 
-    <!-- Disclaimer -->
-    <div class="disclaimer-container center-div">
-      <div class="disclaimer" :style="{ 'max-width': screenWidth }">{{ disclaimer }}</div>
+      <!-- Disclaimer -->
+      <div class="disclaimer-container center-div">
+        <div class="disclaimer" :style="{ 'max-width': screenWidth }">{{ disclaimer }}</div>
+      </div>
     </div>
   </div>
 </template>
@@ -46,24 +48,31 @@ export default {
       this.loadLine.src = "";
       this.loadLine = null;
       this.showFadeScreen = true;
-      window.setTimeout(() => {
-        window.dispatchEvent(new CustomEvent("loadComplete"));
-      }, 2000);
+      window.dispatchEvent(new CustomEvent("loadLineEnded"));
     };
 
     this.calculateGifWidth();
 
     window.addEventListener("playLoadLine", this.playLoadLine);
     window.addEventListener("resize", this.calculateGifWidth);
+    window.addEventListener("showFadeScreen", this.showFadeScreenFunc);
   },
   beforeDestroy() {
     // Unregister the event listener before destroying this Vue instance
     window.removeEventListener("resize", this.calculateGifWidth);
     window.removeEventListener("playLoadLine", this.playLoadLine);
+    window.removeEventListener("showFadeScreen", this.showFadeScreenFunc);
   },
   methods: {
     playLoadLine() {
+      console.log("[LoadingScreen] Playing load line");
       this.loadLine.play();
+    },
+    showFadeScreenFunc() {
+      this.showFadeScreen = true;
+      window.setTimeout(() => {
+        this.showFadeScreen = false;
+      }, 3000);
     },
     // To get the correct ratio
     calculateWidthFromHeight(naturalWidth, naturalHeight, currentHeight) {
@@ -107,6 +116,7 @@ export default {
   opacity: 1;
   transition: opacity 1.5s ease-out;
   background-color: black;
+  pointer-events: none;
 
   img {
     min-width: 150px;
@@ -134,5 +144,16 @@ export default {
       color: rgba(255, 255, 255, 0.2);
     }
   }
+}
+
+.loading-screen-container {
+  height: 100%;
+  width: 100%;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  display: block;
 }
 </style>

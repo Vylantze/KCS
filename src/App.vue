@@ -9,9 +9,7 @@
         <UILayer />
       </div>
     </div>
-    <div class="loading-screen-container center-div">
-      <LoadingScreen v-show="loadingScreen" />
-    </div>
+    <LoadingScreen v-show="loadingScreen" />
   </div>
 </template>
 
@@ -34,7 +32,11 @@ export default {
   data() {
     return {
       titleScreen: true,
-      loadingScreen: false
+      loadingScreen: false,
+
+      roomLoaded: false,
+      shipLoaded: false,
+      lineEnded: false,
     };
   },
   created() {
@@ -43,21 +45,66 @@ export default {
     this.$store.dispatch("startEventListeners");
     this.$store.dispatch("startIntervalTimer");
     window.addEventListener("startGame", this.exitTitleScreen);
-    window.addEventListener("loadComplete", this.loadComplete);
+    window.addEventListener("startLoad", this.startLoad);
+    window.addEventListener("endLoad", this.endLoad);
   },
   beforeDestroy() {
     // Unregister the event listener before destroying this Vue instance
     window.removeEventListener("startGame", this.exitTitleScreen);
-    window.removeEventListener("loadComplete", this.loadComplete);
+    window.removeEventListener("startLoad", this.startLoad);
+    window.removeEventListener("endLoad", this.endLoad);
   },
   methods: {
+    onLoad(item) {
+      console.log(`[App] ${item} loaded`);
+      switch(item) {
+        case "room": 
+          this.roomLoaded = true;
+          break;
+        case "ship": 
+          this.shipLoaded = true;
+          break;
+        case "lineEnd": 
+          this.lineEnded = true;
+          break;
+        default:
+          break;
+      }
+      if (this.roomLoaded && this.shipLoaded && this.lineEnded) {
+        window.removeEventListener("roomLoaded", this.onRoomLoad);
+        window.removeEventListener("shipLoaded", this.onShipLoad);
+        window.removeEventListener("loadLineEnded", this.onLoadLineEnded);
+        
+        window.dispatchEvent(new CustomEvent("showFadeScreen"));
+        window.setTimeout(() => {
+          window.dispatchEvent(new CustomEvent("endLoad"));
+          this.$store.dispatch("preloadShipCards");
+        }, 2000);
+      }
+    },
+    onRoomLoad() {
+      this.onLoad("room")
+    },
+    onShipLoad() {
+      this.onLoad("ship")
+    },
+    onLoadLineEnded() {
+      this.onLoad("lineEnd")
+    },
     exitTitleScreen() {
+      this.startLoad();
+      window.addEventListener("roomLoaded", this.onRoomLoad);
+      window.addEventListener("shipLoaded", this.onShipLoad);
+      window.addEventListener("loadLineEnded", this.onLoadLineEnded);
+
+      this.titleScreen = false;
+      window.dispatchEvent(new CustomEvent("playLoadLine")); // Only play when entering game after title screen
+    },
+    startLoad() {
       this.$store.commit("setLoadingMode", true);
       this.loadingScreen = true;
-      this.titleScreen = false;
-      window.dispatchEvent(new CustomEvent("playLoadLine"));
     },
-    loadComplete() {
+    endLoad() {
       this.loadingScreen = false;
       this.$store.commit("setLoadingMode", false);
     }
@@ -93,17 +140,6 @@ export default {
     height: 100%;
     width: 100%;
     z-index: 100;
-  }
-
-  .loading-screen-container {
-    height: 100%;
-    width: 100%;
-    pointer-events: none;
-
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 1000;
   }
 }
 </style>

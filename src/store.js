@@ -3,6 +3,7 @@ import Vuex from 'vuex';
 
 import './lib/preload';
 import utils from './lib/utils';
+import path from "path";
 
 Vue.config.productionTip = false;
 Vue.use(Vuex);
@@ -326,6 +327,44 @@ const store = new Vuex.Store({
           window.log('SE data', se);
           window.log('Title data', titleLines);
         },
+        loadImage: (s, { imagePath, postLoad }) => {
+          return new Promise(resolve => {
+            try {
+              let image = new Image();
+              image.onload = () => {
+                if (postLoad && typeof postLoad === 'function') postLoad();
+                resolve(image);
+              };
+              image.onerror = (e) => {
+                console.warn('[loadImage] onerror', e);
+                resolve(null);
+              }
+              image.src = imagePath;
+            } catch (e) {
+              console.warn('[loadImage] Error', e);
+              resolve(null);
+            }
+          });
+        },
+        loadAudio: (s, { audioPath, postLoad }) => {
+          return new Promise(resolve => {
+            try {
+              const audio = new Audio();
+              audio.oncanplaythrough = () => {
+                if (postLoad && typeof postLoad === 'function') postLoad();
+                resolve(audio);
+              };
+              audio.onerror = (e) => {
+                console.warn('[loadAudio] onerror', e);
+                resolve(null);
+              }
+              audio.src = audioPath;
+            } catch (e) {
+              console.warn('[loadAudio] Error', e);
+              resolve(null);
+            }
+          });
+        },
         invokeHourlyEvent: () => {
           let hour = new Date().getHours();
           let hourly = new CustomEvent('hourly', { detail: `${hour.pad(2)}:00` });
@@ -351,7 +390,30 @@ const store = new Vuex.Store({
           } catch (e) {
             window.logError(`Unable to get database for [${shipName}]`, e);
           }
-        }
+        },
+        preloadShipCards: s => {
+          // Preload ship cards
+          ships.map(ship => {
+            try {
+              let shipFileName = ship.FileName;
+              let spritesList = Object.keys(ship.Sprites);
+              spritesList.forEach(spriteName => {
+                if (!ship.Sprites[spriteName]) { return; }
+                let card = ship.Sprites[spriteName].Card;
+                if (!card) { return; }
+                let imagePath = path.join(window.__ship, shipFileName, "sprites", card);
+                s.dispatch("loadImage", {
+                  imagePath,
+                  postLoad: () => {
+                    console.log(`[preloadShipCards] Loaded ${card}`);
+                  },
+                });
+              });
+            } catch (e) {
+              console.warn(`[preloadShipCards][${ship.Name}] Error`, e);
+            }
+          });
+        },
       },
     }
   },

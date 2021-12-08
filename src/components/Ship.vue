@@ -55,6 +55,9 @@ export default {
 
       isShipAnimationFinished: true,
 
+      loadCounter: 0,
+      loadLimit: 2,
+
       shipDB: null,
       ctx: null // Canvas context
     };
@@ -394,7 +397,7 @@ export default {
     this.audio.onended = this.audioHasEnded;
     this.audio.volume = this.voiceVolume;
 
-    this.loadShip();
+    this.loadShip(true);
   },
   beforeDestroy() {
     // Unregister the event listener before destroying this Vue instance
@@ -711,24 +714,30 @@ export default {
     clearCanvas() {
       this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
     },
-    loadImage(imageName) {
-      if (!imageName) return null;
-      return new Promise(resolve => {
-        let image = new Image();
-        image.onload = () => {
-          resolve(image);
-        };
-        image.src = imageName;
+    onLoad(loadedItem) {
+      this.loadCounter++;
+      console.log("[Ship] Loaded", loadedItem);
+      if (this.loadCounter >= this.loadLimit) {
+        window.dispatchEvent(new CustomEvent("shipLoaded"));
+      }
+    },
+    async loadImage(imagePath, firstLoad = false) {
+      if (!imagePath) return;
+      return await this.$store.dispatch('loadImage', {
+          imagePath,
+          postLoad: () => {
+            if (firstLoad) this.onLoad(imagePath);
+          },
       });
     },
-    async loadShip() {
+    async loadShip(firstLoad = false) {
       try {
         await this.getDatabase();
-        this.defaultSprite = await this.loadImage(this.shipNormalImagePath);
-        this.damagedSprite = await this.loadImage(this.shipDamagedImagePath);
+        this.defaultSprite = await this.loadImage(this.shipNormalImagePath, firstLoad);
+        this.damagedSprite = await this.loadImage(this.shipDamagedImagePath, firstLoad);
 
         if (this.combatMode) {
-          log("Entering combat mode");
+          log("[Ship] Entering combat mode");
           this.shipExpectedPositionRatio = shipCombatExpectedPositionRatio;
         } else {
           this.shipExpectedPositionRatio = shipDefaultExpectedPositionRatio;
