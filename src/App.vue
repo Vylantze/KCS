@@ -71,6 +71,7 @@ export default {
           break;
       }
       if (this.roomLoaded && this.shipLoaded && this.lineEnded) {
+        console.log("[App] Loading complete.");
         window.removeEventListener("roomLoaded", this.onRoomLoad);
         window.removeEventListener("shipLoaded", this.onShipLoad);
         window.removeEventListener("loadLineEnded", this.onLoadLineEnded);

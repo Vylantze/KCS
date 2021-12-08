@@ -47,7 +47,6 @@ export default {
     this.loadLine.onended = () => {
       this.loadLine.src = "";
       this.loadLine = null;
-      this.showFadeScreen = true;
       window.dispatchEvent(new CustomEvent("loadLineEnded"));
     };
 

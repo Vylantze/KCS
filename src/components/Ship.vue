@@ -57,6 +57,7 @@ export default {
 
       loadCounter: 0,
       loadLimit: 2,
+      firstLoad: false,
 
       shipDB: null,
       ctx: null // Canvas context
@@ -397,7 +398,8 @@ export default {
     this.audio.onended = this.audioHasEnded;
     this.audio.volume = this.voiceVolume;
 
-    this.loadShip(true);
+    this.firstLoad = true;
+    await this.loadShip();
   },
   beforeDestroy() {
     // Unregister the event listener before destroying this Vue instance
@@ -718,6 +720,7 @@ export default {
       this.loadCounter++;
       console.log("[Ship] Loaded", loadedItem);
       if (this.loadCounter >= this.loadLimit) {
+        this.firstLoad = false;
         window.dispatchEvent(new CustomEvent("shipLoaded"));
       }
     },
@@ -730,11 +733,11 @@ export default {
           },
       });
     },
-    async loadShip(firstLoad = false) {
+    async loadShip() {
       try {
         await this.getDatabase();
-        this.defaultSprite = await this.loadImage(this.shipNormalImagePath, firstLoad);
-        this.damagedSprite = await this.loadImage(this.shipDamagedImagePath, firstLoad);
+        this.defaultSprite = await this.loadImage(this.shipNormalImagePath, this.firstLoad);
+        this.damagedSprite = await this.loadImage(this.shipDamagedImagePath, this.firstLoad);
 
         if (this.combatMode) {
           log("[Ship] Entering combat mode");
