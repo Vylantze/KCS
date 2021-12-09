@@ -140,7 +140,7 @@
 
           <!-- Buttons -->
           <h3>Misc</h3>
-          <div class="d-flex" style="margin-bottom: 20px;">
+          <div class="d-flex" style="padding-bottom: 20px;">
             <button class="standard-button info" @click="openBgm">Change BGM</button>
             <button
               class="standard-button"
