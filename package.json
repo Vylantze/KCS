@@ -10,7 +10,7 @@
     "kcmake": "node -e \"require('./src/lib/kcdbmaker').runKCMakeFromNode()\"",
     "kcmakeall": "node -e \"require('./src/lib/kcdbmaker').runAllKCMakeFromNode()\"",
     "clean": "node -e \"require('./src/lib/utils').deleteAllRecursive('./dist_electron')\"",
-    "vue:serve": "vue-cli-service serve",
+    "serve": "vue-cli-service serve",
     "vue:build": "vue-cli-service build",
     "vue:lint": "vue-cli-service lint",
     "electron:build": "vue-cli-service electron:build --win",
