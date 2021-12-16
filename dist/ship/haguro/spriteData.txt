@@ -1,0 +1,4 @@
+Banner	Haguro Kai Ni
+Haguro	Haguro
+Haguro Kai	Haguro|Haguro Kai
+Haguro Kai Ni	Haguro|Haguro Kai|Haguro Kai Ni

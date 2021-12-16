@@ -1,0 +1,4 @@
+Banner	Akizuki Kai
+Akizuki	Akizuki
+Akizuki Kai	Akizuki|Akizuki Kai
+Akizuki Yukata	Akizuki|Akizuki Kai
