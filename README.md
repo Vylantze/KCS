@@ -1,5 +1,7 @@
 # KCS
 
+A sample can be found at https://vylantze.github.io/KCS/
+
 ## Project setup
 ```
 npm install
