@@ -1,9 +1,0 @@
-Banner	Taigei
-Taigei	Taigei
-Ryuuhou	Ryuuhou
-Ryuuhou Kai	Ryuuhou|Ryuuhou Kai
-Taigei New Year	Taigei
-Taigei Summer	Taigei
-Ryuuhou Summer	Ryuuhou|Ryuuhou Kai
-Taigei Mackerel Pike Festival	Taigei
-Ryuuhou Mackerel Pike Festival	Ryuuhou|Ryuuhou Kai

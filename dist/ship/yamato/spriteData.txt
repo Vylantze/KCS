@@ -1,8 +1,0 @@
-Banner	Yamato
-Yamato	Yamato
-Yamato Kai	Yamato Kai
-Yamato Winter 2018	Yamato
-Yamato Kai Winter 2018	Yamato Kai
-Yamato New Year	Yamato|Yamato Kai
-Yamato Summer	Yamato|Yamato Kai
-Yamato Cleaning	Yamato|Yamato Kai
