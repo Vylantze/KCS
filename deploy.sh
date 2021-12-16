@@ -12,7 +12,7 @@ set -o
 TARGET_DEPLOYMENT_BRANCH='gh-pages'
 DISTRIBUTION_DIRECTORY='dist'
 
-npm run deploy
+npm run build
 
 git add ${DISTRIBUTION_DIRECTORY} -f
 

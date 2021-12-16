@@ -14,13 +14,8 @@
     "vue:lint": "vue-cli-service lint",
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build --mode production",
-    "electron:build": "vue-cli-service electron:build --win",
-    "electron:serve": "vue-cli-service electron:serve --win",
-    "postinstall-electron": "electron-builder install-app-deps",
-    "postuninstall-electron": "electron-builder install-app-deps",
     "dev": "vue-cli-service electron:serve",
-    "build-electron": "npm-run-all clean electron:build",
-    "deploy": "vue-cli-service build --mode ghpages"
+    "deploy": "npm-run-all clean electron:build"
   },
   "main": "background.js",
   "dependencies": {
