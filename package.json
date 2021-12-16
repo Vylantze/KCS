@@ -10,11 +10,12 @@
     "kcmake": "node -e \"require('./src/lib/kcdbmaker').runKCMakeFromNode()\"",
     "kcmakeall": "node -e \"require('./src/lib/kcdbmaker').runAllKCMakeFromNode()\"",
     "clean": "node -e \"require('./src/lib/utils').deleteAllRecursive('./dist_electron')\"",
-    "vue:build": "vue-cli-service build",
+    "electron:build": "vue-cli-service electron:build --win",
+    "electron:serve": "vue-cli-service electron:serve --win",
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build --mode production",
     "dev": "vue-cli-service electron:serve",
-    "deploy": "npm-run-all clean electron:build"
+    "deploy": "vue-cli-service electron:build --win"
   },
   "main": "background.js",
   "dependencies": {
