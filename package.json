@@ -11,7 +11,6 @@
     "kcmakeall": "node -e \"require('./src/lib/kcdbmaker').runAllKCMakeFromNode()\"",
     "clean": "node -e \"require('./src/lib/utils').deleteAllRecursive('./dist_electron')\"",
     "vue:build": "vue-cli-service build",
-    "vue:lint": "vue-cli-service lint",
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build --mode production",
     "dev": "vue-cli-service electron:serve",
@@ -24,49 +23,11 @@
     "vuex": "^3.3.0"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "~4.3.0",
-    "@vue/cli-plugin-eslint": "~4.3.0",
     "@vue/cli-service": "~4.3.0",
-    "@vue/eslint-config-prettier": "^6.0.0",
-    "babel-eslint": "^10.1.0",
     "electron": "^5.0.0",
-    "eslint": "^6.7.2",
-    "eslint-config-prettier": "^6.11.0",
-    "eslint-config-vue": "^2.0.2",
-    "eslint-plugin-vue": "^6.2.2",
     "less-loader": "^6.0.0",
     "npm-run-all": "^4.1.5",
     "vue-cli-plugin-electron-builder": "~1.4.6",
     "vue-template-compiler": "^2.6.11"
-  },
-  "eslintConfig": {
-    "root": true,
-    "env": {
-      "node": true
-    },
-    "extends": [
-      "plugin:vue/essential",
-      "eslint:recommended"
-    ],
-    "globals": {
-      "log": true,
-      "logError": true,
-      "__dev": true,
-      "__resources": true,
-      "__ship": true,
-      "__room": true,
-      "__mobileMode": true,
-      "__combatModeLength": true,
-      "__static": true
-    },
-    "parserOptions": {
-      "parser": "babel-eslint"
-    },
-    "rules": {}
-  },
-  "browserslist": [
-    "> 1%",
-    "last 2 versions",
-    "not dead"
-  ]
+  }
 }
