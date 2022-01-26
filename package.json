@@ -7,12 +7,12 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build --mode production",
-    "deploy": "vue-cli-service electron:build --win",
+    "deploy": "vue-cli-service electron:build",
     "bgmmake": "node -e \"require('./src/lib/kcdbmaker').runBgmMakeFromNode()\"",
     "clean": "node -e \"require('./src/lib/utils').deleteAllRecursive('./dist_electron')\"",
     "dev": "vue-cli-service electron:serve",
-    "electron:build": "vue-cli-service electron:build --win",
-    "electron:serve": "vue-cli-service electron:serve --win",
+    "electron:build": "vue-cli-service electron:build --mode production",
+    "electron:serve": "vue-cli-service electron:serve",
     "kcmake": "node -e \"require('./src/lib/kcdbmaker').runKCMakeFromNode()\"",
     "kcmakeall": "node -e \"require('./src/lib/kcdbmaker').runAllKCMakeFromNode()\"",
     "semake": "node -e \"require('./src/lib/kcdbmaker').runSEMakeFromNode()\""
