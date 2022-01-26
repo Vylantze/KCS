@@ -1,3 +1,6 @@
+[![CI](https://github.com/Vylantze/KCS/actions/workflows/gh-pages.yml/badge.svg)](https://github.com/Vylantze/KCS/actions/workflows/gh-pages.yml)
+[![pages-build-deployment](https://github.com/Vylantze/KCS/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/Vylantze/KCS/actions/workflows/pages/pages-build-deployment)
+
 # KCS
 
 A sample can be found at https://vylantze.github.io/KCS/
