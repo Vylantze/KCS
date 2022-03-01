@@ -28,6 +28,8 @@
     "less-loader": "^6.0.0",
     "node-forge": ">=1.0.0",
     "postcss": ">=8.2.13",
+    "url-parse": ">=1.5.8",
+    "follow-redirects": ">=1.14.8",
     "vue-template-compiler": "^2.6.11"
   }
 }
