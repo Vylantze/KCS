@@ -26,7 +26,7 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
       - uses: actions/setup-node@v1
         with:
-          node-version: '12.x'
+          node-version: '16.x'
 
       - name: Install project
         run: npm install
