@@ -1,0 +1,117 @@
+Event	Model	Japanese	English	Note	Command	Voice
+Introduction	Taigei	こんにちわあ。潜水母艦大鯨です。不束者ですが、よろしくお願い致します。	Good day, I'm Submarine Tender Taigei. I may be inexperienced, but I am glad to be of service.		SetSecretary	Taigei-Introduction.ogg
+Introduction	Ryuuhou	潜水母艦改装空母の、龍鳳です。航空母艦として、私、頑張ります！	Carrier Ryuuhou, remodeled from a Submarine Tender. I'll once again try my best as a carrier!		SetSecretary	Ryuuhou-Introduction.ogg
+Library	Taigei	潜水母艦、大鯨です。潜水艦隊旗艦機能と補給物資や水上偵察機を装備して、潜水艦作戦を支援します。いざという時は空母に改装できる空母予備艦として設計されました。頑張ります!	I'm Submarine Tender Taigei. I serve as flagship of submarine fleets in order to support operations through supplies and usage of scout planes. I have also been designed as a carrier backup to be converted if it is needed. I'll do my best!		SetSecretary	Taigei-Library.ogg
+Library	Ryuuhou	潜水母艦改装空母の龍鳳です。機関の換装の影響で速度は計画通りには出なかったけれど、このクラスの軽空母としては充実の飛行甲板と兵装なんです。空母龍鳳、精一杯頑張ります！	Carrier Ryuuhou, remodeled from a Submarine Tender. My speed was not up to plan specifications as there were issues with changing the boilers, but I have an enhanced flight deck and armaments as this Light Carrier class. Carrier Ryuuhou, giving it her all!		SetSecretary	Ryuuhou-Library.ogg
+Secretary 1	Taigei	なんでしょうかあ？	What is iiittt?		Tap	Taigei-Secretary_1.ogg
+Secretary 1	Ryuuhou	はい、出撃ですか?	Yes, is it a sortie?		Tap	Ryuuhou-Secretary_1.ogg
+Secretary 2	Taigei	潜水艦と編成ですか？お任せください！	Assigning me with submarines? Just leave it to me!		Tap	Taigei-Secretary_2.ogg
+Secretary 2	Ryuuhou	不幸…？運が悪い…？え、私が！？そんなこと無いです！	Unfortunate...? Bad luck? Eh, me?! That's just not true!		Tap	Ryuuhou-Secretary_2.ogg
+Secretary 2	Ryuuhou Kai	えっ！？機動部隊の出撃ですか！？	Eh?! A sortie for the mobile squadron?		Tap	RyuuhouKai-Secretary_2.ogg
+Secretary 3	Taigei	えっと、この中ですか？玉ねぎや馬鈴薯…あと…補給用の魚雷とか…です…はい…	Um, you're asking me what's in here? Onions, potatoes... and torpedoes for supply use... yeah...		Tap	Taigei-Secretary_3.ogg
+Secretary 3	Ryuuhou	ドーリットル？何か、ちょっと苦手な響きの言葉ですね…何もしない…？何…？	Doolittle? Somehow, the word doesn't ring well with me... Don't do anything...? Huh...?	She was the only IJN vessel bombed during the Doolittle raid, which delayed her launch as CVL.	Tap	Ryuuhou-Secretary_3.ogg
+Secretary 3	Ryuuhou Kai	もう！輸送艦や防空砲台じゃなくて、私、空母です、空母！	Geez! I'm not a transport, nor an anti-air cannon stand! I'm a carrier, a carrier you know!	Ryuuhou was left as a AAA stand in Kure till the end of war due to damages suffered.	Tap	RyuuhouKai-Secretary_3.ogg
+Idle	Taigei	て・い・と・く、提督！あ、あの…潜水艦作戦は……あっ、しばらくお休み…そ、そうですか…いえ、なんでもないんです…はい……	Ad~mi~ral~♪ Admiral! U-um... about the submarine operations... Ah, a short break... I-I see... No, it's nothing... mmhm...	Give the subs a rest from running 2-3, okay?	Idle	Taigei-Idle.ogg
+Idle	Ryuuhou	て・い・と・く？提督！あ、あの、空母機動部隊の出撃は？…あ…えっと…暫くお休み？…そ、そうですか…あ、はい…	Ad~mi~ral~♪ Admiral! Um... is Carrier Task Force deploying? Ah, a short break... I-I see, right...		Idle	Ryuuhou-Idle.ogg
+Secretary Married	Taigei	提督、お疲れではないですか？私、潜水母艦なので、居住性はちょっと自信あります。	Aren't you a little tired, admiral? As I am a Submarine Tender, I am quite confident in my livability.		Tap	Taigei-Secretary_Married.ogg
+Secretary Married	Ryuuhou	提督、お疲れではないですか？私の飛行甲板で少しお休みになられますか？はい！	Aren't you tired, admiral? Want to take a quick nap on my flight deck? Please do!		Tap	Ryuuhou-Secretary_Married.ogg
+Wedding	Taigei	提督…こんな私を、生まれたままの姿で育ててくれて、本当にありがとうございます…いつも、はい、いつも、感謝しています。いつまでも、提督といっしょに…	Admiral... I thank you from the bottom of my heart for raising me in my default form. I will always, yes, always be thankful. I'll always be besides you...		Wedding	Taigei-Wedding.ogg
+Wedding	Ryuuhou	提督、改装空母の私をここまで育ててくれて、本当にありがとうございます。いつも、いつも感謝しています。いつまでも、いつまでも提督の機動部隊に、私…！	Admiral... I thank you from the bottom of my heart for raising me as a remodeled carrier. I will always, yes, always be thankful. I'll always, always be part of the admiral's mobile squadron!		Wedding	Ryuuhou-Wedding.ogg
+Looking At Scores	Taigei	提督？状況把握ですね、大切ですね。	Admiral? I see you're grasping the situation. It sure is important.		IdleBonus	Taigei-Looking_At_Scores.ogg
+Looking At Scores	Ryuuhou	提督、どんな状況ですか？　大丈夫？	Admiral, what is the situation like? Is it okay?		IdleBonus	Ryuuhou-Looking_At_Scores.ogg
+Joining A Fleet	Taigei	潜水艦隊旗艦、大鯨、出撃します！	Submarine Fleet flagship, Taigei, heading out!		BattleStart	Taigei-Joining_A_Fleet.ogg
+Joining A Fleet	Ryuuhou	はい！　航空母艦「龍鳳」、抜錨します！	Okay! Carrier Ryuuhou, casting off!		BattleStart	Ryuuhou-Joining_A_Fleet.ogg
+Joining A Fleet	Ryuuhou Kai	空母龍鳳の本当の力、お見せしたいと思います！	I'd like to show the true power of the Carrier Ryuuhou!		BattleStart	RyuuhouKai-Joining_A_Fleet.ogg
+Equipment 1	Taigei	まあ～！ありがとうございます！	Oh my! Thank you!		TapBonus	Taigei-Equipment_1.ogg
+Equipment 1	Ryuuhou	嬉しいです、ありがとうございます！	I'm so happy! Thank you!		TapBonus	Ryuuhou-Equipment_1.ogg
+Equipment 1	Ryuuhou Kai	天山って、可愛いと思うんです、私。	I do think the Tenzan are adorable.		TapBonus	RyuuhouKai-Equipment_1.ogg
+Equipment 2	Taigei	ほんとに？ちょっと嬉しいかも。	My, really? I feel a little glad, I suppose.		TapBonus	Taigei-Equipment_2.ogg
+Equipment 2	Ryuuhou	これなら、敵艦載機に負けません！	With this, I won't lose to the enemy's planes!	The cause of Marianas Turkey Shoot were also attributed to pilot experience, training and tactics apart from equipment disparities.	TapBonus	Ryuuhou-Equipment_2.ogg
+Equipment 3	Taigei	嬉しいかも。	I'm glad, I suppose.		TapBonus	Taigei-Equipment_3.ogg
+Equipment 3	Ryuuhou	やりましたね！	We did it!	⇧ shared with expedition selection, resource collection, instant repair and development	TapBonus	Ryuuhou-Equipment_3.ogg
+Supply	Taigei	はい、ありがとうございます。	Yes, thank you.		TapBonus	Taigei-Supply.ogg
+Supply	Ryuuhou	艦載機の補充も、感謝いたします!	Thank you for replenishing my planes!	Nearly all of Ryuuhou's planes were lost in the Marianas Turkey Shoot.	TapBonus	Ryuuhou-Supply.ogg
+Docking Minor	Taigei	ごめんなさい、ちょっとお風呂に…。	Sorry, I'll be using the bath for a little while.		DockingMinor	Taigei-Docking_Minor.ogg
+Docking Minor	Ryuuhou	ちょっとお風呂入りますね。	I'll just be in the bath.		DockingMinor	Ryuuhou-Docking_Minor.ogg
+Docking Major	Taigei	すみません、また少しお風呂に…うぅ、電気溶接だとダメなのかしら……。	Apologies, I'll be in the bath a little longer... Hmm, I guess electrical welding is no good...	Taigei's hull was warped during construction due to inexperience with arc welding, and she had to be returned to dry dock for repairs shortly after launching. She also had hull weld failures during the Fourth Fleet incident requiring even more repairs.	DockingMajor	Taigei-Docking_Major.ogg
+Docking Major	Ryuuhou	すみません。ちょっと、長いお風呂になるかも	Apologies. This may be a long bath.	No need to apologize when Ryuuhou's last bath didn't even start after the March 19 attack which made her irreparable to combat-fit status.	DockingMajor	Ryuuhou-Docking_Major.ogg
+Docking Complete	Taigei	良かったわぁ。修理完了みたいです。	Thank goodness, it seems like the reparation has been completed.		DockingComplete	Taigei-Docking_Complete.ogg
+Docking Complete	Ryuuhou	良かったぁ。修理完了みたい。	Thank goodness, it seems like the reparation has been completed.		DockingComplete	Ryuuhou-Docking_Complete.ogg
+Construction	Taigei	まあ！新しいお仲間が来たみたいです。	Oh my! Seems like a new friend has joined us.		AddShip	Taigei-Construction.ogg
+Construction	Ryuuhou	新しい仲間が来たみたい。	Seems like a new friend has come.		AddShip	Ryuuhou-Construction.ogg
+Returning From Sortie	Taigei	無事帰ってきました。よかったあ。	The fleet has safely returned. What a relief.		BattleComplete	Taigei-Returning_From_Sortie.ogg
+Returning From Sortie	Ryuuhou	今回も無事帰って来れました。よかったぁ。	We've returned safely this time too. Phew.		BattleComplete	Ryuuhou-Returning_From_Sortie.ogg
+Returning From Sortie	Ryuuhou Kai	無事に母港に戻って来れました。よかったぁ。	The fleet has returned safely. What a relief.		BattleComplete	RyuuhouKai-Returning_From_Sortie.ogg
+Starting A Sortie	Taigei	潜水母艦、大鯨、抜錨しますね！	Submarine Tender, Taigei, cast off!		BattleStart	Taigei-Starting_A_Sortie.ogg
+Starting A Sortie	Ryuuhou	機動部隊、出撃です！　勝つ気で参ります！	Task force, deploying. I'll go with determination to win!		BattleStart	Ryuuhou-Starting_A_Sortie.ogg
+Battle Start	Taigei	敵艦発見！…ど…どうしましょう……！	Enemy fleet sighted! ...W-what should I do?		BattleStartDay	Taigei-Battle_Start.ogg
+Battle Start	Ryuuhou	気持ちいい…第一攻撃隊、発艦！	This feels great... First assault squad, launch!		BattleStartDay	Ryuuhou-Battle_Start.ogg
+Air Battle (Ryuuhou)	Ryuuhou	七面鳥ですか？！　誰が…私の…？　いいえ、精鋭たちです！侮らないで！	Turkey?! Are you saying I'm one? I'm sorry, but we're the elite. Don't underestimate us!	The IJN's greatly reduced naval air power led to the so-called 'Turkey Shoot' at the Marianas, where planes were shot down quite easily by the US fleet	BattleDay	Ryuuhou-Air_Battle.ogg
+Air Battle (Ryuuhou)	Ryuuhou Kai	私達、改装空母をなめないで！	Don't make light of us remodeled carriers!		BattleDay	RyuuhouKai-Air_Battle.ogg
+Attack	Taigei	えっ！？えーっと…こ、攻撃！？	Eh?! Err... f-fire?!		Battle	Taigei-Attack.ogg
+Attack	Ryuuhou	続けていきます！　龍鳳、攻撃隊、発艦！	There's more coming! Ryuuhou assault squadron, launch!	The 2 waves of planes Ryuuhou sent out were lost in the Marianas Turkey Shoot.	Battle	Ryuuhou-Attack.ogg
+Attack	Ryuuhou Kai	艦載機があれば、私だって！	Even I can fight if I have planes!	⇧ shared with day/night special attacks, support expedition team arrival	Battle	RyuuhouKai-Attack.ogg
+Night Battle	Taigei	この武装で艦隊戦は…無理かもー！	A fleet battle with these armaments... it might be impossible!		BattleStartNight	Taigei-Night_Battle.ogg
+Night Battle	Ryuuhou	追撃に移行します。全艦、突撃！	Moving into the chase. All ships, launch assault!		BattleStartNight	Ryuuhou-Night_Battle.ogg
+Night Attack	Taigei	当たって…当たってぇー！	Hit, please hit!		BattleNight	Taigei-Night_Attack.ogg
+MVP	Taigei	えっ…嘘…わ、わたし！？…あっ、ありがとうございます…が、頑張ります！	Eh... no way! M-me?! T-thank you so much... I'll keep giving it my all!		MVP	Taigei-MVP.ogg
+MVP	Ryuuhou	私の艦載機が活躍したの？　や、やったー！　これが空母の、龍鳳の力なんです！	My planes did great? H-hurray! This is the strength of the Carrier Ryuuhou!	Not the case in the Marianas Turkey Shoot unfortunately.	MVP	Ryuuhou-MVP.ogg
+Minor Damage 1	Taigei	きゃーっ！	Eek!		MinorDamage	Taigei-Minor_Damage_1.ogg
+Minor Damage 1	Ryuuhou	きゃあ～！	Eek!		MinorDamage	Ryuuhou-Minor_Damage_1.ogg
+Minor Damage 2	Taigei	やっ…やめてください！	P-please stop!		MinorDamage	Taigei-Minor_Damage_2.ogg
+Minor Damage 2	Ryuuhou	やだ！飛行甲板の格納庫が！！	Oh no, my flight deck hangar!	Ryuuhou's hangar was hit by TF58 aircrafts on March 19, 1945. The attack effectively put her out of combat and she was left sitting in Kure on AA duties till the end of the war.	MinorDamage	Ryuuhou-Minor_Damage_2.ogg
+Major Damage	Taigei	ちょ…直撃！？もっ…もうやだぁ……排水を急いで！沈んじゃう…！	Wha- a direct hit?! N-no more... increase the rate of draining! I'm gonna sink...!		MajorDamage	Taigei-Major_Damage.ogg
+Major Damage	Ryuuhou	やられました…エレベーターが……でも、まだ大丈夫、沈みません！	They got me! The elevator has been... but don't worry, I'm not sinking!	Ryuuhou's elevators were so damaged on March 19 that the portion of flight deck between them bulged upwards.	MajorDamage	Ryuuhou-Major_Damage.ogg
+Sunk	Taigei	え…私、沈むの…？…これが…みずの…なか……	Eh... I'm... sinking? So this is what it's like... to be in the water...		Sunk	Taigei-Sunk.ogg
+Sunk	Ryuuhou	空母として、沈むのね…今度は活躍、できた…かな？	Sinking as a carrier... did I manage to accomplish a lot this time...?		Sunk	Ryuuhou-Sunk.ogg
+00:00	Ryuuhou	ちょうど午前零時です。すっかり深夜ですね。お疲れじゃないですか？	It's midnight now. It sure has gotten late. Are you tired?		Hourly	Ryuuhou-00.ogg
+01:00	Ryuuhou	マルヒトマルマル。提督、深夜ですよ？	0100. Admiral, it's already late into the night, you know?		Hourly	Ryuuhou-01.ogg
+02:00	Ryuuhou	マルフタマルマル。提督、お休みにならなくていいのですか？	0200. Admiral, are you sure you don't need to rest?		Hourly	Ryuuhou-02.ogg
+03:00	Ryuuhou	マルサンマルマル。ふはぁ、私も少し眠くなってしまいました…だ、大丈夫！ふあぁ…	0300. Geez, I'm starting to feel a little sleepy, too... I-I'm fine! Yawn...		Hourly	Ryuuhou-03.ogg
+04:00	Ryuuhou	マルヨンマルマル。だ、大丈夫です！格納庫の天山数えて起きているので、大丈夫。	0400. D-don't worry! I've been keeping myself awake by counting the number of Tenzan in my hangar.		Hourly	Ryuuhou-04.ogg
+05:00	Ryuuhou	マルゴーマルマル。提督、朝です！お早いですね？まさか、徹夜でしょうか…	0500. It's morning, Admiral! You're up early... don't tell me you stayed up all night...		Hourly	Ryuuhou-05.ogg
+06:00	Ryuuhou	マルロクマルマル。朝ごはんは何がいいですか？流石に朝からカレーは重いですよね…	0600. What should we have for breakfast? I guess curry is a little too heavy for the morning...		Hourly	Ryuuhou-06.ogg
+07:00	Ryuuhou	マルナナマルマル。提督、朝ごはんはお味噌汁と卵焼き、鮭の切り身を焼いてみました。さぁ、召し上がれ！	0700. Admiral, I tried making miso soup with fried eggs along with fried salmon fillets for breakfast. Dig in!		Hourly	Ryuuhou-07.ogg
+08:00	Ryuuhou	マルハチマルマル。さぁ、今日も元気に頑張りましょう！ね？提督！？	0800. Now, let's get through the day with zeal! Right, admiral?		Hourly	Ryuuhou-08.ogg
+09:00	Ryuuhou	マルキュウマルマル。鎮守府のお掃除もしたいですね。私、掃き掃除しますね！	0900. I want to clean the base. I'm off to do some sweeping!		Hourly	Ryuuhou-09.ogg
+10:00	Ryuuhou	ヒトマルマルマル。けっこうホコリも溜まっていますね。提督も一緒に、はい、これ持って？	1000. There sure is dust gathered. Give me a hand, Admiral. Here, hold this.		Hourly	Ryuuhou-10.ogg
+11:00	Ryuuhou	ヒトヒトマルマル。お掃除すると、お腹がすきますね…お昼ご飯は何にしましょうか？	1100. Cleaning sure makes you hungry. What shall we have for lunch?		Hourly	Ryuuhou-11.ogg
+12:00	Ryuuhou	ヒトフタマルマル。今日のお昼ご飯は、大げぇ…じゃなかった、龍鳳特製カレーです！	1200. Lunch today is Taige--er, I mean, Ryuuhou's specialty curry!		Hourly	Ryuuhou-12.ogg
+13:00	Ryuuhou	ヒトサンマルマル。龍鳳特製カレー、いかがでしたか？馬鈴薯もおいしいでしょ？	1300. How was my specialty curry? The potato was good too, right?		Hourly	Ryuuhou-13.ogg
+14:00	Ryuuhou	ヒトヨンマルマル。提督、あのぉ、そろそろ本格的な機動部隊を…あ、まだ？…はいぃ…	1400. Um, Admiral, it's time for the mobile squadron to- ah, not yet? Okay...		Hourly	Ryuuhou-14.ogg
+15:00	Ryuuhou	ヒトゴーマルマル。提督、そろそろ本格的に、空母機動部隊が出撃ですよね？…ね！？	1500. Admiral, it's now time for the carrier squadron to sortie, right? Right?		Hourly	Ryuuhou-15.ogg
+16:00	Ryuuhou	ヒトロクマルマル。なんだか、夕焼け空が綺麗…もう夕方ですね。	1600. The seared sky sure is beautiful... it's already evening, huh.		Hourly	Ryuuhou-16.ogg
+17:00	Ryuuhou	ヒトナナマルマル。そろそろ、お夕食の準備をしないと。提督、何がいいでしょう？	1700. Have to prepare dinner soon. What would you like, Admiral?		Hourly	Ryuuhou-17.ogg
+18:00	Ryuuhou	ヒトハチマルマル。お昼はカレーですし、夜は少し凝ったものがいいでしょうか…	1800. Since we had curry for lunch, I guess we should have something more exquisite...		Hourly	Ryuuhou-18.ogg
+19:00	Ryuuhou	ヒトキュウマルマル。提督、今晩はフーカデンビーフにしてみました。どうでしょう？	1900. Admiral, I tried making Fricandeau Beef. How is it?	A type of beef mixed with egg and onion and cooked in a roughly oval/tube shape.	Hourly	Ryuuhou-19.ogg
+20:00	Ryuuhou	フタマルマルマル。フーカデンビーフ、いかがでしたか？…ふふ、良かったぁ！	2000. How was the Fricandeau Beef? Hehe... great to hear!		Hourly	Ryuuhou-20.ogg
+21:00	Ryuuhou	フタヒトマルマル。提督、洗い物片付けたら、明日の作戦の計画を立てましょう？	2100. Admiral, want to go draft up tomorrow's operation plans after we clean up?		Hourly	Ryuuhou-21.ogg
+22:00	Ryuuhou	フタフタマルマル。明日こそ、本格的な空母機動部隊による出撃を…ね、提督！？	2200. Tomorrow WILL be the day when the mobile squadron get to sortie... Right, Admiral?!		Hourly	Ryuuhou-22.ogg
+23:00	Ryuuhou	フタサンマルマル。提督、本日も一日、大変お疲れ様でした。明日も頑張りましょう？	2300. Admiral, this sure has been another tiring day. Shall we also do our best tomorrow?		Hourly	Ryuuhou-23.ogg
+Christmas 2016	Ryuuhou	て・い・と・く♪　クリスマスですね。　私、腕を奮っちゃいます！　お料理のリクエスがあったら、言ってくださいね？	Ad~mi~ral~♪ It's Christmas. I'm gonna show you everything I've got! If you have any cooking requests, please let me know, okay?	As Taigei/Ryuuhou	Special	Ryuuhou_Christmas_2016.ogg
+Early Summer 2016	Taigei	て…い…と…く、え？なんですか？水着ですか？一応用意してあるのですが…え？今ですか？夏まで待っててくださいね。	Ad~mi~ral~♪ Eh, what is it? A swimsuit, is it? I did have one prepared, just in case, but... Eh? Right now? Please patiently wait until summer, alright?	As Taigei	Special	Taigei_Early_Summer_2016.ogg
+New Year 2016	Taigei	提督、あ、あの・・・潜水母艦、いいですよね？必要ですよね？ああ、よかった！はい、潜水艦たちのお世話はお任せ下さい！	Admiral... ah, um... submarine tenders sure are nice, aren't they? They're a necessity, right? Ah, thank goodness! Yes, leave the care of the submarines to me!	As Taigei	Special	Ryuuhou_Late_Fall_2017.ogg
+New Year 2016	Ryuuhou	提督、あ、あの・・・低速軽空母だって十分戦えますよね？ね？私、信じてます！	Admiral, ah, um... even as a slow light aircraft carrier, I'm still sufficient enough for battles, right? Right? I believe so!	As Ryuuhou	Special	Taigei_New_Year_2016.ogg
+New Year 2017	Taigei	て、い、と、く？提督、新年あけましておめでとうございます。本年もどうぞ宜しくお願い致します。	Commander, Happy New Year. Please look after me this year too!	As Taigei/Ryuuhou	Special	Ryuuhou_New_Year_2017.ogg
+Sanma 2016	Taigei	艦隊で秋刀魚漁支援ですか？了解しました！あ、磯風さんも準備万端ですね～よし！	Supporting the saury fishing with the rest of the fleet? Affirmative! Ah, Isokaze-san is fully prepared as well, aren't you. Alright then!	As Taigei	Special	Taigei_Sanma_2016.ogg
+Sanma 2016	Ryuuhou	艦隊全力で秋刀魚漁支援ですか？龍鳳、了解しました！磯風さん、浜風さんも、準備万端ですね？	Supporting the saury fishing with the fleet's full force? Affirmative! Isokaze-san, Hamakaze-san, are your preparations done?	As Ryuuhou	Special	Ryuuhou_Sanma_2016.ogg
+Setsubun 2017	Taigei	節分なんですけど…潜水艦の子たちが…痛い！や、やだ！いた！も、もういやだ！あーやめて！もう降参だからー！	It's Setsubun, isn't it...Oh no, there's those Submarine kids...Ow! Noooo! Ow! Please no more! Noo, stop it! I told you to stop that alreadyyy!	As Taigei	Special	Taigei_Setsubun_2017.ogg
+Setsubun 2017	Ryuuhou	節分なんですけど…さすがに空母になった私には潜水艦の子たちは…痛い！え？どうして？いた！いたたたた！も、もう、もうやめて！どうして？もう！	It's Setsubun isn't it....Well naturally now that I've become a carrier I'll be safe from those Submarine ki-OW! Eh? Why me? Ow! Owowowowowow! Please, Please stop it! Why is it still me? Jeez!	As Ryuuhou	Special	Ryuuhou_Setsubun_2017.ogg
+Fifth Anniversary	Taigei	て・い・と・く、おめでとうございます！艦隊はついに、五周年を迎えました！大鯨も、お祝い申し上げます！祝賀のお料理がんばりますね。	Ad~mi~ral~♪, congratulations! The fleet is finally celebrating it’s 5th Anniversary! I’d like to congratulate you too! I’ll work hard on making food for the celebration.	As Taigei	Special	Taigei_Fifth_Anniversary.ogg
+Fifth Anniversary	Ryuuhou	て・い・と・く！おめでとうございます！艦隊はついに五周年を迎えました。龍鳳もお祝い申し上げます。祝賀の料理、がんばりますね。	Ad~mi~ral~♪, congratulations! The fleet is finally celebrating it’s 5th Anniversary! I’d like to congratulate you too! I’ll work hard on making food for the celebration.	As Ryuuhou	Special	Ryuuhou_5th_Anniversary_Sec1.mp3
+Sixth Anniversary	Taigei	て・い・と・く、おめでとうございます。艦隊は、この春また、新たの歴史を刻むことができました。お祝いとお礼申し上げます。	Ad~mi~ral~♪, congratulations. This spring, the fleet has marked a new page in it's history. I offer my sincerest thanks and congratulations.	Secretary 2	Special	Taigei_6th_Anniversary_Sec2.mp3
+Autumn 2016	Taigei	あぁ、時雨さん、お疲れ様です。えぇ、秋はバルジが…？そうですね、時雨さんは大丈夫ですけど、私気をつけなきゃ…。	Ah, thanks for your hard work, Shigure. Eh, the autumn bulge…? That’s right, you’re fine but I need to be careful…		Special	Taigei_Autumn_2016_Sec1.mp3
+Saury Festival 2016	Taigei	艦隊で秋刀魚漁支援ですか？了解しました！あぁ、磯風さんも準備万端ですね！よし！	The fleet is going to support saury fishing? Roger that! Ah, Isokaze is ready too! Alright!		Special	Taigei_Sec1_Saury_2016.mp3
+Saury Festival 2016	Ryuuhou	艦隊全力で秋刀魚漁支援ですか？龍鳳、了解しました！磯風さん、浜風さんも、準備万端ですね？	The whole fleet is going to support saury fishing? Roger that! Isokaze, Hamakaze; are you ready?		Special	Ryuuhou_Sec1_Saury_2016.mp3
+End of Year 2016	Taigei	鳳翔さんどうされたんですか？そうか、鎮守府の大掃除ですね。私も手伝えいたします。あぁ、はい！まず、掃き掃除ですね？	What are you doing, Houshou-san? I see, it’s the Naval Base’s spring cleaning. I’ll help too. Ah, yes! First we’ll be sweeping right?		Special	Taigei_End_Of_Year_2016_Sec1.mp3
+Valentine’s Day 2017	Taigei	て・い・と・く！はい、大鯨からのチョコレート、どうか受け取ってください！あ、ありがとうございます！	Ad~mi~ral~♪! Here, please accept my chocolates! Th-thank you very much!		Special	Taigei_Valentines_Day_2017_Sec1.mp3
+Valentine’s Day 2017	Ryuuhou	て・い・と・く！はい、龍鳳からのチョコレート、どうか受け取ってください！あ、ありがとうございます！	Ad~mi~ral~♪! Here, please accept my chocolates! Th-thank you very much!		Special	Ryuuhou_Valentine_Sec1.ogg
+Hinamatsuri 2017	Taigei	ひな祭り、ひな人魚かわいいですね。潜水艦たちもかわいく…あれ？菱餅が…おかしいは…確かに…また良いしなくちゃ。	It’s Hinamatsuri, the hina dolls are cute. The submarines are cute too… Huh? The hishimochi is… That’s strange… I’m sure… I have to make them again.		Special	Taigei_Hinamatsuri_2017_Sec1.mp3
+White Day 2017	Ryuuhou	もしかしてこちらを私に？ありがとうございます！私、だいじにだいじに頂きます！	Could this be for me? Thank you very much! I’ll really, really savour this!		Special	Ryuuhou_White_Day_2017.mp3
+Spring 2017	Taigei	お花見ですか？おまかせください！お重いっぱいにお料理詰めて馳せ参じますね。あの子達何好きかしら？	Cherry blossom viewing? Leave it to me! I’ll hurry and fill an ojyuu with lots of food. I wonder what those girls would like?		Special	Taigei_Spring_2017_Sec1.mp3
+4th Anniversary	Taigei	て・い・と・く、おめでとう御座います。艦隊は四周年を迎えました。大鯨もお祝い申し上げます。祝賀のお料理、作りますね！	Ad~mi~ral~♪, congratulations. The fleet’s 4th Anniversary is here. I give you my regards. I’ll cook something for the celebrations!		Special	Taigei_4th_Anniversary_Sec1_2017.mp3
+4th Anniversary	Ryuuhou	て・い・と・く、おめでとう御座います。艦隊は四周年を迎えました。龍鳳もお祝い申し上げます。祝賀のお料理、作りますね！	Ad~mi~ral~♪, congratulations. The fleet’s 4th Anniversary is here. I give you my regards. I’ll cook something for the celebrations!		Special	Ryuuhou_4th_Anniversary_Sec1_2017.mp3
+Late Autumn 2017	Taigei	少し寒きなって来ましたね。かぜを引かないようにしないと。提督も暖かくしてくださいね。	It’s gotten a bit colder. I hope that I won’t catch a cold. You better keep warm too, Admiral.		Special	Ryuuhou_Late_Autumn_2017_Sec1.mp3
+5th Anniversary	Taigei	て・い・と・く、おめでとうございます！艦隊はついに、五周年を迎えました！大鯨も、お祝い申し上げます！祝賀のお料理がんばりますね。	Congratulations, Ad-mi-ral! The fleet is finally celebrating it’s 5th Anniversary! I’d like to congratulate you too! I’ll work hard on making food for the celebration.		Special	Taigei_5th_Anniversary_Sec1.mp3
+5th Anniversary	Ryuuhou	て・い・と・く！おめでとうございます！艦隊はついに五周年を迎えました。龍鳳もお祝い申し上げます。祝賀の料理、がんばりますね。	Congratulations, Ad-mi-ral! The fleet is finally celebrating it’s 5th Anniversary! I’d like to congratulate you too! I’ll work hard on making food for the celebration.		Special	Ryuuhou_5th_Anniversary_Sec1.mp3
+6th Anniversary	Taigei	て・い・と・く、おめでとうございます。艦隊は、この春また、新たの歴史を刻むことができました。お祝いとお礼申し上げます。	Ad~mi~ral~♪, congratulations. This spring, the fleet has marked a new page in it's history. I offer my sincerest thanks and congratulations.	Secretary 2	Special	Taigei_6th_Anniversary_Sec2.mp3
