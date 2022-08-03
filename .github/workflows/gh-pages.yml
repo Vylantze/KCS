@@ -4,9 +4,9 @@ name: CI
 
 # Controls when the workflow will run
 on:
-  # Triggers the workflow on push or pull request events but only for the master branch
+  # Triggers the workflow on push or pull request events but only for the main branch
   push:
-    branches: [ master ]
+    branches: [ main ]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -36,9 +36,9 @@ jobs:
       - name: Deploy project
         working-directory: ./dist
         run: |
-          git init
-          git config user.name "Vylantze"
-          git config user.email "vylantze@users.noreply.github.com"
+          git init -b main
+          git config user.name "${{ github.repository_owner }}"
+          git config user.email "${{ github.repository_owner }}@users.noreply.github.com"
           git add -A
           git commit -m 'deploy'
-          git push -f https://vylantze:${{ secrets.GITHUB_TOKEN }}@github.com/Vylantze/KCS.git master:gh-pages
+          git push -f https://${{ github.repository_owner }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git main:gh-pages

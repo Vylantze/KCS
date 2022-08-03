@@ -4,8 +4,8 @@
 # https://gist.github.com/cobyism/4730490
 #
 # This script assumes '${TARGET_DEPLOYMENT_BRANCH}' branch is the target deployment branch
-#  note: in the case of standard github pages, this is is 'gh-pages')
-#  note: in the case of a user github pages, this is is 'master')
+#  note: in the case of standard github pages, this is 'gh-pages')
+#  note: in the case of a user github pages, this is 'main')
 # This script will deploy the CURRENT branch to TARGET_DEPLOYMENT_BRANCH
 set -o
 
