@@ -5,33 +5,56 @@
   "description": "KCSimulator",
   "author": "Arc",
   "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build --mode production",
-    "deploy": "vue-cli-service electron:build",
+    "serve": "vite --host 127.0.0.1",
+    "build": "vite build",
+    "deploy": "npm run electron:build",
     "bgmmake": "node -e \"require('./src/lib/kcdbmaker').runBgmMakeFromNode()\"",
-    "clean": "node -e \"require('./src/lib/utils').deleteAllRecursive('./dist_electron')\"",
-    "dev": "vue-cli-service electron:serve",
-    "electron:build": "vue-cli-service electron:build --mode production",
-    "electron:serve": "vue-cli-service electron:serve",
+    "clean": "node scripts/clean.cjs",
+    "dev": "npm run electron:serve",
+    "electron:build": "npm run build && electron-builder --win",
+    "electron:serve": "npm run build && electron .",
     "kcmake": "node -e \"require('./src/lib/kcdbmaker').runKCMakeFromNode()\"",
     "kcmakeall": "node -e \"require('./src/lib/kcdbmaker').runAllKCMakeFromNode()\"",
-    "semake": "node -e \"require('./src/lib/kcdbmaker').runSEMakeFromNode()\""
+    "semake": "node -e \"require('./src/lib/kcdbmaker').runSEMakeFromNode()\"",
+    "preview": "vite preview --host 127.0.0.1",
+    "test": "playwright test"
   },
-  "main": "background.js",
+  "main": "src/background.cjs",
   "dependencies": {
-    "vue": "^2.6.11",
-    "vuex": "^3.3.0"
+    "vue": "3.5.44",
+    "vuex": "4.1.0"
   },
   "devDependencies": {
-    "@vue/cli-service": "^4.5.15",
-    "glob-parent": ">=5.1.2",
-    "less-loader": "^6.0.0",
-    "node-forge": ">=1.0.0",
-    "postcss": ">=8.2.13",
-    "url-parse": ">=1.5.8",
-    "ansi-regex": ">=5.0.1",
-    "follow-redirects": ">=1.14.8",
-    "nth-check": ">=2.0.1",
-    "vue-template-compiler": "^2.6.11"
+    "@vitejs/plugin-vue": "6.0.10",
+    "vite": "8.3.5",
+    "less": "4.9.1",
+    "electron": "45.0.0",
+    "electron-builder": "26.15.3",
+    "@playwright/test": "1.64.1"
+  },
+  "engines": {
+    "node": ">=24.22.1 <25",
+    "npm": ">=11"
+  },
+  "build": {
+    "appId": "com.kcsimulator.app",
+    "productName": "KCSimulator",
+    "directories": {
+      "output": "dist_electron"
+    },
+    "files": [
+      "dist/**/*",
+      "src/background.cjs",
+      "package.json"
+    ],
+    "win": {
+      "icon": "public/favicon.ico",
+      "target": "portable"
+    }
+  },
+  "overrides": {
+    "app-builder-lib": {
+      "@electron/get": "5.1.0"
+    }
   }
 }

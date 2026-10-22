@@ -53,7 +53,7 @@ export default {
       logError("[BGM] Unable to scroll to selected bgm element.", e);
     }
   },
-  beforeDestroy() {
+  beforeUnmount() {
     // Unregister the event listener before destroying this Vue instance
     window.removeEventListener("resize", this.recalculateWidth);
   },

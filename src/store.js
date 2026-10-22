@@ -1,12 +1,10 @@
-import Vue from 'vue';
-import Vuex from 'vuex';
+import { createStore } from 'vuex';
 
 import './lib/preload';
 import utils from './lib/utils';
-import path from "path";
+import path from "./lib/asset-path.js";
 
-Vue.config.productionTip = false;
-Vue.use(Vuex);
+
 
 // Database import
 import bgm from './database/bgm.json'
@@ -29,7 +27,7 @@ const ships = [
 
 var combatModeInterval = null;
 
-const store = new Vuex.Store({
+const store = createStore({
   modules: {
     main: {
       state: {

@@ -56,7 +56,7 @@
 
 <script>
 import { mapGetters } from "vuex";
-import path from "path";
+import path from "../lib/asset-path.js";
 
 export default {
   name: "ShipAssigner",
@@ -157,7 +157,7 @@ export default {
     log("ShipFileName", this.currentShipDB.FileName);
     window.addEventListener("resize", this.recalculateWidth);
   },
-  beforeDestroy() {
+  beforeUnmount() {
     // Unregister the event listener before destroying this Vue instance
     window.removeEventListener("resize", this.recalculateWidth);
   },

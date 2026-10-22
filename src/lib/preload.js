@@ -1,4 +1,4 @@
-const isDevelopment = process.env.NODE_ENV !== 'production';
+const isDevelopment = import.meta.env.DEV;
 
 window.__dev = isDevelopment;
 window.__room = {

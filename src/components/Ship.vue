@@ -20,7 +20,7 @@
 <script>
 import { mapGetters } from "vuex";
 
-const path = require("path");
+import path from "../lib/asset-path.js";
 const heightModifier = 1.3; // of total canvas height
 const shipDefaultExpectedPositionRatio = 0.8;
 const shipCombatExpectedPositionRatio = 0.3;
@@ -401,7 +401,7 @@ export default {
     this.firstLoad = true;
     await this.loadShip();
   },
-  beforeDestroy() {
+  beforeUnmount() {
     // Unregister the event listener before destroying this Vue instance
     window.removeEventListener("resize", this.windowResizeHandler);
     window.removeEventListener("hourly", this.onHourly);
@@ -602,7 +602,7 @@ export default {
             }
           })
           .catch(e => {
-            throw e;
+            if (e.name !== 'AbortError') logError('[Ship][playCurrentEvent] Error.', e);
           });
       } catch (e) {
         logError("[Ship][playCurrentEvent] Error.", e);

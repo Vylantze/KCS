@@ -296,6 +296,7 @@
 </template>
 
 <script>
+import { playAudio } from "../lib/audio.js";
 import { mapGetters, mapState } from "vuex";
 
 import BGM from "./BGM.vue";
@@ -448,7 +449,7 @@ export default {
     this.resizeUI();
     window.addEventListener("resize", this.resizeUI);
   },
-  beforeDestroy() {
+  beforeUnmount() {
     // Unregister the event listener before destroying this Vue instance
     window.removeEventListener("resize", this.resizeUI);
 
@@ -640,7 +641,7 @@ export default {
         this.audio[seName].pause();
         this.audio[seName].currentTime = 0;
       }
-      this.audio[seName].play();
+      playAudio(this.audio[seName]);
     }
   }
 };

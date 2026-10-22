@@ -26,3 +26,7 @@ yarn-error.log*
 # Custom
 /editing
 desktop.ini
+# Test evidence and local tool caches
+/test-results
+/playwright-report
+/.cache
