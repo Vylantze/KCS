@@ -48,7 +48,7 @@ export default {
     window.addEventListener("startLoad", this.startLoad);
     window.addEventListener("endLoad", this.endLoad);
   },
-  beforeDestroy() {
+  beforeUnmount() {
     // Unregister the event listener before destroying this Vue instance
     window.removeEventListener("startGame", this.exitTitleScreen);
     window.removeEventListener("startLoad", this.startLoad);

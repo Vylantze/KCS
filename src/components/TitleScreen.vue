@@ -58,6 +58,7 @@
 </template>
 
 <script>
+import { playAudio } from "../lib/audio.js";
 import { mapGetters } from "vuex";
 
 export default {
@@ -144,7 +145,7 @@ export default {
 
     window.addEventListener("resize", this.calculateScreenWidth);
   },
-  beforeDestroy() {
+  beforeUnmount() {
     // Unregister the event listener before destroying this Vue instance
     window.removeEventListener("resize", this.calculateScreenWidth);
   },
@@ -197,7 +198,7 @@ export default {
 
       this.startButtonClicked = true;
       this.showFadeScreen = true;
-      this.kancolleStartLine.play();
+      playAudio(this.kancolleStartLine);
       window.setTimeout(() => {
         window.dispatchEvent(new CustomEvent("startGame"));
       }, 2000);

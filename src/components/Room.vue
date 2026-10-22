@@ -36,6 +36,7 @@
 </style>
 
 <script>
+import { playAudio } from "../lib/audio.js";
 import { mapGetters } from "vuex";
 
 export default {
@@ -102,7 +103,7 @@ export default {
         // If true
         this.bgmAudio.pause();
       } else {
-        this.bgmAudio.play();
+        playAudio(this.bgmAudio);
       }
     },
     combatMode() {
@@ -125,7 +126,7 @@ export default {
 
     window.addEventListener("resize", this.resizeCanvas);
   },
-  beforeDestroy() {
+  beforeUnmount() {
     // Unregister the event listener before destroying this Vue instance
     window.removeEventListener("resize", this.resizeCanvas);
     if (this.bgmAudio) {
@@ -251,7 +252,7 @@ export default {
       this.bgmAudio.load();
       if (!this.loading) {
         window.log(`Playing BGM [${bgm.English}].`, bgm);
-        this.bgmAudio.play();
+        playAudio(this.bgmAudio);
       }
     },
     resizeCanvas() {

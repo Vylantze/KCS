@@ -12,6 +12,7 @@
 </template>
 
 <script>
+import { playAudio } from "../lib/audio.js";
 import { mapGetters } from "vuex";
 
 export default {
@@ -56,7 +57,7 @@ export default {
     window.addEventListener("resize", this.calculateGifWidth);
     window.addEventListener("showFadeScreen", this.showFadeScreenFunc);
   },
-  beforeDestroy() {
+  beforeUnmount() {
     // Unregister the event listener before destroying this Vue instance
     window.removeEventListener("resize", this.calculateGifWidth);
     window.removeEventListener("playLoadLine", this.playLoadLine);
@@ -65,7 +66,7 @@ export default {
   methods: {
     playLoadLine() {
       console.log("[LoadingScreen] Playing load line");
-      this.loadLine.play();
+      playAudio(this.loadLine);
     },
     showFadeScreenFunc() {
       this.showFadeScreen = true;
