@@ -25,11 +25,13 @@ jobs:
         with:
           node-version-file: .nvmrc
           cache: npm
-      - run: npm ci
-      - run: npm audit
+      - run: npm ci --no-audit
       - run: npm run build
       - run: npx playwright install --with-deps chromium
       - run: npm test
+      - name: Audit dependencies
+        timeout-minutes: 3
+        run: npm audit --fetch-timeout=30000 --fetch-retries=2
       - uses: actions/upload-pages-artifact@v4
         if: github.event_name != 'pull_request' && github.ref == 'refs/heads/develop'
         with:
